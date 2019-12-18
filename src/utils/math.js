@@ -97,7 +97,7 @@ Number.prototype.toFakeTimeString = function() {
   ]
   const month = banExp.getMonth() -1
 
-  // Return string.
+  // Return string. If the ban is longer than a year show the expiration date as well.
   if (delta > 1000 * 60 * 60 * 24 * 30 * 12) {
     return output + '! See you in ' + month_array[month] + ' ' + banExp.getDate() + ', ' + banExp.getFullYear() + '! :wave:'
   } else {

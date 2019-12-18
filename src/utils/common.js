@@ -14,7 +14,6 @@ String.prototype.stripMention = (subject, msg) => {
       } else {
         subject = value.username
       }
-      // break
       return subject
     }
   } else {
