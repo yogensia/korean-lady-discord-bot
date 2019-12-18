@@ -412,8 +412,8 @@ const add = (msg) => {
     if (2 > choices.length) {
       msg.channel.send('Invalid parameter: You need two or more choices! :rage:\nExample: `!choose The Doors/David Bowie/Queen`')
     } else {
-      msg.channel.send(emote_array[emote] + ' ' + intro_array[intro] + ' **' + choices[random] + '**!')
-      console.log('(' + msg.author.tag+ ') ' + msg.author.username + ' used "choose" command... The result was ' + choices[random] + '!')
+      msg.channel.send(emote_array[emote] + ' ' + intro_array[intro] + ' **' + choices[random].trim() + '**!')
+      console.log('(' + msg.author.tag+ ') ' + msg.author.username + ' used "choose" command... The result was ' + choices[random].trim() + '!')
     }
   }
 }
