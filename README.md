@@ -40,7 +40,7 @@ Usage: `!choose The Doors/David Bowie/Queen`
 
 ### `!coin`
 
-Throws a coin and show the result (heads or tails).
+Throws a coin and shows the result (heads or tails).
 
 Usage: `!coin`
 
@@ -91,7 +91,7 @@ Usage: `!spiritanimal`
 
 KoreanLady requires NodeJS and [Discord.JS](https://discord.js.org/#/).
 
-[Nodemon](https://nodemon.io/) is optional but recommended for development.
+[npm](https://www.npmjs.com/get-npm) & [Nodemon](https://nodemon.io/) are optional but recommended for development.
 
 You will also need to [create a Discord bot application](https://discordapp.com/developers/applications/me) so that your bot can connect to Discord, more instructions can be found below.
 
@@ -119,7 +119,7 @@ The source is in the `src` directory.
 
 ## Changelog
 
-All notable changes for each version of this repository are documented in the [changelog](https://github.com/yogensia/korean-lady-discord-bot/CHANGELOG.md).
+All notable changes for each version of this project are documented in the [changelog](https://github.com/yogensia/korean-lady-discord-bot/CHANGELOG.md).
 
 
 ## Credits & Acknowledgments
