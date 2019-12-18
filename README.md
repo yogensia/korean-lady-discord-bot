@@ -8,21 +8,9 @@ It's meant to be a simple bot with a few fun commands and no moderation or any o
 
 ## Command List
 
-### `!tableflip`
-
-Flip a table on your behalf.
-
-Usage: `!fliptable`
-
-### `!tableunflip`
-
-Put the table back where it belongs.
-
-Usage: `!tableunflip`
-
 ### `!8ball <question>`
 
-Use an 8 ball to answer a question.
+Uses an 8 ball to answer a question.
 
 Usage: `!8ball Will I pass my next exam?`
 
@@ -54,7 +42,7 @@ Usage: `!dice` `!dice 12`
 
 Fines someone with a random amount of money, in a random currency.
 
-Usage: `!fine @Superman` `!fine the whole planet`
+Usage: `!fine @Superman` `!fine The whole planet`
 
 ### `!heavenorhell [subject]`
 
@@ -70,13 +58,13 @@ Usage: `!hug chat`
 
 ### `!love`
 
-Show how much you love someone or something, with a random percentage.
+Shows how much you love someone or something, with a random percentage.
 
 Usage: `!love @Wumpus` `!love everyone in chat`
 
 ### `!rate <subject>`
 
-Rate someone/something randomly from 0 to 10.
+Rates someone/something randomly from 0 to 10.
 
 Usage: `!rate Vanilla Pudding`
 
@@ -86,12 +74,24 @@ Tells you which your spirit animal is (randomly).
 
 Usage: `!spiritanimal`
 
+### `!tableflip`
+
+Flips a table on your behalf.
+
+Usage: `!fliptable`
+
+### `!tableunflip`
+
+Puts the table back where it belongs.
+
+Usage: `!tableunflip`
+
 
 ## Requirements
 
-KoreanLady requires NodeJS and [Discord.JS](https://discord.js.org/#/).
+KoreanLady requires NodeJS, [Discord.JS](https://discord.js.org/#/) & [Enmap](https://enmap.evie.dev/).
 
-[npm](https://www.npmjs.com/get-npm) & [Nodemon](https://nodemon.io/) are optional but recommended for development.
+[npm](https://www.npmjs.com/get-npm) & [Nodemon](https://nodemon.io/) are optional but recommended for easier setup and development.
 
 You will also need to [create a Discord bot application](https://discordapp.com/developers/applications/me) so that your bot can connect to Discord, more instructions can be found below.
 
