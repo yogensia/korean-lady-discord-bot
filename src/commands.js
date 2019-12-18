@@ -168,7 +168,7 @@ const add = (msg) => {
       }
     }
 
-    const mississippis = math.getRandomFloat(0, 5)
+    const mississippis = math.getRandomFloat(0, 10)
     const emotes_array = [
       ':bar_chart:',
       ':chart_with_upwards_trend:',
