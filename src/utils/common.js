@@ -20,3 +20,15 @@ String.prototype.stripMention = (subject, msg) => {
     return subject
   }
 }
+
+/**
+ * Show a server emote.
+ *
+ * @param {string} name Name of the emote (ex: peepoPants).
+ * @param {Client} client Client object.
+ */
+const showEmote = (name, client) => {
+  return client.emojis.find(emoji => emoji.name === name)
+}
+
+module.exports = { showEmote }
