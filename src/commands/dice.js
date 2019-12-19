@@ -7,19 +7,20 @@ const math = require('../utils/math')
  */
 exports.run = (client, msg, args) => {
   // Check for arguments.
+  let sides
   if (Array.isArray(args) && args.length) {
     // Try to parse number.
-    var sides = args[0]
+    sides = args[0]
     sides = sides.replace( /[^\d.]/g, '' )
     sides = parseInt(sides, 10)
 
-    // If not a valid number to 6 sides.
+    // If not a valid number, fallback to 6 sides.
     if (!Number.isInteger(sides)) {
       sides = 6
     }
   } else {
     // If no argument provided, default to 6 sides.
-    var sides = 6
+    sides = 6
   }
 
   // Throw the dice!
