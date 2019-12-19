@@ -11,6 +11,14 @@ client.config   = require('./config.json')
  */
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`)
+  // Set bot status and presence.
+  client.user.setStatus('available')
+  client.user.setPresence({
+    game: {
+      name: '!help',
+      type: "PLAYING"
+    }
+  })
 })
 
 /**
