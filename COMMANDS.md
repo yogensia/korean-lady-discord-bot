@@ -50,19 +50,19 @@ Usage: `!fine @Superman` `!fine The whole planet`
 
 ### `!heavenorhell [subject]`
 
-Shows whether a user will go to heaven or hell, and the prediction accuracy. Subject can be omitted, if so the user what used the command will be used as subject.
+Shows whether a user or object will go to heaven or hell, and the prediction accuracy. Subject can be omitted, if so the user that sent the command will be used as subject.
 
-Usage: `!heavenorhell` `!heavenorhell Pineapple`
+Usage: `!heavenorhell` `!heavenorhell @GeraltOfRivia` `!heavenorhell Pineapple`
 
 ### `!help`
 
-Shows a link to command list in documentation.
+Shows a link to command documentation.
 
 Usage: `!help`
 
 ### `!hug <subject>`
 
-Hugs someone/something for a random amount of mississippis.
+Hugs someone or something for a random amount of mississippis.
 
 Usage: `!hug chat`
 
@@ -74,7 +74,7 @@ Usage: `!love @Wumpus` `!love everyone in chat`
 
 ### `!rate <subject>`
 
-Rates someone/something randomly from 0 to 10.
+Rates someone or something randomly from 0 to 10.
 
 Usage: `!rate Vanilla Pudding`
 
