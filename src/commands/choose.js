@@ -8,7 +8,7 @@ const math = require('../utils/math')
 exports.run = (client, msg, args) => {
   let choices = args.join(' ')
   choices = choices.split('/')
-  random = math.getRandomInt(0, choices.length -1)
+  const random = math.getRandomInt(0, choices.length -1)
 
   // Random emote.
   const emote_array = [

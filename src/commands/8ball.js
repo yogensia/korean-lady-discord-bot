@@ -33,7 +33,7 @@ exports.run = (client, msg, args) => {
 
   // Make sure question is not empty.
   if ('' === question) {
-    msg.channel.send(`Missing parameter: You didn\'t ask a question! :rage:\n Example: \`!8ball Will I pass my next exam?\``)
+    msg.channel.send(`Missing parameter: You didn't ask a question! :rage:\n Example: \`!8ball Will I pass my next exam?\``)
   } else {
     msg.channel.send(`${msg.author.username} asks: **${question}**\n:8ball: ${answer[result]} :8ball:`)
   }
