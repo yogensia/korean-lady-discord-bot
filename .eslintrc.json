@@ -1,23 +1,18 @@
 {
+	"extends": "eslint:recommended",
 	"env": {
-		"browser": true,
-		"commonjs": true,
-		"es6": true,
 		"node": true,
-		"jquery": true
+		"es6": true
 	},
 	"parserOptions": {
-		"ecmaFeatures": {
-			"jsx": true
-		},
-		"sourceType": "module"
+		"ecmaVersion": 2019
 	},
 	"rules": {
 		"no-const-assign": "warn",
 		"no-this-before-super": "warn",
 		"no-undef": "warn",
 		"no-unreachable": "warn",
-		"no-unused-vars": "warn",
+		"no-unused-vars": "off",
 		"constructor-super": "warn",
 		"valid-typeof": "warn",
 		"func-names": "off",
