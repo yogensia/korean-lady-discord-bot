@@ -119,13 +119,15 @@ The source is in the `src` directory.
 
 2. Find the token for your application, should be found in the Bot section.
 
-3. Edit `src/index.js` and add the token for your discord bot at the end of the file, in `client.login()`. Remember to keep this token private!
+3. Rename `.env.example` to `.env` and add the token for your discord bot in this file. Remember to keep this token private!
 
-4. Run the source with `npm run build` or `npm run dev`. The second option requires [nodemon](https://nodemon.io/) and is used to monitor changes and reload the script as needed.
+4. Run `npm install` to install dependencies.
 
-5. Go to the OAuth2 section in your bot application page. Enable the bot scope and select the permissions you need. This will create a link for you with your application's `client_id` and permissions. Copy and open that link, and follow instructions on the newly opened page to add your Bot to a server you have admin access to.
+5. Run the source with `npm run build` or `npm run dev`. The second option requires [nodemon](https://nodemon.io/) and is used to monitor changes and reload the script as needed.
 
-6. You should now find your bot online in your server, responding to your commands.
+6. Go to the OAuth2 section in your bot application page. Enable the bot scope and select the permissions you need. This will create a link for you with your application's `client_id` and permissions. Copy and open that link, and follow instructions on the newly opened page to add your Bot to a server you have admin access to.
+
+7. You should now find your bot online in your server, responding to your commands.
 
 ## Changelog
 

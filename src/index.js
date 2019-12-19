@@ -4,7 +4,12 @@ const fs         = require("fs")
 
 const client    = new Client()
 client.commands = new Enmap()
-client.config   = require('./config.json')
+// client.config   = require('./config.json')
+
+// Environment variables.
+require('dotenv').config()
+client.env = {}
+client.env.prefix = process.env.PREFIX
 
 /**
  * Ready event.
@@ -15,7 +20,7 @@ client.on('ready', () => {
   client.user.setStatus('available')
   client.user.setPresence({
     game: {
-      name: '!help',
+      name: `${client.env.prefix}help`,
       type: "PLAYING"
     }
   })
@@ -59,4 +64,4 @@ fs.readdir('./src/commands/', (err, files) => {
 /**
  * Login to Discord.
  */
-client.login(client.config.token)
+client.login(process.env.CLIENT_TOKEN)

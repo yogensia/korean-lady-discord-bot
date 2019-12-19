@@ -16,7 +16,7 @@
 *.tgz
 *.map
 
-# Logs
+# Logs and environment variables
 *.log
 *.env
 
