@@ -31,4 +31,15 @@ const showEmote = (name, client) => {
   return client.emojis.find(emoji => emoji.name === name)
 }
 
-module.exports = { showEmote }
+/**
+ * Show a server emote.
+ *
+ * @param {string} name Name of the emote (ex: peepoPants).
+ * @param {Client} client Client object.
+ */
+const sendMissingParameterMsg = (client, msg, reason, syntax) => {
+  const emote_angry = showEmote('Angry', client)
+  msg.channel.send(`${emote_angry} **Missing parameter:** ${reason}\n Example: \`${client.env.prefix}${syntax}\``)
+}
+
+module.exports = { showEmote, sendMissingParameterMsg }
