@@ -1,11 +1,11 @@
 {
   "name": "korean-lady-discord-bot",
   "version": "0.1.0",
-  "description": "KoreanLady Discord bot.",
+  "description": "KoreanLady is a simple and fun Discord bot coded in NodeJS.",
   "author": "Yogensia",
   "license": "ISC",
   "scripts": {
-    "build": "node ./src/index.js",
+    "start": "node ./src/index.js",
     "dev": "nodemon ./src/index.js"
   },
   "dependencies": {

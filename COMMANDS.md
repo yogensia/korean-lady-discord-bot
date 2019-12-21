@@ -1,11 +1,5 @@
 # KoreanLady Discord Bot
 
-## About
-
-**KoreanLady** is a Discord bot coded in NodeJS using the [Discord.JS](https://discord.js.org/#/) library.
-
-It's meant to be a simple bot with a few fun commands and no moderation or any other advanced functions.
-
 ## Command List
 
 Below you can see the full list of available commands.
@@ -95,6 +89,19 @@ Usage: `!fliptable`
 Puts the table back where it belongs.
 
 Usage: `!tableunflip`
+
+### `!treat <subject>`
+
+Gives someone a treat.
+
+Usage: `!treat @KoreanLady`
+
+
+## About
+
+**KoreanLady** is a Discord bot coded in NodeJS using the [Discord.JS](https://discord.js.org/#/) library.
+
+It's meant to be a simple bot with a few fun commands and no moderation or any other advanced functions.
 
 
 ## Credits & Acknowledgments

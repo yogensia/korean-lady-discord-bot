@@ -96,6 +96,12 @@ Puts the table back where it belongs.
 
 Usage: `!tableunflip`
 
+### `!treat <subject>`
+
+Gives someone a treat.
+
+Usage: `!treat @KoreanLady`
+
 
 ## Requirements
 
@@ -123,7 +129,7 @@ The source is in the `src` directory.
 
 4. Run `npm install` to install dependencies.
 
-5. Run the source with `npm run build` or `npm run dev`. The second option requires [nodemon](https://nodemon.io/) and is used to monitor changes and reload the script as needed.
+5. Run the source with `npm run start` or `npm run dev`. The second option requires [nodemon](https://nodemon.io/) and is used to monitor changes and reload the script as needed.
 
 6. Go to the OAuth2 section in your bot application page. Enable the bot scope and select the permissions you need. This will create a link for you with your application's `client_id` and permissions. Copy and open that link, and follow instructions on the newly opened page to add your Bot to a server you have admin access to.
 
