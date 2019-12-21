@@ -25,7 +25,7 @@ String.prototype.stripMention = (subject, msg) => {
  * Show a server emote.
  *
  * @param {string} name Name of the emote (ex: peepoPants).
- * @param {Client} client Client object.
+ * @param {object} client Client object.
  */
 const showEmote = (name, client) => {
   return client.emojis.find(emoji => emoji.name === name)
@@ -34,8 +34,10 @@ const showEmote = (name, client) => {
 /**
  * Show a server emote.
  *
- * @param {string} name Name of the emote (ex: peepoPants).
- * @param {Client} client Client object.
+ * @param {object} client Client object.
+ * @param {object} msg Message object.
+ * @param {string} reason Reason why the sendMissingParameterMsg() method is being used.
+ * @param {string} client Syntax example for this command, with command and arguments, without prefix.
  */
 const sendMissingParameterMsg = (client, msg, reason, syntax) => {
   const emote_angry = showEmote('Angry', client)
