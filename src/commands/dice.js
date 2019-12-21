@@ -26,5 +26,6 @@ exports.run = (client, msg, args) => {
   // Throw the dice!
   const result = math.getRandomInt(0, sides)
 
+  // Send message.
   msg.channel.send(`${msg.author.username} threw a ${sides} sided dice... The result was **${result}**!`)
 }

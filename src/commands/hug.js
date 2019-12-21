@@ -1,3 +1,4 @@
+const common = require('../utils/common')
 const math = require('../utils/math')
 
 /**
@@ -16,19 +17,20 @@ exports.run = (client, msg, args) => {
     }
   }
 
-  // Ramdom emotes and hug length.
-  const emotes_array = [
-    ':bar_chart:',
-    ':chart_with_upwards_trend:',
-    ':chart_with_downwards_trend:'
-  ]
-  const emote = math.getRandomInt(0, emotes_array.length - 1)
-  const time  = math.getRandomFloat(0, 10)
-
   // Make sure subject isn't empty.
   if ('' === subject) {
-    msg.channel.send('Missing parameter: You must specify who you want to hug! :rage:\n Example: `!hug chat`')
+    common.sendMissingParameterMsg(client, msg, 'You must specify who you want to hug!', 'hug chat')
   } else {
+    // Ramdom emotes and hug length.
+    const emotes_array = [
+      ':bar_chart:',
+      ':chart_with_upwards_trend:',
+      ':chart_with_downwards_trend:'
+    ]
+    const emote = math.getRandomInt(0, emotes_array.length - 1)
+    const time  = math.getRandomFloat(0, 10)
+
+    // Send message.
     msg.channel.send(`${emotes_array[emote]} ${msg.author.username} hugs **${subject}** for ${time.toFixed(2)} mississippis!`)
   }
 }

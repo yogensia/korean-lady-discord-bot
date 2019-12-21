@@ -12,10 +12,12 @@ exports.run = (client, msg, args) => {
 
   // Check required parameters.
   if ('' === subject) {
-    msg.channel.send('Missing parameter: You didn\'t specify the subject of your love! :rage:\nExample: `!love Fish & Chips`')
+    common.sendMissingParameterMsg(client, msg, 'You didn\'t specify the subject of your love!', 'love Fish & Chips')
   } else {
+    // Get random percentage.
     const result = math.getRandomInt(0, 110)
 
+    // Depending on percentage send a different message.
     if (94 < result) {
       msg.channel.send(`:cupid: What!? ${msg.author.username} Love for **${subject}** is _**${result}%**_!`)
     } else if (69 < result) {

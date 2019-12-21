@@ -18,7 +18,7 @@ exports.run = (client, msg, args) => {
     'The Dalai Lama has spoken...',
     'The prophecy has revealed...'
   ]
-  const result = math.getRandomInt(0, answer.length - 1)
+  const result  = math.getRandomInt(0, answer.length - 1)
   const acuracy = math.getRandomFloat(0, 110).toFixed(2)
 
   // Random heaven or hell destination!
@@ -29,7 +29,7 @@ exports.run = (client, msg, args) => {
     destiny = 'is going to Hell! :flame:'
   }
 
-  // Make sure a there is a subject.
+  // Check if there is a subject, if not use the message author.
   if ('' === subject) {
     msg.channel.send(`${answer[result]}* ${msg.author.username} **${destiny}**\n(_*actual prediction acuracy of ${acuracy}%_)`)
   } else {
