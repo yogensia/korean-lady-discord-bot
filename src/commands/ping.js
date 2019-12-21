@@ -1,16 +1,13 @@
 const common = require('../utils/common')
 
 exports.run = (client, msg, args) => {
-  // Try to get custom emotes.
-  const emote_apolcool = common.showEmote('apolCool', client)
-  const emote_peepopants = common.showEmote('peepoPants', client)
+  // Try to get a custom emote from the server.
+  const emote_peepopants = common.getCustomEmote(client, 'peepoPants', 'smile')
 
-  // If emote is available use it, otherwise send a normal message.
-  if (null !== emote_apolcool) {
-    msg.react(emote_apolcool)
-  } else if (null !== emote_peepopants) {
-    msg.react(emote_peepopants)
+  // If emote is available react to user's message.
+  if (emote_peepopants.id) {
+    msg.react(emote_peepopants.id)
   } else {
-    msg.channel.send('Hey!')
+    msg.channel.send('Pong!')
   }
 }

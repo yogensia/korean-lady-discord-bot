@@ -10,7 +10,7 @@ const math = require('../utils/math')
  */
 exports.run = (client, msg, args) => {
   // Get random answer and description
-  const answer = [
+  const answer_array = [
     ['Bat', 'Intuitive, understanding, truthful, traveler'],
     ['Bear', 'Strong, corageous, confident, inspiring, supportive'],
     ['Butterfly', 'Playful, transformative, joyful, bright'],
@@ -44,8 +44,8 @@ exports.run = (client, msg, args) => {
     ['Whale', 'Description'],
     ['Wolf', 'Description']
   ]
-  const result = math.getRandomInt(0, answer.length - 1)
+  const answer = math.getRandomStringFromArray(answer_array)
 
   // Send message.
-  msg.channel.send(`${msg.author.username}'s spirit animal is the **${answer[result][0]}**!\n${answer[result][1]}.`)
+  msg.channel.send(`${msg.author.username}'s spirit animal is the **${answer[0]}**!\n${answer[1]}.`)
 }

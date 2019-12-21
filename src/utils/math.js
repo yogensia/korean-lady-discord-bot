@@ -23,6 +23,18 @@ const getRandomFloat = (min, max) => {
 
 
 /**
+ * Get a random string from an array.
+ *
+ * @param {string[]} array - Array of strings to choose from.
+ * @return {string} Randomly selected string.
+ */
+const getRandomStringFromArray = (array) => {
+  const key = getRandomInt(0, array.length - 1)
+  return array[key]
+}
+
+
+/**
  * Converts seconds to a full time string.
  *
  * This method also randomly ommits years, months, days, etc to create
@@ -106,4 +118,4 @@ Number.prototype.toFakeTimeString = function() {
 
 }
 
-module.exports = { getRandomInt, getRandomFloat }
+module.exports = { getRandomInt, getRandomFloat, getRandomStringFromArray }

@@ -15,12 +15,12 @@ exports.run = (client, msg, args) => {
     common.sendMissingParameterMsg(client, msg, 'You must specify who you want to fine!', 'fine Twitch')
   } else {
     // Random emote.
-    const emotes_array = [
+    const emote_array = [
       ':receipt:',
       ':money_with_wings:',
       ':moneybag:'
     ]
-    const emote = math.getRandomInt(0, emotes_array.length - 1)
+    const emote = math.getRandomStringFromArray(emote_array)
 
     // Random currency.
     const currency_array = [
@@ -34,7 +34,7 @@ exports.run = (client, msg, args) => {
       'Hyrule Rupees',
       'Gold bars'
     ]
-    const currency = math.getRandomInt(0, currency_array.length - 1)
+    const currency = math.getRandomStringFromArray(currency_array)
 
     // Random money amount.
     let money = math.getRandomInt(0, 999888777666)
@@ -47,10 +47,10 @@ exports.run = (client, msg, args) => {
 
     // Don't let the Korean lady get finned!
     if ('koreanlady' === subject.toLowerCase() || 'korean lady' === subject.toLowerCase()) {
-      let emote_angry = common.showEmote('Angry', client)
-      msg.channel.send(`${emote_angry} Trying to fine the Korean Lady is illegal! **${msg.author.username}** has been fined instead, with ${money} ${currency_array[currency]}!`)
+      let emote_angry = common.getCustomEmote(client, 'Angry', 'rage')
+      msg.channel.send(`${emote_angry} Trying to fine the Korean Lady is illegal! **${msg.author.username}** has been fined instead, with ${money} ${currency}!`)
     } else {
-      msg.channel.send(`${emotes_array[emote]} ${msg.author.username} fined **${subject}** with ${money} ${currency_array[currency]}!`)
+      msg.channel.send(`${emote} ${msg.author.username} fined **${subject}** with ${money} ${currency}!`)
     }
   }
 }

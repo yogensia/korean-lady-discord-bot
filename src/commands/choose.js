@@ -25,7 +25,7 @@ exports.run = (client, msg, args) => {
       ':scales:',
       ':fortune_cookie:'
     ]
-    const emote = math.getRandomInt(0, emote_array.length - 1)
+    const emote = math.getRandomStringFromArray(emote_array)
 
     // Random intro.
     const intro_array = [
@@ -38,9 +38,9 @@ exports.run = (client, msg, args) => {
       'And the winner is...',
       'Ok, how about'
     ]
-    const intro = math.getRandomInt(0, intro_array.length - 1)
+    const intro = math.getRandomStringFromArray(intro_array)
 
     // Send message.
-    msg.channel.send(`${emote_array[emote]} ${intro_array[intro]} **${choices[random].trim()}**!`)
+    msg.channel.send(`${emote} ${intro} **${choices[random].trim()}**!`)
   }
 }

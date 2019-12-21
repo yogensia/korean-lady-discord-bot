@@ -26,7 +26,7 @@ exports.run = (client, msg, args) => {
     }
 
     // Random intro emote.
-    const emotes_array = [
+    const emote_array = [
       ':bar_chart:',
       ':chart_with_upwards_trend:',
       ':chart_with_downwards_trend:',
@@ -35,9 +35,9 @@ exports.run = (client, msg, args) => {
       ':test_tube:',
       ':microscope:'
     ]
-    const emote = math.getRandomInt(0, emotes_array.length - 1)
+    const emote = math.getRandomStringFromArray(emote_array)
 
     // Send message.
-    msg.channel.send(`${emotes_array[emote]} Based on extensive research, **${subject}** gets a rating of **${rating}/10**!`)
+    msg.channel.send(`${emote} Based on extensive research, **${subject}** gets a rating of **${rating}/10**!`)
   }
 }

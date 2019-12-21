@@ -18,18 +18,17 @@ exports.run = (client, msg, args) => {
 
     // Max equals 10 years.
     const time = math.getRandomInt(0, 631139040).toFakeTimeString()
-    const emote_angry = common.showEmote('Angry', client)
-    const emotes_array = [
+    const emote_array = [
       ':hammer:',
       ':rage:',
       ':no_entry:',
       ':no_entry_sign:',
       ':door:'
     ]
-    const emote = math.getRandomInt(0, emotes_array.length - 1)
+    const emote = math.getRandomStringFromArray(emote_array)
 
     // Send message.
-    msg.channel.send(`${emotes_array[emote]} ${msg.author.username} banned **${subject}** for ${time}`)
+    msg.channel.send(`${emote} ${msg.author.username} banned **${subject}** for ${time}`)
 
     // REEE...
     if ('koreanlady' === subject.toLowerCase() || 'korean lady' === subject.toLowerCase()) {
@@ -39,16 +38,18 @@ exports.run = (client, msg, args) => {
         'HUH!?!',
         'WAIT WHAT!?!',
         'REEEEEEE',
+        'NEEEEJ',
         'HEY!!!'
       ]
-      const reee = math.getRandomInt(0, reee_array.length - 1)
+      const reee = math.getRandomStringFromArray(reee_array)
+      const emote_angry = common.getCustomEmote(client, 'Angry', 'rage')
 
       // For added suspense.
       msg.channel.startTyping()
 
       // Just wait a moment...
       setTimeout(function() {
-        msg.channel.send(`_**${reee_array[reee]}**_`)
+        msg.channel.send(`_**${reee}**_`)
         msg.channel.send(`${emote_angry}`)
         msg.channel.stopTyping()
       }, 1500)

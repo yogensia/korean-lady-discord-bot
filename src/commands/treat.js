@@ -33,7 +33,7 @@ exports.run = (client, msg, args) => {
       'Yay!',
       'Holy cow!'
     ]
-    const intro = math.getRandomInt(0, intro_array.length - 1)
+    const intro = math.getRandomStringFromArray(intro_array)
 
     // Ramdom adjective.
     const adjective_array = [
@@ -79,7 +79,7 @@ exports.run = (client, msg, args) => {
       'Triple Layered',
       'Ultimate'
     ]
-    const adjective = math.getRandomInt(0, adjective_array.length - 1)
+    const adjective = math.getRandomStringFromArray(adjective_array)
 
     // Ramdom flavour.
     const flavour_array = [
@@ -132,7 +132,7 @@ exports.run = (client, msg, args) => {
       'White and Golden Raspberry',
       'White Chocolate'
     ]
-    const flavour = math.getRandomInt(0, flavour_array.length - 1)
+    const flavour = math.getRandomStringFromArray(flavour_array)
 
     // Ramdom treat.
     const treat_array = [
@@ -181,22 +181,28 @@ exports.run = (client, msg, args) => {
       [':waffle:', 'Waffles'],
       [':watermelon:', 'Watermelon']
     ]
-    const treat = math.getRandomInt(0, treat_array.length - 1)
+    const treat = math.getRandomStringFromArray(treat_array)
 
-    msg.channel.send(`${intro_array[intro]} ${msg.author.username} is treating **${subject}** to...\n${treat_array[treat][0]} **${adjective_array[adjective]} ${flavour_array[flavour]} ${treat_array[treat][1]}!**`)
+    msg.channel.send(`${intro} ${msg.author.username} is treating **${subject}** to...\n${treat[0]} **${adjective} ${flavour} ${treat[1]}!**`)
 
-    // IHAA... If subject is Korean Lady she will react to the message as well.
+    // IHAA... If subject is Korean Lady she will react with a random emote.
     if ('koreanlady' === subject.toLowerCase() || 'korean lady' === subject.toLowerCase()) {
-      // Try to get custom emotes.
-      const emote_apollo20Wow = common.showEmote('apollo20Wow', client)
-      const emote_ihaa = common.showEmote('ihaa', client)
+      // Ramdom emote reaction.
+      const reaction_array = [
+        ['apollo20Wow', 'star_struck'],
+        ['apollo20Blush', 'blush'],
+        ['apolLove', 'heart'],
+        ['apolHyper', 'yum'],
+        ['POG', 'open_mouth'],
+        ['POG', 'open_mouth'],
+        ['ihaa', 'heart'],
+      ]
+      let reaction = math.getRandomStringFromArray(reaction_array)
+      reaction = common.getCustomEmote(client, reaction[0], reaction[1])
 
-      // If emote is available use it, otherwise send a normal message.
-      if (null !== emote_apollo20Wow) {
-        msg.react(emote_apollo20Wow)
-      }
-      if (null !== emote_ihaa) {
-        msg.react(emote_ihaa)
+      // If emote is available react to user's message.
+      if (reaction.id) {
+        msg.react(reaction.id)
       }
     }
   }

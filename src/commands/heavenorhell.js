@@ -11,14 +11,14 @@ exports.run = (client, msg, args) => {
   subject     = subject.stripMention(subject, msg)
 
   // Random intro and prediction accuracy.
-  const answer = [
+  const answer_array = [
     'The gods have decree...',
     'Apollo has determined...',
     'The jury has decided...',
     'The Dalai Lama has spoken...',
     'The prophecy has revealed...'
   ]
-  const result  = math.getRandomInt(0, answer.length - 1)
+  const answer  = math.getRandomStringFromArray(answer_array)
   const acuracy = math.getRandomFloat(0, 110).toFixed(2)
 
   // Random heaven or hell destination!
@@ -31,8 +31,8 @@ exports.run = (client, msg, args) => {
 
   // Check if there is a subject, if not use the message author.
   if ('' === subject) {
-    msg.channel.send(`${answer[result]}* ${msg.author.username} **${destiny}**\n(_*actual prediction acuracy of ${acuracy}%_)`)
+    msg.channel.send(`${answer}* ${msg.author.username} **${destiny}**\n(_*actual prediction acuracy of ${acuracy}%_)`)
   } else {
-    msg.channel.send(`${answer[result]}* ${subject} **${destiny}**\n(_*actual prediction acuracy of ${acuracy}%_)`)
+    msg.channel.send(`${answer}* ${subject} **${destiny}**\n(_*actual prediction acuracy of ${acuracy}%_)`)
   }
 }
