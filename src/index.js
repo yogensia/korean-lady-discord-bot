@@ -1,13 +1,13 @@
+require('dotenv').config()
+
 const { Client } = require('discord.js')
 const Enmap      = require('enmap')
 const fs         = require("fs")
 
 const client    = new Client()
 client.commands = new Enmap()
-// client.config   = require('./config.json')
 
 // Environment variables.
-require('dotenv').config()
 client.env = {}
 client.env.prefix = process.env.PREFIX
 
@@ -36,10 +36,7 @@ fs.readdir('./src/events/', (err, files) => {
     const event = require(`./events/${file}`)
     // Get just the event name from the file name.
     let eventName = file.split(".")[0]
-    // Super-secret recipe to call events with all their proper arguments *after* the `client` var.
-    // without going into too many details, this means each event will be called with the client argument,
-    // followed by its "normal" arguments, like message, member, etc etc.
-    // This line is awesome by the way. Just sayin'.
+    // Call events with all their proper arguments *after* the `client` var.
     client.on(eventName, event.bind(null, client))
   })
 })
@@ -64,4 +61,4 @@ fs.readdir('./src/commands/', (err, files) => {
 /**
  * Login to Discord.
  */
-client.login(process.env.CLIENT_TOKEN)
+client.login()
