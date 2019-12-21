@@ -4,6 +4,10 @@
   "description": "KoreanLady is a simple and fun Discord bot coded in NodeJS.",
   "author": "Yogensia",
   "license": "ISC",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/yogensia/korean-lady-discord-bot.git"
+  },
   "scripts": {
     "start": "node ./src/index.js",
     "dev": "nodemon ./src/index.js"
