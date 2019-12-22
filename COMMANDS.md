@@ -66,30 +66,6 @@ Shows how much you love someone or something, with a random percentage.
 
 Usage: `!love @Wumpus` `!love everyone in chat`
 
-### `!rate <subject>`
-
-Rates someone or something randomly from 0 to 10.
-
-Usage: `!rate Vanilla Pudding`
-
-### `!spiritanimal`
-
-Tells you which your spirit animal is (randomly).
-
-Usage: `!spiritanimal`
-
-### `!tableflip`
-
-Flips a table on your behalf.
-
-Usage: `!fliptable`
-
-### `!tableunflip`
-
-Puts the table back where it belongs.
-
-Usage: `!tableunflip`
-
 ### `!treat <subject>`
 
 Gives someone a treat.
