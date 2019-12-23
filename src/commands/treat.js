@@ -8,23 +8,20 @@ const math = require('../utils/math')
  */
 exports.run = (client, msg, args) => {
   let subject = args.join(' ')
-  // Remove user mentions, experimental.
-  if (subject.startsWith('<@')) {
-    // Get username of first mention (ignore the rest if more than one).
-    for (var [key, value] of msg.mentions.users) {
-      subject = value.username
-      break
-    }
-  }
 
   // Make sure subject isn't empty.
   if ('' === subject) {
     common.sendMissingParameterMsg(client, msg, 'You must specify who you want to give your precious treat!', 'treat @KoreanLady')
   } else {
+    subject = subject.stripMention(subject, msg)
+
     // Ramdom intro.
     const intro_array = [
       'WOAH!',
+      'WOW!',
       'Look!',
+      'Oh look!',
+      'Look at that!',
       'Ooh!',
       'Oh cool!',
       'Oh nice!',
@@ -61,7 +58,7 @@ exports.run = (client, msg, args) => {
       'Heart Shaped',
       'Heavenly',
       'Homemade',
-      'Instense',
+      'Intense',
       'Intricate',
       'Juicy',
       'Lively',
