@@ -5,20 +5,45 @@
  * @param {Object} msg - Message object.
  * @return {string} A plain text username.
  */
-String.prototype.stripMention = (subject, msg) => {
-  if (subject.startsWith('<@')) {
-    // Get username of first mention, ignoring the rest if more than one.
-    for (var [key, value] of msg.mentions.users) {
-      if (msg.author.username === value.username) {
-        subject = 'himself/herself'
-      } else {
-        subject = value.username
+String.prototype.stripMentions = (subject, msg) => {
+  const input = subject.split(' ')
+
+  // Replace user mentions with plain text.
+  let output = input.map(function(element) {
+    if (/@(everyone|here)/.test(element)) {
+      return element.replace(/@(everyone|here)/g, '\u200b$1')
+    } else if (element.startsWith('<@')) {
+      // Get username for each mention found.
+      const id = element.replace(/<|!|>|@/g, '')
+
+      if (msg.channel.type === 'dm' || msg.channel.type === 'group') {
+        return msg.client.users.has(id) ? `${msg.client.users.get(id).username}` : element
       }
-      return subject
+
+      const member = msg.channel.guild.members.get(id)
+      if (member) {
+        if (member.nickname) return `${member.nickname}`
+        return `${member.user.username}`
+      } else {
+        const user = msg.client.users.get(id)
+        if (user) return `${user.username}`
+        return element
+      }
+    } else {
+      return element
     }
-  } else {
-    return subject
-  }
+  })
+
+  // Is a user mentions themselves use special string.
+  output = output.map(function(element) {
+    if (msg.author.username === element) {
+      return 'himself/herself'
+    } else {
+      return element
+    }
+  })
+
+  return output.join(' ')
 }
 
 /**

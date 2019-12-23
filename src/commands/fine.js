@@ -8,7 +8,7 @@ const math = require('../utils/math')
  */
 exports.run = (client, msg, args) => {
   let subject = args.join(' ')
-  subject     = subject.stripMention(subject, msg)
+  subject     = subject.stripMentions(subject, msg)
 
   // Make sure a there is a subject.
   if ('' === subject) {
@@ -50,7 +50,7 @@ exports.run = (client, msg, args) => {
       let emote_angry = common.getCustomEmote(client, 'Angry', 'rage')
       msg.channel.send(`${emote_angry} Trying to fine the Korean Lady is illegal! **${msg.author.username}** has been fined instead, with ${money} ${currency}!`)
     } else {
-      msg.channel.send(`${emote} ${msg.author.username} fined **${subject}** with ${money} ${currency}!`)
+      msg.channel.send(`${emote} ${msg.author.username} has fined **${subject}** with ${money} ${currency}!`)
     }
   }
 }

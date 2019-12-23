@@ -14,7 +14,7 @@ exports.run = (client, msg, args) => {
   if ('' === subject) {
     common.sendMissingParameterMsg(client, msg, 'You must specify who or what to ban!', 'ban Mosquitoes')
   } else {
-    subject = subject.stripMention(subject, msg)
+    subject = subject.stripMentions(subject, msg)
 
     // Max equals 10 years.
     const time = math.getRandomInt(0, 631139040).toFakeTimeString()

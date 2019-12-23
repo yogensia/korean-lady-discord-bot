@@ -8,7 +8,7 @@ const math = require('../utils/math')
  */
 exports.run = (client, msg, args) => {
   let subject = args.join(' ')
-  subject     = subject.stripMention(subject, msg)
+  subject     = subject.stripMentions(subject, msg)
 
   // Random intro and prediction accuracy.
   const answer_array = [

@@ -13,7 +13,7 @@ exports.run = (client, msg, args) => {
   if ('' === subject) {
     common.sendMissingParameterMsg(client, msg, 'You must specify who you want to give your precious treat!', 'treat @KoreanLady')
   } else {
-    subject = subject.stripMention(subject, msg)
+    subject = subject.stripMentions(subject, msg)
 
     // Ramdom intro.
     const intro_array = [
