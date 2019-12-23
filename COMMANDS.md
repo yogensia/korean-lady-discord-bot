@@ -6,71 +6,71 @@ Below you can see the full list of available commands.
 
 Some commands require an argument, like naming a user or object, while others don't. Please check the various usage examples to see what's possible!
 
-### `!8ball <question>`
+### `k!8ball <question>`
 
 Uses an 8 ball to answer a question.
 
-Usage: `!8ball Will I pass my next exam?`
+Usage: `k!8ball Will I pass my next exam?`
 
-### `!ban <subject>`
+### `k!ban <subject>`
 
-Bans a user or object for a random amount of time, from a few seconds to several years. If the ban is longer than a year the expiry date will also be shown.
+Bans a user or object for a random amount of time, from a few seconds to several years. If the ban is longer than a year the ban's expiration date will also be shown.
 
-Usage: `!ban Mosquitoes` `!ban @Batman`
+Usage: `k!ban Mosquitoes` `k!ban @Batman`
 
-### `!choose <option 1/option 2/...>`
+### `k!choose <option 1/option 2/...>`
 
 Helps you choose between two or more options. Options must be separated by a forward slash.
 
-Usage: `!choose The Doors/David Bowie/Queen`
+Usage: `k!choose The Doors/David Bowie/Queen`
 
-### `!coin`
+### `k!coin`
 
 Throws a coin and shows the result (heads or tails).
 
-Usage: `!coin`
+Usage: `k!coin`
 
-### `!dice`
+### `k!dice`
 
 Throws a dice. By default it will be a 6 sided dice, but a different number can be added after the command.
 
-Usage: `!dice` `!dice 12`
+Usage: `k!dice` `k!dice 12`
 
-### `!fine <subject>`
+### `k!fine <subject>`
 
 Fines someone with a random amount of money, in a random currency.
 
-Usage: `!fine @Superman` `!fine The whole planet`
+Usage: `k!fine @Superman` `k!fine The whole planet`
 
-### `!heavenorhell [subject]`
+### `k!heavenorhell [subject]`
 
 Shows whether a user or object will go to heaven or hell, and the prediction accuracy. Subject can be omitted, if so the user that sent the command will be used as subject.
 
-Usage: `!heavenorhell` `!heavenorhell @GeraltOfRivia` `!heavenorhell Pineapple`
+Usage: `k!heavenorhell` `k!heavenorhell @GeraltOfRivia` `k!heavenorhell Pineapple`
 
-### `!help`
+### `k!help`
 
 Shows a link to command documentation.
 
-Usage: `!help`
+Usage: `k!help`
 
-### `!hug <subject>`
+### `k!hug <subject>`
 
 Hugs someone or something for a random amount of mississippis.
 
-Usage: `!hug chat`
+Usage: `k!hug chat`
 
-### `!love`
+### `k!love`
 
 Shows how much you love someone or something, with a random percentage.
 
-Usage: `!love @Wumpus` `!love everyone in chat`
+Usage: `k!love @Wumpus` `k!love everyone in chat`
 
-### `!treat <subject>`
+### `k!treat <subject>`
 
 Gives someone a treat.
 
-Usage: `!treat @KoreanLady`
+Usage: `k!treat @KoreanLady`
 
 
 ## About

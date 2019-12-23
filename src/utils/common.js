@@ -44,7 +44,7 @@ const getCustomEmote = (client, name, fallback) => {
 }
 
 /**
- * Show a server emote.
+ * Send a "missing parameter" message with an explanation and expected syntax.
  *
  * @param {Object} client Client object.
  * @param {Object} msg Message object.
