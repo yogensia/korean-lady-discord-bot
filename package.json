@@ -12,6 +12,10 @@
     "start": "node ./src/index.js",
     "dev": "nodemon ./src/index.js"
   },
+  "engines": {
+    "node": "10.16.0",
+    "npm": "*"
+  },
   "dependencies": {
     "discord.js": "^11.5.1",
     "dotenv": "^8.2.0",
