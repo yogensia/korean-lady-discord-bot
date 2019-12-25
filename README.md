@@ -72,6 +72,14 @@ Shows how much you love someone or something, with a random percentage.
 
 Usage: `k!love @Wumpus` `k!love everyone in chat`
 
+### `k!ping`
+
+Simple ping command to test bot.
+
+Usage: `k!ping`
+
+Aliases: `k!test`
+
 ### `k!treat <subject>`
 
 Gives someone a treat.
