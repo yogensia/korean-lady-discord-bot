@@ -1,18 +1,12 @@
 const common = require('../utils/common')
 const math = require('../utils/math')
 
-/**
- * COMMAND: !ban <subject>
- *
- * Bans a user or object for a random amount of time, from a few seconds to several years.
- * If the ban is longer than a year the expiry date will also be shown.
- */
-exports.run = (client, msg, args) => {
+const run = (client, msg, args) => {
   let subject = args.join(' ')
 
   // Make sure a there is a subject.
   if ('' === subject) {
-    common.sendMissingParameterMsg(client, msg, 'You must specify who or what to ban!', 'ban Mosquitoes')
+    common.sendMissingParameterMsg(client, msg, 'You must specify who or what to ban!')
   } else {
     subject = subject.stripMentions(subject, msg)
 
@@ -55,4 +49,12 @@ exports.run = (client, msg, args) => {
       }, 1500)
     }
   }
+}
+
+module.exports = {
+  name: 'ban',
+  desc: 'Bans a user or object for a random amount of time, from a few seconds to several years. If the ban is longer than a year the expiry date will also be shown.',
+  usage: ['ban <subject>'],
+  examples: ['ban Mosquitoes', 'ban @Batman'],
+  run
 }

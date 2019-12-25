@@ -1,12 +1,7 @@
 const common = require('../utils/common')
 const math = require('../utils/math')
 
-/**
- * COMMAND: !heavenorhell [subject]
- *
- * Shows whether a user will go to heaven or hell, and the prediction accuracy. Subject can be omitted, if so the user what used the command will be used as subject.
- */
-exports.run = (client, msg, args) => {
+const run = (client, msg, args) => {
   let subject = args.join(' ')
   subject     = subject.stripMentions(subject, msg)
 
@@ -35,4 +30,13 @@ exports.run = (client, msg, args) => {
   } else {
     msg.channel.send(`${answer}* ${subject} **${destiny}**\n(_*actual prediction acuracy of ${acuracy}%_)`)
   }
+}
+
+module.exports = {
+  name: 'heavenorhell',
+  desc: 'Shows whether a user will go to heaven or hell, and the prediction accuracy. Subject can be omitted, if so the user what used the command will be used as subject.',
+  aliases: ['hoh', 'heaven', 'hell'],
+  usage: ['heavenorhell [subject]'],
+  examples: ['heavenorhell', 'heavenorhell @GeraltOfRivia', 'heavenorhell Pineapple'],
+  run
 }

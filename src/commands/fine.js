@@ -1,18 +1,13 @@
 const common = require('../utils/common')
 const math = require('../utils/math')
 
-/**
- * COMMAND: !fine [sides]
- *
- * Fines someone with a random amount of money, in a random currency.
- */
-exports.run = (client, msg, args) => {
+const run = (client, msg, args) => {
   let subject = args.join(' ')
   subject     = subject.stripMentions(subject, msg)
 
   // Make sure a there is a subject.
   if ('' === subject) {
-    common.sendMissingParameterMsg(client, msg, 'You must specify who you want to fine!', 'fine Twitch')
+    common.sendMissingParameterMsg(client, msg, 'You must specify who you want to fine!')
   } else {
     // Random emote.
     const emote_array = [
@@ -53,4 +48,12 @@ exports.run = (client, msg, args) => {
       msg.channel.send(`${emote} ${msg.author.username} has fined **${subject}** with ${money} ${currency}!`)
     }
   }
+}
+
+module.exports = {
+  name: 'fine',
+  desc: 'Fines someone with a random amount of money, in a random currency.',
+  usage: ['fine <subject>'],
+  examples: ['fine @Superman', 'fine The whole planet'],
+  run
 }

@@ -1,11 +1,6 @@
 const math = require('../utils/math')
 
-/**
- * COMMAND: !dice [sides]
- *
- * Throws a dice. By default it will be a 6 sided dice, but a different number can be added after the command.
- */
-exports.run = (client, msg, args) => {
+const run = (client, msg, args) => {
   // Check for arguments.
   let sides
   if (Array.isArray(args) && args.length) {
@@ -28,4 +23,12 @@ exports.run = (client, msg, args) => {
 
   // Send message.
   msg.channel.send(`${msg.author.username} threw a ${sides} sided dice... The result was **${result}**!`)
+}
+
+module.exports = {
+  name: 'dice',
+  desc: 'Throws a dice. By default it will be a 6 sided dice, but a different number can be added after the command.',
+  usage: ['dice [sides]'],
+  examples: ['dice', 'dice 12'],
+  run
 }

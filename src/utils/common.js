@@ -74,11 +74,17 @@ const getCustomEmote = (client, name, fallback) => {
  * @param {Object} client Client object.
  * @param {Object} msg Message object.
  * @param {string} reason Reason why the sendMissingParameterMsg() method is being used.
- * @param {string} client Syntax example for this command, with command and arguments, without prefix.
  */
-const sendMissingParameterMsg = (client, msg, reason, syntax) => {
-  const emote_angry = getCustomEmote('Angry', client)
-  msg.channel.send(`${emote_angry} **Missing parameter:** ${reason}\n Example: \`${client.env.prefix}${syntax}\``)
+const sendMissingParameterMsg = (client, msg, reason) => {
+  // Build usage & example strings.
+  let usage = `\`${client.env.prefix}${client.cmd.usage}\``
+  let example_array = client.cmd.examples.map(function(element) {
+    return `\`${client.env.prefix}${element}\``
+  })
+  let examples = example_array.join(' ')
+
+  const emote_angry = getCustomEmote(client, 'Angry', 'rage')
+  msg.channel.send(`${emote_angry} **Missing parameter:** ${reason}\nUsage: ${usage}\nExamples: ${examples}`)
 }
 
 module.exports = { getCustomEmote, sendMissingParameterMsg }

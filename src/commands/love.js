@@ -1,18 +1,13 @@
 const common = require('../utils/common')
 const math = require('../utils/math')
 
-/**
- * COMMAND: !love <subject>
- *
- * Show how much you love someone or something, with a random percentage.
- */
-exports.run = (client, msg, args) => {
+const run = (client, msg, args) => {
   let subject = args.join(' ')
   subject     = subject.stripMentions(subject, msg)
 
   // Check required parameters.
   if ('' === subject) {
-    common.sendMissingParameterMsg(client, msg, 'You didn\'t specify the subject of your love!', 'love Fish & Chips')
+    common.sendMissingParameterMsg(client, msg, 'You must specify the subject of your love!')
   } else {
     // Get random percentage.
     const result = math.getRandomInt(0, 110)
@@ -30,4 +25,12 @@ exports.run = (client, msg, args) => {
       msg.channel.send(`:neutral_face: Oh, wow... ${msg.author.username} love for **${subject}** is ${result}%.`)
     }
   }
+}
+
+module.exports = {
+  name: 'love',
+  desc: 'Show how much you love someone or something, with a random percentage.',
+  usage: ['love <subject>'],
+  examples: ['love @Wumpus', 'love everyone in chat'],
+  run
 }

@@ -1,17 +1,12 @@
 const common = require('../utils/common')
 const math = require('../utils/math')
 
-/**
- * COMMAND: !8ball <question>
- *
- * Uses an 8 ball to answer a question.
- */
-exports.run = (client, msg, args) => {
+const run = (client, msg, args) => {
   const question = args.join(' ')
 
   // Make sure question is not empty.
   if ('' === question) {
-    common.sendMissingParameterMsg(client, msg, 'You must ask a question!', '8ball Will I pass my next exam?')
+    common.sendMissingParameterMsg(client, msg, 'You must ask a question!')
   } else {
     // Random 8 ball answer.
     const answer_array = [
@@ -41,4 +36,12 @@ exports.run = (client, msg, args) => {
     // Send message.
     msg.channel.send(`${msg.author.username} asks: **${question}**\n:8ball: ${answer} :8ball:`)
   }
+}
+
+module.exports = {
+  name: '8ball',
+  desc: 'Uses an 8 ball to answer a question.',
+  usage: ['8ball <question>'],
+  examples: ['8ball Will I pass my exam?'],
+  run
 }

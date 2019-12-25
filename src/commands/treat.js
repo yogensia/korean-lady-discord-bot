@@ -1,17 +1,12 @@
 const common = require('../utils/common')
 const math = require('../utils/math')
 
-/**
- * COMMAND: !treat <subject>
- *
- * Description: Give someone a treat.
- */
-exports.run = (client, msg, args) => {
+const run = (client, msg, args) => {
   let subject = args.join(' ')
 
   // Make sure subject isn't empty.
   if ('' === subject) {
-    common.sendMissingParameterMsg(client, msg, 'You must specify who you want to give your precious treat!', 'treat @KoreanLady')
+    common.sendMissingParameterMsg(client, msg, 'You must specify who you want to give your precious treat!')
   } else {
     subject = subject.stripMentions(subject, msg)
 
@@ -140,6 +135,7 @@ exports.run = (client, msg, args) => {
       [':bread:', 'Bread'],
       [':bread:', 'Brioche Bread'],
       [':bread:', 'Melon Bread'],
+      [':bread:', 'Tartine Bread'],
       [':cupcake:', 'Crème Brûlée'],
       [':chocolate_bar:', 'Brownies'],
       [':cake:', 'Angel Food Cakes'],
@@ -203,4 +199,13 @@ exports.run = (client, msg, args) => {
       }
     }
   }
+}
+
+module.exports = {
+  name: 'treat',
+  desc: 'Give someone a treat.',
+  aliases: ['dessert'],
+  usage: ['treat <subject>'],
+  examples: ['treat @KoreanLady'],
+  run
 }

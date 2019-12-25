@@ -1,12 +1,7 @@
 const common = require('../utils/common')
 const math = require('../utils/math')
 
-/**
- * COMMAND: !hug <subject>
- *
- * Description: Hugs someone/something for a random amount of mississippis.
- */
-exports.run = (client, msg, args) => {
+const run = (client, msg, args) => {
   let subject = args.join(' ')
   // Remove user mentions, experimental.
   if (subject.startsWith('<@')) {
@@ -19,7 +14,7 @@ exports.run = (client, msg, args) => {
 
   // Make sure subject isn't empty.
   if ('' === subject) {
-    common.sendMissingParameterMsg(client, msg, 'You must specify who you want to hug!', 'hug chat')
+    common.sendMissingParameterMsg(client, msg, 'You must specify who you want to hug!')
   } else {
     // Ramdom emotes and hug length.
     const emote_array = [
@@ -33,4 +28,12 @@ exports.run = (client, msg, args) => {
     // Send message.
     msg.channel.send(`${emote} ${msg.author.username} hugs **${subject}** for ${time.toFixed(2)} mississippis!`)
   }
+}
+
+module.exports = {
+  name: 'hug',
+  desc: 'Hugs someone/something for a random amount of mississippis.',
+  usage: ['hug <subject>'],
+  examples: ['hug chat'],
+  run
 }
