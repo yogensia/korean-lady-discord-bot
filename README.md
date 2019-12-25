@@ -30,11 +30,15 @@ Helps you choose between two or more options. Options must be separated by a for
 
 Usage: `k!choose The Doors/David Bowie/Queen`
 
+Aliases: `k!choice`
+
 ### `k!coin`
 
 Throws a coin and shows the result (heads or tails).
 
 Usage: `k!coin`
+
+Aliases: `k!headsortails`
 
 ### `k!dice`
 
@@ -54,11 +58,15 @@ Shows whether a user or object will go to heaven or hell, and the prediction acc
 
 Usage: `k!heavenorhell` `k!heavenorhell @GeraltOfRivia` `k!heavenorhell Pineapple`
 
+Aliases: `k!hoh` `k!heaven` `k!hell`
+
 ### `k!help`
 
 Shows a link to command documentation.
 
 Usage: `k!help`
+
+Aliases: `k!h` `k!?`
 
 ### `k!hug <subject>`
 
@@ -85,6 +93,8 @@ Aliases: `k!test`
 Gives someone a treat.
 
 Usage: `k!treat @KoreanLady`
+
+Aliases: `k!dessert`
 
 
 ## Requirements
