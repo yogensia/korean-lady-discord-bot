@@ -76,15 +76,38 @@ const getCustomEmote = (client, name, fallback) => {
  * @param {string} reason Reason why the sendMissingParameterMsg() method is being used.
  */
 const sendMissingParameterMsg = (client, msg, reason) => {
-  // Build usage & example strings.
-  let usage = `\`${client.env.prefix}${client.cmd.usage}\``
-  let example_array = client.cmd.examples.map(function(element) {
+  // Build description, usage & example strings.
+  const desc  = `${client.cmd.desc}`
+  const usage = `\`${client.env.prefix}${client.cmd.usage}\``
+  const example_array = client.cmd.examples.map(function(element) {
     return `\`${client.env.prefix}${element}\``
   })
-  let examples = example_array.join(' ')
+  const examples = example_array.join(' ')
 
-  const emote_angry = getCustomEmote(client, 'Angry', 'rage')
-  msg.channel.send(`${emote_angry} **Missing parameter:** ${reason}\nUsage: ${usage}\nExamples: ${examples}`)
+  // Send error message in a nice and clean embed.
+  msg.channel.send({
+    embed: {
+      color: 3447003,
+      fields: [
+        {
+          name: 'Missing parameter',
+          value: reason,
+        },
+        {
+          name: 'Description',
+          value: desc,
+        },
+        {
+          name: 'Usage',
+          value: usage,
+        },
+        {
+          name: 'Examples',
+          value: examples,
+        }
+      ]
+    }
+  })
 }
 
 module.exports = { getCustomEmote, sendMissingParameterMsg }
