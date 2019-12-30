@@ -5,6 +5,10 @@ const run = (client, msg, args) => {
   let choices = args.join(' ')
   choices = choices.split('/')
 
+  // Get rid of empty choices if any are found.
+  // This removes falsy elements from the array.
+  choices = choices.filter(Boolean)
+
   // Check required parameters.
   if (2 > choices.length) {
     common.sendMissingParameterMsg(client, msg, 'You need two or more choices!')
