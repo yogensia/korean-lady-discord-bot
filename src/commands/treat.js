@@ -184,21 +184,18 @@ const run = (client, msg, args) => {
     if ('koreanlady' === subject.toLowerCase() || 'korean lady' === subject.toLowerCase()) {
       // Ramdom emote reaction.
       const reaction_array = [
-        ['apollo20Wow', 'star_struck'],
-        ['apollo20Blush', 'blush'],
-        ['apolLove', 'heart'],
-        ['apolHyper', 'yum'],
-        ['POG', 'open_mouth'],
-        ['POG', 'open_mouth'],
-        ['ihaa', 'heart'],
+        ['peepoPants', '🥳'],
+        ['apollo20Wow', '😍'],
+        ['apolPat', '🤗'],
+        ['apolLove', '❤️'],
+        ['apolHyper', '😋'],
+        ['POG', '😮'],
+        ['ihaa', '🥰'],
       ]
-      let reaction = math.getRandomStringFromArray(reaction_array)
-      reaction = common.getCustomEmote(client, reaction[0], reaction[1])
+      const reaction = math.getRandomStringFromArray(reaction_array)
 
-      // If emote is available react to user's message.
-      if (reaction.id) {
-        msg.react(reaction.id)
-      }
+      // React with custom emote or its associated fallback if necessary.
+      common.reactWithCustomEmote(client, msg, reaction[0], reaction[1])
     }
   }
 }

@@ -47,7 +47,7 @@ String.prototype.stripMentions = (subject, msg) => {
 }
 
 /**
- * Try to get a custom emote, if not found, a fallback icon will be used.
+ * Try to get a custom emote, if not found, a fallback icon can be used when provided.
  * Fallback emote should ALWAYS be a standard emote.
  *
  * Use `emote.id` when reacting to msg's with custom emotes!
@@ -55,7 +55,7 @@ String.prototype.stripMentions = (subject, msg) => {
  * @param {Object} client Client object.
  * @param {string} name Name of the emote (ex: peepoPants).
  * @param {string} fallback Name of a fallback emote (ex: joy).
- * @returns {(Object|string)} The emote string.
+ * @returns {(Object|string|Boolean)} The emote object, fallback string or false.
  */
 const getCustomEmote = (client, name, fallback) => {
   const emote = client.emojis.find(emoji => emoji.name === name)
@@ -64,7 +64,39 @@ const getCustomEmote = (client, name, fallback) => {
   if (null !== emote) {
     return emote
   } else {
-    return `:${fallback}:`
+    // If emote not found check if a fallback was provided.
+    if (fallback) {
+      return `:${fallback}:`
+    } else {
+      // If no fallback provided return false.
+      return false
+    }
+  }
+}
+
+/**
+ * Reacts to a message with a custom emote.
+ * If the provided emote can't be found, a fallback can be used.
+ *
+ * @param {Object} client Client object.
+ * @param {Object} msg - Message object.
+ * @param {string} name Name of the emote (ex: peepoPants).
+ * @param {string} fallback Fallback emote unicode (ex: ❤️).
+ */
+const reactWithCustomEmote = (client, msg, name, fallback) => {
+  const emote = getCustomEmote(client, name, fallback)
+
+  // If emote is available react to user's message.
+  if (emote.id) {
+    msg.react(emote.id).catch(() => {
+      console.log(`Unknown emote requested: ${name}`)
+    })
+  } else if (emote) {
+    // If custom emote is not available, check if a fallback was provided,
+    // and if so, use that.
+    msg.react(fallback).catch(() => {
+      console.log(`Unknown fallback emote requested: ${fallback}`)
+    })
   }
 }
 
@@ -110,4 +142,8 @@ const sendMissingParameterMsg = (client, msg, reason) => {
   })
 }
 
-module.exports = { getCustomEmote, sendMissingParameterMsg }
+module.exports = {
+  getCustomEmote,
+  reactWithCustomEmote,
+  sendMissingParameterMsg
+}
