@@ -26,26 +26,9 @@ const run = (client, msg, args) => {
 
     // REEE...
     if ('koreanlady' === subject.toLowerCase() || 'korean lady' === subject.toLowerCase()) {
-      // Random reee.
-      const reee_array = [
-        'WHAT!?!',
-        'HUH!?!',
-        'WAIT WHAT!?!',
-        'REEEEEEE',
-        'NEEEEJ',
-        'HEY!!!'
-      ]
-      const reee = math.getRandomStringFromArray(reee_array)
-      const emote_angry = common.getCustomEmote(client, 'Angry', 'rage')
-
-      // For added suspense.
-      msg.channel.startTyping()
-
       // Just wait a moment...
       setTimeout(function() {
-        msg.channel.send(`_**${reee}**_`)
-        msg.channel.send(`${emote_angry}`)
-        msg.channel.stopTyping()
+        common.reactWithCustomEmote(client, msg, 'Angry', '😡')
       }, 1500)
     }
   }
