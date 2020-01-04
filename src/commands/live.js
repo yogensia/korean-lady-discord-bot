@@ -1,3 +1,4 @@
+const common = require('../utils/common')
 const twitch = require('../utils/twitch')
 const random = require('../utils/random')
 
@@ -6,26 +7,12 @@ const run = (client, msg, args) => {
   twitch.getStream('talesoflumin', (error, stream) => {
     if (error) {
       // Send an embed message with the error.
-      msg.channel.send({
-        embed: {
-          fields: [{
-            name: 'Unexpected response from Twitch API:',
-            value: error,
-          }]
-        }
-      })
+      common.sendExceptionMsg(msg, error)
     } else {
       twitch.getGame(stream.game_id, (error, game) => {
         if (error) {
           // Send an embed message with the error.
-          msg.channel.send({
-            embed: {
-              fields: [{
-                name: 'Unexpected response from Twitch API:',
-                value: error,
-              }]
-            }
-          })
+          common.sendExceptionMsg(msg, error)
         } else {
           // console.log('Stream:', stream)
           // console.log('Game:', game)

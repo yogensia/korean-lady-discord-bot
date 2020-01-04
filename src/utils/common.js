@@ -101,6 +101,24 @@ const reactWithCustomEmote = (client, msg, name, fallback) => {
 }
 
 /**
+ * Send an "exception" message.
+ *
+ * @param {Object} msg Message object.
+ * @param {string} value String describing the error.
+ */
+const sendExceptionMsg = (msg, value) => {
+  // Send an embed message with the error.
+  msg.channel.send({
+    embed: {
+      fields: [{
+        name: 'Exception encountered:',
+        value
+      }]
+    }
+  })
+}
+
+/**
  * Send a "missing parameter" message with an explanation and expected syntax.
  *
  * @param {Object} client Client object.
@@ -145,5 +163,6 @@ const sendMissingParameterMsg = (client, msg, reason) => {
 module.exports = {
   getCustomEmote,
   reactWithCustomEmote,
+  sendExceptionMsg,
   sendMissingParameterMsg
 }
