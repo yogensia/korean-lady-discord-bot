@@ -74,6 +74,14 @@ Hugs someone or something for a random amount of mississippis.
 
 Usage: `k!hug chat`
 
+### `k!live`
+
+Embed a nice link for a Twitch stream. Channel must be live.
+
+Usage: `k!live`
+
+Aliases: `k!stream`
+
 ### `k!love`
 
 Shows how much you love someone or something, with a random percentage.
