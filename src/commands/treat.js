@@ -1,5 +1,6 @@
 const common = require('../utils/common')
 const math = require('../utils/math')
+const random = require('../utils/random')
 
 const run = (client, msg, args) => {
   let subject = args.join(' ')
@@ -11,21 +12,7 @@ const run = (client, msg, args) => {
     subject = subject.stripMentions(subject, msg)
 
     // Ramdom intro.
-    const intro_array = [
-      'WOAH!',
-      'WOW!',
-      'Look!',
-      'Oh look!',
-      'Look at that!',
-      'Ooh!',
-      'Oh cool!',
-      'Oh nice!',
-      'How nice!',
-      'Wow!',
-      'Yay!',
-      'Holy cow!'
-    ]
-    const intro = math.getRandomStringFromArray(intro_array)
+    const intro = random.exclamation()
 
     // Ramdom adjective.
     const adjective_array = [
