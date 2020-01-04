@@ -15,9 +15,9 @@ const run = (client, msg, args) => {
     }
 
     // Build command details strings.
-    let name          = `${client.env.prefix}${cmd.name}`
-    let desc          = `${cmd.desc}`
-    let usage         = `\`${client.env.prefix}${cmd.usage}\``
+    let name  = `${client.env.prefix}${cmd.name}`
+    let desc  = `${cmd.desc}`
+    let usage = `\`${client.env.prefix}${cmd.usage}\``
 
     // Prepare fields array for embed message.
     let fields = [
@@ -28,12 +28,11 @@ const run = (client, msg, args) => {
     ]
 
     // Only show the examples section if any are found.
-    let examples
     if (cmd.examples) {
-      let example_array = cmd.examples.map(function(element) {
+      const example_array = cmd.examples.map(function(element) {
         return `\`${client.env.prefix}${element}\``
       })
-      examples = example_array.join(' ')
+      const examples = example_array.join(' ')
       fields.push(
         {
           name: 'Examples',
@@ -42,12 +41,11 @@ const run = (client, msg, args) => {
     }
 
     // Only show the aliases section if any are found.
-    let aliases
     if (cmd.aliases) {
-      aliases = cmd.aliases.map(function(element) {
+      const aliases_array = cmd.aliases.map(function(element) {
         return `\`${client.env.prefix}${element}\``
       })
-      aliases = aliases.join(' ')
+      const aliases = aliases_array.join(' ')
       fields.push(
         {
           name: 'Aliases',
