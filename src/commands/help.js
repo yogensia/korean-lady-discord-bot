@@ -19,15 +19,6 @@ const run = (client, msg, args) => {
     let desc          = `${cmd.desc}`
     let usage         = `\`${client.env.prefix}${cmd.usage}\``
 
-    // Check that there are examples before trying to map them.
-    let examples = ''
-    if (cmd.examples) {
-      let example_array = cmd.examples.map(function(element) {
-        return `\`${client.env.prefix}${element}\``
-      })
-      examples = example_array.join(' ')
-    }
-
     // Prepare fields array for embed message.
     let fields = [
       {
@@ -35,7 +26,14 @@ const run = (client, msg, args) => {
         value: usage,
       }
     ]
+
+    // Only show the examples section if any are found.
+    let examples
     if (cmd.examples) {
+      let example_array = cmd.examples.map(function(element) {
+        return `\`${client.env.prefix}${element}\``
+      })
+      examples = example_array.join(' ')
       fields.push(
         {
           name: 'Examples',
@@ -45,9 +43,7 @@ const run = (client, msg, args) => {
 
     // Only show the aliases section if any are found.
     let aliases
-    if (null == cmd.aliases) {
-      aliases = ''
-    } else {
+    if (cmd.aliases) {
       aliases = cmd.aliases.map(function(element) {
         return `\`${client.env.prefix}${element}\``
       })
