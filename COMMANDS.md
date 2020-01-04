@@ -82,6 +82,14 @@ Usage: `k!ping`
 
 Aliases: `k!test`
 
+### `k!sticker`
+
+Replies with a random Apollo emote sticker.
+
+Usage: `k!sticker`
+
+Aliases: `k!emote`
+
 ### `k!treat <subject>`
 
 Give someone a treat.
