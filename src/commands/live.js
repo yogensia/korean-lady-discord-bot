@@ -3,47 +3,30 @@ const twitch = require('../utils/twitch')
 const random = require('../utils/random')
 
 const run = (client, msg, args) => {
-  // Get data for the stream.
-  twitch.getStream('talesoflumin', (error, stream) => {
-    if (error) {
-      // Send an embed message with the error.
-      common.sendExceptionMsg(msg, error)
-    } else {
-      twitch.getGame(stream.game_id, (error, game) => {
-        if (error) {
-          // Send an embed message with the error.
-          common.sendExceptionMsg(msg, error)
-        } else {
-          // console.log('Stream:', stream)
-          // console.log('Game:', game)
+  // Request stream info from Twitch API.
+  twitch.request('streams?user_login=apollolol')
+    .then((stream) => {
+      // Random data.
+      const sticker = random.sticker()
+      const exclamation = random.exclamation()
 
-          // Random data.
-          const sticker = random.sticker()
-          const exclamation = random.exclamation()
-
-          // Send an embed message with the stream details.
-          msg.channel.send({
-            embed: {
-              color: 3447003,
-              title: stream.title,
-              description: `**${exclamation} Apollo is going live!**`,
-              url: `https://twitch.tv/${stream.user_name.toLowerCase()}`,
-              thumbnail: {
-                url: sticker,
-              },
-              // image: {
-              //   url: game.box_art_url.replace('{width}', '300').replace('{height}', '400'),
-              // },
-              // fields: [{
-              //   name: 'Playing...',
-              //   value: game.name,
-              // }]
-            }
-          })
+      // Send an embed message with the stream details.
+      msg.channel.send({
+        embed: {
+          color: 3447003,
+          title: stream.title,
+          description: `**${exclamation} Apollo is going live!**`,
+          url: `https://twitch.tv/${stream.user_name.toLowerCase()}`,
+          thumbnail: {
+            url: sticker,
+          }
         }
       })
-    }
-  })
+    })
+    .catch((error) => {
+      // Send an embed message with the error.
+      common.sendExceptionMsg(msg, error)
+    })
 }
 
 module.exports = {
