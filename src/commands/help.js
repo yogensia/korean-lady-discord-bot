@@ -11,13 +11,13 @@ const run = (client, msg, args) => {
     // If command isn't found send an error message to the user and stop here.
     if (null === cmd) {
       const emote_angry = common.getCustomEmote(client, 'Angry', 'rage')
-      return msg.channel.send(`${emote_angry} **REEE!** Can't find any command by that name, did you spell that wrong?\nTry typing just \`${client.env.prefix}help\` for more details.`)
+      return msg.channel.send(`${emote_angry} **REEE!** Can't find any command by that name, did you spell that wrong?\nTry typing just \`${process.env.prefix}help\` for more details.`)
     }
 
     // Build command details strings.
-    let name  = `${client.env.prefix}${cmd.name}`
+    let name  = `${process.env.prefix}${cmd.name}`
     let desc  = `${cmd.desc}`
-    let usage = `\`${client.env.prefix}${cmd.usage}\``
+    let usage = `\`${process.env.prefix}${cmd.usage}\``
 
     // Prepare fields array for embed message.
     let fields = [
@@ -30,7 +30,7 @@ const run = (client, msg, args) => {
     // Only show the examples section if any are found.
     if (cmd.examples) {
       const example_array = cmd.examples.map(function(element) {
-        return `\`${client.env.prefix}${element}\``
+        return `\`${process.env.prefix}${element}\``
       })
       const examples = example_array.join(' ')
       fields.push(
@@ -43,7 +43,7 @@ const run = (client, msg, args) => {
     // Only show the aliases section if any are found.
     if (cmd.aliases) {
       const aliases_array = cmd.aliases.map(function(element) {
-        return `\`${client.env.prefix}${element}\``
+        return `\`${process.env.prefix}${element}\``
       })
       const aliases = aliases_array.join(' ')
       fields.push(

@@ -128,9 +128,9 @@ const sendExceptionMsg = (msg, value) => {
 const sendMissingParameterMsg = (client, msg, reason) => {
   // Build description, usage & example strings.
   const desc  = `${client.cmd.desc}`
-  const usage = `\`${client.env.prefix}${client.cmd.usage}\``
+  const usage = `\`${process.env.prefix}${client.cmd.usage}\``
   const example_array = client.cmd.examples.map(function(element) {
-    return `\`${client.env.prefix}${element}\``
+    return `\`${process.env.prefix}${element}\``
   })
   const examples = example_array.join(' ')
 

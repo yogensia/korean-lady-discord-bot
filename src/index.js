@@ -7,10 +7,6 @@ const fs         = require("fs")
 const client    = new Client()
 client.commands = new Enmap()
 
-// Environment variables.
-client.env = {}
-client.env.prefix = process.env.PREFIX
-
 /**
  * Ready event.
  */
@@ -20,7 +16,7 @@ client.on('ready', () => {
   client.user.setStatus('available')
   client.user.setPresence({
     game: {
-      name: `${client.env.prefix}help`,
+      name: `${process.env.prefix}help`,
       type: "PLAYING"
     }
   })
