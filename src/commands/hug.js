@@ -1,5 +1,6 @@
 const common = require('../utils/common')
 const math = require('../utils/math')
+const random = require('../utils/random')
 
 const run = (client, msg, args) => {
   let subject = args.join(' ')
@@ -14,19 +15,23 @@ const run = (client, msg, args) => {
 
   // Make sure subject isn't empty.
   if ('' === subject) {
-    common.sendMissingParameterMsg(client, msg, 'You must specify who you want to hug!')
+    common.sendMissingParameterMsg(client, msg, 'You must specify who or what you want to hug!')
   } else {
     // Ramdom emotes and hug length.
     const emote_array = [
-      ':bar_chart:',
-      ':chart_with_upwards_trend:',
-      ':chart_with_downwards_trend:'
+      'peepoPants',
+      'peepoBlanket',
+      'ihaa',
+      'Hypers',
     ]
-    const emote = math.getRandomStringFromArray(emote_array)
+    const emote = common.getCustomEmote(client, math.getRandomStringFromArray(emote_array))
     const time  = math.getRandomFloat(0, 10)
 
+    // Random exclamation.
+    const exclamation = random.exclamation()
+
     // Send message.
-    msg.channel.send(`${emote} ${msg.author.username} hugs **${subject}** for ${time.toFixed(2)} mississippis!`)
+    msg.channel.send(`${exclamation} ${msg.author.username} hugged **${subject}** for ${time.toFixed(2)} mississippis! ${emote}`)
   }
 }
 
