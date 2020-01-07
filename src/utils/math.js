@@ -1,4 +1,26 @@
 /**
+ * Return true if values provided are equal.
+ *
+ * @param {(string|number)} arg - Array of elements to compare.
+ * @return {Boolean} True if equal, false if not equal.
+ */
+const areEqual = (arg) => {
+  // const len = arguments.length
+  // for (var i = 1; i< len; i++) {
+  //   if (arguments[i] === null || arguments[i] !== arguments[i-1]) return false
+  // }
+  // return true
+  if (arg.every((v, i, a) =>
+    v === a[0] &&
+    v !== null
+  )) {
+    return true
+  } else {
+    return false
+  }
+}
+
+/**
  * Get a random integer between `min` and `max`.
  *
  * @param {number} min - Min number.
@@ -8,7 +30,6 @@
 const getRandomInt = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
-
 
 /**
  * Get a random floating point number between `min` and `max`.
@@ -21,7 +42,6 @@ const getRandomFloat = (min, max) => {
   return Math.random() * (max - min) + min
 }
 
-
 /**
  * Get a random string from an array.
  *
@@ -32,7 +52,6 @@ const getRandomStringFromArray = (array) => {
   const key = getRandomInt(0, array.length - 1)
   return array[key]
 }
-
 
 /**
  * Converts seconds to a full time string.
@@ -115,7 +134,6 @@ Number.prototype.toFakeTimeString = function() {
   } else {
     return output + '!'
   }
-
 }
 
-module.exports = { getRandomInt, getRandomFloat, getRandomStringFromArray }
+module.exports = { areEqual, getRandomInt, getRandomFloat, getRandomStringFromArray }
