@@ -55,7 +55,7 @@ String.prototype.stripMentions = (subject, msg) => {
  * @param {Object} client Client object.
  * @param {string} name Name of the emote (ex: peepoPants).
  * @param {string} fallback Name of a fallback emote (ex: joy).
- * @returns {(Object|string|Boolean)} The emote object, fallback string or false.
+ * @returns {(Object|string|Boolean)} The emote object, fallback string or an empty string.
  */
 const getCustomEmote = (client, name, fallback) => {
   const emote = client.emojis.find(emoji => emoji.name === name)
@@ -69,7 +69,7 @@ const getCustomEmote = (client, name, fallback) => {
       return `:${fallback}:`
     } else {
       // If no fallback provided return false.
-      return false
+      return ''
     }
   }
 }
@@ -101,6 +101,24 @@ const reactWithCustomEmote = (client, msg, name, fallback) => {
 }
 
 /**
+ * Send an "error" message.
+ *
+ * @param {Object} msg Message object.
+ * @param {string} value String describing the error.
+ */
+const sendErrorMsg = (msg, value) => {
+  // Send an embed message with the error.
+  msg.channel.send({
+    embed: {
+      fields: [{
+        name: 'Error:',
+        value
+      }]
+    }
+  })
+}
+
+/**
  * Send an "exception" message.
  *
  * @param {Object} msg Message object.
@@ -110,6 +128,7 @@ const sendExceptionMsg = (msg, value) => {
   // Send an embed message with the error.
   msg.channel.send({
     embed: {
+      color: 3447003,
       fields: [{
         name: 'Exception encountered:',
         value
@@ -144,7 +163,7 @@ const sendMissingParameterMsg = (client, msg, reason) => {
           value: reason,
         },
         {
-          name: 'Description',
+          name: 'Command description',
           value: desc,
         },
         {
@@ -163,6 +182,7 @@ const sendMissingParameterMsg = (client, msg, reason) => {
 module.exports = {
   getCustomEmote,
   reactWithCustomEmote,
+  sendErrorMsg,
   sendExceptionMsg,
   sendMissingParameterMsg
 }
