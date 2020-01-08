@@ -4,11 +4,14 @@ module.exports = (client, msg) => {
   // Ignore bot messages.
   if (msg.author.bot) return
 
-  // Ignore messages not starting with the prefix.
-  if (msg.content.indexOf(process.env.PREFIX) !== 0) return
+  // Ignore messages not starting with the prefix or mention of our bot.
+  const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  const prefixRegex = new RegExp(`^(<@!?${client.user.id}>|${escapeRegex(process.env.PREFIX)})\\s*`)
+  if (!prefixRegex.test(msg.content)) return
 
-  // Our standard argument/command name definition.
-  const args = msg.content.slice(process.env.PREFIX.length).trim().split(/ +/g)
+  // Command & argument definition.
+  const [, matchedPrefix] = msg.content.match(prefixRegex)
+  const args = msg.content.slice(matchedPrefix.length).trim().split(/ +/)
   const command = args.shift().toLowerCase()
 
   // Grab the command data from the client.commands Enmap.
