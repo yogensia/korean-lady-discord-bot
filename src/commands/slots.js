@@ -17,16 +17,18 @@ const run = (client, msg, args) => {
   result[2] = math.getRandomStringFromArray(symbol_array)
   const symbols = `:${result[0]}: :${result[1]}: :${result[2]}:`
 
-  // Random exclamation.
-  const exclamation = random.exclamation()
-
   // Compare values and send message.
   if (math.areEqual(result)) {
+    // Random exclamation.
+    const exclamation = random.exclamation()
+
     const emote = common.getCustomEmote(client, 'Hypers')
-    msg.channel.send(`${symbols} **${exclamation} You won!** ${emote}`)
+    msg.channel.send(symbols)
+    msg.channel.send(`>>> **${exclamation} You won!** ${emote}`)
   } else {
     const emote = common.getCustomEmote(client, 'sadcat')
-    msg.channel.send(`${symbols} Sorry, no prize... ${emote}`)
+    msg.channel.send(symbols)
+    msg.channel.send(`>>> Sorry, no prize... ${emote}`)
   }
 }
 

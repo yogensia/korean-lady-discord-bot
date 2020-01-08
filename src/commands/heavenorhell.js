@@ -2,8 +2,8 @@ const common = require('../utils/common')
 const math = require('../utils/math')
 
 const run = (client, msg, args) => {
-  let subject = args.join(' ')
-  subject     = subject.stripMentions(subject, msg)
+  // Get subject from args.
+  const subject = common.stripMentions(args.join(' '), msg)
 
   // Random intro and prediction accuracy.
   const answer_array = [
