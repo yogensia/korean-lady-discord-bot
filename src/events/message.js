@@ -1,12 +1,14 @@
-module.exports = (client, message) => {
+const common = require('../utils/common')
+
+module.exports = (client, msg) => {
   // Ignore bot messages.
-  if (message.author.bot) return
+  if (msg.author.bot) return
 
   // Ignore messages not starting with the prefix.
-  if (message.content.indexOf(process.env.prefix) !== 0) return
+  if (msg.content.indexOf(process.env.prefix) !== 0) return
 
   // Our standard argument/command name definition.
-  const args = message.content.slice(process.env.prefix.length).trim().split(/ +/g)
+  const args = msg.content.slice(process.env.prefix.length).trim().split(/ +/g)
   const command = args.shift().toLowerCase()
 
   // Grab the command data from the client.commands Enmap.
@@ -19,6 +21,11 @@ module.exports = (client, message) => {
   // Store command details in client object for later use.
   client.cmd = cmd
 
+  // Check for required arguments for this command and send error message if needed.
+  if (cmd.args && !args.length) {
+    return common.sendMissingParameterMsg(client, msg, cmd.args_error)
+  }
+
   // Run the command.
-  cmd.run(client, message, args)
+  cmd.run(client, msg, args)
 }

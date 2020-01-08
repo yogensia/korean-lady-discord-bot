@@ -13,26 +13,21 @@ const run = (client, msg, args) => {
     }
   }
 
-  // Make sure subject isn't empty.
-  if ('' === subject) {
-    common.sendMissingParameterMsg(client, msg, 'You must specify who or what you want to hug!')
-  } else {
-    // Ramdom emotes and hug length.
-    const emote_array = [
-      'peepoPants',
-      'peepoBlanket',
-      'ihaa',
-      'Hypers',
-    ]
-    const emote = common.getCustomEmote(client, math.getRandomStringFromArray(emote_array))
-    const time  = math.getRandomFloat(0, 10)
+  // Ramdom emotes and hug duration.
+  const emote_array = [
+    'peepoPants',
+    'peepoBlanket',
+    'ihaa',
+    'Hypers',
+  ]
+  const emote = common.getCustomEmote(client, math.getRandomStringFromArray(emote_array))
+  const time  = math.getRandomFloat(0, 10)
 
-    // Random exclamation.
-    const exclamation = random.exclamation()
+  // Random exclamation.
+  const exclamation = random.exclamation()
 
-    // Send message.
-    msg.channel.send(`${exclamation} ${msg.author.username} hugged **${subject}** for ${time.toFixed(2)} mississippis! ${emote}`)
-  }
+  // Send message.
+  msg.channel.send(`${exclamation} ${msg.author.username} hugged **${subject}** for ${time.toFixed(2)} mississippis! ${emote}`)
 }
 
 module.exports = {
@@ -40,5 +35,7 @@ module.exports = {
   desc: 'Hugs someone/something for a random amount of mississippis.',
   usage: ['hug <subject>'],
   examples: ['hug chat'],
+  args: true,
+  args_error: 'You must specify who or what you want to hug!',
   run
 }

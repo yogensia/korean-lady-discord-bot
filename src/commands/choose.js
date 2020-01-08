@@ -50,5 +50,7 @@ module.exports = {
   aliases: ['choice'],
   usage: ['choose <option 1/option 2/...>'],
   examples: ['choose The Doors/David Bowie/Queen'],
+  args: true,
+  args_error: 'You need two or more choices!',
   run
 }
