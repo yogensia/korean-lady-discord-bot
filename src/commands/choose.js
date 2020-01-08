@@ -2,8 +2,13 @@ const common = require('../utils/common')
 const math = require('../utils/math')
 
 const run = (client, msg, args) => {
-  let choices = args.join(' ')
-  choices = choices.split('/')
+  // Join all arguments and split by forward slashes instead.
+  let choices = args.join(' ').split('/')
+
+  // Make sure there are no options empty with several spaces.
+  choices = choices.map((element) => {
+    return element.trim()
+  })
 
   // Get rid of empty choices if any are found.
   // This removes falsy elements from the array.
