@@ -5,7 +5,7 @@
  * @param {Object} msg - Message object.
  * @return {string} A plain text username.
  */
-String.prototype.stripMentions = (subject, msg) => {
+const stripMentions = (subject, msg) => {
   const input = subject.split(' ')
 
   // Replace user mentions with plain text.
@@ -68,7 +68,7 @@ const getCustomEmote = (client, name, fallback) => {
     if (fallback) {
       return `:${fallback}:`
     } else {
-      // If no fallback provided return false.
+      // If no fallback provided return and empty string (so that nothing is sent in messages).
       return ''
     }
   }
@@ -184,5 +184,6 @@ module.exports = {
   reactWithCustomEmote,
   sendErrorMsg,
   sendExceptionMsg,
-  sendMissingParameterMsg
+  sendMissingParameterMsg,
+  stripMentions
 }
