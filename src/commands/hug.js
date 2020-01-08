@@ -3,15 +3,8 @@ const math = require('../utils/math')
 const random = require('../utils/random')
 
 const run = (client, msg, args) => {
-  let subject = args.join(' ')
-  // Remove user mentions, experimental.
-  if (subject.startsWith('<@')) {
-    // Get username of first mention (ignore the rest if more than one).
-    for (var [key, value] of msg.mentions.users) {
-      subject = value.username
-      break
-    }
-  }
+  // Get subject from args.
+  const subject = common.stripMentions(args.join(' '), msg)
 
   // Ramdom emotes and hug duration.
   const emote_array = [
