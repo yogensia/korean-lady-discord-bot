@@ -5,10 +5,10 @@ module.exports = (client, msg) => {
   if (msg.author.bot) return
 
   // Ignore messages not starting with the prefix.
-  if (msg.content.indexOf(process.env.prefix) !== 0) return
+  if (msg.content.indexOf(process.env.PREFIX) !== 0) return
 
   // Our standard argument/command name definition.
-  const args = msg.content.slice(process.env.prefix.length).trim().split(/ +/g)
+  const args = msg.content.slice(process.env.PREFIX.length).trim().split(/ +/g)
   const command = args.shift().toLowerCase()
 
   // Grab the command data from the client.commands Enmap.

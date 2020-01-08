@@ -16,7 +16,7 @@ client.on('ready', () => {
   client.user.setStatus('available')
   client.user.setPresence({
     game: {
-      name: `${process.env.prefix}help`,
+      name: `${process.env.PREFIX}help`,
       type: "PLAYING"
     }
   })
