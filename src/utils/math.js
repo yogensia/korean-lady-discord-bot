@@ -58,7 +58,7 @@ const getRandomStringFromArray = (array) => {
  */
 Number.prototype.toFakeTimeString = function() {
   // Total amount of seconds.
-  var delta = this
+  let delta = this
 
   // Calculate (and subtract) whole years.
   const years = Math.floor(delta / 31556952)
@@ -105,7 +105,7 @@ Number.prototype.toFakeTimeString = function() {
   delta = delta * 1000
 
   // Get expiration date.
-  var banExp = new Date(Date.now() + delta)
+  let banExp = new Date(Date.now() + delta)
 
   const month_array = [
     'Jan',
