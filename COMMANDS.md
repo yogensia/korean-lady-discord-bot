@@ -90,6 +90,16 @@ Usage: `k!ping`
 
 Aliases: `k!test`
 
+### `k!slots`
+
+Try your luck at the slot machines.
+
+There are 3 reels with 4 possible symbols, so you have a 1 in 63 chance to win!
+
+Usage: `k!slots`
+
+Aliases: `k!slot` `k!slotmachine`
+
 ### `k!sticker`
 
 Replies with a random Apollo emote sticker.
