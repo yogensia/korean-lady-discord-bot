@@ -5,11 +5,6 @@
  * @return {Boolean} True if equal, false if not equal.
  */
 const areEqual = (arg) => {
-  // const len = arguments.length
-  // for (var i = 1; i< len; i++) {
-  //   if (arguments[i] === null || arguments[i] !== arguments[i-1]) return false
-  // }
-  // return true
   if (arg.every((v, i, a) =>
     v === a[0] &&
     v !== null
@@ -136,4 +131,9 @@ Number.prototype.toFakeTimeString = function() {
   }
 }
 
-module.exports = { areEqual, getRandomInt, getRandomFloat, getRandomStringFromArray }
+module.exports = {
+  areEqual,
+  getRandomInt,
+  getRandomFloat,
+  getRandomStringFromArray
+}
