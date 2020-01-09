@@ -10,13 +10,13 @@ const run = (client, msg, args) => {
   const result = math.getRandomInt(0, 110)
 
   // Depending on percentage send a different message.
-  if (94 < result) {
+  if (result > 94) {
     msg.channel.send(`:cupid: What!? ${msg.author.username} Love for **${subject}** is _**${result}%**_!`)
-  } else if (69 < result) {
+  } else if (result > 69) {
     msg.channel.send(`:heart_eyes: ${random.exclamation()} ${msg.author.username} love for **${subject}** is **${result}%**!`)
-  } else if (49 < result) {
+  } else if (result > 49) {
     msg.channel.send(`:thinking: ${msg.author.username} Love for **${subject}** is ${result}%.`)
-  } else if (9 < result) {
+  } else if (result > 9) {
     msg.channel.send(`:weary: ${random.exclamationNegative()} ${msg.author.username} love for **${subject}** is ${result}%.`)
   } else {
     msg.channel.send(`:neutral_face: ${random.exclamationNegative()} ${msg.author.username} love for **${subject}** is ${result}%.`)

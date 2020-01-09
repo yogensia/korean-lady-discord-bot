@@ -1,11 +1,10 @@
-const common = require('../utils/common')
 const math = require('../utils/math')
 
 const run = (client, msg, args) => {
   const question = args.join(' ')
 
   // Random 8 ball answer.
-  const answer_array = [
+  const answers = [
     'As I see it, yes.',
     'Ask again later.',
     'Better not tell you now.',
@@ -27,7 +26,7 @@ const run = (client, msg, args) => {
     'Yes – definitely.',
     'You may rely on it.'
   ]
-  const answer = math.getRandomStringFromArray(answer_array)
+  const answer = math.getRandomStringFromArray(answers)
 
   // Send message.
   msg.channel.send(`${msg.author.username} asks: **${question}**\n:8ball: ${answer} :8ball:`)

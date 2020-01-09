@@ -5,7 +5,7 @@ const twitch = require('../utils/twitch')
 const run = (client, msg, args) => {
   // Guild owner only command.
   if (msg.guild.ownerID !== msg.author.id) {
-    return common.sendErrorMsg(msg, `Sorry, only the server owner can use this command.`)
+    return common.sendErrorMsg(msg, 'Sorry, only the server owner can use this command.')
   }
 
   // Request stream info from Twitch API.
@@ -19,7 +19,7 @@ const run = (client, msg, args) => {
           description: `**${random.exclamation()} Apollo is going live!**`,
           url: `https://twitch.tv/${stream.user_name.toLowerCase()}`,
           thumbnail: {
-            url: random.sticker(),
+            url: random.sticker()
           }
         }
       })

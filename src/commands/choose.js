@@ -15,24 +15,24 @@ const run = (client, msg, args) => {
   choices = choices.filter(Boolean)
 
   // Check required parameters.
-  if (2 > choices.length) {
+  if (choices.length < 2) {
     common.sendMissingParameterMsg(client, msg, 'You need two or more choices!')
   } else {
     // Choose randomly between choices given.
-    const random = math.getRandomInt(0, choices.length -1)
+    const random = math.getRandomInt(0, choices.length - 1)
 
     // Random emote.
-    const emote_array = [
+    const emotes = [
       ':bar_chart:',
       ':confetti_ball:',
       ':bulb:',
       ':scales:',
       ':fortune_cookie:'
     ]
-    const emote = math.getRandomStringFromArray(emote_array)
+    const emote = math.getRandomStringFromArray(emotes)
 
     // Random intro.
-    const intro_array = [
+    const intros = [
       'The correct choice is',
       'The obvious choice is',
       'Well, obviously',
@@ -42,7 +42,7 @@ const run = (client, msg, args) => {
       'And the winner is...',
       'Ok, how about'
     ]
-    const intro = math.getRandomStringFromArray(intro_array)
+    const intro = math.getRandomStringFromArray(intros)
 
     // Send message.
     msg.channel.send(`${emote} ${intro} **${choices[random].trim()}**!`)

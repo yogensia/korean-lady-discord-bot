@@ -10,7 +10,8 @@
   },
   "scripts": {
     "start": "node ./src/index.js",
-    "dev": "nodemon ./src/index.js"
+    "dev": "nodemon ./src/index.js",
+    "check": "standard"
   },
   "engines": {
     "node": "10.16.0",
@@ -23,6 +24,6 @@
     "enmap": "^5.2.3"
   },
   "devDependencies": {
-    "eslint": "^6.7.2"
+    "standard": "^14.3.1"
   }
 }

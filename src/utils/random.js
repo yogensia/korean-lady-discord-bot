@@ -23,7 +23,7 @@ const sticker = () => {
     'https://i.imgur.com/URAK43u.png', // Smug
     'https://i.imgur.com/4pH9C5u.png', // Think
     'https://i.imgur.com/0inqQTy.png', // Wow
-    'https://i.imgur.com/smWsdrf.png', // Yikes
+    'https://i.imgur.com/smWsdrf.png' // Yikes
   ]
   return math.getRandomStringFromArray(array)
 }
@@ -46,7 +46,7 @@ const exclamation = () => {
     'Ooh!',
     'Yay!',
     'WOAH!',
-    'WOW!',
+    'WOW!'
   ]
   return math.getRandomStringFromArray(array)
 }
@@ -64,7 +64,7 @@ const exclamationNegative = () => {
     'Oh boy...',
     'Oh man...',
     'Oh no!',
-    'Whoops!',
+    'Whoops!'
   ]
   return math.getRandomStringFromArray(array)
 }
@@ -72,5 +72,5 @@ const exclamationNegative = () => {
 module.exports = {
   exclamation,
   exclamationNegative,
-  sticker,
+  sticker
 }

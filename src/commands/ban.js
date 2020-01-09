@@ -6,23 +6,23 @@ const run = (client, msg, args) => {
   const subject = common.stripMentions(args.join(' '), msg)
 
   // Max equals 10 years.
-  const time = math.getRandomInt(0, 631139040).toFakeTimeString()
-  const emote_array = [
-    ':hammer:',
-    ':rage:',
-    ':no_entry:',
-    ':no_entry_sign:',
-    ':door:'
+  const time = math.toFakeTimeString(math.getRandomInt(0, 631139040))
+  const emotes = [
+    '🔨',
+    '😡',
+    '⛔️',
+    '🚫',
+    '🚪'
   ]
-  const emote = math.getRandomStringFromArray(emote_array)
+  const emote = math.getRandomStringFromArray(emotes)
 
   // Send message.
   msg.channel.send(`${emote} ${msg.author.username} banned **${subject}** for ${time}`)
 
   // REEE...
-  if ('koreanlady' === subject.toLowerCase() || 'korean lady' === subject.toLowerCase()) {
+  if (subject.toLowerCase() === 'koreanlady' || subject.toLowerCase() === 'korean lady') {
     // Just wait a moment...
-    setTimeout(function() {
+    setTimeout(() => {
       common.reactWithCustomEmote(client, msg, 'Angry', '😡')
     }, 1500)
   }

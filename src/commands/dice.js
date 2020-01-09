@@ -6,7 +6,7 @@ const run = (client, msg, args) => {
   if (Array.isArray(args) && args.length) {
     // Try to parse number.
     sides = args[0]
-    sides = sides.replace( /[^\d.]/g, '' )
+    sides = sides.replace(/[^\d.]/g, '')
     sides = parseInt(sides, 10)
 
     // If not a valid number, fallback to 6 sides.

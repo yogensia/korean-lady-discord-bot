@@ -5,51 +5,51 @@ const run = (client, msg, args) => {
   if (args.length > 0) {
     // Grab the command data from the client.commands Enmap.
     const query = args[0]
-    const cmd = client.commands.get(query)
-      || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(query))
+    const cmd = client.commands.get(query) ||
+      client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(query))
 
     // If command isn't found send an error message to the user and stop here.
-    if (null === cmd) {
-      const emote_angry = common.getCustomEmote(client, 'Angry', 'rage')
-      return msg.channel.send(`${emote_angry} **REEE!** Can't find any command by that name, did you spell that wrong?\nTry typing just \`${process.env.PREFIX}help\` for more details.`)
+    if (cmd === null) { // TODO: Check for falsy instead?
+      const emoteAngry = common.getCustomEmote(client, 'Angry', 'rage')
+      return msg.channel.send(`${emoteAngry} **REEE!** Can't find any command by that name, did you spell that wrong?\nTry typing just \`${process.env.PREFIX}help\` for more details.`)
     }
 
     // Build command details strings.
-    let name  = `${process.env.PREFIX}${cmd.name}`
-    let desc  = `${cmd.desc}`
-    let usage = `\`${process.env.PREFIX}${cmd.usage}\``
+    const name = `${process.env.PREFIX}${cmd.name}`
+    const desc = `${cmd.desc}`
+    const usage = `\`${process.env.PREFIX}${cmd.usage}\``
 
     // Prepare fields array for embed message.
-    let fields = [
+    const fields = [
       {
         name: 'Usage',
-        value: usage,
+        value: usage
       }
     ]
 
     // Only show the examples section if any are found.
     if (cmd.examples) {
-      const example_array = cmd.examples.map(function(element) {
+      const exampleArray = cmd.examples.map((element) => {
         return `\`${process.env.PREFIX}${element}\``
       })
-      const examples = example_array.join(' ')
+      const examples = exampleArray.join(' ')
       fields.push(
         {
           name: 'Examples',
-          value: examples,
+          value: examples
         })
     }
 
     // Only show the aliases section if any are found.
     if (cmd.aliases) {
-      const aliases_array = cmd.aliases.map(function(element) {
+      const aliasesArray = cmd.aliases.map((element) => {
         return `\`${process.env.PREFIX}${element}\``
       })
-      const aliases = aliases_array.join(' ')
+      const aliases = aliasesArray.join(' ')
       fields.push(
         {
           name: 'Aliases',
-          value: aliases,
+          value: aliases
         }
       )
     }

@@ -10,7 +10,7 @@ const run = (client, msg, args) => {
   const intro = random.exclamation()
 
   // Ramdom adjective.
-  const adjective_array = [
+  const adjectives = [
     'Aesthetic',
     'Aromatic',
     'Beautiful',
@@ -56,10 +56,10 @@ const run = (client, msg, args) => {
     'Triple Layered',
     'Ultimate'
   ]
-  const adjective = math.getRandomStringFromArray(adjective_array)
+  const adjective = math.getRandomStringFromArray(adjectives)
 
   // Ramdom flavour.
-  const flavour_array = [
+  const flavours = [
     'Almond & Honey',
     'Almond Liqueur',
     'Amaretto',
@@ -108,10 +108,10 @@ const run = (client, msg, args) => {
     'White and Golden Raspberry',
     'White Chocolate'
   ]
-  const flavour = math.getRandomStringFromArray(flavour_array)
+  const flavour = math.getRandomStringFromArray(flavours)
 
   // Ramdom treat.
-  const treat_array = [
+  const treats = [
     [':apple:', 'Apple Crisp'],
     [':apple:', 'Apple Pockets'],
     [':bagel:', 'Bagels'],
@@ -158,23 +158,23 @@ const run = (client, msg, args) => {
     [':waffle:', 'Waffles'],
     [':watermelon:', 'Watermelon']
   ]
-  const treat = math.getRandomStringFromArray(treat_array)
+  const treat = math.getRandomStringFromArray(treats)
 
   msg.channel.send(`${intro} ${msg.author.username} is treating **${subject}** to...\n${treat[0]} **${adjective} ${flavour} ${treat[1]}!**`)
 
   // IHAA... If subject is Korean Lady she will react with a random emote.
-  if ('koreanlady' === subject.toLowerCase() || 'korean lady' === subject.toLowerCase()) {
+  if (subject.toLowerCase() === 'koreanlady' || subject.toLowerCase() === 'korean lady') {
     // Ramdom emote reaction.
-    const reaction_array = [
+    const reactions = [
       ['peepoPants', '🥳'],
       ['apollo20Wow', '😍'],
       ['apolPat', '🤗'],
       ['apolLove', '❤️'],
       ['apolHyper', '😋'],
       ['POG', '😮'],
-      ['ihaa', '🥰'],
+      ['ihaa', '🥰']
     ]
-    const reaction = math.getRandomStringFromArray(reaction_array)
+    const reaction = math.getRandomStringFromArray(reactions)
 
     // React with custom emote or its associated fallback if necessary.
     common.reactWithCustomEmote(client, msg, reaction[0], reaction[1])

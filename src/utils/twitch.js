@@ -8,21 +8,20 @@ const axios = require('axios')
  * @param {Object} callback Callback object (error, response).
  */
 const request = (endpoint) => {
-  return new Promise((resolve, reject) => {  // Make request to Twitch API.
+  return new Promise((resolve, reject) => {
+    // Make request to Twitch API.
     const url = `https://api.twitch.tv/helix/${endpoint}`
     axios.get(url, {
       headers: {
         'Client-ID': process.env.TWITCH_CLIENT_ID
       }
-    })
-    .then((response) => {
-      if (0 === response.data.data.length) {
-        reject('Twitch response was empty! Is the stream live?')
+    }).then((response) => {
+      if (response.data.data.length === 0) {
+        reject(new Error('Twitch response was empty! Is the stream live?'))
       } else {
         resolve(response.data.data[0])
       }
-    })
-    .catch((error) => {
+    }).catch((error) => {
       reject(error)
     })
   })

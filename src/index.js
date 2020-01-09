@@ -1,10 +1,10 @@
 require('dotenv').config()
 
 const { Client } = require('discord.js')
-const Enmap      = require('enmap')
-const fs         = require("fs")
+const Enmap = require('enmap')
+const fs = require('fs')
 
-const client    = new Client()
+const client = new Client()
 client.commands = new Enmap()
 
 /**
@@ -17,7 +17,7 @@ client.on('ready', () => {
   client.user.setPresence({
     game: {
       name: `${process.env.PREFIX}help`,
-      type: "PLAYING"
+      type: 'PLAYING'
     }
   })
 })
@@ -30,8 +30,10 @@ fs.readdir('./src/events/', (err, files) => {
   files.forEach(file => {
     // Load the event file itself.
     const event = require(`./events/${file}`)
+
     // Get just the event name from the file name.
-    let eventName = file.split(".")[0]
+    const eventName = file.split('.')[0]
+
     // Call events with all their proper arguments *after* the `client` var.
     client.on(eventName, event.bind(null, client))
   })
@@ -44,11 +46,14 @@ fs.readdir('./src/commands/', (err, files) => {
   if (err) return console.error(err)
   files.forEach(file => {
     if (!file.endsWith('.js')) return
+
     // Load the command file itself.
-    let props = require(`./commands/${file}`)
+    const props = require(`./commands/${file}`)
+
     // Get just the command name from the filename.
-    let commandName = file.split('.')[0]
+    const commandName = file.split('.')[0]
     console.log(`Attempting to load command ${commandName}`)
+
     // Store in the command Enmap.
     client.commands.set(commandName, props)
   })

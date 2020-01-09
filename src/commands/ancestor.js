@@ -2,7 +2,7 @@ const math = require('../utils/math')
 
 const run = (client, msg, args) => {
   // Ramdom adjective.
-  const quote_array = [
+  const quotes = [
     // Intros.
     'Leave nothing unchecked, there is much to be found in forgotten places.',
     'Trinkets and charms, gathered from all the forgotten corners of the earth...',
@@ -122,15 +122,15 @@ const run = (client, msg, args) => {
     'Seize this momentum! Push on to the task\'s end!',
     'This expedition, at least, promises success.',
     'Success so clearly in view... or is it merely a trick of the light?',
-    'Remind yourself that overconfidence is a slow and insidious killer.',
+    'Remind yourself that overconfidence is a slow and insidious killer.'
   ]
-  const quote = math.getRandomStringFromArray(quote_array)
+  const quote = math.getRandomStringFromArray(quotes)
 
   // Send an embed message with the stream details.
   msg.channel.send({
     embed: {
       color: 0x82170f,
-      description: `**${quote}**`,
+      description: `**${quote}**`
     }
   })
 }

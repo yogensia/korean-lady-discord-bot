@@ -14,5 +14,3 @@ module.exports = {
   usage: 'sticker',
   run
 }
-
-

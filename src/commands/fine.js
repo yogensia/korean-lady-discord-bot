@@ -6,15 +6,15 @@ const run = (client, msg, args) => {
   const subject = common.stripMentions(args.join(' '), msg)
 
   // Random emote.
-  const emote_array = [
+  const emotes = [
     ':receipt:',
     ':money_with_wings:',
     ':moneybag:'
   ]
-  const emote = math.getRandomStringFromArray(emote_array)
+  const emote = math.getRandomStringFromArray(emotes)
 
   // Random currency.
-  const currency_array = [
+  const currencies = [
     'USD',
     'Euros',
     'Pounds',
@@ -23,9 +23,12 @@ const run = (client, msg, args) => {
     'Swedish Krona',
     'South Korean won',
     'Hyrule Rupees',
-    'Gold bars'
+    'Gold coins',
+    'Imperial credits',
+    'Souls',
+    'Zeni'
   ]
-  const currency = math.getRandomStringFromArray(currency_array)
+  const currency = math.getRandomStringFromArray(currencies)
 
   // Random money amount.
   let money = math.getRandomInt(0, 999888777666)
@@ -39,9 +42,9 @@ const run = (client, msg, args) => {
   money = money.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
 
   // Don't let the Korean lady get finned!
-  if ('koreanlady' === subject.toLowerCase() || 'korean lady' === subject.toLowerCase()) {
-    let emote_angry = common.getCustomEmote(client, 'Angry', 'rage')
-    msg.channel.send(`${emote_angry} Trying to fine the Korean Lady is illegal! **${msg.author.username}** has been fined instead, with ${money} ${currency}!`)
+  if (subject.toLowerCase() === 'koreanlady' || subject.toLowerCase() === 'korean lady') {
+    const emoteAngry = common.getCustomEmote(client, 'Angry', 'rage')
+    msg.channel.send(`${emoteAngry} Trying to fine the Korean Lady is illegal! **${msg.author.username}** has been fined instead, with ${money} ${currency}!`)
   } else {
     msg.channel.send(`${emote} ${msg.author.username} has fined **${subject}** with ${money} ${currency}!`)
   }

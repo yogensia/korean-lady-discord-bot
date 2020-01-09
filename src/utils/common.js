@@ -11,7 +11,7 @@ const stripMentions = (subject, msg) => {
   const input = subject.split(' ')
 
   // Replace user mentions with plain text.
-  let output = input.map(function(element) {
+  let output = input.map((element) => {
     if (/@(everyone|here)/.test(element)) {
       return element.replace(/@(everyone|here)/g, '\u200b$1')
     } else if (element.startsWith('<@')) {
@@ -37,7 +37,7 @@ const stripMentions = (subject, msg) => {
   })
 
   // Is a user mentions themselves use special string.
-  output = output.map(function(element) {
+  output = output.map((element) => {
     if (msg.author.username === element) {
       return 'himself/herself'
     } else {
@@ -63,7 +63,7 @@ const getCustomEmote = (client, name, fallback) => {
   const emote = client.emojis.find(emoji => emoji.name === name)
 
   // If emote is available return it.
-  if (null !== emote) {
+  if (emote !== null) {
     return emote
   } else {
     // If emote not found check if a fallback was provided.
@@ -148,12 +148,12 @@ const sendExceptionMsg = (msg, value) => {
  */
 const sendMissingParameterMsg = (client, msg, reason) => {
   // Build description, usage & example strings.
-  const desc  = `${client.cmd.desc}`
+  const desc = `${client.cmd.desc}`
   const usage = `\`${process.env.PREFIX}${client.cmd.usage}\``
-  const example_array = client.cmd.examples.map(function(element) {
+  const exampleArray = client.cmd.examples.map((element) => {
     return `\`${process.env.PREFIX}${element}\``
   })
-  const examples = example_array.join(' ')
+  const examples = exampleArray.join(' ')
 
   // Send error message in a nice and clean embed.
   msg.channel.send({
@@ -161,24 +161,24 @@ const sendMissingParameterMsg = (client, msg, reason) => {
       color: 3447003,
       author: {
         name: random.exclamationNegative(),
-        icon_url: 'https://i.imgur.com/xvJNaak.png', // concernFroge image.
+        icon_url: 'https://i.imgur.com/xvJNaak.png' // concernFroge image.
       },
       fields: [
         {
           name: 'Missing parameter',
-          value: reason,
+          value: reason
         },
         {
           name: 'Command description',
-          value: desc,
+          value: desc
         },
         {
           name: 'Usage',
-          value: usage,
+          value: usage
         },
         {
           name: 'Examples',
-          value: examples,
+          value: examples
         }
       ]
     }

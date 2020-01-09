@@ -6,26 +6,26 @@ const run = (client, msg, args) => {
   const subject = common.stripMentions(args.join(' '), msg)
 
   // Random intro and prediction accuracy.
-  const answer_array = [
+  const answers = [
     'The gods have decree...',
     'Apollo has determined...',
     'The jury has decided...',
     'The Dalai Lama has spoken...',
     'The prophecy has revealed...'
   ]
-  const answer  = math.getRandomStringFromArray(answer_array)
+  const answer = math.getRandomStringFromArray(answers)
   const acuracy = math.getRandomFloat(0, 110).toFixed(2)
 
   // Random heaven or hell destination!
   let destiny = math.getRandomInt(0, 1)
-  if (1 === destiny) {
+  if (destiny === 1) {
     destiny = 'is going to Heaven! :innocent:'
   } else {
     destiny = 'is going to Hell! :flame:'
   }
 
   // Check if there is a subject, if not use the message author.
-  if ('' === subject) {
+  if (subject === '') { // TODO: test for falsy instead.
     msg.channel.send(`${answer}* ${msg.author.username} **${destiny}**\n(_*actual prediction acuracy of ${acuracy}%_)`)
   } else {
     msg.channel.send(`${answer}* ${subject} **${destiny}**\n(_*actual prediction acuracy of ${acuracy}%_)`)
