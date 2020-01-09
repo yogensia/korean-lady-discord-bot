@@ -12,6 +12,14 @@ Uses an 8 ball to answer a question.
 
 Usage: `k!8ball Will I pass my next exam?`
 
+### `k!ancestor`
+
+Gain inspiration (or not) with one of the Darkest Dungeon Ancestor's quotes.
+
+Usage: `k!ancestor`
+
+Aliases: `k!darkestdungeon` `k!dd`
+
 ### `k!ban <subject>`
 
 Bans a user or object for a random amount of time, from a few seconds to several years. If the ban is longer than a year the ban's expiration date will also be shown.
