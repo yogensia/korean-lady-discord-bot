@@ -3,10 +3,10 @@ const math = require('./math')
 /**
  * Returns a random sticker emote url.
  *
- * @return {string} A random sticker emote url.
+ * @return {string} A random url.
  */
 const sticker = () => {
-  const sticker_array = [
+  const array = [
     'https://i.imgur.com/RyRP4En.png', // Apollo
     'https://i.imgur.com/ndRYMZT.png', // Blush
     'https://i.imgur.com/tMgJkHb.png', // Cool
@@ -25,17 +25,17 @@ const sticker = () => {
     'https://i.imgur.com/0inqQTy.png', // Wow
     'https://i.imgur.com/smWsdrf.png', // Yikes
   ]
-  return math.getRandomStringFromArray(sticker_array)
+  return math.getRandomStringFromArray(array)
 }
 
 /**
  * Returns a random exclamation.
  * Ex: `WOAH!`, `Cool!`
  *
- * @return {string} A random exclamation string.
+ * @return {string} A random string.
  */
 const exclamation = () => {
-  const exclamation_array = [
+  const array = [
     'Cool!',
     'Hey!',
     'Holy cow!',
@@ -48,10 +48,29 @@ const exclamation = () => {
     'WOAH!',
     'WOW!',
   ]
-  return math.getRandomStringFromArray(exclamation_array)
+  return math.getRandomStringFromArray(array)
+}
+
+/**
+ * Returns a random negative exclamation.
+ * Ex: `Oh no!`, `Oh man...`
+ *
+ * @return {string} A random string.
+ */
+const exclamationNegative = () => {
+  const array = [
+    'Dude...',
+    'Hmmm...',
+    'Oh boy...',
+    'Oh man...',
+    'Oh no!',
+    'Whoops!',
+  ]
+  return math.getRandomStringFromArray(array)
 }
 
 module.exports = {
   exclamation,
-  sticker
+  exclamationNegative,
+  sticker,
 }

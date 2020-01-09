@@ -1,3 +1,5 @@
+const random = require('../utils/random')
+
 /**
  * Replace user mentions with plain text usernames.
  *
@@ -157,6 +159,10 @@ const sendMissingParameterMsg = (client, msg, reason) => {
   msg.channel.send({
     embed: {
       color: 3447003,
+      author: {
+        name: random.exclamationNegative(),
+        icon_url: 'https://i.imgur.com/xvJNaak.png', // concernFroge image.
+      },
       fields: [
         {
           name: 'Missing parameter',
