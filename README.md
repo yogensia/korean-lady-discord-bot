@@ -87,6 +87,8 @@ Usage: `k!hug chat`
 
 Embed a nice link for a Twitch stream. Channel must be live.
 
+_This command can only be used by the server owner._
+
 Usage: `k!live`
 
 Aliases: `k!stream`
