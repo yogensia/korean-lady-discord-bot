@@ -1,6 +1,7 @@
 # KoreanLady Discord Bot
 
-## About
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+ [![](https://img.shields.io/badge/license-ISC-green)](https://github.com/yogensia/VSCodeSearchWPDocs/blob/master/LICENSE.md) ![](https://img.shields.io/github/package-json/v/yogensia/korean-lady-discord-bot)
 
 **KoreanLady** is a Discord bot coded in NodeJS using the [Discord.JS](https://discord.js.org/#/) library.
 
