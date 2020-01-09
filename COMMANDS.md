@@ -140,6 +140,8 @@ It's meant to be a simple bot with a few fun commands and no moderation or any o
 
 KoreanLady is written in NodeJS by [Yogensia](https://www.yogensia.com).
 
+Some of this bot's architecture is based on documentation from [discordjs.guide](https://discordjs.guide/) & [anidiots.guide](https://anidiots.guide/).
+
 The name KoreanLady and some of the bot's commands are inspired by [Twitch Streamer Apollolol](https://www.twitch.tv/apollolol)'s community.
 
 

@@ -1,7 +1,7 @@
 # KoreanLady Discord Bot
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
- [![](https://img.shields.io/badge/license-ISC-green)](https://github.com/yogensia/VSCodeSearchWPDocs/blob/master/LICENSE.md) ![](https://img.shields.io/github/package-json/v/yogensia/korean-lady-discord-bot)
+ [![ISC License](https://img.shields.io/badge/license-ISC-green)](https://github.com/yogensia/VSCodeSearchWPDocs/blob/master/LICENSE.md) ![](https://img.shields.io/github/package-json/v/yogensia/korean-lady-discord-bot)
 
 **KoreanLady** is a Discord bot coded in NodeJS using the [Discord.JS](https://discord.js.org/#/) library.
 
@@ -152,7 +152,23 @@ You will also need to [create a Discord bot application](https://discordapp.com/
 
 ## Running
 
-The source is in the `src` directory.
+This bot is open source so that anyone can download it, modify it and run it.
+
+### Outline
+
+You can find the source code in the `src` directory.
+
+- `index.js` Initializes the bot and loads events/commands, which are found in their own subfolders.
+- `events/messages.js` handles the message event and runs the according command if applicable.
+- Each command has a simple set of properties: name, description, syntax, aliases, etc. that are used by the bot to show help or detailed error messages when necessary.
+- `/utils/` contains some utility functions to make some repetitive tasks a bit easier and cleaner. This includes a basic [Twitch API (helix)](https://dev.twitch.tv/docs/api) request function.
+- Most of the commands are generic enough, but you decide to create your own fork of this bot, you may want to check the commands one by one and replace a few things, like emotes etc.
+
+If you are new to making bots you can check [discordjs.guide](https://discordjs.guide/) and/or [anidiots.guide](https://anidiots.guide/) for lots of documentation and resources.
+
+### Getting Started
+
+To get started using this repo follow these steps:
 
 1. First of all you'll need to [create a Discord bot application](https://discordapp.com/developers/applications/me).
 
@@ -176,6 +192,8 @@ All notable changes for each version of this project are documented in the [chan
 ## Credits & Acknowledgments
 
 KoreanLady is written in NodeJS by [Yogensia](https://www.yogensia.com).
+
+Some of this bot's architecture is based on documentation from [discordjs.guide](https://discordjs.guide/) & [anidiots.guide](https://anidiots.guide/).
 
 The name KoreanLady and some of the bot's commands are inspired by [Twitch Streamer Apollolol](https://www.twitch.tv/apollolol)'s community.
 
