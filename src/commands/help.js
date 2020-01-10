@@ -22,6 +22,10 @@ const run = (client, msg, args) => {
     // Prepare fields array for embed message.
     const fields = [
       {
+        name: 'Command description',
+        value: desc
+      },
+      {
         name: 'Usage',
         value: usage
       }
@@ -59,7 +63,6 @@ const run = (client, msg, args) => {
       embed: {
         color: 3447003,
         title: name,
-        description: desc,
         fields
       }
     })
