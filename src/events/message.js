@@ -5,13 +5,19 @@ module.exports = (client, msg) => {
   if (msg.author.bot) return
 
   // Ignore messages not starting with the prefix or mention of our bot.
+  // Also do not require prefix in direct messages.
   const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
   const prefixRegex = new RegExp(`^(<@!?${client.user.id}>|${escapeRegex(process.env.PREFIX)})\\s*`)
-  if (!prefixRegex.test(msg.content)) return
+  if (!prefixRegex.test(msg.content) && msg.channel.type !== 'dm') return
 
-  // Command & argument definition.
-  const [, matchedPrefix] = msg.content.match(prefixRegex)
-  const args = msg.content.slice(matchedPrefix.length).trim().split(/ +/)
+  // Remove prefix if found, then get command and args.
+  let args
+  if (msg.content.match(prefixRegex)) {
+    const [, matchedPrefix] = msg.content.match(prefixRegex)
+    args = msg.content.slice(matchedPrefix.length).trim().split(/ +/)
+  } else {
+    args = msg.content.trim().split(/ +/)
+  }
   const command = args.shift().toLowerCase()
 
   // Grab the command data from the client.commands Enmap.
