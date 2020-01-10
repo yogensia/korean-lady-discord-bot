@@ -36,7 +36,7 @@ module.exports = {
   name: 'heavenorhell',
   desc: 'Shows whether a user will go to heaven or hell, and the prediction accuracy. Subject can be omitted, if so the user what used the command will be used as subject.',
   aliases: ['hoh', 'heaven', 'hell'],
-  usage: ['heavenorhell [subject]'],
+  usage: 'heavenorhell [subject]',
   examples: ['heavenorhell', 'heavenorhell @GeraltOfRivia', 'heavenorhell Pineapple'],
   run
 }

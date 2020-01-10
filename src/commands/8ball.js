@@ -35,7 +35,7 @@ const run = (client, msg, args) => {
 module.exports = {
   name: '8ball',
   desc: 'Uses an 8 ball to answer a question.',
-  usage: ['8ball <question>'],
+  usage: '8ball <question>',
   examples: ['8ball Will I pass my exam?'],
   args: true,
   args_error: 'You must ask a question!',

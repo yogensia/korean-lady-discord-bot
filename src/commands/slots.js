@@ -37,7 +37,7 @@ module.exports = {
   name: 'slots',
   desc: 'Try your luck at the slot machines. There are 3 reels with 4 possible symbols, so you have a 1 in 63 chance to win!',
   aliases: ['slot', 'slotmachine'],
-  usage: ['slots'],
+  usage: 'slots',
   examples: ['slots'],
   run
 }

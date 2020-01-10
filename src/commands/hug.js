@@ -26,7 +26,7 @@ const run = (client, msg, args) => {
 module.exports = {
   name: 'hug',
   desc: 'Hugs someone/something for a random amount of mississippis.',
-  usage: ['hug <subject>'],
+  usage: 'hug <subject>',
   examples: ['hug chat'],
   args: true,
   args_error: 'You must specify who or what you want to hug!',

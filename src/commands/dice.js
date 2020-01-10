@@ -28,7 +28,7 @@ const run = (client, msg, args) => {
 module.exports = {
   name: 'dice',
   desc: 'Throws a dice. By default it will be a 6 sided dice, but a different number can be added after the command.',
-  usage: ['dice [sides]'],
+  usage: 'dice [sides]',
   examples: ['dice', 'dice 12'],
   run
 }

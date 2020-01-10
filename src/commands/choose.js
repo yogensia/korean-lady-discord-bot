@@ -53,7 +53,7 @@ module.exports = {
   name: 'choose',
   desc: 'Helps you choose between two or more options. Options must be separated by a forward slash.',
   aliases: ['choice'],
-  usage: ['choose <option 1/option 2/...>'],
+  usage: 'choose <option 1/option 2/...>',
   examples: ['choose The Doors/David Bowie/Queen'],
   args: true,
   args_error: 'You need two or more choices!',

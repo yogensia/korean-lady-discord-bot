@@ -17,6 +17,6 @@ module.exports = {
   name: 'list',
   desc: 'Lists all available commands.',
   aliases: ['commands'],
-  usage: ['list'],
+  usage: 'list',
   run
 }

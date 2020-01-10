@@ -53,7 +53,7 @@ const run = (client, msg, args) => {
 module.exports = {
   name: 'fine',
   desc: 'Fines someone with a random amount of money, in a random currency.',
-  usage: ['fine <subject>'],
+  usage: 'fine <subject>',
   examples: ['fine @Superman', 'fine The whole planet'],
   args: true,
   args_error: 'You must specify who you want to fine!',

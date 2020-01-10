@@ -31,7 +31,7 @@ const run = (client, msg, args) => {
 module.exports = {
   name: 'ban',
   desc: 'Bans a user or object for a random amount of time, from a few seconds to several years. If the ban is longer than a year the expiry date will also be shown.',
-  usage: ['ban <subject>'],
+  usage: 'ban <subject>',
   examples: ['ban Mosquitoes', 'ban @Batman'],
   args: true,
   args_error: 'You must specify who or what to ban!',

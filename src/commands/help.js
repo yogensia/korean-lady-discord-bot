@@ -83,7 +83,7 @@ module.exports = {
   name: 'help',
   desc: 'Shows a link to command list in documentation. If a command is added as an argument, it will show help specific to that command.',
   aliases: ['h', '?'],
-  usage: ['help [command]'],
+  usage: 'help [command]',
   examples: ['help', 'help ban'],
   run
 }

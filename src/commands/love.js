@@ -26,7 +26,7 @@ const run = (client, msg, args) => {
 module.exports = {
   name: 'love',
   desc: 'Show how much you love someone or something, with a random percentage.',
-  usage: ['love <subject>'],
+  usage: 'love <subject>',
   examples: ['love @Wumpus', 'love everyone in chat'],
   args: true,
   args_error: 'You must specify the subject of your love!',
