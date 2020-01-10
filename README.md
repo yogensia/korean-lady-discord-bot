@@ -135,20 +135,25 @@ Usage: `k!treat @KoreanLady` `k!treat everyone`
 
 Aliases: `k!dessert`
 
-
 ## Requirements
 
-KoreanLady requires NodeJS, [Discord.JS](https://discord.js.org/#/) & [Enmap](https://enmap.evie.dev/).
+KoreanLady requires NodeJS, [npm](https://www.npmjs.com/get-npm), [Discord.JS](https://discord.js.org/#/) & [Enmap](https://enmap.evie.dev/).
 
-[npm](https://www.npmjs.com/get-npm) & [Nodemon](https://nodemon.io/) are optional but recommended for easier setup and development.
+[Nodemon](https://nodemon.io/) is optional but recommended for easier setup and development.
 
 You will also need to [create a Discord bot application](https://discordapp.com/developers/applications/me) so that your bot can connect to Discord, more instructions can be found below.
 
-
 ## Download
 
-**[You can download the source code for KoreanLady from this link](https://github.com/yogensia/korean-lady-discord-bot/archive/master.zip)**.
+[You can download the source code for KoreanLady Discord Bot from this link](https://github.com/yogensia/korean-lady-discord-bot/archive/master.zip).
 
+Or:
+
+```
+git clone https://github.com/yogensia/korean-lady-discord-bot.git
+cd korean-lady-discord-bot
+npm install
+```
 
 ## Running
 
@@ -172,22 +177,21 @@ To get started using this repo follow these steps:
 
 1. First of all you'll need to [create a Discord bot application](https://discordapp.com/developers/applications/me).
 
-2. Find the token for your application, should be found in the Bot section.
+2. Go to the OAuth2 section in your bot application page. Enable the bot scope and select the permissions you need. This will create a link for you with your application's `client_id` and permissions. Copy and open that link, and follow instructions on the newly opened page to add your Bot to a server you have admin access to.
 
-3. Rename `.env.example` to `.env` and add the token for your discord bot in this file. Remember to keep this token private!
+3. Find the token for your application, should be found in the Bot section.
 
-4. Run `npm install` to install dependencies.
+4. Rename `.env.example` to `.env` and add the token for your discord bot in this file. Remember to keep this token private!
 
-5. Run the source with `npm run start` or `npm run dev`. The second option requires [nodemon](https://nodemon.io/) and is used to monitor changes and reload the script as needed.
+5. Run `npm install` on the directory with the projects files if you haven't already to install dependencies.
 
-6. Go to the OAuth2 section in your bot application page. Enable the bot scope and select the permissions you need. This will create a link for you with your application's `client_id` and permissions. Copy and open that link, and follow instructions on the newly opened page to add your Bot to a server you have admin access to.
+6. Run the source with `npm run start` or `npm run dev`. The second option requires [nodemon](https://nodemon.io/) and is used to monitor changes and reload the script as needed.
 
 7. You should now find your bot online in your server, responding to your commands.
 
 ## Changelog
 
 All notable changes for each version of this project are documented in the [changelog](https://github.com/yogensia/korean-lady-discord-bot/CHANGELOG.md).
-
 
 ## Credits & Acknowledgments
 
@@ -196,7 +200,6 @@ KoreanLady is written in NodeJS by [Yogensia](https://www.yogensia.com).
 Some of this bot's architecture is based on documentation from [discordjs.guide](https://discordjs.guide/) & [anidiots.guide](https://anidiots.guide/).
 
 The name KoreanLady and some of the bot's commands are inspired by [Twitch Streamer Apollolol](https://www.twitch.tv/apollolol)'s community.
-
 
 ## License
 

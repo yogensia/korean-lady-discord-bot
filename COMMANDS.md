@@ -128,13 +128,11 @@ Usage: `k!treat @KoreanLady` `k!treat everyone`
 
 Aliases: `k!dessert`
 
-
 ## About
 
 **KoreanLady** is a Discord bot coded in NodeJS using the [Discord.JS](https://discord.js.org/#/) library.
 
 It's meant to be a simple bot with a few fun commands and no moderation or any other advanced functions.
-
 
 ## Credits & Acknowledgments
 
@@ -143,7 +141,6 @@ KoreanLady is written in NodeJS by [Yogensia](https://www.yogensia.com).
 Some of this bot's architecture is based on documentation from [discordjs.guide](https://discordjs.guide/) & [anidiots.guide](https://anidiots.guide/).
 
 The name KoreanLady and some of the bot's commands are inspired by [Twitch Streamer Apollolol](https://www.twitch.tv/apollolol)'s community.
-
 
 ## License
 
