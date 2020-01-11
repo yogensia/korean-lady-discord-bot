@@ -5,10 +5,11 @@ const commands = []
 const prefix = process.env.PREFIX_DOCUMENTATION
 
 async function generateDocs () {
+  // Read commands firectory.
   await fs.readdir('./src/commands', (err, files) => {
     if (err) return console.error(err)
     files.forEach(file => {
-      // Check that it's a .js file and doesn't start with `_`
+      // Check that it's a .js file and doesn't start with `_`.
       if (!file.endsWith('.js')) return
       if (file.startsWith('_')) return
 
@@ -50,7 +51,7 @@ async function generateDocs () {
     })
 
     // Read template file.
-    fs.readFile('./scripts/COMMANDS.md', 'utf8', (err, data) => {
+    fs.readFile('./scripts/_COMMANDS.md', 'utf8', (err, data) => {
       if (err) return console.log(err)
 
       // Remove last two line breaks from the string and replace.
