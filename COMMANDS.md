@@ -44,7 +44,7 @@ Aliases: `k!choice`
 
 ### `k!coin`
 
-Throws a coin and show the result (heads or tails).
+Throws a coin and shows the result (heads or tails).
 
 Usage: `k!coin`
 
@@ -65,6 +65,16 @@ Fines someone with a random amount of money, in a random currency.
 Usage: `k!fine <subject>`
 
 Examples: `k!fine @Superman` `k!fine The whole planet`
+
+### `k!fortune`
+
+Get a fortune! For best results, get a snack first, break it in half, then use this command.
+
+Usage: `k!fortune`
+
+Examples: `k!fortune`
+
+Aliases: `k!fortunecookie`
 
 ### `k!heavenorhell`
 
@@ -104,7 +114,7 @@ Aliases: `k!commands`
 
 ### `k!live`
 
-Embed a nice link for a Twitch stream. Channel must be live.
+Embeds a nice link for a Twitch stream. Channel must be live.
 
 Usage: `k!live`
 
@@ -112,7 +122,7 @@ Aliases: `k!stream`
 
 ### `k!love`
 
-Show how much you love someone or something, with a random percentage.
+Shows how much you love someone or something, with a random percentage.
 
 Usage: `k!love <subject>`
 
@@ -123,6 +133,14 @@ Examples: `k!love @Wumpus` `k!love everyone in chat`
 Simple ping command to test bot.
 
 Usage: `k!ping`
+
+### `k!slap`
+
+Lets you slap your nemeses, and shows how much damage you've inflicted.
+
+Usage: `k!slap <subject>`
+
+Examples: `k!slap @Cthulhu` `k!slap everyone in chat`
 
 ### `k!slots`
 
