@@ -5,10 +5,10 @@ const random = require('../utils/random')
 const run = (client, msg, args) => {
   // Random symbols.
   const symbols = [
-    'cherries',
-    'watermelon',
-    'pineapple',
-    'broccoli'
+    '🍒',
+    '🍉',
+    '🍍',
+    '🥦'
   ]
 
   const result = [

@@ -43,7 +43,7 @@ const run = (client, msg, args) => {
 
   // Don't let the Korean lady get finned!
   if (subject.toLowerCase() === 'koreanlady' || subject.toLowerCase() === 'korean lady') {
-    const emoteAngry = common.getCustomEmote(client, 'Angry', 'rage')
+    const emoteAngry = common.getCustomEmote(client, 'Angry', '😡')
     msg.channel.send(`${emoteAngry} Trying to fine the Korean Lady is illegal! **${msg.author.username}** has been fined instead, with ${money} ${currency}!`)
   } else {
     msg.channel.send(`${emote} ${msg.author.username} has fined **${subject}** with ${money} ${currency}!`)

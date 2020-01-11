@@ -23,11 +23,11 @@ const run = (client, msg, args) => {
 
     // Random emote.
     const emotes = [
-      ':bar_chart:',
-      ':confetti_ball:',
-      ':bulb:',
-      ':scales:',
-      ':fortune_cookie:'
+      '📊',
+      '🎊',
+      '💡',
+      '⚖️',
+      '🥠'
     ]
     const emote = math.getRandomStringFromArray(emotes)
 

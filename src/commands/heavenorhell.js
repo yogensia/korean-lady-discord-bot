@@ -19,16 +19,16 @@ const run = (client, msg, args) => {
   // Random heaven or hell destination!
   let destiny = math.getRandomInt(0, 1)
   if (destiny === 1) {
-    destiny = 'is going to Heaven! :innocent:'
+    destiny = 'is going to Heaven! 😇'
   } else {
-    destiny = 'is going to Hell! :flame:'
+    destiny = 'is going to Hell! 🔥'
   }
 
   // Check if there is a subject, if not use the message author.
-  if (subject === '') { // TODO: test for falsy instead.
-    msg.channel.send(`${answer}* ${msg.author.username} **${destiny}**\n(_*actual prediction acuracy of ${acuracy}%_)`)
-  } else {
+  if (subject) {
     msg.channel.send(`${answer}* ${subject} **${destiny}**\n(_*actual prediction acuracy of ${acuracy}%_)`)
+  } else {
+    msg.channel.send(`${answer}* ${msg.author.username} **${destiny}**\n(_*actual prediction acuracy of ${acuracy}%_)`)
   }
 }
 

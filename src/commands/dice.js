@@ -22,7 +22,7 @@ const run = (client, msg, args) => {
   const result = math.getRandomInt(0, sides)
 
   // Send message.
-  msg.channel.send(`${msg.author.username} threw a ${sides} sided dice... The result was **${result}**!`)
+  msg.channel.send(`🎲 ${msg.author.username} threw a ${sides} sided dice... The result was **${result}**!`)
 }
 
 module.exports = {

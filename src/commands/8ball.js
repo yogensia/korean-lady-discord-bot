@@ -29,7 +29,7 @@ const run = (client, msg, args) => {
   const answer = math.getRandomStringFromArray(answers)
 
   // Send message.
-  msg.channel.send(`${msg.author.username} asks: **${question}**\n:8ball: ${answer} :8ball:`)
+  msg.channel.send(`${msg.author.username} asks: **${question}**\n🎱 ${answer} 🎱`)
 }
 
 module.exports = {

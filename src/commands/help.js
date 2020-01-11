@@ -9,9 +9,14 @@ const run = (client, msg, args) => {
       client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(query))
 
     // If command isn't found send an error message to the user and stop here.
-    if (cmd === null) { // TODO: Check for falsy instead?
-      const emoteAngry = common.getCustomEmote(client, 'Angry', 'rage')
-      return msg.channel.send(`${emoteAngry} **REEE!** Can't find any command by that name, did you spell that wrong?\nTry typing just \`${process.env.PREFIX}help\` for more details.`)
+    if (!cmd) {
+      const emoteAngry = common.getCustomEmote(client, 'Angry', '😡')
+      return msg.channel.send({
+        embed: {
+          color: 0x82170F,
+          description: `${emoteAngry} **REEE!** Can't find any command by that name, did you spell that wrong? Try typing just \`${process.env.PREFIX}help\` for more details.`
+        }
+      })
     }
 
     // Build command details strings.
