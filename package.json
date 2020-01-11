@@ -12,7 +12,8 @@
     "start": "node ./src/index.js",
     "dev": "nodemon ./src/index.js",
     "check": "standard",
-    "fix": "standard --fix"
+    "fix": "standard --fix",
+    "docbuild": "node ./scripts/generate-documentation.js"
   },
   "engines": {
     "node": "10.16.0",
