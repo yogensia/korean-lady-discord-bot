@@ -140,6 +140,5 @@ module.exports = {
   desc: 'Gain inspiration (or not) with one of the Darkest Dungeon Ancestor\'s quotes.',
   aliases: ['darkestdungeon', 'dd'],
   usage: 'ancestor',
-  examples: ['ancestor'],
   run
 }

@@ -14,8 +14,7 @@ const run = (client, msg, args) => {
 module.exports = {
   name: 'coin',
   desc: 'Throws a coin and show the result (heads or tails).',
-  aliases: 'headsortails',
+  aliases: ['headsortails'],
   usage: ['coin'],
-  examples: ['coin'],
   run
 }
