@@ -129,7 +129,7 @@ const run = (client, msg, args) => {
   // Send an embed message with the stream details.
   msg.channel.send({
     embed: {
-      color: 0x82170f,
+      color: 0x82170F,
       description: `**${quote}**`
     }
   })

@@ -9,12 +9,12 @@ const run = (client, msg, args) => {
   }
 
   // Request stream info from Twitch API.
-  twitch.request('streams?user_login=apollolol')
+  twitch.request('streams?user_login=gamesdonequick')
     .then((stream) => {
       // Send an embed message with the stream details.
       msg.channel.send({
         embed: {
-          color: 3447003,
+          color: 0xFFA820,
           title: stream.title,
           description: `**${random.exclamation()} Apollo is going live!**`,
           url: `https://twitch.tv/${stream.user_name.toLowerCase()}`,
@@ -32,7 +32,7 @@ const run = (client, msg, args) => {
 
 module.exports = {
   name: 'live',
-  desc: 'Embed a nice link for a Twitch stream. Channel must be live.',
+  desc: 'Embeds a nice link for a Twitch stream. Channel must be live.',
   aliases: ['stream'],
   usage: 'live',
   run

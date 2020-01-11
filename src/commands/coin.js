@@ -13,8 +13,8 @@ const run = (client, msg, args) => {
 
 module.exports = {
   name: 'coin',
-  desc: 'Throws a coin and show the result (heads or tails).',
+  desc: 'Throws a coin and shows the result (heads or tails).',
   aliases: ['headsortails'],
-  usage: ['coin'],
+  usage: 'coin',
   run
 }

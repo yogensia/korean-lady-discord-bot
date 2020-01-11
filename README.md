@@ -1,7 +1,7 @@
 # KoreanLady Discord Bot
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
- [![ISC License](https://img.shields.io/badge/license-ISC-green)](https://github.com/yogensia/korean-lady-discord-bot/blob/master/LICENSE) ![](https://img.shields.io/github/package-json/v/yogensia/korean-lady-discord-bot)
+ [![ISC License](https://img.shields.io/badge/license-ISC-green)](https://github.com/yogensia/korean-lady-discord-bot/blob/master/LICENSE) [![](https://img.shields.io/github/package-json/v/yogensia/korean-lady-discord-bot)](https://github.com/yogensia/korean-lady-discord-bot/CHANGELOG.md)
 
 **KoreanLady** is a Discord bot coded in NodeJS using the [Discord.JS](https://discord.js.org/#/) library.
 
@@ -13,7 +13,7 @@ It's meant to be a simple bot with a few fun commands and no moderation or any o
 
 ## Building requirements
 
-KoreanLady requires NodeJS, [npm](https://www.npmjs.com/get-npm), [Discord.JS](https://discord.js.org/#/) & [Enmap](https://enmap.evie.dev/).
+KoreanLady requires [NodeJS](https://nodejs.org/), [npm](https://www.npmjs.com/get-npm), [Discord.JS](https://discord.js.org/#/) & [Enmap](https://enmap.evie.dev/).
 
 [Nodemon](https://nodemon.io/) is optional but recommended for easier setup and development.
 
