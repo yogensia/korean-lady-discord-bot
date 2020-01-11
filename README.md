@@ -1,7 +1,7 @@
 # KoreanLady Discord Bot
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
- [![ISC License](https://img.shields.io/badge/license-ISC-green)](https://github.com/yogensia/VSCodeSearchWPDocs/blob/master/LICENSE.md) ![](https://img.shields.io/github/package-json/v/yogensia/korean-lady-discord-bot)
+ [![ISC License](https://img.shields.io/badge/license-ISC-green)](https://github.com/yogensia/korean-lady-discord-bot/blob/master/LICENSE) ![](https://img.shields.io/github/package-json/v/yogensia/korean-lady-discord-bot)
 
 **KoreanLady** is a Discord bot coded in NodeJS using the [Discord.JS](https://discord.js.org/#/) library.
 
@@ -9,7 +9,7 @@ It's meant to be a simple bot with a few fun commands and no moderation or any o
 
 ## Command List
 
-You can find the [full list of available commands here](https://github.com/yogensia/korean-lady-discord-bot/blob/master/COMMANDS.md#koreanlady-discord-bot).
+[Full list of supported commands can be found here](https://github.com/yogensia/korean-lady-discord-bot/blob/master/COMMANDS.md#koreanlady-discord-bot).
 
 ## Building requirements
 
@@ -19,21 +19,19 @@ KoreanLady requires NodeJS, [npm](https://www.npmjs.com/get-npm), [Discord.JS](h
 
 You will also need to [create a Discord bot application](https://discordapp.com/developers/applications/me) so that your bot can connect to Discord, more instructions can be found below.
 
-## Download
+## Building & creating your own bot
 
-[You can download the source code for KoreanLady Discord Bot from this link](https://github.com/yogensia/korean-lady-discord-bot/archive/master.zip).
+This bot is open source so that anyone can download it, modify it and run it.
 
-Or:
+[Source code this project can be downloaded here](https://github.com/yogensia/korean-lady-discord-bot/archive/master.zip).
+
+Or directly from your code editor:
 
 ```
 git clone https://github.com/yogensia/korean-lady-discord-bot.git
 cd korean-lady-discord-bot
 npm install
 ```
-
-## Building & creating your own bot
-
-This bot is open source so that anyone can download it, modify it and run it.
 
 ### Outline
 
