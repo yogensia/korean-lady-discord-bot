@@ -23,7 +23,7 @@ const run = (client, msg, args) => {
 
   // Depending on percentage send a different message.
   if (result > 75) {
-    msg.channel.send(`${emote} ${msg.author.username} slapped **${subject}**! It's supper efective! That drained a total of **${result}HP**!`)
+    msg.channel.send(`${emote} ${msg.author.username} slapped **${subject}**! It's super efective! That drained a total of **${result}HP**!`)
   } else if (result > 25) {
     msg.channel.send(`${emote} ${msg.author.username} slapped **${subject}**! That took a total of ${result}HP!`)
   } else {

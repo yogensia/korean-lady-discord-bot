@@ -11,15 +11,15 @@ const run = (client, msg, args) => {
 
   // Depending on percentage send a different message.
   if (result > 94) {
-    msg.channel.send(`💘 What!? ${msg.author.username} Love for **${subject}** is _**${result}%**_!`)
+    msg.channel.send(`💘 What!? ${msg.author.username}'s love for **${subject}** is _**${result}%**_!`)
   } else if (result > 69) {
-    msg.channel.send(`😍 ${random.exclamation()} ${msg.author.username} love for **${subject}** is **${result}%**!`)
+    msg.channel.send(`😍 ${random.exclamation()} ${msg.author.username}'s love for **${subject}** is **${result}%**!`)
   } else if (result > 49) {
-    msg.channel.send(`🤔 ${msg.author.username} Love for **${subject}** is ${result}%.`)
+    msg.channel.send(`🤔 ${msg.author.username}'s love for **${subject}** is ${result}%.`)
   } else if (result > 9) {
-    msg.channel.send(`😩 ${random.exclamationNegative()} ${msg.author.username} love for **${subject}** is ${result}%.`)
+    msg.channel.send(`😩 ${random.exclamationNegative()} ${msg.author.username}'s love for **${subject}** is ${result}%.`)
   } else {
-    msg.channel.send(`😐 ${random.exclamationNegative()} ${msg.author.username} love for **${subject}** is ${result}%.`)
+    msg.channel.send(`😐 ${random.exclamationNegative()} ${msg.author.username}'s love for **${subject}** is ${result}%.`)
   }
 }
 

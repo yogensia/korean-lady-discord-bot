@@ -179,6 +179,7 @@ const run = (client, msg, args) => {
   // Send fortune in an embed.
   msg.channel.send({
     embed: {
+      color: 0x2f3136,
       author: {
         name: `${intro}, ${msg.author.username}!`,
         icon_url: 'https://i.imgur.com/CBHZY0m.png'

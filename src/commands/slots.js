@@ -16,7 +16,7 @@ const run = (client, msg, args) => {
     math.getRandomStringFromArray(symbols),
     math.getRandomStringFromArray(symbols)
   ]
-  const symbolsFormatted = `:${result[0]}: :${result[1]}: :${result[2]}:`
+  const symbolsFormatted = `${result[0]} ${result[1]} ${result[2]}`
 
   // Compare values and send message.
   if (math.areEqual(result)) {

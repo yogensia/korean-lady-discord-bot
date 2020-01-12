@@ -12,31 +12,31 @@ const run = (client, msg, args) => {
     'Curiosity, interest, and obsession — mile markers on my road to damnation.',
     'Let me share with you the terrible wonders I have come to know...',
 
-    // Buildings
+    // Buildings.
     'More arrive, foolishly seeking fortune and glory in this domain of the damned.',
     'A little hope, however desperate, is never without worth.',
     'With enough ale, maybe they can be inured against the horrors below.',
     'A man in a robe, claiming communion with the divine. Madness.',
     'Fan the flames! Mold the metal! We are raising an army!',
 
-    // Recruiting
+    // Recruiting.
     'The thrill of the hunt... The promise of payment...',
     'To those with the keen eye, gold gleams like a dagger\'s point.',
     'Barbaric rage and unrelenting savagery make for a powerful ally.',
     'To fight the abyss, one must know it...',
 
-    // Dismising heros
+    // Dismising heros.
     'This one has become vestigial, useless.',
     'Send this one to journey elsewhere, for we have need of sterner stock.',
     'The task ahead is terrible, and weakness cannot be tolerated.',
 
-    // Entering Ruins
+    // Entering Ruins.
     'Pace out the halls of your lineage, once familiar, now foreign.',
     'Corruption has soaked the soil, sapping all good life from these groves - let us burn out this evil.',
     'Room by room, hall by hall, we reclaim what is ours.',
     'This day belongs to the Light!',
 
-    // Failing expedition
+    // Failing expedition.
     'Wounds to be tended; lessons to be learned.',
     'A setback, but not the end of things!',
     'You will endure this loss, and learn from it.',
@@ -44,7 +44,7 @@ const run = (client, msg, args) => {
     'Where there is no peril in the task, there can be no glory in its accomplishment.',
     'Great adversity has a beauty - it is the fire that tempers the blade.',
 
-    // Light & Dark
+    // Light & Dark.
     'The match is struck. A blazing star is born!',
     'The way is lit. The path is clear. We require only the strength to follow it.',
     'In radiance may we find victory.',
@@ -64,10 +64,10 @@ const run = (client, msg, args) => {
     'Ambushed by foul invention!',
     'Carelessness will find no clemency in this place!',
 
-    // Obstacles
+    // Obstacles.
     'Even the cold stone seems bent on preventing passage.',
 
-    // Healing
+    // Healing.
     'A momentary abatement...',
     'Surgical precision!',
     'Vigor is restored!',
@@ -76,7 +76,7 @@ const run = (client, msg, args) => {
     'Death cannot be escaped! But it can be postponed.',
     'Death is patient, it will wait.',
 
-    // Killing enemy
+    // Killing enemy.
     'As the fiend falls, a faint hope blossoms.',
     'Confidence surges as the enemy crumbles!',
     'Press this advantage, give them no quarter!',
@@ -93,18 +93,18 @@ const run = (client, msg, args) => {
     'Slowly, gently, this is how a life is taken...',
     'The slow death - unforeseen, unforgiving.',
 
-    // Receiving damage
+    // Receiving damage.
     'How quickly the tide turns!',
     'Grievous injury, palpable fear...',
     'Death waits for the slightest lapse in concentration.',
     'Festering fear consumes the mind!',
     'The abyss returns even the boldest gaze.',
 
-    // Buffs
+    // Buffs.
     'The blood quickens!',
     'A brilliant confluence of skill and purpose!',
 
-    // Afflictions
+    // Afflictions.
     'The mind cannot hope to withstand such an assault.',
     'Madness, our old friend!',
     'The abyss is made manifest!',
@@ -112,12 +112,12 @@ const run = (client, msg, args) => {
     'There can be no hope in this hell, no hope at all.',
     'Those who covet injury find it in no short supply.',
 
-    // Hero death
+    // Hero death.
     'Survival is a tenuous proposition in this sprawling tomb.',
     'Another life wasted in the pursuit of glory and gold.',
     'More dust, more ashes, more disappointment.',
 
-    // Win battle
+    // Win battle.
     'These nightmarish creatures can be felled! They can be beaten!',
     'Seize this momentum! Push on to the task\'s end!',
     'This expedition, at least, promises success.',
