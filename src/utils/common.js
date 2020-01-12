@@ -147,9 +147,7 @@ const sendExceptionMsg = (msg, value) => {
  * @param {string} reason Reason why the sendMissingParameterMsg() method is being used.
  */
 const sendMissingParameterMsg = (client, msg, reason) => {
-  // Build description, usage & example strings.
-  const desc = `${client.cmd.desc}`
-  const usage = `\`${process.env.PREFIX}${client.cmd.usage}\``
+  // Build example strings.
   const exampleArray = client.cmd.examples.map((element) => {
     return `\`${process.env.PREFIX}${element}\``
   })
@@ -158,7 +156,7 @@ const sendMissingParameterMsg = (client, msg, reason) => {
   // Send error message in a nice and clean embed.
   msg.channel.send({
     embed: {
-      color: 3447003,
+      color: 0x2f3136,
       author: {
         name: random.exclamationNegative(),
         icon_url: 'https://i.imgur.com/xvJNaak.png' // concernFroge image.
@@ -169,18 +167,13 @@ const sendMissingParameterMsg = (client, msg, reason) => {
           value: reason
         },
         {
-          name: 'Command description',
-          value: desc
-        },
-        {
-          name: 'Usage',
-          value: usage
-        },
-        {
           name: 'Examples',
           value: examples
         }
-      ]
+      ],
+      footer: {
+        text: `Type \`${process.env.PREFIX}help ${client.cmd.name}\` for more info.`
+      }
     }
   })
 }
