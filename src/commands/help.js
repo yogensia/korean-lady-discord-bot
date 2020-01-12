@@ -71,6 +71,38 @@ const run = (client, msg, args) => {
         fields
       }
     })
+  } else if (msg.channel.type === 'dm') {
+    // Send general documentation link in a nice and clean embed.
+    msg.channel.send({
+      embed: {
+        color: 3447003,
+        title: 'Full KoreanLady Command List',
+        url: 'https://github.com/yogensia/korean-lady-discord-bot/blob/master/COMMANDS.md#koreanlady-discord-bot',
+        description: `Hello ${msg.author.username}!`,
+        fields: [
+          {
+            name: 'Command list',
+            value: 'If you want to see all the available commands, please check the link above!'
+          },
+          {
+            name: 'Testing commands',
+            value: 'You can use this DM conversation to test commands all you want.'
+          },
+          {
+            name: 'The \'help\' command',
+            value: 'You can type `help` followed by another command\'s name to get more info on that command.'
+          },
+          {
+            name: 'Missing parameters',
+            value: 'Some commands require a parameter, like a question, name, object... If you don\'t to include it, an error message will show up letting you know and providing examples.'
+          },
+          {
+            name: 'Cookie',
+            value: 'Thanks for reading, have a cookie! 🍪'
+          }
+        ]
+      }
+    })
   } else {
     // Send general documentation link in a nice and clean embed.
     msg.channel.send({
@@ -80,7 +112,7 @@ const run = (client, msg, args) => {
         url: 'https://github.com/yogensia/korean-lady-discord-bot/blob/master/COMMANDS.md#koreanlady-discord-bot',
         description: 'Here you will find all commands available and their usage!',
         footer: {
-          text: 'Tip: You can also DM me to test commands!'
+          text: 'Tip: You can also DM me and type `help` for more info!'
         }
       }
     })
@@ -90,7 +122,7 @@ const run = (client, msg, args) => {
 module.exports = {
   name: 'help',
   desc: 'Shows a link to command list in documentation. If a command is added as an argument, it will show help specific to that command.',
-  aliases: ['h', '?'],
+  aliases: ['h', '?', 'info'],
   usage: 'help [command]',
   examples: ['help', 'help ban'],
   run
