@@ -9,7 +9,7 @@ It's meant to be a simple bot with a few fun commands and no moderation or any o
 
 ## Command List
 
-[Full list of supported commands can be found here](https://github.com/yogensia/korean-lady-discord-bot/blob/master/COMMANDS.md#koreanlady-discord-bot).
+**[Full list of supported commands can be found here](https://github.com/yogensia/korean-lady-discord-bot/blob/master/COMMANDS.md#koreanlady-discord-bot).**
 
 ## Building requirements
 
