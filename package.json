@@ -1,6 +1,6 @@
 {
   "name": "korean-lady-discord-bot",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "KoreanLady is a simple and fun Discord bot coded in NodeJS.",
   "author": "Yogensia",
   "license": "ISC",
@@ -17,7 +17,7 @@
     "deploy": "git push heroku master"
   },
   "engines": {
-    "node": "10.16.0",
+    "node": "12.14.1",
     "npm": "*"
   },
   "dependencies": {
