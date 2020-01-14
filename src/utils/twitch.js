@@ -22,7 +22,7 @@ const request = (endpoint) => {
         resolve(response.data.data[0])
       }
     }).catch((error) => {
-      reject(error)
+      reject(new Error(error))
     })
   })
 }
