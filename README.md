@@ -1,7 +1,7 @@
 # KoreanLady Discord Bot
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
- [![ISC License](https://img.shields.io/badge/license-ISC-green)](https://github.com/yogensia/korean-lady-discord-bot/blob/master/LICENSE) [![](https://img.shields.io/github/package-json/v/yogensia/korean-lady-discord-bot)](https://github.com/yogensia/korean-lady-discord-bot/CHANGELOG.md)
+ [![ISC License](https://img.shields.io/badge/license-ISC-green)](https://github.com/yogensia/korean-lady-discord-bot/blob/master/LICENSE) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/1c5820e7070749fdbbfe3dd6a8eb2b88)](https://www.codacy.com/manual/yogensia/korean-lady-discord-bot?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=yogensia/korean-lady-discord-bot&amp;utm_campaign=Badge_Grade) [![](https://img.shields.io/github/package-json/v/yogensia/korean-lady-discord-bot)](https://github.com/yogensia/korean-lady-discord-bot/CHANGELOG.md)
 
 **KoreanLady** is a Discord bot coded in NodeJS using the [Discord.JS](https://discord.js.org/#/) library.
 
