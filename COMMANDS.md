@@ -104,14 +104,6 @@ Usage: `k!hug <subject>`
 
 Examples: `k!hug chat`
 
-### `k!list`
-
-Lists all available commands.
-
-Usage: `k!list`
-
-Aliases: `k!commands`
-
 ### `k!live`
 
 Embeds a nice link for a Twitch stream. Channel must be live.
