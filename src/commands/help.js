@@ -85,12 +85,16 @@ const run = (client, msg, args) => {
             value: 'If you want to see all the available commands, please check the link above!'
           },
           {
+            name: 'Prefix',
+            value: `The prefix for KoreanLady's commands is: \`${process.env.PREFIX}\`\nThis prefix can only be omitted in DMs.`
+          },
+          {
             name: 'Testing commands',
             value: 'You can use this DM conversation to test commands all you want.'
           },
           {
             name: 'The \'help\' command',
-            value: 'You can type `help` followed by another command\'s name to get more info on that command.'
+            value: 'You can type `help` followed by another command\'s name to get more info and use examples on that command.'
           },
           {
             name: 'Missing parameters',
