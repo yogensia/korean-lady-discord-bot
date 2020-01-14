@@ -6,7 +6,7 @@ const run = (client, msg, args) => {
   const subject = common.stripMentions(args.join(' '), msg)
 
   // Get random HP.
-  const result = math.getRandomInt(0, 110)
+  const result = math.getRandomInt(0, 100)
 
   // Random emote.
   const emotes = [
@@ -22,13 +22,22 @@ const run = (client, msg, args) => {
   emote = common.getCustomEmote(client, emote[0], emote[1])
 
   // Depending on percentage send a different message.
+  let message
   if (result > 75) {
-    msg.channel.send(`${emote} ${msg.author.username} slapped **${subject}**! It's super efective! That drained a total of **${result}HP**!`)
+    message = `${emote} ${msg.author.username} slapped **${subject}**! It's super efective! That drained a total of **${result}HP**!`
   } else if (result > 25) {
-    msg.channel.send(`${emote} ${msg.author.username} slapped **${subject}**! That took a total of ${result}HP!`)
+    message = `${emote} ${msg.author.username} slapped **${subject}**! That drained a total of ${result}HP!`
   } else {
-    msg.channel.send(`${emote} ${msg.author.username} slapped **${subject}**! It's not very efective... That drained a total of **${result}HP**!`)
+    message = `${emote} ${msg.author.username} slapped **${subject}**! It's not very efective... That drained a total of **${result}HP**!`
   }
+
+  // Reply with an embed message.
+  msg.channel.send({
+    embed: {
+      color: 0x2f3136,
+      description: message
+    }
+  }).catch(err => common.sendErrorMsg(msg, err))
 }
 
 module.exports = {

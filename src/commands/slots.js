@@ -19,18 +19,28 @@ const run = (client, msg, args) => {
   const symbolsFormatted = `${result[0]} ${result[1]} ${result[2]}`
 
   // Compare values and send message.
+  let message
   if (math.areEqual(result)) {
     // Random exclamation.
     const exclamation = random.exclamation()
 
     const emote = common.getCustomEmote(client, 'Hypers')
-    msg.channel.send(symbolsFormatted)
-    msg.channel.send(`>>> **${exclamation} You won!** ${emote}`)
+    message = `**${exclamation} You won!** ${emote}`
   } else {
     const emote = common.getCustomEmote(client, 'sadcat')
-    msg.channel.send(symbolsFormatted)
-    msg.channel.send(`>>> Sorry, no prize... ${emote}`)
+    message = `Sorry, no prize... ${emote}`
   }
+
+  // Show results.
+  msg.channel.send(symbolsFormatted)
+
+  // Reply with an embed message.
+  msg.channel.send({
+    embed: {
+      color: 0x2f3136,
+      description: message
+    }
+  }).catch(err => common.sendErrorMsg(msg, err))
 }
 
 module.exports = {

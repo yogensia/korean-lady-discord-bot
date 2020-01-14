@@ -10,17 +10,26 @@ const run = (client, msg, args) => {
   const result = math.getRandomInt(0, 110)
 
   // Depending on percentage send a different message.
+  let message
   if (result > 94) {
-    msg.channel.send(`💘 What!? ${msg.author.username}'s love for **${subject}** is _**${result}%**_!`)
+    message = `💘 What!? ${msg.author.username}'s love for **${subject}** is _**${result}%**_!`
   } else if (result > 69) {
-    msg.channel.send(`😍 ${random.exclamation()} ${msg.author.username}'s love for **${subject}** is **${result}%**!`)
+    message = `😍 ${random.exclamation()} ${msg.author.username}'s love for **${subject}** is **${result}%**!`
   } else if (result > 49) {
-    msg.channel.send(`🤔 ${msg.author.username}'s love for **${subject}** is ${result}%.`)
+    message = `🤔 ${msg.author.username}'s love for **${subject}** is ${result}%.`
   } else if (result > 9) {
-    msg.channel.send(`😩 ${random.exclamationNegative()} ${msg.author.username}'s love for **${subject}** is ${result}%.`)
+    message = `😩 ${random.exclamationNegative()} ${msg.author.username}'s love for **${subject}** is ${result}%.`
   } else {
-    msg.channel.send(`😐 ${random.exclamationNegative()} ${msg.author.username}'s love for **${subject}** is ${result}%.`)
+    message = `😐 ${random.exclamationNegative()} ${msg.author.username}'s love for **${subject}** is ${result}%.`
   }
+
+  // Reply with an embed message.
+  msg.channel.send({
+    embed: {
+      color: 0x2f3136,
+      description: message
+    }
+  }).catch(err => common.sendErrorMsg(msg, err))
 }
 
 module.exports = {

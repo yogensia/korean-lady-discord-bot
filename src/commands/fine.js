@@ -7,9 +7,14 @@ const run = (client, msg, args) => {
 
   // Random emote.
   const emotes = [
-    ':receipt:',
-    ':money_with_wings:',
-    ':moneybag:'
+    '🧾',
+    '💸',
+    '💵',
+    '💶',
+    '💷',
+    '💳',
+    '💲',
+    '💰'
   ]
   const emote = math.getRandomStringFromArray(emotes)
 
@@ -44,9 +49,21 @@ const run = (client, msg, args) => {
   // Don't let the Korean lady get finned!
   if (subject.toLowerCase() === 'koreanlady' || subject.toLowerCase() === 'korean lady') {
     const emoteAngry = common.getCustomEmote(client, 'Angry', '😡')
-    msg.channel.send(`${emoteAngry} Trying to fine the Korean Lady is illegal! **${msg.author.username}** has been fined instead, with ${money} ${currency}!`)
+    // Reply with an embed message.
+    msg.channel.send({
+      embed: {
+        color: 0x2f3136,
+        description: `${emoteAngry} Trying to fine the Korean Lady is illegal!\n\n${emote} **${msg.author.username}** has been fined instead, with ${money} ${currency}!`
+      }
+    }).catch(err => common.sendErrorMsg(msg, err))
   } else {
-    msg.channel.send(`${emote} ${msg.author.username} has fined **${subject}** with ${money} ${currency}!`)
+    // Reply with an embed message.
+    msg.channel.send({
+      embed: {
+        color: 0x2f3136,
+        description: `${emote} ${msg.author.username} has fined **${subject}** with ${money} ${currency}!`
+      }
+    }).catch(err => common.sendErrorMsg(msg, err))
   }
 }
 

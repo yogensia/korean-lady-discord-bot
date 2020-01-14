@@ -90,15 +90,11 @@ const reactWithCustomEmote = (client, msg, name, fallback) => {
 
   // If emote is available react to user's message.
   if (emote.id) {
-    msg.react(emote.id).catch(() => {
-      console.log(`Unknown emote requested: ${name}`)
-    })
+    msg.react(emote.id).catch(err => console.log(new Error(err)))
   } else if (emote) {
     // If custom emote is not available, check if a fallback was provided,
     // and if so, use that.
-    msg.react(fallback).catch(() => {
-      console.log(`Unknown fallback emote requested: ${fallback}`)
-    })
+    msg.react(fallback).catch(err => console.log(new Error(err)))
   }
 }
 
@@ -115,29 +111,7 @@ const sendErrorMsg = (msg, value) => {
       color: 0x2f3136,
       description: `${value}`
     }
-  }).catch((error) => {
-    // Send an embed message with the error.
-    console.log(new Error(error))
-  })
-}
-
-/**
- * Send an "exception" message.
- *
- * @param {Object} msg Message object.
- * @param {string} value String describing the error.
- */
-const sendExceptionMsg = (msg, value) => {
-  // Send an embed message with the error.
-  msg.channel.send({
-    embed: {
-      color: 0x2f3136,
-      description: `${value}`
-    }
-  }).catch((error) => {
-    // Send an embed message with the error.
-    console.log(new Error(error))
-  })
+  }).catch(err => console.log(new Error(err)))
 }
 
 /**
@@ -176,14 +150,13 @@ const sendMissingParameterMsg = (client, msg, reason) => {
         text: `Type \`${process.env.PREFIX}help ${client.cmd.name}\` for more info.`
       }
     }
-  })
+  }).catch(err => sendErrorMsg(msg, err))
 }
 
 module.exports = {
   getCustomEmote,
   reactWithCustomEmote,
   sendErrorMsg,
-  sendExceptionMsg,
   sendMissingParameterMsg,
   stripMentions
 }

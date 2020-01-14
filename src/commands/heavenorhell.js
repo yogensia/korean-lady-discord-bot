@@ -25,11 +25,20 @@ const run = (client, msg, args) => {
   }
 
   // Check if there is a subject, if not use the message author.
+  let message
   if (subject) {
-    msg.channel.send(`${answer}* ${subject} **${destiny}**\n(_*actual prediction acuracy of ${acuracy}%_)`)
+    message = `${answer}* ${subject} **${destiny}**\n(_*actual prediction acuracy of ${acuracy}%_)`
   } else {
-    msg.channel.send(`${answer}* ${msg.author.username} **${destiny}**\n(_*actual prediction acuracy of ${acuracy}%_)`)
+    message = `${answer}* ${msg.author.username} **${destiny}**\n(_*actual prediction acuracy of ${acuracy}%_)`
   }
+
+  // Reply with an embed message.
+  msg.channel.send({
+    embed: {
+      color: 0x2f3136,
+      description: message
+    }
+  }).catch(err => common.sendErrorMsg(msg, err))
 }
 
 module.exports = {

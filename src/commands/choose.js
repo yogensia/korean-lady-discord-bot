@@ -44,8 +44,13 @@ const run = (client, msg, args) => {
     ]
     const intro = math.getRandomStringFromArray(intros)
 
-    // Send message.
-    msg.channel.send(`${emote} ${intro} **${choices[random].trim()}**!`)
+    // Reply with an embed message.
+    msg.channel.send({
+      embed: {
+        color: 0x2f3136,
+        description: `${emote} ${intro} **${choices[random].trim()}**!`
+      }
+    }).catch(err => common.sendErrorMsg(msg, err))
   }
 }
 

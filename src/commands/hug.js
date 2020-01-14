@@ -19,8 +19,13 @@ const run = (client, msg, args) => {
   // Random exclamation.
   const exclamation = random.exclamation()
 
-  // Send message.
-  msg.channel.send(`${exclamation} ${msg.author.username} hugged **${subject}** for ${time.toFixed(2)} mississippis! ${emote}`)
+  // Reply with an embed message.
+  msg.channel.send({
+    embed: {
+      color: 0x2f3136,
+      description: `${exclamation} ${msg.author.username} hugged **${subject}** for ${time.toFixed(2)} mississippis! ${emote}`
+    }
+  }).catch(err => common.sendErrorMsg(msg, err))
 }
 
 module.exports = {

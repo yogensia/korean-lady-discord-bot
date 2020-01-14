@@ -160,25 +160,31 @@ const run = (client, msg, args) => {
   ]
   const treat = math.getRandomStringFromArray(treats)
 
-  msg.channel.send(`${intro} ${msg.author.username} is treating **${subject}** to...\n${treat[0]} **${adjective} ${flavour} ${treat[1]}!**`)
+  // Reply with an embed message.
+  msg.channel.send({
+    embed: {
+      color: 0x2f3136,
+      description: `${intro} ${msg.author.username} is treating **${subject}** to...\n${treat[0]} **${adjective} ${flavour} ${treat[1]}!**`
+    }
+  }).then(ownMessage => {
+    // IHAA... If subject is Korean Lady she will react with a random emote.
+    if (subject.toLowerCase() === 'koreanlady' || subject.toLowerCase() === 'korean lady') {
+      // Ramdom emote reaction.
+      const reactions = [
+        ['peepoPants', '🥳'],
+        ['apollo20Wow', '😍'],
+        ['apolPat', '🤗'],
+        ['apolLove', '❤️'],
+        ['apolHyper', '😋'],
+        ['POG', '😮'],
+        ['ihaa', '🥰']
+      ]
+      const reaction = math.getRandomStringFromArray(reactions)
 
-  // IHAA... If subject is Korean Lady she will react with a random emote.
-  if (subject.toLowerCase() === 'koreanlady' || subject.toLowerCase() === 'korean lady') {
-    // Ramdom emote reaction.
-    const reactions = [
-      ['peepoPants', '🥳'],
-      ['apollo20Wow', '😍'],
-      ['apolPat', '🤗'],
-      ['apolLove', '❤️'],
-      ['apolHyper', '😋'],
-      ['POG', '😮'],
-      ['ihaa', '🥰']
-    ]
-    const reaction = math.getRandomStringFromArray(reactions)
-
-    // React with custom emote or its associated fallback if necessary.
-    common.reactWithCustomEmote(client, msg, reaction[0], reaction[1])
-  }
+      // React with custom emote or its associated fallback if necessary.
+      common.reactWithCustomEmote(client, ownMessage, reaction[0], reaction[1])
+    }
+  }).catch(err => common.sendErrorMsg(msg, err))
 }
 
 module.exports = {

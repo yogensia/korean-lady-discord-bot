@@ -1,3 +1,4 @@
+const common = require('../utils/common')
 const math = require('../utils/math')
 
 const run = (client, msg, args) => {
@@ -129,10 +130,10 @@ const run = (client, msg, args) => {
   // Send an embed message with the stream details.
   msg.channel.send({
     embed: {
-      color: 0x82170F,
+      color: 0x2f3136,
       description: `**${quote}**`
     }
-  })
+  }).catch(err => common.sendErrorMsg(msg, err))
 }
 
 module.exports = {

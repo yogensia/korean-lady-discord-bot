@@ -1,3 +1,4 @@
+const common = require('../utils/common')
 const math = require('../utils/math')
 
 const run = (client, msg, args) => {
@@ -186,7 +187,7 @@ const run = (client, msg, args) => {
       },
       description: fortune
     }
-  })
+  }).catch(err => common.sendErrorMsg(msg, err))
 }
 
 module.exports = {

@@ -16,7 +16,7 @@ const run = (client, msg, args) => {
           color: 0x82170F,
           description: `${emoteAngry} **REEE!** Can't find any command by that name, did you spell that wrong? Try typing just \`${process.env.PREFIX}help\` for more details.`
         }
-      })
+      }).catch(err => common.sendErrorMsg(msg, err))
     }
 
     // Build command details strings.
@@ -70,7 +70,7 @@ const run = (client, msg, args) => {
         title: name,
         fields
       }
-    })
+    }).catch(err => common.sendErrorMsg(msg, err))
   } else if (msg.channel.type === 'dm') {
     // Send general documentation link in a nice and clean embed.
     msg.channel.send({
@@ -106,7 +106,7 @@ const run = (client, msg, args) => {
           }
         ]
       }
-    })
+    }).catch(err => common.sendErrorMsg(msg, err))
   } else {
     // Send general documentation link in a nice and clean embed.
     msg.channel.send({
@@ -119,7 +119,7 @@ const run = (client, msg, args) => {
           text: 'Tip: You can also DM me and type `help` for more info!'
         }
       }
-    })
+    }).catch(err => common.sendErrorMsg(msg, err))
   }
 }
 

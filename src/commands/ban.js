@@ -16,16 +16,21 @@ const run = (client, msg, args) => {
   ]
   const emote = math.getRandomStringFromArray(emotes)
 
-  // Send message.
-  msg.channel.send(`${emote} ${msg.author.username} banned **${subject}** for ${time}`)
-
-  // REEE...
-  if (subject.toLowerCase() === 'koreanlady' || subject.toLowerCase() === 'korean lady') {
-    // Just wait a moment...
-    setTimeout(() => {
-      common.reactWithCustomEmote(client, msg, 'Angry', '😡')
-    }, 1500)
-  }
+  // Reply with an embed message.
+  msg.channel.send({
+    embed: {
+      color: 0x2f3136,
+      description: `${emote} ${msg.author.username} banned **${subject}** for ${time}`
+    }
+  }).then(ownMessage => {
+    // REEE... Are we banning Korean Lady??
+    if (subject.toLowerCase() === 'koreanlady' || subject.toLowerCase() === 'korean lady') {
+      // Just wait a moment...
+      setTimeout(() => {
+        common.reactWithCustomEmote(client, ownMessage, 'Angry', '😡')
+      }, 1500)
+    }
+  }).catch(err => common.sendErrorMsg(msg, err))
 }
 
 module.exports = {

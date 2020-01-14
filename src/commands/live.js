@@ -21,11 +21,8 @@ const run = (client, msg, args) => {
           url: random.sticker()
         }
       }
-    })
-  }).catch((error) => {
-    // Send an embed message with the error.
-    common.sendExceptionMsg(msg, error)
-  })
+    }).catch(err => common.sendErrorMsg(msg, err))
+  }).catch(err => common.sendErrorMsg(msg, err))
 }
 
 module.exports = {

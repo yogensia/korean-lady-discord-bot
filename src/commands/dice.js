@@ -1,3 +1,4 @@
+const common = require('../utils/common')
 const math = require('../utils/math')
 
 const run = (client, msg, args) => {
@@ -21,8 +22,13 @@ const run = (client, msg, args) => {
   // Throw the dice!
   const result = math.getRandomInt(0, sides)
 
-  // Send message.
-  msg.channel.send(`🎲 ${msg.author.username} threw a ${sides} sided dice... The result was **${result}**!`)
+  // Reply with an embed message.
+  msg.channel.send({
+    embed: {
+      color: 0x2f3136,
+      description: `🎲 ${msg.author.username} threw a ${sides} sided dice... The result was **${result}**!`
+    }
+  }).catch(err => common.sendErrorMsg(msg, err))
 }
 
 module.exports = {

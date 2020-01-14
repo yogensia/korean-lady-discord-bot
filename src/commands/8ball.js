@@ -1,3 +1,4 @@
+const common = require('../utils/common')
 const math = require('../utils/math')
 
 const run = (client, msg, args) => {
@@ -28,8 +29,13 @@ const run = (client, msg, args) => {
   ]
   const answer = math.getRandomStringFromArray(answers)
 
-  // Send message.
-  msg.channel.send(`${msg.author.username} asks: **${question}**\n🎱 ${answer} 🎱`)
+  // Reply with an embed message.
+  msg.channel.send({
+    embed: {
+      color: 0x2f3136,
+      description: `**${msg.author.username} asks: ${question}**\n\n🎱 ${answer} 🎱`
+    }
+  }).catch(err => common.sendErrorMsg(msg, err))
 }
 
 module.exports = {
