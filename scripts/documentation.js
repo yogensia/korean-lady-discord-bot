@@ -61,9 +61,9 @@ const parseCommand = cmd => {
  * @param {string} templateFile - Path to a template markdown file.
  * @param {string} documentationFile - Path to the output documentation file.
  */
-const writeDocumentation = (templateFile, documentationFile) => {
+const writeDocumentation = () => {
   // Read template file.
-  fs.readFile(templateFile, 'utf8', (err, data) => {
+  fs.readFile('./scripts/_COMMANDS.md', 'utf8', (err, data) => {
     if (err) return console.log(err)
 
     // Remove last two line breaks from the string and replace.
@@ -71,10 +71,10 @@ const writeDocumentation = (templateFile, documentationFile) => {
     output = data.replace(/\${COMMANDS}/g, output)
 
     // Write complete string to output file.
-    fs.writeFile(documentationFile, output, err => {
+    fs.writeFile('./COMMANDS.md', output, err => {
       if (err) return console.log(err)
 
-      console.log(`Documentation file written: ${documentationFile}!`)
+      console.log('Documentation file written: ./COMMANDS.md!')
     })
   })
 }
@@ -98,7 +98,7 @@ async function build () {
     })
 
     // Write Commands to file.
-    writeDocumentation('./scripts/_COMMANDS.md', './COMMANDS.md')
+    writeDocumentation()
   })
 }
 
