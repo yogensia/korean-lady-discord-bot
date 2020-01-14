@@ -32,7 +32,8 @@ module.exports = (client, msg) => {
 
   // Check for required arguments for this command and send error message if needed.
   if (cmd.args && !args.length) {
-    return common.sendMissingParameterMsg(client, msg, cmd.args_error)
+    common.sendMissingParameterMsg(client, msg, cmd.args_error)
+    return
   }
 
   // Run the command.
