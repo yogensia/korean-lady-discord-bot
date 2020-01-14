@@ -112,11 +112,12 @@ const sendErrorMsg = (msg, value) => {
   // Send an embed message with the error.
   msg.channel.send({
     embed: {
-      fields: [{
-        name: 'Error:',
-        value
-      }]
+      color: 0x2f3136,
+      description: `${value}`
     }
+  }).catch((error) => {
+    // Send an embed message with the error.
+    console.log(new Error(error))
   })
 }
 
@@ -130,12 +131,12 @@ const sendExceptionMsg = (msg, value) => {
   // Send an embed message with the error.
   msg.channel.send({
     embed: {
-      color: 3447003,
-      fields: [{
-        name: 'Exception encountered:',
-        value
-      }]
+      color: 0x2f3136,
+      description: `${value}`
     }
+  }).catch((error) => {
+    // Send an embed message with the error.
+    console.log(new Error(error))
   })
 }
 
