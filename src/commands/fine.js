@@ -9,11 +9,7 @@ const run = (client, msg, args) => {
   const emotes = [
     '🧾',
     '💸',
-    '💵',
-    '💶',
-    '💷',
     '💳',
-    '💲',
     '💰'
   ]
   const emote = math.getRandomStringFromArray(emotes)
@@ -42,9 +38,13 @@ const run = (client, msg, args) => {
   const trim = math.getRandomInt(0, 9)
   money = parseInt(money.toString().substring(trim), 10)
 
-  // Round to two decimals and format number, ex: 12,345.67
-  money = money / 100 // Get two decimals
-  money = money.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
+  // If less than `100`, round to two decimals, ex: 99.67 USD
+  // Otherwise show a whole number, ex: 5,984,256 Hyrule Rupees.
+  if (money < 10000) {
+    money = (money / 100).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+  } else {
+    money = (money / 100).toLocaleString('en-US', { maximumFractionDigits: 0 })
+  }
 
   // Don't let the Korean lady get finned!
   if (subject.toLowerCase() === 'koreanlady' || subject.toLowerCase() === 'korean lady') {
@@ -53,7 +53,7 @@ const run = (client, msg, args) => {
     msg.channel.send({
       embed: {
         color: 0x2f3136,
-        description: `${emoteAngry} Trying to fine the Korean Lady is illegal!\n\n${emote} **${msg.author.username}** has been fined instead, with ${money} ${currency}!`
+        description: `${emoteAngry} Trying to fine the Korean Lady is illegal!\n\n${emote} **${msg.author.username}** has been fined instead, with **${money} ${currency}!**`
       }
     }).catch(err => common.sendErrorMsg(msg, err))
   } else {
@@ -61,7 +61,7 @@ const run = (client, msg, args) => {
     msg.channel.send({
       embed: {
         color: 0x2f3136,
-        description: `${emote} ${msg.author.username} has fined **${subject}** with ${money} ${currency}!`
+        description: `${emote} ${msg.author.username} has fined **${subject}** with **${money} ${currency}!**`
       }
     }).catch(err => common.sendErrorMsg(msg, err))
   }
