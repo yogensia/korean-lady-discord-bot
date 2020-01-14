@@ -109,6 +109,10 @@ const sendErrorMsg = (msg, value) => {
   msg.channel.send({
     embed: {
       color: 0x2f3136,
+      author: {
+        name: random.exclamationNegative(),
+        icon_url: 'https://i.imgur.com/xvJNaak.png' // concernFroge
+      },
       description: `${value}`
     }
   }).catch(err => console.log(new Error(err)))
@@ -134,7 +138,7 @@ const sendMissingParameterMsg = (client, msg, reason) => {
       color: 0x2f3136,
       author: {
         name: random.exclamationNegative(),
-        icon_url: 'https://i.imgur.com/xvJNaak.png' // concernFroge image.
+        icon_url: 'https://i.imgur.com/xvJNaak.png' // concernFroge
       },
       fields: [
         {
