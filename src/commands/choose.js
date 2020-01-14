@@ -19,7 +19,7 @@ const run = (client, msg, args) => {
     common.sendMissingParameterMsg(client, msg, 'You need two or more choices!')
   } else {
     // Choose randomly between choices given.
-    const random = math.getRandomInt(0, choices.length - 1)
+    const choice = math.getRandomStringFromArray(choices)
 
     // Random emote.
     const emotes = [
@@ -48,7 +48,7 @@ const run = (client, msg, args) => {
     msg.channel.send({
       embed: {
         color: 0x2f3136,
-        description: `${emote} ${intro} **${choices[random].trim()}**!`
+        description: `${emote} ${intro} **${choice}**!`
       }
     }).catch(err => common.sendErrorMsg(msg, err))
   }

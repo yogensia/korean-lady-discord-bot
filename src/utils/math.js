@@ -44,8 +44,7 @@ const getRandomFloat = (min, max) => {
  * @return {string} Randomly selected string.
  */
 const getRandomStringFromArray = (array) => {
-  const key = getRandomInt(0, array.length - 1)
-  return array[key]
+  return array.sort(() => Math.random() - 0.5)[0]
 }
 
 /**
@@ -122,11 +121,10 @@ const toFakeTimeString = (time) => {
     'Nov',
     'Dec'
   ]
-  const month = banExp.getMonth() - 1
 
   // Return string. If the ban is longer than a year show the expiration date as well.
   if (delta > 1000 * 60 * 60 * 24 * 30 * 12) {
-    return `${output}! See you in ${monthArray[month]} ${banExp.getDate()}, ${banExp.getFullYear()}! :👋:`
+    return `${output}! See you in ${monthArray[banExp.getMonth() - 1]} ${banExp.getDate()}, ${banExp.getFullYear()}! :👋:`
   } else {
     return `${output}!`
   }
