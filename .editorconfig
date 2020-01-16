@@ -11,25 +11,6 @@ indent_style = space
 insert_final_newline = true
 trim_trailing_whitespace = true
 
-# Javascript
-[*.js]
-indent_size = 2
-indent_style = space
-
-# YAML
-[*.yml]
-indent_size = 2
-indent_style = space
-
-# Python
-[*.py]
-indent_size = 4
-indent_style = space
-
-[*.md]
-insert_final_newline = false
-trim_trailing_whitespace = false
-
 # Specific files
 [{package.json,.travis.yml}]
 indent_size = 2
