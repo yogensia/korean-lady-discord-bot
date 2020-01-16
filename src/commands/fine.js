@@ -47,7 +47,7 @@ const run = (client, msg, args) => {
   }
 
   // Don't let the Korean lady get finned!
-  if (subject.toLowerCase() === 'koreanlady' || subject.toLowerCase() === 'korean lady') {
+  if (common.koreanLadyMentioned(subject)) {
     const emoteAngry = common.getCustomEmote(client, 'Angry', '😡')
     // Reply with an embed message.
     msg.channel.send({
