@@ -77,6 +77,20 @@ const getCustomEmote = (client, name, fallback) => {
 }
 
 /**
+ * Returns true is Korean Lady is mentioned in provided string.
+ *
+ * @param {Object} subject String to check.
+ * @returns {Boolean} True if Korean Lady is mentioned, false otherwise.
+ */
+const koreanLadyMentioned = subject => {
+  if (subject.toLowerCase() === 'koreanlady' || subject.toLowerCase() === 'korean lady') {
+    return true
+  } else {
+    return false
+  }
+}
+
+/**
  * Reacts to a message with a custom emote.
  * If the provided emote can't be found, a fallback can be used.
  *
@@ -160,6 +174,7 @@ const sendMissingParameterMsg = (client, msg, reason) => {
 module.exports = {
   getCustomEmote,
   reactWithCustomEmote,
+  koreanLadyMentioned,
   sendErrorMsg,
   sendMissingParameterMsg,
   stripMentions
