@@ -1,6 +1,7 @@
 const common = require('../utils/common')
 const math = require('../utils/math')
 const random = require('../utils/random')
+const reactions = require('../utils/reactions')
 
 const run = (client, msg, args) => {
   // Get subject from args.
@@ -28,6 +29,15 @@ const run = (client, msg, args) => {
     embed: {
       color: 0x2f3136,
       description: message
+    }
+  }).then(ownMessage => {
+    // IHAA... If subject is Korean Lady she will react with a random emote.
+    if (common.koreanLadyMentioned(subject)) {
+      if (result > 69) {
+        reactions.reactHappy(client, ownMessage, 3)
+      } else if (result < 30) {
+        reactions.reactSad(client, ownMessage, 1)
+      }
     }
   }).catch(err => common.sendErrorMsg(msg, err))
 }
