@@ -1,6 +1,7 @@
 const common = require('../utils/common')
 const math = require('../utils/math')
 const random = require('../utils/random')
+const reactions = require('../utils/reactions')
 
 const run = (client, msg, args) => {
   // Get subject from args.
@@ -168,21 +169,8 @@ const run = (client, msg, args) => {
     }
   }).then(ownMessage => {
     // IHAA... If subject is Korean Lady she will react with a random emote.
-    if (subject.toLowerCase() === 'koreanlady' || subject.toLowerCase() === 'korean lady') {
-      // Ramdom emote reaction.
-      const reactions = [
-        ['peepoPants', '🥳'],
-        ['apollo20Wow', '😍'],
-        ['apolPat', '🤗'],
-        ['apolLove', '❤️'],
-        ['apolHyper', '😋'],
-        ['POG', '😮'],
-        ['ihaa', '🥰']
-      ]
-      const reaction = math.getRandomStringFromArray(reactions)
-
-      // React with custom emote or its associated fallback if necessary.
-      common.reactWithCustomEmote(client, ownMessage, reaction[0], reaction[1])
+    if (common.koreanLadyMentioned(subject)) {
+      reactions.reactHappy(client, ownMessage, 3)
     }
   }).catch(err => common.sendErrorMsg(msg, err))
 }

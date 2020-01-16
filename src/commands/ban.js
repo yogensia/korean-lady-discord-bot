@@ -1,5 +1,6 @@
 const common = require('../utils/common')
 const math = require('../utils/math')
+const reactions = require('../utils/reactions')
 
 const run = (client, msg, args) => {
   // Get subject from args.
@@ -23,12 +24,9 @@ const run = (client, msg, args) => {
       description: `${emote} ${msg.author.username} banned **${subject}** for ${time}`
     }
   }).then(ownMessage => {
-    // REEE... Are we banning Korean Lady??
-    if (subject.toLowerCase() === 'koreanlady' || subject.toLowerCase() === 'korean lady') {
-      // Just wait a moment...
-      setTimeout(() => {
-        common.reactWithCustomEmote(client, ownMessage, 'Angry', '😡')
-      }, 1500)
+    // REEE... If subject is Korean Lady she will react with a random emote.
+    if (common.koreanLadyMentioned(subject)) {
+      reactions.reactSad(client, ownMessage, 2)
     }
   }).catch(err => common.sendErrorMsg(msg, err))
 }
