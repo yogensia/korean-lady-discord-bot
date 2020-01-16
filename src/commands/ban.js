@@ -1,13 +1,13 @@
 const common = require('../utils/common')
 const math = require('../utils/math')
 const reactions = require('../utils/reactions')
+const time = require('../utils/time')
 
 const run = (client, msg, args) => {
   // Get subject from args.
   const subject = common.stripMentions(args.join(' '), msg)
 
-  // Max equals 10 years.
-  const time = math.toFakeTimeString(math.getRandomInt(0, 631139040))
+  // random emotes.
   const emotes = [
     '🔨',
     '😡',
@@ -17,11 +17,23 @@ const run = (client, msg, args) => {
   ]
   const emote = math.getRandomStringFromArray(emotes)
 
+  // Get time data.
+  const future = time.getRandomFuture('YYYY-MM-DD HH:mm:ss')
+  const futureFormatted = time.format(future, 'YYYY-MM-DD HH:mm:ss', 'MMM D, YYYY')
+  const countdown = time.getCountdown(future, 'YYYY-MM-DD HH:mm:ss')
+  const longerThanYear = time.longerThanYear(future, 'YYYY-MM-DD HH:mm:ss')
+
+  // Build message string.
+  let message = `${emote} ${msg.author.username} banned **${subject}** for ${countdown}!`
+  if (longerThanYear) {
+    message += ` See you in **${futureFormatted}!** 👋`
+  }
+
   // Reply with an embed message.
   msg.channel.send({
     embed: {
       color: 0x2f3136,
-      description: `${emote} ${msg.author.username} banned **${subject}** for ${time}`
+      description: message
     }
   }).then(ownMessage => {
     // REEE... If subject is Korean Lady she will react with a random emote.
