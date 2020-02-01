@@ -1,10 +1,6 @@
 const moment = require('moment-timezone')
 const math = require('../utils/math')
 
-const getNow = () => {
-  return moment()
-}
-
 /**
  * Returns a randomized time string set up to 20 years in the future.
  *
@@ -98,10 +94,25 @@ const format = (timeString, oldFormat, newFormat) => {
   return moment(timeString, oldFormat).format(newFormat)
 }
 
+/**
+ * Get timezones for embed.
+ *
+ * @param {string} name Name of the area to show in embed, ex: `Los Angeles (PT)`.
+ * @param {string} zone Area name matching a tz database zone, ex: `America/Los_Angeles`.
+ * @return {array} An array containing the area name, timezone and UTC offset.
+ */
+const getTimezone = (name, zone) => {
+  const now = moment()
+  const time = moment(now).tz(zone).format('HH:mm:ss')
+  const offset = moment(now).tz(zone).format('Z')
+
+  return [name, time, offset]
+}
+
 module.exports = {
-  getNow,
   getRandomFuture,
   getCountdown,
   longerThanYear,
-  format
+  format,
+  getTimezone
 }
