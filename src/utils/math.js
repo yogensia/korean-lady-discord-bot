@@ -41,10 +41,16 @@ const getRandomFloat = (min, max) => {
  * Get a random string from an array.
  *
  * @param {string[]} array - Array of strings to choose from.
+ * @param {Boolean} shift - If `true`, shift (remove) selected element from array. Defaults to `true`.
  * @return {string} Randomly selected string.
  */
-const getRandomStringFromArray = (array) => {
-  return array.sort(() => Math.random() - 0.5).shift()
+const getRandomStringFromArray = (array, shift = true) => {
+  if (shift) {
+    return array.sort(() => Math.random() - 0.5).shift()
+  } else {
+    array.sort(() => Math.random() - 0.5)
+    return array[0]
+  }
 }
 
 module.exports = {
