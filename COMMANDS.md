@@ -180,6 +180,14 @@ Usage: `k!sticker`
 
 Aliases: `k!emote`
 
+### `k!timezones`
+
+Show the current time in several cities of different timezones.
+
+Usage: `k!timezones`
+
+Aliases: `k!timezone` `k!tz`
+
 ### `k!treat`
 
 Give someone a treat.
