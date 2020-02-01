@@ -59,11 +59,11 @@ const exclamation = () => {
  */
 const exclamationNegative = () => {
   const array = [
-    'Dude...',
     'Hmmm...',
     'Oh boy...',
     'Oh man...',
     'Oh no!',
+    'Oopsie!',
     'Whoops!'
   ]
   return math.getRandomStringFromArray(array)

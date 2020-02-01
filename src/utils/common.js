@@ -56,7 +56,7 @@ const stripMentions = (subject, msg) => {
  *
  * @param {Object} client Client object.
  * @param {string} name Name of the emote (ex: peepoPants).
- * @param {string} fallback Fallback emote unicode (ex: ❤️).
+ * @param {string} [fallback] Fallback emote unicode (ex: ❤️).
  * @returns {(Object|string|Boolean)} The emote object, fallback string or an empty string.
  */
 const getCustomEmote = (client, name, fallback) => {
