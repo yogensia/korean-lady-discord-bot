@@ -58,6 +58,18 @@ Usage: `k!dice [sides]`
 
 Examples: `k!dice` `k!dice 12`
 
+### `k!fight`
+
+Start a fight with someone.
+
+Characters start with 150HP and take turns to attack. Attacks are selected randomly, and their damage multiplier is also rolled randomly each turn. Each attack has a different accuracy and critical hit chance. The fight ends when a player runs out of HP.
+
+Usage: `k!fight <subject>`
+
+Examples: `k!fight Loch Ness Monster` `k!fight @Batman`
+
+Aliases: `k!battle`
+
 ### `k!fine`
 
 Fines someone with a random amount of money, in a random currency.
@@ -104,6 +116,14 @@ Usage: `k!hug <subject>`
 
 Examples: `k!hug chat`
 
+### `k!list`
+
+Lists all available commands.
+
+Usage: `k!list`
+
+Aliases: `k!commands` `k!commandlist`
+
 ### `k!live`
 
 Embeds a nice link for a Twitch stream. Channel must be live.
@@ -119,6 +139,16 @@ Shows how much you love someone or something, with a random percentage.
 Usage: `k!love <subject>`
 
 Examples: `k!love @Wumpus` `k!love everyone in chat`
+
+### `k!owo`
+
+Twanswates y-youw text t-to OwO speak! Pwease use wesponsibwy, hehe.
+
+Usage: `k!owo <text>`
+
+Examples: `k!owo A loyal warrior will rarely worry why we rule.`
+
+Aliases: `k!owoify` `k!owify`
 
 ### `k!ping`
 
