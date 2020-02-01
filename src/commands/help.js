@@ -1,5 +1,25 @@
 const common = require('../utils/common')
 
+/**
+ * Parses an array and adds it to a field object for use in an embed.
+ *
+ * @param {array} array Array of strings to add to the field object.
+ * @param {string} name Name of the field in the embed.
+ * @param {array} fields Field object to add the array to.
+ */
+const addFields = (array, name, fields) => {
+  if (array) {
+    const mappedArray = array.map((element) => {
+      return `\`${process.env.PREFIX}${element}\``
+    })
+    const value = mappedArray.join(' ')
+    fields.push({
+      name,
+      value
+    })
+  }
+}
+
 const run = (client, msg, args) => {
   // If and argument is provided, check if it matches a command and show specific help.
   if (args.length > 0) {
@@ -31,31 +51,10 @@ const run = (client, msg, args) => {
     ]
 
     // Only show the examples section if any are found.
-    if (cmd.examples) {
-      const exampleArray = cmd.examples.map((element) => {
-        return `\`${process.env.PREFIX}${element}\``
-      })
-      const examples = exampleArray.join(' ')
-      fields.push(
-        {
-          name: 'Examples',
-          value: examples
-        })
-    }
+    addFields(cmd.examples, 'Examples', fields)
 
     // Only show the aliases section if any are found.
-    if (cmd.aliases) {
-      const aliasesArray = cmd.aliases.map((element) => {
-        return `\`${process.env.PREFIX}${element}\``
-      })
-      const aliases = aliasesArray.join(' ')
-      fields.push(
-        {
-          name: 'Aliases',
-          value: aliases
-        }
-      )
-    }
+    addFields(cmd.aliases, 'Aliases', fields)
 
     // Send an embed message with help about the requested command.
     msg.channel.send({
