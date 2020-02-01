@@ -25,10 +25,10 @@ const run = (client, msg, args) => {
     const exclamation = random.exclamation()
 
     const emote = common.getCustomEmote(client, 'Hypers')
-    message = `**${exclamation} You won!** ${emote}`
+    message = `🎰 **${exclamation} You won!** ${emote}`
   } else {
     const emote = common.getCustomEmote(client, 'sadcat')
-    message = `Sorry, no prize... ${emote}`
+    message = `🎰 Sorry, no prize... ${emote}`
   }
 
   // Show results.
