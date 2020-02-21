@@ -185,7 +185,7 @@ const run = (client, msg, args) => {
 
 module.exports = {
   name: 'fight',
-  desc: 'Start a fight with someone.\n\nCharacters start with 150HP and take turns to attack. Attacks are selected randomly, and their damage multiplier is also rolled randomly each turn. Each attack has a different accuracy and critical hit chance. The fight ends when a player runs out of HP.',
+  desc: 'Start a fight with someone.\n\nCharacters start with 150HP and take turns to attack. Attacks are selected randomly, and their damage multiplier is also rolled randomly each turn. Each attack has a different accuracy and critical hit chance. The first fighter that runs out of HP loses.',
   aliases: ['battle'],
   usage: 'fight <subject>',
   examples: ['fight Loch Ness Monster', 'fight @Batman'],
