@@ -71,23 +71,23 @@ const run = (client, msg, args) => {
         color: 3447003,
         title: 'Full KoreanLady Command List',
         url: 'https://github.com/yogensia/korean-lady-discord-bot/blob/master/COMMANDS.md#koreanlady-discord-bot',
-        description: `Hello ${msg.author.username}!`,
+        description: `**Hello ${msg.author.username}!** KoreanLady is a simple Discord bot with a few fun commands and no moderation or any other advanced functions.`,
         fields: [
           {
-            name: 'Command list',
-            value: 'If you want to see all the available commands, please check the link above!'
+            name: 'Prefix',
+            value: `The prefix for KoreanLady's commands is: \`${process.env.PREFIX}\`\n(The prefix can be omitted in this DM conversation)`
           },
           {
-            name: 'Prefix',
-            value: `The prefix for KoreanLady's commands is: \`${process.env.PREFIX}\`\nThis prefix can only be omitted in DMs.`
+            name: 'Command list',
+            value: `To see all available commands, please check the link above, or type \`${process.env.PREFIX}list\``
           },
           {
             name: 'Testing commands',
-            value: 'You can use this DM conversation to test commands all you want.'
+            value: 'You can use this DM conversation to test commands privately all you want.'
           },
           {
             name: 'The \'help\' command',
-            value: 'You can type `help` followed by another command\'s name to get more info and examples uses on that command.'
+            value: `You can type \`${process.env.PREFIX}help\` followed by another command's name to get more info and usage examples on that command.`
           },
           {
             name: 'Missing parameters',
