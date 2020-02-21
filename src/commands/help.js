@@ -87,11 +87,11 @@ const run = (client, msg, args) => {
           },
           {
             name: 'The \'help\' command',
-            value: 'You can type `help` followed by another command\'s name to get more info and use examples on that command.'
+            value: 'You can type `help` followed by another command\'s name to get more info and examples uses on that command.'
           },
           {
             name: 'Missing parameters',
-            value: 'Some commands require a parameter, like a question, name, object... If you don\'t to include it, an error message will show up letting you know and providing examples.'
+            value: 'Some commands require a parameter, like a question, name, object... If you don\'t include it, an error message will show up letting you know and providing examples.'
           },
           {
             name: 'Cookie',
