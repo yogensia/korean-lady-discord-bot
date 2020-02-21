@@ -4,7 +4,7 @@ const math = require('../utils/math')
 const run = (client, msg, args) => {
   // Ramdom fortune.
   const fortunes = [
-    // Random and fun (https://www.boredpanda.com/funny-fortune-cookie-messages/, adapted)
+    // Random and fun (https://www.boredpanda.com/funny-fortune-cookie-messages/, adapted).
     'Run.',
     'The next fortune cookie will give you\nthe answer you seek. For real!',
     'Ignore the previous fortune cookie.',
@@ -37,7 +37,7 @@ const run = (client, msg, args) => {
     'Something wonderful is about to happy.\nSent from my iPhone.',
     'Plan to be spontaneos tomorrow.',
 
-    // Random and fun (google image search, no attribution)
+    // Random and fun (google image search, no attribution).
     'To truly find yourself,\nyou should play hide an seek alone.',
     'The fortune you seek is in another cookie.',
     'About time I got out of that cookie.',
@@ -70,9 +70,9 @@ const run = (client, msg, args) => {
     'Do not step on anyone on your way\nto the top.',
     'Good character is better than outsatanding talent.',
     'Someone lovely is thinking of you.',
-    'If you keep trying,\nfailiure is just a step to success.',
+    'If you keep trying,\nfailure is just a step to success.',
 
-    // Darkest Dungeon Ancestor (https://darkestdungeon.gamepedia.com/Narrator, adapted)
+    // Darkest Dungeon Ancestor (https://darkestdungeon.gamepedia.com/Narrator, adapted).
     'Leave nothing unchecked, there is much to be found in forgotten places.',
     'Make no mistake, you will face greater challenges. Preparation is key.',
     'Curiosity, interest, and obsession — mile markers on the road to damnation.',
@@ -92,30 +92,20 @@ const run = (client, msg, args) => {
     'Seize this momentum! Push on to the task\'s end!',
     'Remind yourself that overconfidence is a slow and insidious killer.',
 
-    // Common sayings (http://fortunecookieapi.herokuapp.com/v1/fortunes?limit=300)
+    // Common sayings (http://fortunecookieapi.herokuapp.com/v1/fortunes?limit=300).
     'A friend\'s frown is better than a fool\'s smile.',
     'A friend in need is a friend indeed.',
     'A friend is easier lost than found.',
-    'A friend to everybody is a friend to nobody.',
     'A problem shared is a problem halved.',
-    'A true friend is someone who reaches for your hand, but touches your heart.',
     'False friends are worse than open enemies.',
-    'Grief divided is made lighter.',
-    'Old friends and old wine are best.',
     'To err is human; to forgive, divine.',
-    'Love levels all inequalities.',
     'Love to live and live to love.',
     'True beauty lies within.',
-    'A wink is as good as a nod, to a blind man.',
     'Anger and hate hinder good counsel.',
     'Appearances are deceptive.',
     'Attack is the best form of defense.',
     'Be slow in choosing, but slower in changing.',
     'Do unto others as you would have them do to you.',
-    'Heavy givers are light complainers.',
-    'I am rubber and you are glue. Your words bounce off me and stick to you.',
-    'It\'s not over till it\'s over.',
-    'No man or woman is worth your tears,\nand the one who is, won\'t make you cry.',
     'Open confession is good for the soul.',
     'Out of sight, out of mind.',
     'Patience is a virtue.',
@@ -129,11 +119,9 @@ const run = (client, msg, args) => {
     'As one door closes, another always opens.',
     'As you go through life, make this your goal,\nwatch the doughnut and not the hole.',
     'Brevity is the soul of wit.',
-    'Do right and fear no man.',
     'Experience is the hardest teacher.\nShe gives the test first and the lesson afterwards.',
     'Fortune favours the brave.',
     'He who laughs last, laughs longest.',
-    'Home is where the heart is.',
     'Hope for the best and prepare for the worst.',
     'Leave tomorrow till tomorrow.',
     'Procrastination is the thief of time.',
@@ -141,9 +129,7 @@ const run = (client, msg, args) => {
     'An apple a day keeps the doctor away,\nan onion a day keeps everyone away.',
     'Better late thrive than never do well.',
     'Don\'t bite the hand that feeds you.',
-    'Good wine ruins the purse,\nand bad wine ruins the stomach.',
     'It is no use crying over spilt milk.',
-    'What can\'t be cured must be endured.',
     'If you don\'t say it you will not have to unsay it.',
     'Keep your mouth shut and your eyes open.',
     'Say what you mean and mean what you say.',
@@ -151,23 +137,18 @@ const run = (client, msg, args) => {
     'Stop beating around the bush.',
     'Accidents will happen.',
     'Don\'t knock on death\'s door,\nring the doorbell and run.',
-    'Four eyes are better than two.',
-    'He who fights and runs away,\nlives to fight another day.',
-    'It is better to stay silent and be thought a fool,\nthan to open one\'s mouth and remove all doubt.',
     'Out of the frying pan into the fire.',
     'The darkest hour is before the dawn.',
     'Those who don\'t learn from history are doomed to repeat it.',
     'Where observation is concerned,\nchance favours only the prepared mind.',
-    'Wisdom is better than strength.',
     'You never know what you can do till you try.',
-    'Be the labour great or small,\ndo it well or not at all.',
     'All work and no play makes Jack a dull boy.',
     'If at first you don\'t succeed, try, try again.',
     'If you can\'t help, don\'t hinder.',
     'If you see something you like, take it and make it better.',
     'Never put off \'til tomorrow what you can do today.',
     'A bird makes his nest little by little.',
-    'Curiosity killed the cat;\nSatisfaction brought it back.',
+    'Curiosity killed the cat.',
     'Curses, like chickens come home to roost.',
     'Don\'t count your chickens before they hatch.'
   ]
