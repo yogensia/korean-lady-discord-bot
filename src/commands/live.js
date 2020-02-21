@@ -27,7 +27,7 @@ const run = (client, msg, args) => {
 
 module.exports = {
   name: 'live',
-  desc: 'Embeds a nice link for a Twitch stream. Channel must be live.',
+  desc: 'Embeds a nice link for a Twitch stream. Channel must be live. This command can only be used by the server owner.',
   aliases: ['stream'],
   usage: 'live',
   run
