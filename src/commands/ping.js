@@ -7,7 +7,7 @@ const run = (client, msg, args) => {
 
 module.exports = {
   name: 'ping',
-  desc: 'Simple ping command to test bot.',
+  desc: 'Simple ping command to test bot is online.',
   usage: 'ping',
   run
 }
