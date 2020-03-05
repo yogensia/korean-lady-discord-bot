@@ -7,7 +7,7 @@ const random = require('../utils/random')
  * @param {Object} msg - Message object.
  * @return {string} A plain text username.
  */
-const stripMentions = (subject, msg) => {
+const stripMentions = (subject, msg, pronoun = true) => {
   const input = subject.split(' ')
 
   // Replace user mentions with plain text.
@@ -36,14 +36,16 @@ const stripMentions = (subject, msg) => {
     }
   })
 
-  // Is a user mentions themselves use special string.
-  output = output.map((element) => {
-    if (msg.author.username === element) {
-      return 'himself/herself'
-    } else {
-      return element
-    }
-  })
+  // Is a user mentions themselves use pronouns.
+  if (pronoun) {
+    output = output.map((element) => {
+      if (msg.author.username === element) {
+        return 'himself/herself'
+      } else {
+        return element
+      }
+    })
+  }
 
   return output.join(' ')
 }

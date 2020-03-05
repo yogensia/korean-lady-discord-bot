@@ -2,7 +2,8 @@ const common = require('../utils/common')
 const math = require('../utils/math')
 
 const run = (client, msg, args) => {
-  const question = args.join(' ')
+  // Get subject from args.
+  const question = common.stripMentions(args.join(' '), msg, false)
 
   // Random 8 ball answer.
   const answers = [
