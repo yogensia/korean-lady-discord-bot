@@ -7,7 +7,7 @@ module.exports = (client, msg) => {
   // Ignore messages not starting with the prefix or mention of our bot.
   // Also do not require prefix in direct messages.
   const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-  const prefixRegex = new RegExp(`^(<@!?${client.user.id}>|${escapeRegex(process.env.PREFIX)})\\s*`)
+  const prefixRegex = new RegExp(`^(<@!?${client.user.id}>|${escapeRegex(process.env.PREFIX)}|${escapeRegex(process.env.PREFIX.toUpperCase())})\\s*`)
   if (!prefixRegex.test(msg.content) && msg.channel.type !== 'dm') return
 
   // Remove prefix if found, then get command and args.

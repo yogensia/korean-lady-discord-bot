@@ -2,6 +2,10 @@
 
 All notable changes for each version of this project are documented in this file.
 
+## 1.0.2 - 2020-03-05
+
+- Allow use of uppercase prefix.
+
 ## 1.0.1 - 2020-03-05
 
 - Fix double user mentions in !8ball.
