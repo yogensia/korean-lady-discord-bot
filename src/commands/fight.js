@@ -19,11 +19,22 @@ const attacks = [
   ['Nether Blade', 20, 90, 80, 0],
   ['Tantrum', 15, 70, 90, 0],
 
+  ['Friendliness Pellet', 15, 95, 85, 0],
+  ['Splishy Splash', 30, 70, 75, 0],
+  ['Flying Nachos', 25, 80, 75, 0],
+  ['Judgamental Look', 30, 75, 70, 0],
+  ['Tickle Attack', 20, 90, 80, 0],
+  ['Harsh Language', 15, 70, 90, 0],
+
   // Normal attacks (1x).
   ['Falcon Punch', 50, 90, 50, 0],
   ['Piercing Arrow', 45, 85, 65, 0],
   ['Savagery', 60, 80, 50, 0],
   ['Frozen Orb', 55, 85, 60, 0],
+
+  ['Backhand Chop', 45, 85, 65, 0],
+  ['Soul Crush', 60, 80, 50, 0],
+  ['Calamity Cannon', 55, 75, 50, 0],
 
   // Powerful attacks (1x).
   ['10M Volt Thunderbolt', 80, 80, 15, 0],
@@ -31,11 +42,19 @@ const attacks = [
   ['Hadouken', 75, 85, 20, 0],
   ['Slipper', 60, 95, 45, 0],
 
+  ['Hundred Rending Fists', 75, 85, 25, 0],
+  ['Super Combo', 75, 85, 20, 0],
+  ['Fus-Ro-Dah', 60, 95, 45, 0],
+
   // Defensive moves (1x).
   ['Vampiric Touch', 0, 90, 80, 30],
   ['Apply Band-Aid', 0, 95, 70, 25],
   ['Drink your Water', 0, 100, 75, 15],
-  ['Pineapple Pizza', 0, 90, 80, 30]
+  ['Pineapple Pizza', 0, 90, 80, 30],
+
+  ['Eat Your Greens', 0, 95, 70, 25],
+  ['Rember Happy Days', 0, 100, 75, 15],
+  ['Praise the Sun', 0, 90, 80, 30]
 ]
 
 /**

@@ -2,6 +2,10 @@
 
 All notable changes for each version of this project are documented in this file.
 
+## 1.0.3 - 2020-03-07
+
+- Add new attacks to !fight.
+
 ## 1.0.2 - 2020-03-05
 
 - Allow use of uppercase prefix.
