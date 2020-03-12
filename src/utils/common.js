@@ -39,7 +39,7 @@ const stripMentions = (subject, msg, pronoun = true) => {
   // Is a user mentions themselves use pronouns.
   if (pronoun) {
     output = output.map((element) => {
-      if (msg.author.username === element) {
+      if (msg.member.displayName === element) {
         return 'himself/herself'
       } else {
         return element

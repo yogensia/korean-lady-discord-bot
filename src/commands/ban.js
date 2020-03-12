@@ -24,7 +24,7 @@ const run = (client, msg, args) => {
   const longerThanYear = time.longerThanYear(future, 'YYYY-MM-DD HH:mm:ss')
 
   // Build message string.
-  let message = `${emote} ${msg.author.username} banned **${subject}** for ${countdown}!`
+  let message = `${emote} ${msg.member.displayName} banned **${subject}** for ${countdown}!`
   if (longerThanYear) {
     message += ` See you in **${futureFormatted}!** 👋`
   }

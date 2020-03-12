@@ -53,7 +53,7 @@ const run = (client, msg, args) => {
     msg.channel.send({
       embed: {
         color: 0x2f3136,
-        description: `${emoteAngry} Trying to fine the Korean Lady is illegal!\n\n${emote} **${msg.author.username}** has been fined instead, with **${money} ${currency}!**`
+        description: `${emoteAngry} Trying to fine the Korean Lady is illegal!\n\n${emote} **${msg.member.displayName}** has been fined instead, with **${money} ${currency}!**`
       }
     }).catch(err => common.sendErrorMsg(msg, err))
   } else {
@@ -61,7 +61,7 @@ const run = (client, msg, args) => {
     msg.channel.send({
       embed: {
         color: 0x2f3136,
-        description: `${emote} ${msg.author.username} has fined **${subject}** with **${money} ${currency}!**`
+        description: `${emote} ${msg.member.displayName} has fined **${subject}** with **${money} ${currency}!**`
       }
     }).catch(err => common.sendErrorMsg(msg, err))
   }

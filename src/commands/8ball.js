@@ -34,7 +34,7 @@ const run = (client, msg, args) => {
   msg.channel.send({
     embed: {
       color: 0x2f3136,
-      description: `**${msg.author.username} asks: ${question}**\n\n🎱 ${answer} 🎱`
+      description: `**${msg.member.displayName} asks: ${question}**\n\n🎱 ${answer} 🎱`
     }
   }).catch(err => common.sendErrorMsg(msg, err))
 }

@@ -26,7 +26,7 @@ const run = (client, msg, args) => {
   msg.channel.send({
     embed: {
       color: 0x2f3136,
-      description: `🎲 ${msg.author.username} threw a ${sides} sided dice... The result was **${result}**!`
+      description: `🎲 ${msg.member.displayName} threw a ${sides} sided dice... The result was **${result}**!`
     }
   }).catch(err => common.sendErrorMsg(msg, err))
 }

@@ -7,9 +7,9 @@ const run = (client, msg, args) => {
 
   let message
   if (result === 1) {
-    message = `${msg.author.username} threw a coin... The result was **Heads**!`
+    message = `${msg.member.displayName} threw a coin... The result was **Heads**!`
   } else {
-    message = `${msg.author.username} threw a coin... The result was **Tails**!`
+    message = `${msg.member.displayName} threw a coin... The result was **Tails**!`
   }
 
   // Reply with an embed message.

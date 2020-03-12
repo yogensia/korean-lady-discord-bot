@@ -188,13 +188,8 @@ const run = (client, msg, args) => {
     hp: 150
   }
   const instigator = {
-    name: msg.author.username,
+    name: msg.member.displayName,
     hp: 150
-  }
-
-  // If on a server channel, get current user nickname instead of username.
-  if (msg.member.nickname) {
-    instigator.name = msg.member.nickname
   }
 
   if (subject.name.toLowerCase() === instigator.name.toLowerCase()) {

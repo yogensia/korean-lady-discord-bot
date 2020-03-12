@@ -25,11 +25,11 @@ const run = (client, msg, args) => {
   // Depending on percentage send a different message.
   let message
   if (result > 75) {
-    message = `${emote} ${msg.author.username} slapped **${subject}**! It's super efective! That drained a total of **${result}HP**!`
+    message = `${emote} ${msg.member.displayName} slapped **${subject}**! It's super efective! That drained a total of **${result}HP**!`
   } else if (result > 25) {
-    message = `${emote} ${msg.author.username} slapped **${subject}**! That drained a total of ${result}HP!`
+    message = `${emote} ${msg.member.displayName} slapped **${subject}**! That drained a total of ${result}HP!`
   } else {
-    message = `${emote} ${msg.author.username} slapped **${subject}**! It's not very efective... That drained a total of **${result}HP**!`
+    message = `${emote} ${msg.member.displayName} slapped **${subject}**! It's not very efective... That drained a total of **${result}HP**!`
   }
 
   // Reply with an embed message.

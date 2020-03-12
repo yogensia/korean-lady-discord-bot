@@ -71,7 +71,7 @@ const run = (client, msg, args) => {
         color: 3447003,
         title: 'Full KoreanLady Command List',
         url: 'https://github.com/yogensia/korean-lady-discord-bot/blob/master/COMMANDS.md#koreanlady-discord-bot',
-        description: `**Hello ${msg.author.username}!** KoreanLady is a simple Discord bot with a few fun commands and no moderation or any other advanced functions.`,
+        description: `**Hello ${msg.member.displayName}!** KoreanLady is a simple Discord bot with a few fun commands and no moderation or any other advanced functions.`,
         fields: [
           {
             name: 'Prefix',

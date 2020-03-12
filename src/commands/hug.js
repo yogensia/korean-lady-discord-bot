@@ -24,7 +24,7 @@ const run = (client, msg, args) => {
   msg.channel.send({
     embed: {
       color: 0x2f3136,
-      description: `${exclamation} ${msg.author.username} hugged **${subject}** for ${time.toFixed(2)} mississippis! ${emote}`
+      description: `${exclamation} ${msg.member.displayName} hugged **${subject}** for ${time.toFixed(2)} mississippis! ${emote}`
     }
   }).then(ownMessage => {
     // IHAA... If subject is Korean Lady she will react with a random emote.
