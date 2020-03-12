@@ -20,7 +20,7 @@ const run = (client, msg, args) => {
   }
 
   // Throw the dice!
-  const result = math.getRandomInt(0, sides)
+  const result = math.getRandomInt(1, sides)
 
   // Reply with an embed message.
   msg.channel.send({
