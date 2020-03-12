@@ -192,10 +192,26 @@ const run = (client, msg, args) => {
     hp: 150
   }
 
+  // If on a server channel, get current user nickname instead of username.
+  if (msg.member.nickname) {
+    instigator.name = msg.member.nickname
+  }
+
+  if (subject.name.toLowerCase() === instigator.name.toLowerCase()) {
+    subject.name = 'himself/herself'
+  }
+
+  const title = `⚔ ${instigator.name} started a fight with ${subject.name}! ⚔`
+
+  // Avoid using 'himself/herself' during fights.
+  if (subject.name === 'himself/herself') {
+    subject.name = instigator.name
+  }
+
   // Reply with an embed message.
   msg.channel.send({
     embed: {
-      title: `⚔ ${instigator.name} started a fight with ${subject.name}! ⚔`,
+      title,
       color: 0x2f3136,
       description: startFight(instigator, subject)
     }
