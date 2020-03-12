@@ -2,6 +2,13 @@
 
 All notable changes for each version of this project are documented in this file.
 
+## 1.0.4 - 2020-03-12
+
+- Show current nickname instead of username in fight command.
+- Tweaked formatting on fights when fighting oneself.
+- Fix !dice command being able to roll 0.
+- Tweaked date formatting in !ban command.
+
 ## 1.0.3 - 2020-03-07
 
 - Add new attacks to !fight.
