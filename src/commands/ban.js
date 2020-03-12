@@ -7,7 +7,7 @@ const run = (client, msg, args) => {
   // Get subject from args.
   const subject = common.stripMentions(args.join(' '), msg)
 
-  // random emotes.
+  // Random emotes.
   const emotes = [
     '🔨',
     '😡',
@@ -19,7 +19,7 @@ const run = (client, msg, args) => {
 
   // Get time data.
   const future = time.getRandomFuture('YYYY-MM-DD HH:mm:ss')
-  const futureFormatted = time.format(future, 'YYYY-MM-DD HH:mm:ss', 'MMM D, YYYY')
+  const futureFormatted = time.format(future, 'YYYY-MM-DD HH:mm:ss', 'MMMM YYYY')
   const countdown = time.getCountdown(future, 'YYYY-MM-DD HH:mm:ss')
   const longerThanYear = time.longerThanYear(future, 'YYYY-MM-DD HH:mm:ss')
 
