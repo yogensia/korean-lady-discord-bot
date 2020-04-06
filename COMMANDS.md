@@ -112,6 +112,14 @@ Usage: `k!love <subject>`
 
 Examples: `k!love @Wumpus` `k!love everyone in chat`
 
+### `k!movie`
+
+Returns info about a movie. The command will always try to find the best match, but providing a full title is still recommended for best results.
+
+Usage: `k!movie <movie title>`
+
+Examples: `k!movie Alien`
+
 ### `k!owo`
 
 Twanswates y-youw text t-to OwO speak! Pwease use wesponsibwy, hehe.
