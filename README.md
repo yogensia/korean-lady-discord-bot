@@ -76,6 +76,8 @@ Some of this bot's architecture is based on documentation from [discordjs.guide]
 
 The name KoreanLady and some of the bot's commands are inspired by [Twitch Streamer Apollolol](https://www.twitch.tv/apollolol)'s community.
 
+This application uses the TMDb API but is not endorsed or certified by [TMDb](https://www.themoviedb.org/).
+
 ## License
 
 Copyright (c) 2019—2020, Yogensia
