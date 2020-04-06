@@ -36,6 +36,12 @@ module.exports = (client, msg) => {
     return
   }
 
+  // Make displayName available in DMs conversations.
+  if (msg.channel.type === 'dm') {
+    msg.member = []
+    msg.member.displayName = msg.author.username
+  }
+
   // Run the command.
   cmd.run(client, msg, args)
 }
