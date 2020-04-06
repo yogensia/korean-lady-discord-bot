@@ -1,15 +1,116 @@
 const common = require('../utils/common')
 const tmdb = require('../utils/tmdb')
 
-const getAllIndexes = (arr, val) => {
-  const indexes = []
-  let i
-  for (i = 0; i < arr.length; i++) {
-    if (arr[i] === val) {
-      indexes.push(i)
-    }
+/**
+ * Returns a release year or `false` if not found.
+ *
+ * @param {Object} movie Movie array.
+ */
+const getReleaseDate = (movie) => {
+  if (movie.release_date) {
+    return movie.release_date.split('-')[0]
+  } else {
+    return false
   }
-  return indexes
+}
+
+/**
+ * Returns a formated runtime string or `false` if not found.
+ *
+ * @param {Object} movie Movie array.
+ */
+const getRuntime = (movie) => {
+  if (movie.runtime) {
+    const hours = (movie.runtime / 60)
+    const rHours = Math.floor(hours)
+    const minutes = (hours - rHours) * 60
+    const rMinutes = Math.round(minutes)
+
+    return `${rHours}h ${rMinutes}m`
+  } else {
+    return false
+  }
+}
+
+/**
+ * Returns an array of director names or `false` if not found.
+ *
+ * @param {Object} credits Credits array.
+ */
+const getDirector = (credits) => {
+  const director = []
+
+  credits.crew.map(el => {
+    if (el.job === 'Director') {
+      director.push(el.name)
+    }
+  })
+
+  if (director && director.length) {
+    return director
+  } else {
+    return false
+  }
+}
+
+/**
+ * Returns an array of director names or `false` if not found.
+ *
+ * @param {Object} credits Credits array.
+ */
+const getWriters = (credits) => {
+  const writers = []
+
+  credits.crew.map(el => {
+    if (el.department === 'Writing') {
+      writers.push(el.name)
+    }
+  })
+
+  if (writers && writers.length) {
+    // Filter out duplicate elements in array.
+    return writers.filter((item, index) => writers.indexOf(item) === index)
+  } else {
+    return false
+  }
+}
+
+/**
+ * Returns an array of actor names or `false` if not found.
+ *
+ * @param {Object} movie Movie array.
+ */
+const getGenres = (movie) => {
+  const genres = []
+
+  if (movie.genres && movie.genres.length) {
+    movie.genres.forEach(genre => {
+      genres.push(genre.name)
+    })
+
+    return genres
+  } else {
+    return false
+  }
+}
+
+/**
+ * Returns an array of actor names or `false` if not found.
+ *
+ * @param {Object} credits Credits array.
+ */
+const getCast = (credits) => {
+  const cast = []
+
+  if (credits.cast && credits.cast.length) {
+    credits.cast.forEach(actor => {
+      cast.push(actor.name)
+    })
+
+    return cast.slice(0, 9)
+  } else {
+    return false
+  }
 }
 
 const run = async (client, msg, args) => {
@@ -19,54 +120,42 @@ const run = async (client, msg, args) => {
   // Request movie info from TMDB API.
   const search = await tmdb.request('search', subject, msg)
 
-  if (search && search.results.length > 0) {
+  if (search && search.results.length) {
     // Get additional details and crew.
     const movie = await tmdb.request('movie', search.results[0].id, msg)
     const credits = await tmdb.request('credits', search.results[0].id, msg)
 
-    // Get year.
-    const year = movie.release_date.split('-')[0]
-
-    // Get runtime.
-    const hours = (movie.runtime / 60)
-    const rHours = Math.floor(hours)
-    const minutes = (hours - rHours) * 60
-    const rMinutes = Math.round(minutes)
-    const runtime = `${rHours}h ${rMinutes}m`
+    // Get movie data.
+    const year = getReleaseDate(movie)
+    const runtime = getRuntime(movie)
+    const director = getDirector(credits)
+    const writers = getWriters(credits)
+    const genres = getGenres(movie)
+    const cast = getCast(credits)
 
     // Format title.
-    const title = `${movie.title} (${year}) · ${runtime}`
-
-    // Get director.
-    let director = credits.crew.findIndex(p => p.job === 'Director')
-    director = credits.crew[director].name
-
-    // Get cast (10 top bill).
-    let cast = []
-    credits.cast.forEach(actor => {
-      cast.push(actor.name)
-    })
-    cast = cast.slice(0, 9)
+    let title = movie.title
+    if (year) title = title + ` (${year})`
+    if (runtime) title = title + ` · ${runtime}`
 
     // Prepare fields array for embed message.
     const fields = []
 
-    const genres = []
-    movie.genres.forEach(genre => {
-      genres.push(genre.name)
-    })
+    if (director) {
+      fields.push({
+        name: 'Director',
+        value: director.join(', '),
+        inline: true
+      })
+    }
 
-    fields.push({
-      name: 'Director',
-      value: director,
-      inline: true
-    })
-
-    fields.push({
-      name: 'Genres',
-      value: genres.join(', '),
-      inline: true
-    })
+    if (genres) {
+      fields.push({
+        name: 'Genres',
+        value: genres.join(', '),
+        inline: true
+      })
+    }
 
     fields.push({
       name: 'TMDb Score',
@@ -74,7 +163,14 @@ const run = async (client, msg, args) => {
       inline: true
     })
 
-    if (credits.cast && credits.cast.length > 0) {
+    if (writers) {
+      fields.push({
+        name: 'Writers',
+        value: writers.join(', ')
+      })
+    }
+
+    if (cast) {
       fields.push({
         name: 'Cast',
         value: cast.join(', ')
@@ -104,11 +200,10 @@ const run = async (client, msg, args) => {
 
 module.exports = {
   name: 'movie',
-  desc: 'Returns info about a movie.',
-  aliases: ['movies', 'imdb', 'tmdb'],
+  desc: 'Returns info about a movie. The command will always try to find the best match, but providing a full title is still recommended for best results.',
   usage: 'movie <movie title>',
   examples: ['movie Alien'],
   args: true,
-  args_error: 'You must specify a movie!',
+  args_error: 'You must specify a movie title!',
   run
 }
