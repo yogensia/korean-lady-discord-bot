@@ -17,10 +17,16 @@ const request = async (endpoint, query, msg) => {
   let url
   if (endpoint === 'movie') {
     url = `https://api.themoviedb.org/3/movie/${query}?api_key=${process.env.TMDB_API_KEY}`
-  } else if (endpoint === 'search') {
+  } else if (endpoint === 'movie_search') {
     url = `https://api.themoviedb.org/3/search/movie/?query=${query}&api_key=${process.env.TMDB_API_KEY}`
-  } else if (endpoint === 'credits') {
+  } else if (endpoint === 'movie_credits') {
     url = `https://api.themoviedb.org/3/movie/${query}/credits?api_key=${process.env.TMDB_API_KEY}`
+  } else if (endpoint === 'show') {
+    url = `https://api.themoviedb.org/3/tv/${query}?api_key=${process.env.TMDB_API_KEY}`
+  } else if (endpoint === 'show_search') {
+    url = `https://api.themoviedb.org/3/search/tv/?query=${query}&api_key=${process.env.TMDB_API_KEY}`
+  } else if (endpoint === 'show_credits') {
+    url = `https://api.themoviedb.org/3/tv/${query}/credits?api_key=${process.env.TMDB_API_KEY}`
   }
 
   const response = await axios.get(url).catch(err => common.sendErrorMsg(msg, err))

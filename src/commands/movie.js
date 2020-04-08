@@ -4,7 +4,7 @@ const tmdb = require('../utils/tmdb')
 /**
  * Returns a release year or `false` if not found.
  *
- * @param {Object} movie Movie array.
+ * @param {Object} movie Movie info array.
  */
 const getReleaseDate = (movie) => {
   if (movie.release_date) {
@@ -17,7 +17,7 @@ const getReleaseDate = (movie) => {
 /**
  * Returns a formated runtime string or `false` if not found.
  *
- * @param {Object} movie Movie array.
+ * @param {Object} movie Movie info array.
  */
 const getRuntime = (movie) => {
   if (movie.runtime) {
@@ -35,7 +35,7 @@ const getRuntime = (movie) => {
 /**
  * Returns an array of director names or `false` if not found.
  *
- * @param {Object} credits Credits array.
+ * @param {Object} credits Credits info array.
  */
 const getDirector = (credits) => {
   const director = []
@@ -56,7 +56,7 @@ const getDirector = (credits) => {
 /**
  * Returns an array of director names or `false` if not found.
  *
- * @param {Object} credits Credits array.
+ * @param {Object} credits Credits info array.
  */
 const getWriters = (credits) => {
   const writers = []
@@ -78,7 +78,7 @@ const getWriters = (credits) => {
 /**
  * Returns an array of actor names or `false` if not found.
  *
- * @param {Object} movie Movie array.
+ * @param {Object} movie Movie info array.
  */
 const getGenres = (movie) => {
   const genres = []
@@ -97,7 +97,7 @@ const getGenres = (movie) => {
 /**
  * Returns an array of actor names or `false` if not found.
  *
- * @param {Object} credits Credits array.
+ * @param {Object} credits Credits info array.
  */
 const getCast = (credits) => {
   const cast = []
@@ -118,12 +118,12 @@ const run = async (client, msg, args) => {
   const subject = args.join(' ')
 
   // Request movie info from TMDB API.
-  const search = await tmdb.request('search', subject, msg)
+  const search = await tmdb.request('movie_search', subject, msg)
 
   if (search && search.results.length) {
     // Get additional details and crew.
     const movie = await tmdb.request('movie', search.results[0].id, msg)
-    const credits = await tmdb.request('credits', search.results[0].id, msg)
+    const credits = await tmdb.request('movie_credits', search.results[0].id, msg)
 
     // Get movie data.
     const year = getReleaseDate(movie)
@@ -177,6 +177,15 @@ const run = async (client, msg, args) => {
       })
     }
 
+    // Trim description if longer than 350 characters.
+    let description
+    const descriptionMaxLength = 350
+    if (movie.overview.length > descriptionMaxLength) {
+      description = movie.overview.substring(0, descriptionMaxLength - 3).trim() + '...'
+    } else {
+      description = movie.overview
+    }
+
     // Reply with an embed message.
     msg.channel.send({
       embed: {
@@ -186,7 +195,7 @@ const run = async (client, msg, args) => {
         thumbnail: {
           url: `https://image.tmdb.org/t/p/original${movie.poster_path}`
         },
-        description: movie.overview,
+        description,
         fields,
         footer: {
           text: 'Data provided by TMDb API – https://www.themoviedb.org/'
