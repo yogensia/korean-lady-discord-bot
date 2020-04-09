@@ -151,7 +151,6 @@ const run = async (client, msg, args) => {
   if (search && search.results.length) {
     // Get additional details and crew.
     const show = await tmdb.request('show', search.results[0].id, msg)
-    console.log(show)
     const credits = await tmdb.request('show_credits', search.results[0].id, msg)
 
     // Get movie data.
@@ -250,7 +249,7 @@ module.exports = {
   name: 'show',
   desc: 'Returns info about a TV show. The command will always try to find the best match, but providing a full title is still recommended for best results.',
   usage: 'show <show title>',
-  examples: ['show Alien'],
+  examples: ['show The Witcher'],
   args: true,
   args_error: 'You must specify a show title!',
   run
