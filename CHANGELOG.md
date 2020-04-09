@@ -2,9 +2,10 @@
 
 All notable changes for each version of this project are documented in this file.
 
-## 1.1.0 - 2020-03-12
+## 1.1.0 - 2020-04-09
 
-- Add !movie command.
+- Add !movie & !show commands.
+- Migrate to Discord.JS v12.1.1.
 - Fix handling of user display names in DMs.
 
 ## 1.0.5 - 2020-03-12
