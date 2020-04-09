@@ -136,6 +136,14 @@ Simple ping command to test bot is online.
 
 Usage: `k!ping`
 
+### `k!show`
+
+Returns info about a TV show. The command will always try to find the best match, but providing a full title is still recommended for best results.
+
+Usage: `k!show <show title>`
+
+Examples: `k!show The Witcher`
+
 ### `k!slap`
 
 Lets you slap your nemeses, and shows how much damage you've inflicted.
