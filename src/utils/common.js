@@ -1,6 +1,20 @@
 const random = require('../utils/random')
 
 /**
+ * Get the message author's displayName or username.
+ *
+ * @param {Object} msg - Message object.
+ * @return {string} The display name of the user.
+ */
+const displayName = (msg) => {
+  if (msg.member && msg.member.displayName) {
+    return msg.member.displayName
+  } else {
+    return msg.author.username
+  }
+}
+
+/**
  * Replace user mentions with plain text usernames.
  *
  * @param {string} subject - User string to strip.
@@ -19,15 +33,15 @@ const stripMentions = (subject, msg, pronoun = true) => {
       const id = element.replace(/<|!|>|@/g, '')
 
       if (msg.channel.type === 'dm' || msg.channel.type === 'group') {
-        return msg.client.users.has(id) ? `${msg.client.users.get(id).username}` : element
+        return msg.client.users.cache.has(id) ? `${msg.client.users.cache.get(id).username}` : element
       }
 
-      const member = msg.channel.guild.members.get(id)
+      const member = msg.channel.guild.members.cache.get(id)
       if (member) {
         if (member.nickname) return `${member.nickname}`
         return `${member.user.username}`
       } else {
-        const user = msg.client.users.get(id)
+        const user = msg.client.users.cache.get(id)
         if (user) return `${user.username}`
         return element
       }
@@ -69,11 +83,12 @@ const stripMentions = (subject, msg, pronoun = true) => {
  * @returns {(Object|string|Boolean)} The emote object, fallback string or an empty string.
  */
 const getCustomEmote = (client, name, fallback) => {
-  const emote = client.emojis.find(emoji => emoji.name === name)
+  // client.emojis.cache.find(emoji => console.log(emoji))
+  const emote = client.emojis.cache.find(emoji => emoji.name === name)
 
   // If emote is available return it.
-  if (emote !== null) {
-    return emote
+  if (emote !== null && emote !== undefined) {
+    return `${emote}`
   } else {
     // If emote not found check if a fallback was provided.
     if (fallback) {
@@ -181,6 +196,7 @@ const sendMissingParameterMsg = (client, msg, reason) => {
 }
 
 module.exports = {
+  displayName,
   getCustomEmote,
   reactWithCustomEmote,
   koreanLadyMentioned,

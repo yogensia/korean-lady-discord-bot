@@ -167,7 +167,7 @@ const run = (client, msg, args) => {
     embed: {
       color: 0x2f3136,
       author: {
-        name: `${intro}, ${msg.member.displayName}!`,
+        name: `${intro}, ${common.displayName(msg)}!`,
         icon_url: 'https://i.imgur.com/CBHZY0m.png'
       },
       description: fortune

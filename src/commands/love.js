@@ -13,15 +13,15 @@ const run = (client, msg, args) => {
   // Depending on percentage send a different message.
   let message
   if (result > 94) {
-    message = `💘 What!? ${msg.member.displayName}'s love for **${subject}** is _**${result}%**_!`
+    message = `💘 What!? ${common.displayName(msg)}'s love for **${subject}** is _**${result}%**_!`
   } else if (result > 69) {
-    message = `😍 ${random.exclamation()} ${msg.member.displayName}'s love for **${subject}** is **${result}%**!`
+    message = `😍 ${random.exclamation()} ${common.displayName(msg)}'s love for **${subject}** is **${result}%**!`
   } else if (result > 49) {
-    message = `🤔 ${msg.member.displayName}'s love for **${subject}** is ${result}%.`
+    message = `🤔 ${common.displayName(msg)}'s love for **${subject}** is ${result}%.`
   } else if (result > 9) {
-    message = `😩 ${random.exclamationNegative()} ${msg.member.displayName}'s love for **${subject}** is ${result}%.`
+    message = `😩 ${random.exclamationNegative()} ${common.displayName(msg)}'s love for **${subject}** is ${result}%.`
   } else {
-    message = `😐 ${random.exclamationNegative()} ${msg.member.displayName}'s love for **${subject}** is ${result}%.`
+    message = `😐 ${random.exclamationNegative()} ${common.displayName(msg)}'s love for **${subject}** is ${result}%.`
   }
 
   // Reply with an embed message.

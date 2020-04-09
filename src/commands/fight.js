@@ -188,7 +188,7 @@ const run = (client, msg, args) => {
     hp: 150
   }
   const instigator = {
-    name: msg.member.displayName,
+    name: common.displayName(msg),
     hp: 150
   }
 

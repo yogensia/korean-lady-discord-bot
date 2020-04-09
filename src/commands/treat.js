@@ -162,7 +162,7 @@ const run = (client, msg, args) => {
 
   let description
   if (subject) {
-    description = `${intro} ${msg.member.displayName} is treating **${subject}** to...\n${treat[0]} **${adjective} ${flavour} ${treat[1]}!**`
+    description = `${intro} ${common.displayName(msg)} is treating **${subject}** to...\n${treat[0]} **${adjective} ${flavour} ${treat[1]}!**`
   } else {
     const randomSubjectArray = [
       'chat',
@@ -170,7 +170,7 @@ const run = (client, msg, args) => {
     ]
     const randomSubject = math.getRandomStringFromArray(randomSubjectArray)
 
-    description = `${intro} ${msg.member.displayName} is treating **${randomSubject}** to...\n${treat[0]} **${adjective} ${flavour} ${treat[1]}!**`
+    description = `${intro} ${common.displayName(msg)} is treating **${randomSubject}** to...\n${treat[0]} **${adjective} ${flavour} ${treat[1]}!**`
   }
 
   // Reply with an embed message.
