@@ -12,19 +12,23 @@ const common = require('../utils/common')
  * @param {Object} msg Message object.
  */
 
-const request = async (endpoint, query, msg) => {
+const request = async (msg, endpoint, query, year = false) => {
   // Make request.
   let url
   if (endpoint === 'movie') {
     url = `https://api.themoviedb.org/3/movie/${query}?api_key=${process.env.TMDB_API_KEY}`
   } else if (endpoint === 'movie_search') {
     url = `https://api.themoviedb.org/3/search/movie/?query=${query}&api_key=${process.env.TMDB_API_KEY}`
+  } else if (endpoint === 'movie_search_year') {
+    url = `https://api.themoviedb.org/3/search/movie/?query=${query}&year=${year}&api_key=${process.env.TMDB_API_KEY}`
   } else if (endpoint === 'movie_credits') {
     url = `https://api.themoviedb.org/3/movie/${query}/credits?api_key=${process.env.TMDB_API_KEY}`
   } else if (endpoint === 'show') {
     url = `https://api.themoviedb.org/3/tv/${query}?api_key=${process.env.TMDB_API_KEY}`
   } else if (endpoint === 'show_search') {
     url = `https://api.themoviedb.org/3/search/tv/?query=${query}&api_key=${process.env.TMDB_API_KEY}`
+  } else if (endpoint === 'show_search_year') {
+    url = `https://api.themoviedb.org/3/search/tv/?query=${query}&year=${year}&api_key=${process.env.TMDB_API_KEY}`
   } else if (endpoint === 'show_credits') {
     url = `https://api.themoviedb.org/3/tv/${query}/credits?api_key=${process.env.TMDB_API_KEY}`
   }

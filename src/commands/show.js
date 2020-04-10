@@ -3,6 +3,30 @@ const common = require('../utils/common')
 const tmdb = require('../utils/tmdb')
 
 /**
+ * Takes search terms, strip year and send a search request to the TMDb API.
+ *
+ * Note: The TMDb API doesn't support searching TV shows by year.
+ *
+ * @param {Object} msg Message object.
+ * @param {string} subject Search term. Can contain a year in parenthesis.
+ */
+const searchShow = async (msg, subject) => {
+  // [1]: Show title, [2]: Year
+  const regex = /(.*) \(([\d{4}]+)\)/i
+  const searchByYear = subject.match(regex)
+  let search
+
+  // Request movie info from TMDb API.
+  if (searchByYear) {
+    search = await tmdb.request(msg, 'show_search', searchByYear[1])
+  } else {
+    search = await tmdb.request(msg, 'show_search', subject)
+  }
+
+  return search
+}
+
+/**
  * Returns a release year or `false` if not found.
  *
  * @param {Object} show Show info array.
@@ -146,12 +170,12 @@ const run = async (client, msg, args) => {
   const subject = args.join(' ')
 
   // Request movie info from TMDB API.
-  const search = await tmdb.request('show_search', subject, msg)
+  const search = await searchShow(msg, subject)
 
   if (search && search.results.length) {
     // Get additional details and crew.
-    const show = await tmdb.request('show', search.results[0].id, msg)
-    const credits = await tmdb.request('show_credits', search.results[0].id, msg)
+    const show = await tmdb.request(msg, 'show', search.results[0].id)
+    const credits = await tmdb.request(msg, 'show_credits', search.results[0].id)
 
     // Get movie data.
     const beginYear = getFirstAirDate(show)
@@ -241,7 +265,7 @@ const run = async (client, msg, args) => {
       }
     }).catch(err => common.sendErrorMsg(msg, err))
   } else {
-    common.sendErrorMsg(msg, 'Couldn\'t find any movies by that title.\nPlease check spelling and try again!')
+    common.sendErrorMsg(msg, 'Couldn\'t find any shows by that title.\nPlease check spelling and try again!')
   }
 }
 
