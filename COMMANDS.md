@@ -106,11 +106,11 @@ Examples: `k!love @Wumpus` `k!love everyone in chat`
 
 ### `k!movie`
 
-Returns info about a movie. The command will always try to find the best match, but providing a full title is still recommended for best results.
+Returns info about a movie. The command will always try to find the best match, but providing a full title is still recommended for best results. You can refine your search by typing the year between parethesis.
 
 Usage: `k!movie <movie title>`
 
-Examples: `k!movie Alien`
+Examples: `k!movie Alien` `k!movie Total Recall (1990)`
 
 ### `k!owo`
 
