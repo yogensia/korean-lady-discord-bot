@@ -130,11 +130,11 @@ Usage: `k!ping`
 
 ### `k!show`
 
-Returns info about a TV show. The command will always try to find the best match, but providing a full title is still recommended for best results.
+Returns info about a TV show. The command will always try to find the best match, but providing a full title is still recommended for best results. You can refine your search by typing the year between parethesis.
 
 Usage: `k!show <show title>`
 
-Examples: `k!show The Witcher`
+Examples: `k!show The Witcher` `k!show Doctor Who (1963)`
 
 ### `k!slap`
 
