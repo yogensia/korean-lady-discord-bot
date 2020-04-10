@@ -11,14 +11,14 @@ const tmdb = require('../utils/tmdb')
  * @param {string} subject Search term. Can contain a year in parenthesis.
  */
 const searchShow = async (msg, subject) => {
-  // [1]: Show title, [2]: Year
+  // [1]: Show title; [2]: Year.
   const regex = /(.*) \(([\d{4}]+)\)/i
   const searchByYear = subject.match(regex)
   let search
 
-  // Request movie info from TMDb API.
+  // Request show info from TMDb API.
   if (searchByYear) {
-    search = await tmdb.request(msg, 'show_search', searchByYear[1])
+    search = await tmdb.request(msg, 'show_search_year', searchByYear[1], searchByYear[2])
   } else {
     search = await tmdb.request(msg, 'show_search', subject)
   }
@@ -271,9 +271,9 @@ const run = async (client, msg, args) => {
 
 module.exports = {
   name: 'show',
-  desc: 'Returns info about a TV show. The command will always try to find the best match, but providing a full title is still recommended for best results.',
+  desc: 'Returns info about a TV show. The command will always try to find the best match, but providing a full title is still recommended for best results. You can refine your search by typing the year between parethesis.',
   usage: 'show <show title>',
-  examples: ['show The Witcher'],
+  examples: ['show The Witcher', 'show Doctor Who (1963)'],
   args: true,
   args_error: 'You must specify a show title!',
   run

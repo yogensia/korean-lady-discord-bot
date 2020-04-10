@@ -8,7 +8,7 @@ const tmdb = require('../utils/tmdb')
  * @param {string} subject Search term. Can contain a year in parenthesis.
  */
 const searchMovie = async (msg, subject) => {
-  // [1]: Movie title, [2]: Year
+  // [1]: Movie title; [2]: Year.
   const regex = /(.*) \(([\d{4}]+)\)/i
   const searchByYear = subject.match(regex)
   let search

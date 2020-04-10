@@ -28,7 +28,7 @@ const request = async (msg, endpoint, query, year = false) => {
   } else if (endpoint === 'show_search') {
     url = `https://api.themoviedb.org/3/search/tv/?query=${query}&api_key=${process.env.TMDB_API_KEY}`
   } else if (endpoint === 'show_search_year') {
-    url = `https://api.themoviedb.org/3/search/tv/?query=${query}&year=${year}&api_key=${process.env.TMDB_API_KEY}`
+    url = `https://api.themoviedb.org/3/search/tv/?query=${query}&first_air_date_year=${year}&api_key=${process.env.TMDB_API_KEY}`
   } else if (endpoint === 'show_credits') {
     url = `https://api.themoviedb.org/3/tv/${query}/credits?api_key=${process.env.TMDB_API_KEY}`
   }
