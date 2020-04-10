@@ -2,6 +2,10 @@
 
 All notable changes for each version of this project are documented in this file.
 
+## 1.1.1 - 2020-04-10
+
+- Add filtering by year to !movie command.
+
 ## 1.1.0 - 2020-04-09
 
 - Add !movie & !show commands.
