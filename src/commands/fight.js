@@ -53,7 +53,7 @@ const attacks = [
   ['Pineapple Pizza', 0, 90, 80, 30],
 
   ['Eat Your Greens', 0, 95, 70, 25],
-  ['Rember Happy Days', 0, 100, 75, 15],
+  ['Rember Happy Day', 0, 100, 75, 15],
   ['Praise the Sun', 0, 90, 80, 30]
 ]
 
