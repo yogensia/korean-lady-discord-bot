@@ -1,4 +1,19 @@
+const TurndownService = require('turndown')
+const tds = new TurndownService()
+
 const random = require('../utils/random')
+
+/**
+ * Capitalizes the first letter in a string.
+ *
+ * @param {string} string - String to capitalize.
+ * @return {string} The capitalized string.
+ */
+const capitalize = (string) => {
+  if (typeof string !== 'string') return ''
+  string = string.toLowerCase()
+  return string.charAt(0).toUpperCase() + string.slice(1)
+}
 
 /**
  * Get the message author's displayName or username.
@@ -195,12 +210,48 @@ const sendMissingParameterMsg = (client, msg, reason) => {
   }).catch(err => sendErrorMsg(msg, err))
 }
 
+/**
+ * Trims a paragraph making sure the last sentence is complete, and optionally adds a "More Link".
+ *
+ * @param {string} paragraph Paragraph string to trim.
+ * @param {string} moreUrl Optional url string for a "Read More" link.
+ * @param {bool} turndown If true, to convert HTML tags to markdown syntax, default is `false`.
+ * @param {integrer} length Optional maximum length for the paragraph, default is `350`.
+ */
+const trimParagraph = (paragraph, moreUrl = '', turndown = false, length = 350) => {
+  // Trim paragraph to desired length.
+  const descriptionMaxLength = length
+  if (paragraph.length > descriptionMaxLength) {
+    paragraph = paragraph.substring(0, descriptionMaxLength - 3).trim()
+  } else {
+    paragraph = paragraph.trim()
+  }
+
+  // If turndown parameter is true, convert HTML tags to markdown syntax.
+  paragraph = tds.turndown(paragraph)
+
+  // Discard last sentence if it was truncated.
+  const descArray = paragraph.split('. ')
+  if (descArray[descArray.length - 1].substr(descArray[descArray.length - 1].length - 1) !== '.') {
+    descArray.pop()
+    // If moreUrl parameter is set, add a Read More link after the paragraph.
+    if (moreUrl) {
+      paragraph = descArray.join('. ') + `...
+      [Read more...](${moreUrl})`
+    }
+  }
+
+  return paragraph
+}
+
 module.exports = {
+  capitalize,
   displayName,
   getCustomEmote,
   reactWithCustomEmote,
   koreanLadyMentioned,
   sendErrorMsg,
   sendMissingParameterMsg,
-  stripMentions
+  stripMentions,
+  trimParagraph
 }

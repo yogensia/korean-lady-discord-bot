@@ -199,20 +199,15 @@ const run = async (client, msg, args) => {
     }
 
     // Trim description if longer than 350 characters.
-    let description
-    const descriptionMaxLength = 350
-    if (movie.overview.length > descriptionMaxLength) {
-      description = movie.overview.substring(0, descriptionMaxLength - 3).trim() + '...'
-    } else {
-      description = movie.overview
-    }
+    const movieUrl = `https://www.imdb.com/title/${movie.imdb_id}`
+    const description = common.trimParagraph(movie.overview, movieUrl, true)
 
     // Reply with an embed message.
     msg.channel.send({
       embed: {
         color: 0x2f3136,
         title,
-        url: `https://www.imdb.com/title/${movie.imdb_id}`,
+        url: movieUrl,
         thumbnail: {
           url: `https://image.tmdb.org/t/p/original${movie.poster_path}`
         },
