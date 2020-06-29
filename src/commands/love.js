@@ -5,10 +5,21 @@ const reactions = require('../utils/reactions')
 
 const run = (client, msg, args) => {
   // Get subject from args.
-  const subject = common.stripMentions(args.join(' '), msg)
+  let subject = common.stripMentions(args.join(' '), msg)
 
   // Get random percentage.
   const result = math.getRandomInt(0, 110)
+
+  // If no subject specified, default to "everyone" or similar string.
+  if (!subject) {
+    const randomSubjectArray = [
+      'chat',
+      'everyone',
+      'everyone in chat',
+      'all nerds'
+    ]
+    subject = math.getRandomStringFromArray(randomSubjectArray)
+  }
 
   // Depending on percentage send a different message.
   let message
@@ -45,9 +56,7 @@ const run = (client, msg, args) => {
 module.exports = {
   name: 'love',
   desc: 'Shows how much you love someone or something, with a random percentage.',
-  usage: 'love <subject>',
-  examples: ['love @Wumpus', 'love everyone in chat'],
-  args: true,
-  args_error: 'You must specify the subject of your love!',
+  usage: 'love [subject]',
+  examples: ['love', 'love @Wumpus', 'love everyone in chat'],
   run
 }

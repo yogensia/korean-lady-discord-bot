@@ -3,7 +3,7 @@ const math = require('../utils/math')
 
 const run = (client, msg, args) => {
   // Get subject from args.
-  const subject = common.stripMentions(args.join(' '), msg)
+  let subject = common.stripMentions(args.join(' '), msg)
 
   // Random emote.
   const emotes = [
@@ -22,7 +22,7 @@ const run = (client, msg, args) => {
     'Swiss Francs',
     'Japanese Yen',
     'Swedish Krona',
-    'South Korean won',
+    'South Korean Won',
     'Hyrule Rupees',
     'Gold coins',
     'Imperial credits',
@@ -44,6 +44,17 @@ const run = (client, msg, args) => {
     money = (money / 100).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
   } else {
     money = (money / 100).toLocaleString('en-US', { maximumFractionDigits: 0 })
+  }
+
+  // If no subject specified, default to "everyone" or similar string.
+  if (!subject) {
+    const randomSubjectArray = [
+      'chat',
+      'everyone',
+      'everyone in chat',
+      'all nerds'
+    ]
+    subject = math.getRandomStringFromArray(randomSubjectArray)
   }
 
   // Don't let the Korean lady get finned!
@@ -70,9 +81,7 @@ const run = (client, msg, args) => {
 module.exports = {
   name: 'fine',
   desc: 'Fines someone with a random amount of money, in a random currency.',
-  usage: 'fine <subject>',
-  examples: ['fine @Superman', 'fine The whole planet'],
-  args: true,
-  args_error: 'You must specify who you want to fine!',
+  usage: 'fine [subject]',
+  examples: ['fine', 'fine @Superman', 'fine The whole planet'],
   run
 }

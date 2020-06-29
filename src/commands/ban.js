@@ -5,7 +5,7 @@ const time = require('../utils/time')
 
 const run = (client, msg, args) => {
   // Get subject from args.
-  const subject = common.stripMentions(args.join(' '), msg)
+  let subject = common.stripMentions(args.join(' '), msg)
 
   // Random emotes.
   const emotes = [
@@ -22,6 +22,17 @@ const run = (client, msg, args) => {
   const futureFormatted = time.format(future, 'YYYY-MM-DD HH:mm:ss', 'MMMM YYYY')
   const countdown = time.getCountdown(future, 'YYYY-MM-DD HH:mm:ss')
   const longerThanYear = time.longerThanYear(future, 'YYYY-MM-DD HH:mm:ss')
+
+  // If no subject specified, default to "everyone" or similar string.
+  if (!subject) {
+    const randomSubjectArray = [
+      'chat',
+      'everyone',
+      'everyone in chat',
+      'all nerds'
+    ]
+    subject = math.getRandomStringFromArray(randomSubjectArray)
+  }
 
   // Build message string.
   let message = `${emote} ${common.displayName(msg)} banned **${subject}** for ${countdown}!`
@@ -46,9 +57,7 @@ const run = (client, msg, args) => {
 module.exports = {
   name: 'ban',
   desc: 'Bans a user or object for a random amount of time, from a few seconds to several years. If the ban is longer than a year the expiry date will also be shown.',
-  usage: 'ban <subject>',
-  examples: ['ban Mosquitoes', 'ban @Batman'],
-  args: true,
-  args_error: 'You must specify who or what to ban!',
+  usage: 'ban [subject]',
+  examples: ['ban', 'ban Mosquitoes', 'ban @Batman'],
   run
 }

@@ -192,6 +192,15 @@ const run = (client, msg, args) => {
     hp: 150
   }
 
+  // If no subject specified, default to "everyone" or similar string.
+  if (!subject.name) {
+    const randomSubjectArray = [
+      'chat',
+      'everyone'
+    ]
+    subject.name = math.getRandomStringFromArray(randomSubjectArray)
+  }
+
   if (subject.name.toLowerCase() === instigator.name.toLowerCase()) {
     subject.name = 'himself/herself'
   }
@@ -217,9 +226,7 @@ module.exports = {
   name: 'fight',
   desc: 'Start a fight with someone.\n\nCharacters start with 150HP and take turns to attack. Attacks are selected randomly, and their damage multiplier is also rolled randomly each turn. Each attack has a different accuracy and critical hit chance. The first fighter that runs out of HP loses.',
   aliases: ['battle'],
-  usage: 'fight <subject>',
-  examples: ['fight Loch Ness Monster', 'fight @Batman'],
-  args: true,
-  args_error: 'You must specify who or what to fight with!',
+  usage: 'fight [subject]',
+  examples: ['fight', 'fight Loch Ness Monster', 'fight @Batman'],
   run
 }

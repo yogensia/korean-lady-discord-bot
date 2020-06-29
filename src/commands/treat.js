@@ -37,6 +37,7 @@ const adjectives = [
   'Lovely',
   'Luscious',
   'Mini',
+  'Massive',
   'Next Level',
   'Rainbow',
   'Squishy',
@@ -63,7 +64,7 @@ const flavours = [
   'Chocolate Bark',
   'Chocolate Chip',
   'Chocolate Hazelnut',
-  'Cinamon-Honey',
+  'Cinnamon-Honey',
   'Cocktail',
   'Cranberry',
   'Cream',
@@ -166,7 +167,9 @@ const run = (client, msg, args) => {
   } else {
     const randomSubjectArray = [
       'chat',
-      'everyone'
+      'everyone',
+      'everyone in chat',
+      'all nerds'
     ]
     const randomSubject = math.getRandomStringFromArray(randomSubjectArray)
 

@@ -4,7 +4,7 @@ const reactions = require('../utils/reactions')
 
 const run = (client, msg, args) => {
   // Get subject from args.
-  const subject = common.stripMentions(args.join(' '), msg)
+  let subject = common.stripMentions(args.join(' '), msg)
 
   // Get random HP.
   const result = math.getRandomInt(0, 100)
@@ -21,6 +21,17 @@ const run = (client, msg, args) => {
   ]
   let emote = math.getRandomStringFromArray(emotes)
   emote = common.getCustomEmote(client, emote[0], emote[1])
+
+  // If no subject specified, default to "everyone" or similar string.
+  if (!subject) {
+    const randomSubjectArray = [
+      'chat',
+      'everyone',
+      'everyone in chat',
+      'all nerds'
+    ]
+    subject = math.getRandomStringFromArray(randomSubjectArray)
+  }
 
   // Depending on percentage send a different message.
   let message
@@ -49,9 +60,7 @@ const run = (client, msg, args) => {
 module.exports = {
   name: 'slap',
   desc: 'Lets you slap your nemeses, and shows how much damage you\'ve inflicted.',
-  usage: 'slap <subject>',
-  examples: ['slap @Cthulhu', 'slap everyone in chat'],
-  args: true,
-  args_error: 'You must specify who is getting slapped!',
+  usage: 'slap [subject]',
+  examples: ['slap', 'slap @Cthulhu', 'slap everyone in chat'],
   run
 }

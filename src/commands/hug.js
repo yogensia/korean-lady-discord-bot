@@ -5,7 +5,7 @@ const reactions = require('../utils/reactions')
 
 const run = (client, msg, args) => {
   // Get subject from args.
-  const subject = common.stripMentions(args.join(' '), msg)
+  let subject = common.stripMentions(args.join(' '), msg)
 
   // Ramdom emotes and hug duration.
   const emotes = [
@@ -19,6 +19,17 @@ const run = (client, msg, args) => {
 
   // Random exclamation.
   const exclamation = random.exclamation()
+
+  // If no subject specified, default to "everyone" or similar string.
+  if (!subject) {
+    const randomSubjectArray = [
+      'chat',
+      'everyone',
+      'everyone in chat',
+      'all nerds'
+    ]
+    subject = math.getRandomStringFromArray(randomSubjectArray)
+  }
 
   // Reply with an embed message.
   msg.channel.send({
@@ -37,9 +48,7 @@ const run = (client, msg, args) => {
 module.exports = {
   name: 'hug',
   desc: 'Hugs someone/something for a random amount of mississippis.',
-  usage: 'hug <subject>',
-  examples: ['hug chat'],
-  args: true,
-  args_error: 'You must specify who or what you want to hug!',
+  usage: 'hug [subject]',
+  examples: ['hug', 'hug chat'],
   run
 }
