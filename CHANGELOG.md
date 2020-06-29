@@ -2,6 +2,13 @@
 
 All notable changes for each version of this project are documented in this file.
 
+## 1.2.0 - 2020-06-29
+
+- Add !anime command.
+- Improve movie descriptions in !movie command.
+- Fix typos and other minor issues.
+- Make subject optional in !ban, !fight, !fine, !hug, !love and !slap commands No subject equals "everyone".
+
 ## 1.1.2 - 2020-04-10
 
 - Add filtering by year to !show command.
