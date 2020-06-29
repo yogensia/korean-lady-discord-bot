@@ -16,13 +16,21 @@ Usage: `k!8ball <question>`
 
 Examples: `k!8ball Will I pass my exam?`
 
+### `k!anime`
+
+Returns info about an anime. The command will always try to find the best match, but providing a full title is still recommended for best results. Filtering by year is not supported.
+
+Usage: `k!anime <anime title>`
+
+Examples: `k!anime Hinamatsuri`
+
 ### `k!ban`
 
 Bans a user or object for a random amount of time, from a few seconds to several years. If the ban is longer than a year the expiry date will also be shown.
 
-Usage: `k!ban <subject>`
+Usage: `k!ban [subject]`
 
-Examples: `k!ban Mosquitoes` `k!ban @Batman`
+Examples: `k!ban` `k!ban Mosquitoes` `k!ban @Batman`
 
 ### `k!coin`
 
@@ -46,9 +54,9 @@ Start a fight with someone.
 
 Characters start with 150HP and take turns to attack. Attacks are selected randomly, and their damage multiplier is also rolled randomly each turn. Each attack has a different accuracy and critical hit chance. The first fighter that runs out of HP loses.
 
-Usage: `k!fight <subject>`
+Usage: `k!fight [subject]`
 
-Examples: `k!fight Loch Ness Monster` `k!fight @Batman`
+Examples: `k!fight` `k!fight Loch Ness Monster` `k!fight @Batman`
 
 Aliases: `k!battle`
 
@@ -56,9 +64,9 @@ Aliases: `k!battle`
 
 Fines someone with a random amount of money, in a random currency.
 
-Usage: `k!fine <subject>`
+Usage: `k!fine [subject]`
 
-Examples: `k!fine @Superman` `k!fine The whole planet`
+Examples: `k!fine` `k!fine @Superman` `k!fine The whole planet`
 
 ### `k!fortune`
 
@@ -84,9 +92,9 @@ Aliases: `k!h` `k!?` `k!info`
 
 Hugs someone/something for a random amount of mississippis.
 
-Usage: `k!hug <subject>`
+Usage: `k!hug [subject]`
 
-Examples: `k!hug chat`
+Examples: `k!hug` `k!hug chat`
 
 ### `k!list`
 
@@ -100,9 +108,9 @@ Aliases: `k!commands` `k!commandlist`
 
 Shows how much you love someone or something, with a random percentage.
 
-Usage: `k!love <subject>`
+Usage: `k!love [subject]`
 
-Examples: `k!love @Wumpus` `k!love everyone in chat`
+Examples: `k!love` `k!love @Wumpus` `k!love everyone in chat`
 
 ### `k!movie`
 
@@ -140,9 +148,9 @@ Examples: `k!show The Witcher` `k!show Doctor Who (1963)`
 
 Lets you slap your nemeses, and shows how much damage you've inflicted.
 
-Usage: `k!slap <subject>`
+Usage: `k!slap [subject]`
 
-Examples: `k!slap @Cthulhu` `k!slap everyone in chat`
+Examples: `k!slap` `k!slap @Cthulhu` `k!slap everyone in chat`
 
 ### `k!timezones`
 
