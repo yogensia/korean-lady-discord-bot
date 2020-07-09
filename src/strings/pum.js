@@ -4,10 +4,15 @@ const math = require('../utils/math')
 const run = (client, msg) => {
   // Ramdom emotes and hug duration.
   const emotes = [
+    'apololw',
+    'Angry',
     'Apoggies',
     'liduHyper',
+    'apolHyper',
+    'apolAngy',
     'pikaD',
     'POG',
+    'blurryeyes',
     'tohrusmug'
   ]
   const emote = common.getCustomEmote(client, math.getRandomStringFromArray(emotes))
@@ -17,10 +22,12 @@ const run = (client, msg) => {
   // Random rare sentence (chance one out of five).
   if (math.getRandomInt(1, 5) === 5) {
     const randomSentenceArray = [
-      'pum strim when?',
+      'pum stirm when',
+      'pum strim wehn',
       'pum jshkd wgeke?',
       'pumski strimski when?',
-      'pum når er strim?'
+      'pum når er strim?',
+      'strim pum when?'
     ]
     sentence = math.getRandomStringFromArray(randomSentenceArray)
   }
