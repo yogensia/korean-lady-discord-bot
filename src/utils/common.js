@@ -122,7 +122,10 @@ const getCustomEmote = (client, name, fallback) => {
  * @returns {Boolean} True if Korean Lady is mentioned, false otherwise.
  */
 const koreanLadyMentioned = subject => {
-  if (subject.toLowerCase() === 'koreanlady' || subject.toLowerCase() === 'korean lady') {
+  if (subject.toLowerCase() === 'koreanlady' ||
+  subject.toLowerCase() === 'korean lady' ||
+  subject.toLowerCase() === 'koreanladyushka' ||
+  subject.toLowerCase() === 'korean ladyushka') {
     return true
   } else {
     return false
