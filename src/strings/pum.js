@@ -8,8 +8,6 @@ const run = (client, msg) => {
     'Angry',
     'Apoggies',
     'liduHyper',
-    'apolHyper',
-    'apolAngy',
     'pikaD',
     'POG',
     'blurryeyes',
