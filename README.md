@@ -66,7 +66,7 @@ To get started using this repo follow these steps:
 
 ## Changelog
 
-All notable changes for each version of this project are documented in the [changelog](https://github.com/yogensia/korean-lady-discord-bot/CHANGELOG.md).
+All notable changes for each version of this project are documented in the [changelog](https://github.com/yogensia/korean-lady-discord-bot/blob/master/CHANGELOG.md).
 
 ## Credits & Acknowledgments
 
