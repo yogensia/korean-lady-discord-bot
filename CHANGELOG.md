@@ -2,6 +2,15 @@
 
 All notable changes for each version of this project are documented in this file.
 
+## 1.2.2 - 2020-07-09
+
+- Improve KoreanLady mention detection.
+
+## 1.2.1 - 2020-07-03
+
+- Add "pum strim when?" responses.
+
+
 ## 1.2.0 - 2020-06-29
 
 - Add !anime command.
