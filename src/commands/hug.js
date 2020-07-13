@@ -3,17 +3,19 @@ const math = require('../utils/math')
 const random = require('../utils/random')
 const reactions = require('../utils/reactions')
 
+// Emotes.
+const emotes = [
+  'peepoPants',
+  'peepoBlanket',
+  'ihaa',
+  'Hypers'
+]
+
 const run = (client, msg, args) => {
   // Get subject from args.
   let subject = common.stripMentions(args.join(' '), msg)
 
   // Ramdom emotes and hug duration.
-  const emotes = [
-    'peepoPants',
-    'peepoBlanket',
-    'ihaa',
-    'Hypers'
-  ]
   const emote = common.getCustomEmote(client, math.getRandomStringFromArray(emotes))
   const time = math.getRandomFloat(0, 10)
 
@@ -22,13 +24,7 @@ const run = (client, msg, args) => {
 
   // If no subject specified, default to "everyone" or similar string.
   if (!subject) {
-    const randomSubjectArray = [
-      'chat',
-      'everyone',
-      'everyone in chat',
-      'all nerds'
-    ]
-    subject = math.getRandomStringFromArray(randomSubjectArray)
+    subject = common.randomSubject()
   }
 
   // Reply with an embed message.

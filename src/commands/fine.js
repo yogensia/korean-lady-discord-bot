@@ -1,34 +1,38 @@
 const common = require('../utils/common')
 const math = require('../utils/math')
 
+// Emotes.
+const emotes = [
+  '🧾',
+  '💸',
+  '💳',
+  '💰'
+]
+
+// Currencies
+const currencies = [
+  'USD',
+  'Euros',
+  'Pounds',
+  'Swiss Francs',
+  'Japanese Yen',
+  'Swedish Krona',
+  'South Korean Won',
+  'Hyrule Rupees',
+  'Gold coins',
+  'Imperial credits',
+  'Souls',
+  'Zeni'
+]
+
 const run = (client, msg, args) => {
   // Get subject from args.
   let subject = common.stripMentions(args.join(' '), msg)
 
   // Random emote.
-  const emotes = [
-    '🧾',
-    '💸',
-    '💳',
-    '💰'
-  ]
   const emote = math.getRandomStringFromArray(emotes)
 
   // Random currency.
-  const currencies = [
-    'USD',
-    'Euros',
-    'Pounds',
-    'Swiss Francs',
-    'Japanese Yen',
-    'Swedish Krona',
-    'South Korean Won',
-    'Hyrule Rupees',
-    'Gold coins',
-    'Imperial credits',
-    'Souls',
-    'Zeni'
-  ]
   const currency = math.getRandomStringFromArray(currencies)
 
   // Random money amount.
@@ -48,13 +52,7 @@ const run = (client, msg, args) => {
 
   // If no subject specified, default to "everyone" or similar string.
   if (!subject) {
-    const randomSubjectArray = [
-      'chat',
-      'everyone',
-      'everyone in chat',
-      'all nerds'
-    ]
-    subject = math.getRandomStringFromArray(randomSubjectArray)
+    subject = common.randomSubject()
   }
 
   // Don't let the Korean lady get finned!

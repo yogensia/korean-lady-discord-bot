@@ -3,18 +3,20 @@ const math = require('../utils/math')
 const reactions = require('../utils/reactions')
 const time = require('../utils/time')
 
+// Emotes.
+const emotes = [
+  '🔨',
+  '😡',
+  '⛔️',
+  '🚫',
+  '🚪'
+]
+
 const run = (client, msg, args) => {
   // Get subject from args.
   let subject = common.stripMentions(args.join(' '), msg)
 
   // Random emotes.
-  const emotes = [
-    '🔨',
-    '😡',
-    '⛔️',
-    '🚫',
-    '🚪'
-  ]
   const emote = math.getRandomStringFromArray(emotes)
 
   // Get time data.
@@ -25,13 +27,7 @@ const run = (client, msg, args) => {
 
   // If no subject specified, default to "everyone" or similar string.
   if (!subject) {
-    const randomSubjectArray = [
-      'chat',
-      'everyone',
-      'everyone in chat',
-      'all nerds'
-    ]
-    subject = math.getRandomStringFromArray(randomSubjectArray)
+    subject = common.randomSubject()
   }
 
   // Build message string.

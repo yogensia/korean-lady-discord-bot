@@ -187,11 +187,7 @@ const run = (client, msg, args) => {
 
   // If no subject specified, default to "everyone" or similar string.
   if (!subject.name) {
-    const randomSubjectArray = [
-      'chat',
-      'everyone'
-    ]
-    subject.name = math.getRandomStringFromArray(randomSubjectArray)
+    subject.name = common.randomSubject(true)
   }
 
   if (subject.name.toLowerCase() === instigator.name.toLowerCase()) {

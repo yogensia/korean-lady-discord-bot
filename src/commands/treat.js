@@ -3,6 +3,7 @@ const math = require('../utils/math')
 const random = require('../utils/random')
 const reactions = require('../utils/reactions')
 
+// Treat adjectives.
 const adjectives = [
   'Aesthetic',
   'Aromatic',
@@ -51,6 +52,7 @@ const adjectives = [
   'Ultimate'
 ]
 
+// Treat flavours.
 const flavours = [
   'Almond & Honey',
   'Almond Liqueur',
@@ -101,6 +103,7 @@ const flavours = [
   'White Chocolate'
 ]
 
+// Treats.
 const treats = [
   ['🍎', 'Apple Crisp'],
   ['🍎', 'Apple Pockets'],
@@ -165,13 +168,7 @@ const run = (client, msg, args) => {
   if (subject) {
     description = `${intro} ${common.displayName(msg)} is treating **${subject}** to...\n${treat[0]} **${adjective} ${flavour} ${treat[1]}!**`
   } else {
-    const randomSubjectArray = [
-      'chat',
-      'everyone',
-      'everyone in chat',
-      'all nerds'
-    ]
-    const randomSubject = math.getRandomStringFromArray(randomSubjectArray)
+    const randomSubject = common.randomSubject()
 
     description = `${intro} ${common.displayName(msg)} is treating **${randomSubject}** to...\n${treat[0]} **${adjective} ${flavour} ${treat[1]}!**`
   }

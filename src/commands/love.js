@@ -12,13 +12,7 @@ const run = (client, msg, args) => {
 
   // If no subject specified, default to "everyone" or similar string.
   if (!subject) {
-    const randomSubjectArray = [
-      'chat',
-      'everyone',
-      'everyone in chat',
-      'all nerds'
-    ]
-    subject = math.getRandomStringFromArray(randomSubjectArray)
+    subject = common.randomSubject()
   }
 
   // Depending on percentage send a different message.

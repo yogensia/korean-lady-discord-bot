@@ -2,6 +2,7 @@ const TurndownService = require('turndown')
 const tds = new TurndownService()
 
 const random = require('../utils/random')
+const math = require('../utils/math')
 
 /**
  * Capitalizes the first letter in a string.
@@ -220,6 +221,7 @@ const sendMissingParameterMsg = (client, msg, reason) => {
  * @param {string} moreUrl Optional url string for a "Read More" link.
  * @param {bool} turndown If true, to convert HTML tags to markdown syntax, default is `false`.
  * @param {integrer} length Optional maximum length for the paragraph, default is `350`.
+ * @returns {string} A paragraph string.
  */
 const trimParagraph = (paragraph, moreUrl = '', turndown = false, length = 350) => {
   // Trim paragraph to desired length.
@@ -247,12 +249,45 @@ const trimParagraph = (paragraph, moreUrl = '', turndown = false, length = 350) 
   return paragraph
 }
 
+/**
+ * Returns a random subject string.
+ *
+ * @param {bool} singular If true, will only return singular subjects (such as 'chat'), default is `false`.
+ * @returns {string} A randon subject string.
+ */
+const randomSubject = (singular = false) => {
+  // Subjects.
+  const subjects = [
+    'chat',
+    'every merd',
+    'every merd in chat',
+    'every nerd',
+    'every nerd in chat',
+    'every nerd & merd',
+    'everyone',
+    'everyone in chat'
+  ]
+
+  if (!singular) {
+    subjects.push(
+      'all merds',
+      'all merds in chat',
+      'all nerds',
+      'all nerds in chat',
+      'all nerds & merds'
+    )
+  }
+
+  return math.getRandomStringFromArray(subjects)
+}
+
 module.exports = {
   capitalize,
   displayName,
   getCustomEmote,
   reactWithCustomEmote,
   koreanLadyMentioned,
+  randomSubject,
   sendErrorMsg,
   sendMissingParameterMsg,
   stripMentions,
