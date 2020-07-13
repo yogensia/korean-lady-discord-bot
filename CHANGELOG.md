@@ -2,6 +2,10 @@
 
 All notable changes for each version of this project are documented in this file.
 
+## 1.2.4 - 2020-07-13
+
+- Refactor several commands slightly and improve random subject strings.
+
 ## 1.2.3 - 2020-07-13
 
 - Adjust !fight command for slightly shorter fights.
