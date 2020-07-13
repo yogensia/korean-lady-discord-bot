@@ -6,10 +6,10 @@ const run = (client, msg, args) => {
   const question = common.stripMentions(args.join(' '), msg, false)
   let answer
 
-  // Potato check, 1/5 chance for omasa, 1/10 chance for others.
+  // Potato check, 1/5 chance for omasa, 1/20 chance for others.
   if (msg.author.username.toLowerCase() === 'omasa' && math.getRandomInt(1, 5) === 1) {
     answer = '🥔'
-  } else if (math.getRandomInt(1, 10) === 1) {
+  } else if (math.getRandomInt(1, 20) === 1) {
     answer = '🥔'
   } else {
     // Random 8 ball answer.
