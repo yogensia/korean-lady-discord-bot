@@ -16,7 +16,7 @@ const run = (client, msg, args) => {
   let subject = common.stripMentions(args.join(' '), msg)
 
   // Ramdom emotes and hug duration.
-  const emote = common.getCustomEmote(client, math.getRandomStringFromArray(emotes))
+  const emote = common.getCustomEmote(client, math.getRandomStringFromArray(emotes, false))
   const time = math.getRandomFloat(0, 10)
 
   // Random exclamation.

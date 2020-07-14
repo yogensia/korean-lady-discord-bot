@@ -17,7 +17,7 @@ const run = (client, msg, args) => {
   let subject = common.stripMentions(args.join(' '), msg)
 
   // Random emotes.
-  const emote = math.getRandomStringFromArray(emotes)
+  const emote = math.getRandomStringFromArray(emotes, false)
 
   // Get time data.
   const future = time.getRandomFuture('YYYY-MM-DD HH:mm:ss')

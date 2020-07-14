@@ -2,24 +2,26 @@ const common = require('../utils/common')
 const math = require('../utils/math')
 const reactions = require('../utils/reactions')
 
+// Emotes.
+const emotes = [
+  ['sadcat', '👀'],
+  ['PandaOhNo', '😱'],
+  ['sweat_eo_medic', '😰'],
+  ['PepeHands~1', '😭'],
+  ['Monkas', '😦'],
+  ['apollo20M2', '😔'],
+  ['noCustomEmote', '👀']
+]
+
 const run = (client, msg, args) => {
   // Get subject from args.
   let subject = common.stripMentions(args.join(' '), msg)
 
   // Get random HP.
   const result = math.getRandomInt(0, 100)
+  let emote = math.getRandomStringFromArray(emotes, false)
 
   // Random emote.
-  const emotes = [
-    ['sadcat', '👀'],
-    ['PandaOhNo', '😱'],
-    ['sweat_eo_medic', '😰'],
-    ['PepeHands~1', '😭'],
-    ['Monkas', '😦'],
-    ['apollo20M2', '😔'],
-    ['noCustomEmote', '👀']
-  ]
-  let emote = math.getRandomStringFromArray(emotes)
   emote = common.getCustomEmote(client, emote[0], emote[1])
 
   // If no subject specified, default to "everyone" or similar string.

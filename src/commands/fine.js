@@ -30,10 +30,10 @@ const run = (client, msg, args) => {
   let subject = common.stripMentions(args.join(' '), msg)
 
   // Random emote.
-  const emote = math.getRandomStringFromArray(emotes)
+  const emote = math.getRandomStringFromArray(emotes, false)
 
   // Random currency.
-  const currency = math.getRandomStringFromArray(currencies)
+  const currency = math.getRandomStringFromArray(currencies, false)
 
   // Random money amount.
   let money = math.getRandomInt(0, 999888777666)
