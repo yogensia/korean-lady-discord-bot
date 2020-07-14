@@ -2,6 +2,10 @@
 
 All notable changes for each version of this project are documented in this file.
 
+## 1.2.5 - 2020-07-14
+
+- Fix emotes not working after a while in some commands.
+
 ## 1.2.4 - 2020-07-13
 
 - Refactor several commands slightly and improve random subject strings.
