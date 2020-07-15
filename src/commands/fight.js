@@ -21,7 +21,7 @@ const attacks = [
   ['Friendliness Pellet', 35, 95, 85, 0],
   ['Splishy Splash', 50, 70, 75, 0],
   ['Flying Nachos', 45, 80, 75, 0],
-  ['Judgamental Look', 50, 75, 70, 0],
+  ['Judgemental Look', 50, 75, 70, 0],
   ['Tickle Attack', 40, 90, 80, 0],
   ['Harsh Language', 35, 70, 90, 0],
 
