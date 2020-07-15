@@ -1,33 +1,37 @@
 const common = require('../utils/common')
 const math = require('../utils/math')
 
+// Emotes.
+const emotes = [
+  'apololw',
+  'Angry',
+  'Apoggies',
+  'liduHyper',
+  'pikaD',
+  'POG',
+  'blurryeyes',
+  'tohrusmug'
+]
+
+const randomSentenceArray = [
+  'pum stirm when',
+  'pum strim wehn',
+  'pum jshkd wgeke?',
+  'pumski strimski when?',
+  'pum når er strim?',
+  'strim pum when?',
+  'pümli strümli when?'
+]
+
 const run = (client, msg) => {
   // Ramdom emotes and hug duration.
-  const emotes = [
-    'apololw',
-    'Angry',
-    'Apoggies',
-    'liduHyper',
-    'pikaD',
-    'POG',
-    'blurryeyes',
-    'tohrusmug'
-  ]
-  const emote = common.getCustomEmote(client, math.getRandomStringFromArray(emotes))
+  const emote = common.getCustomEmote(client, math.getRandomStringFromArray(emotes, false))
 
   let sentence = 'pum strim when?'
 
   // Random rare sentence (chance one out of five).
   if (math.getRandomInt(1, 5) === 5) {
-    const randomSentenceArray = [
-      'pum stirm when',
-      'pum strim wehn',
-      'pum jshkd wgeke?',
-      'pumski strimski when?',
-      'pum når er strim?',
-      'strim pum when?'
-    ]
-    sentence = math.getRandomStringFromArray(randomSentenceArray)
+    sentence = math.getRandomStringFromArray(randomSentenceArray, false)
   }
 
   const description = `**${sentence}** ${emote}`

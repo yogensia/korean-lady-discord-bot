@@ -1,5 +1,4 @@
 const common = require('../utils/common')
-const pum = require('../strings/pum')
 
 module.exports = (client, msg) => {
   // Ignore bot messages.
@@ -39,18 +38,20 @@ module.exports = (client, msg) => {
     // Run the command.
     cmd.run(client, msg, args)
   } else {
-    // If word 'pum' is found in message send a 'pum strim when?' reply.
+    // If a word in the string responders list is found in message, send its reply.
     msg.words = msg.content.split(' ')
     let done = false
     msg.words.every((word) => {
-      if (word.toLowerCase() === 'pum') {
-        pum.run(client, msg)
-        done = true
-      }
+      client.strings.forEach(string => {
+        if (word.toLowerCase() === string.name) {
+          string.run(client, msg)
+          done = true
+        }
 
-      // Break loop on first instance of the word found.
-      if (done) return false
-      else return true
+        // Break loop on first instance of the word found.
+        if (done) return false
+        else return true
+      })
     })
   }
 }

@@ -6,6 +6,7 @@ const fs = require('fs')
 
 const client = new Client()
 client.commands = new Enmap()
+client.strings = new Enmap()
 
 /**
  * Ready event.
@@ -52,10 +53,30 @@ fs.readdir('./src/commands/', (err, files) => {
 
     // Get just the command name from the filename.
     const commandName = file.split('.')[0]
-    console.log(`Attempting to load command ${commandName}`)
+    console.log(`Loading command '${commandName}'`)
 
     // Store in the command Enmap.
     client.commands.set(commandName, props)
+  })
+})
+
+/**
+ * Load string responders.
+ */
+fs.readdir('./src/strings/', (err, files) => {
+  if (err) return console.error(err)
+  files.forEach(file => {
+    if (!file.endsWith('.js')) return
+
+    // Load the string responder file itself.
+    const props = require(`./strings/${file}`)
+
+    // Get the string name from the filename.
+    const stringName = file.split('.')[0]
+    console.log(`Loading string responder '${stringName}'`)
+
+    // Store in the string responders Enmap.
+    client.strings.set(stringName, props)
   })
 })
 
