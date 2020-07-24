@@ -217,5 +217,6 @@ module.exports = {
   aliases: ['battle'],
   usage: 'fight [subject]',
   examples: ['fight', 'fight Loch Ness Monster', 'fight @Batman'],
+  spam: true,
   run
 }
