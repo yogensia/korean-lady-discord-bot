@@ -99,7 +99,6 @@ const stripMentions = (subject, msg, pronoun = true) => {
  * @returns {(Object|string|Boolean)} The emote object, fallback string or an empty string.
  */
 const getCustomEmote = (client, name, fallback) => {
-  // client.emojis.cache.find(emoji => console.log(emoji))
   const emote = client.emojis.cache.find(emoji => emoji.name === name)
 
   // If emote is available return it.
@@ -142,16 +141,16 @@ const koreanLadyMentioned = subject => {
  * @param {string} name Name of the emote (ex: peepoPants).
  * @param {string} fallback Fallback emote unicode (ex: ❤️).
  */
-const reactWithCustomEmote = (client, msg, name, fallback) => {
+const reactWithCustomEmote = async (client, msg, name, fallback) => {
   const emote = getCustomEmote(client, name, fallback)
 
   // If emote is available react to user's message.
   if (emote.id) {
-    msg.react(emote.id).catch(err => console.log(new Error(err)))
+    await msg.react(emote.id).catch(err => console.log(new Error(err)))
   } else if (emote) {
     // If custom emote is not available, check if a fallback was provided,
     // and if so, use that.
-    msg.react(fallback).catch(err => console.log(new Error(err)))
+    await msg.react(fallback).catch(err => console.log(new Error(err)))
   }
 }
 
