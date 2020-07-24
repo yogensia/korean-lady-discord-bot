@@ -215,6 +215,29 @@ const sendMissingParameterMsg = (client, msg, reason) => {
 }
 
 /**
+ * Send a spam warning message.
+ *
+ * @param {Object} client Client object.
+ * @param {Object} msg Message object.
+ */
+const sendSpamMsg = (client, msg) => {
+  // Emotes.
+  const emoteThanks = getCustomEmote(client, 'ihaa', '❤')
+
+  // Send a reply with the warning.
+  msg.channel.send({
+    embed: {
+      color: 0x2f3136,
+      description: `Sorry ${displayName(msg)}, ${process.env.PREFIX}${client.cmd.name} is a bit too spammy for this channel, please use it in <#${client.spamChannel.id}> instead. Thank you! ${emoteThanks}`,
+      footer: {
+        text: 'This message will self-destruct in 30 seconds... 👀'
+      }
+    }
+  }).then(msg => msg.delete({ timeout: 30000 }))
+    .catch(err => console.log(new Error(err)))
+}
+
+/**
  * Trims a paragraph making sure the last sentence is complete, and optionally adds a "More Link".
  *
  * @param {string} paragraph Paragraph string to trim.
@@ -290,6 +313,7 @@ module.exports = {
   randomSubject,
   sendErrorMsg,
   sendMissingParameterMsg,
+  sendSpamMsg,
   stripMentions,
   trimParagraph
 }

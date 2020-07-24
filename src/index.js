@@ -13,6 +13,7 @@ client.strings = new Enmap()
  */
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`)
+
   // Set bot status and presence.
   client.user.setStatus('available')
   client.user.setPresence({
@@ -21,6 +22,13 @@ client.on('ready', () => {
       type: 'PLAYING'
     }
   })
+
+  // Get spam channel object.
+  client.channels.fetch(process.env.SPAM_CHANNEL_ID)
+    .then(channel => {
+      client.spamChannel = channel
+    })
+    .catch(console.error)
 })
 
 /**
