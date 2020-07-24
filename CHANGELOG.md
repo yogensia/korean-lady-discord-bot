@@ -2,6 +2,14 @@
 
 All notable changes for each version of this project are documented in this file.
 
+## 1.2.7 - 2020-07-24
+
+- Add first set of spam related features.
+  - Commands can now be marked as "spammy".
+  - Spammy commands must be used in the designated spam channel.
+  - When used in other channels a notice will be shown to the user.
+- Make reactWithCcustomEmote function asynchronous.
+
 ## 1.2.6 - 2020-07-15
 
 - Add "lidu strim when?" responses.
