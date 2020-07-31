@@ -45,20 +45,13 @@ module.exports = (client, msg) => {
       cmd.run(client, msg, args)
     }
   } else {
-    // If a word in the string responders list is found in message, send its reply.
-    msg.words = msg.content.split(' ')
-    let done = false
-    msg.words.every((word) => {
-      client.strings.forEach(string => {
-        if (word.toLowerCase() === string.name) {
-          string.run(client, msg)
-          done = true
-        }
+    // If not a command and the first word in the message
+    // matches a word in string responders list, reply to it.
+    const search = msg.content.split(' ')[0]
+    const stringFound = client.strings.find(string => search === string.name)
 
-        // Break loop on first instance of the word found.
-        if (done) return false
-        else return true
-      })
-    })
+    if (stringFound) {
+      stringFound.run(client, msg)
+    }
   }
 }
