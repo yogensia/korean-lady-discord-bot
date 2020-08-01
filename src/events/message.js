@@ -47,7 +47,7 @@ module.exports = (client, msg) => {
   } else {
     // If not a command and the first word in the message
     // matches a word in string responders list, reply to it.
-    const search = msg.content.split(' ')[0]
+    const search = msg.content.split(' ')[0].toLowerCase()
     const stringFound = client.strings.find(string => search === string.name)
 
     if (stringFound) {
