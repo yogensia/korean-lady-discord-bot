@@ -2,6 +2,10 @@
 
 All notable changes for each version of this project are documented in this file.
 
+## 1.2.9 - 2020-08-01
+
+- Fix letter case variations breaking string auto responder.
+
 ## 1.2.8 - 2020-07-31
 
 - Refactor string auto-responses in message event handler.
