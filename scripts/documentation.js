@@ -53,6 +53,11 @@ const parseCommand = cmd => {
     const aliases = aliasesArray.join(' ')
     output += `Aliases: ${aliases}\n\n`
   }
+
+  // If command is marked as spam, add a notice.
+  if (cmd.spam) {
+    output += 'Notice: This command is considered spam and can only be used in the spam channel.\n\n'
+  }
 }
 
 /**

@@ -1,5 +1,9 @@
 # KoreanLady Discord Bot
 
+**KoreanLady** is a simple Discord bot with a few fun commands.
+
+Please remember to not use it to spam the server, if you're going to use it a lot make sure to do so in the spam channel, thanks!
+
 ## Command List
 
 Below you can see the full list of available commands.
@@ -59,6 +63,8 @@ Usage: `k!fight [subject]`
 Examples: `k!fight` `k!fight Loch Ness Monster` `k!fight @Batman`
 
 Aliases: `k!battle`
+
+Warning: This command is considered spammy and can only be used in the spam channel.
 
 ### `k!fine`
 
