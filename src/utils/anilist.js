@@ -11,7 +11,6 @@ const common = require('../utils/common')
  * @param {string} query Query (ex: `550`)
  * @param {Object} msg Message object.
  */
-
 const request = async (msg, endpoint, query, startDate = false) => {
   if (endpoint === 'anime') {
     // Make request.
@@ -57,9 +56,15 @@ const request = async (msg, endpoint, query, startDate = false) => {
         'Content-Type': 'application/json',
         Accept: 'application/json'
       }
-    }).catch(err => common.sendErrorMsg(msg, err))
+    }).catch(err => console.log(`Error requesting AniList API: Error code ${err.response.status}`))
 
-    return response.data.data.Media
+    if (!response) {
+      return {
+        error: 404
+      }
+    } else {
+      return response.data.data.Media
+    }
   } else if (endpoint === 'anime_search') {
     // Make request.
     const response = await axios({

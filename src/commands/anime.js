@@ -30,6 +30,19 @@ const searchAnime = async (msg, subject) => {
  *
  * @param {Object} meta Anime metadata.
  */
+const getMeta = (meta) => {
+  if (meta) {
+    return meta
+  } else {
+    return false
+  }
+}
+
+/**
+ * Returns a data or `false` if not found.
+ *
+ * @param {Object} meta Anime metadata.
+ */
 const getTitle = (title) => {
   if (title) {
     // [1]: Anime title; [2]: Year.
@@ -111,19 +124,6 @@ const getRuntime = (show) => {
  *
  * @param {Object} meta Anime metadata.
  */
-const getMeta = (meta) => {
-  if (meta) {
-    return meta
-  } else {
-    return false
-  }
-}
-
-/**
- * Returns a data or `false` if not found.
- *
- * @param {Object} meta Anime metadata.
- */
 const getStreams = (streams) => {
   const streamLinks = []
   streams.forEach(stream => {
@@ -145,8 +145,6 @@ const run = async (client, msg, args) => {
 
   // Request movie info from TMDB API.
   const show = await searchAnime(msg, subject)
-
-  console.log(show)
 
   if (show && show.id) {
     // Probably a good idea to abort if this is an adult show...
