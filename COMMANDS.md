@@ -64,7 +64,7 @@ Examples: `k!fight` `k!fight Loch Ness Monster` `k!fight @Batman`
 
 Aliases: `k!battle`
 
-Warning: This command is considered spammy and can only be used in the spam channel.
+Warning: This command is considered spam and can only be used in the spam channel.
 
 ### `k!fine`
 
