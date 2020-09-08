@@ -20,7 +20,8 @@ const randomSentenceArray = [
   'pumski strimski when?',
   'pum når er strim?',
   'strim pum when?',
-  'pümli strümli when?'
+  'pümli strümli when?',
+  'pumsi strimsi when?'
 ]
 
 const run = (client, msg) => {
