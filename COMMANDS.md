@@ -138,7 +138,7 @@ Examples: `k!movie Alien` `k!movie Total Recall (1990)`
 
 ### `k!movienight`
 
-Shows a link with info about Movie Nights.
+Shows a link with information, tips & troubleshooting regarding movie night.
 
 Usage: `k!movienight`
 
