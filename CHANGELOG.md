@@ -2,6 +2,14 @@
 
 All notable changes for each version of this project are documented in this file.
 
+## 1.3.0 - 2020-09-20
+
+- Add PostgreSQL database.
+- Add cron job support.
+- Add birthday tracking and !birthday command.
+- Add !movienight command that links to some basic info, tips & troubleshooting about movie nights, voting and Discord screen-share.
+- Remove message embeds where they were not really needed to reduce clutter.
+
 ## 1.2.10 - 2020-09-08
 
 - Improve error handling in !anime command.
