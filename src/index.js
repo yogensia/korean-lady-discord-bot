@@ -89,6 +89,26 @@ fs.readdir('./src/strings/', (err, files) => {
 })
 
 /**
+ * Load cron jobs.
+ */
+fs.readdir('./src/jobs/', (err, files) => {
+  if (err) return console.error(err)
+  files.forEach(file => {
+    if (!file.endsWith('.js')) return
+
+    // Load the string responder file itself.
+    const props = require(`./jobs/${file}`)
+
+    // Get the cron job name from the filename.
+    const stringName = file.split('.')[0]
+    console.log(`Loading cron job '${stringName}'`)
+
+    // Run Cron Job.
+    props.run(client)
+  })
+})
+
+/**
  * Login to Discord.
  */
 client.login()
