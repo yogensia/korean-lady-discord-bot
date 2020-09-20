@@ -24,7 +24,7 @@ const randomSentenceArray = [
 ]
 
 const run = (client, msg) => {
-  // Ramdom emotes and hug duration.
+  // Ramdom emote.
   const emote = common.getCustomEmote(client, math.getRandomStringFromArray(emotes, false))
 
   let sentence = 'lidu strim when?'
@@ -34,15 +34,10 @@ const run = (client, msg) => {
     sentence = math.getRandomStringFromArray(randomSentenceArray, false)
   }
 
-  const description = `**${sentence}** ${emote}`
+  const description = `${sentence} ${emote}`
 
   // Reply with an embed message.
-  msg.channel.send({
-    embed: {
-      color: 0x2f3136,
-      description
-    }
-  }).catch(err => common.sendErrorMsg(msg, err))
+  msg.channel.send(description).catch(err => common.sendErrorMsg(msg, err))
 }
 
 module.exports = {
