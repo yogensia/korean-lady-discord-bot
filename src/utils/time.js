@@ -109,10 +109,104 @@ const getTimezone = (name, zone) => {
   return [name, time, offset]
 }
 
+/**
+ * Returns true if the date provided has gone by this year.
+ *
+ * @param {string} date A date string in 'DD/MM' format.
+ * @returns {boolean} True if the date provided has gone by this year.
+ */
+const hadBirthdayThisYear = (date) => {
+  // Parse days and months.
+  const birthdayDay = parseInt(date.split('/')[0], 10)
+  const birthdayMonth = parseInt(date.split('/')[1], 10)
+  const currentDay = parseInt(moment().get('date'), 10)
+  const currentMonth = parseInt(moment().get('month'), 10) + 1
+
+  // Check month.
+  if (birthdayMonth === currentMonth) {
+    // If same month, check day as well.
+    if (birthdayDay === currentDay) {
+      return true
+    } else if (birthdayDay > currentDay) {
+      return false
+    } else {
+      return true
+    }
+  } else if (birthdayMonth > currentMonth) {
+    return false
+  } else {
+    return true
+  }
+}
+
+/**
+ * Counts days until next birthday.
+ *
+ * @param {string} date A date string in 'DD/MM' format.
+ */
+const daysUntilBirthday = (date) => {
+  const today = moment()
+  let birthday
+
+  if (hadBirthdayThisYear(date)) {
+    birthday = moment(date, 'DD/MM').add(1, 'years')
+  } else {
+    birthday = moment(date, 'DD/MM')
+  }
+
+  return birthday.diff(today, 'days') + 1
+}
+
+/**
+ * Moment.js will accept weird inputs like 15, and treat it as 15th
+ * day of the current month. This function enforces DD/MM.
+
+ * @param {string} inputDate A date in 'DD/MM' format.
+ * @returns {boolean} True if the input matches 'NN/NN' format, where N is a number.
+ */
+const validateDateFormat = (inputDate) => {
+  const dateFormat = /([0]?[1-9]|[1|2][0-9]|[3][0|1])[/]([0]?[1-9]|[1][0-2])/
+
+  if ((dateFormat.exec(inputDate)) !== null) {
+    return true
+  } else {
+    return false
+  }
+}
+
+/**
+ * Aditional Moment.js date validation, like overflow detection, invalid dates...
+ *
+ * @param {string} inputDate A date in 'DD/MM' format.
+ * @returns {boolean} True if the date is considered valid.
+ */
+const validateDate = (inputDate) => {
+  if (moment(inputDate, 'DD/MM').isValid()) {
+    return true
+  } else {
+    return false
+  }
+}
+
+/**
+ * Convert a date string to a more readable format such as 'December 31st'.
+ *
+ * @param {string} inputDate A date in 'DD/MM' format.
+ * @returns {string} Remormatted date.
+ */
+const convertDate = (inputDate) => {
+  return moment(inputDate, 'DD/MM').format('MMMM Do')
+}
+
 module.exports = {
   getRandomFuture,
   getCountdown,
   longerThanYear,
   format,
-  getTimezone
+  getTimezone,
+  hadBirthdayThisYear,
+  daysUntilBirthday,
+  validateDateFormat,
+  validateDate,
+  convertDate
 }
