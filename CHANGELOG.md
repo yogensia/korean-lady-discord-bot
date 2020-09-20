@@ -2,6 +2,11 @@
 
 All notable changes for each version of this project are documented in this file.
 
+## 1.3.1 - 2020-09-20
+
+- Update auto responders emotes.
+- Update !movienight description and embed.
+
 ## 1.3.0 - 2020-09-20
 
 - Add PostgreSQL database.
