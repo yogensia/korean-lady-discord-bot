@@ -1,6 +1,6 @@
 # KoreanLady Discord Bot
 
-**KoreanLady** is a simple Discord bot with a few fun commands.
+KoreanLady is a simple Discord bot with a few fun commands.
 
 Please remember to not use it to spam the server, if you're going to use it a lot make sure to do so in the spam channel, thanks!
 
@@ -36,6 +36,16 @@ Usage: `k!ban [subject]`
 
 Examples: `k!ban` `k!ban Mosquitoes` `k!ban @Batman`
 
+### `k!birthday`
+
+Allows a user to set or unset their birthday date. The bot will send a notification on chat at 8 AM CET on the birthday date. When adding your birthday date, please use the format DD/MM.
+
+Usage: `k!birthday [set|unset DD/MM]`
+
+Examples: `k!birthday set 31/12` `k!birthday unset`
+
+Aliases: `k!bday` `k!bd`
+
 ### `k!coin`
 
 Throws a coin and shows the result (heads or tails).
@@ -64,7 +74,7 @@ Examples: `k!fight` `k!fight Loch Ness Monster` `k!fight @Batman`
 
 Aliases: `k!battle`
 
-Warning: This command is considered spam and can only be used in the spam channel.
+Notice: This command is considered spam and can only be used in the spam channel.
 
 ### `k!fine`
 
@@ -125,6 +135,14 @@ Returns info about a movie. The command will always try to find the best match, 
 Usage: `k!movie <movie title>`
 
 Examples: `k!movie Alien` `k!movie Total Recall (1990)`
+
+### `k!movienight`
+
+Shows a link with info about Movie Nights.
+
+Usage: `k!movienight`
+
+Aliases: `k!movies` `k!mn`
 
 ### `k!owo`
 

@@ -1,5 +1,9 @@
 # KoreanLady Discord Bot
 
+KoreanLady is a simple Discord bot with a few fun commands.
+
+Please remember to not use it to spam the server, if you're going to use it a lot make sure to do so in the spam channel, thanks!
+
 ## Command List
 
 Below you can see the full list of available commands.
