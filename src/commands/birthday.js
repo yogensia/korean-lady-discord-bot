@@ -26,7 +26,7 @@ const run = async (client, msg, args) => {
 
       if (time.validateDate(date) && time.validateDateFormat(date)) {
         // Set birthday on db.
-        pg.birthdaySet(msg.author.id, date).then(() => {
+        pg.birthdaySet(msg.author.id, date, msg.author.username).then(() => {
           var daysleft = time.daysUntilBirthday(date)
 
           // Send confirmation message.

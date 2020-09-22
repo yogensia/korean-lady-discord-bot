@@ -27,7 +27,7 @@ const birthdayGet = (userid) => {
 const birthdayGetAll = async () => {
   return new Promise((resolve, reject) => {
     pool.connect().then((pg) => {
-      const query = 'SELECT userid, birthday FROM birthdays;'
+      const query = 'SELECT userid, birthday, discord_name FROM birthdays;'
 
       pg.query(query)
         .then((res) => resolve(res.rows))
@@ -40,15 +40,15 @@ const birthdayGetAll = async () => {
   })
 }
 
-const birthdaySet = async (userid, birthday) => {
+const birthdaySet = async (userid, birthday, username) => {
   return new Promise((resolve, reject) => {
     pool.connect().then((pg) => {
       const query = `
-        INSERT INTO birthdays (userid, birthday)
-        VALUES ($1, $2)
+        INSERT INTO birthdays (userid, birthday, discord_name)
+        VALUES ($1, $2, $3)
         ON CONFLICT (userid) DO UPDATE
           SET birthday = excluded.birthday;`
-      const values = [userid, birthday]
+      const values = [userid, birthday, username]
 
       pg.query(query, values)
         .then((res) => resolve(res))
