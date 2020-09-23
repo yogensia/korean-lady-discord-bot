@@ -143,6 +143,7 @@ const hadBirthdayThisYear = (date) => {
  * Counts days until next birthday.
  *
  * @param {string} date A date string in 'DD/MM' format.
+ * @returns {int} Amount of days until next birthday.
  */
 const daysUntilBirthday = (date) => {
   const today = moment()

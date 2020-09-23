@@ -55,5 +55,5 @@ It should look like the image below, and allow you to click on chat and type wit
 
 These are the known issues with Discord screen sharing:
 
-- Sometimes audio glitches for a few seconds during the stream cause robotic voices or similar. When this happens, it will fix on its own after a few seconds.
-- Image quality comes and goes sometimes, making the video pixelated for a while. This seems unrelated to chosen stream settings (resolution, framerate...) or the streamer's connection, and more likely related to Discord server capacity at any given time as well as the amount of movement on screen.
+- Sometimes audio glitches for a few seconds during the stream causing robotic voices or similar. When this happens, it will fix on its own after a moment, usually about 30 seconds.
+- Image quality comes and goes sometimes, making the video pixelated for a while. This seems unrelated to chosen stream settings (resolution, framerate...) or the streamer's connection, and more likely related to Discord server capacity at any given time, as well as the amount of movement on screen.

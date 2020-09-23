@@ -13,7 +13,9 @@ It's meant to be a simple bot with a few fun commands and no moderation or any o
 
 ## Building requirements
 
-KoreanLady requires [NodeJS](https://nodejs.org/), [npm](https://www.npmjs.com/get-npm), [Discord.JS](https://discord.js.org/#/) & [Enmap](https://enmap.evie.dev/).
+KoreanLady requires [NodeJS](https://nodejs.org/), [npm](https://www.npmjs.com/get-npm), [Discord.JS](https://discord.js.org/#/). It uses some other npm packages, you can check `package.json` to learn more.
+
+For persistence (only needed for a few of the commands), it uses PostgreSQL.
 
 [Nodemon](https://nodemon.io/) is optional but recommended for easier setup and development.
 
@@ -41,7 +43,7 @@ You can find the source code in the `src` directory.
 - `src/events/messages.js` handles the message event and runs the according command if applicable.
 - `src/utils/` contains some utility functions to make some repetitive tasks a bit easier and cleaner. This includes a basic [Twitch API (helix)](https://dev.twitch.tv/docs/api) request function.
 - `/scripts/` is meant for additional utilities, like building the command list documentation.
-- Each command has a simple set of properties: `name`, `description`, `usage`, `aliases`, etc. that are used by the bot to show help or detailed error messages when necessary aw well as define required arguments.
+- Each command has a simple set of properties: `name`, `description`, `usage`, `aliases`, etc. that are used by the bot to show help or detailed error messages when necessary as well as define required arguments.
 - Most of the commands are generic enough, but you decide to create your own fork of this bot, you may want to check the commands one by one and replace a few things, like emotes etc.
 
 If you are new to making bots you can check [discordjs.guide](https://discordjs.guide/) and/or [anidiots.guide](https://anidiots.guide/) for lots of documentation and resources.
