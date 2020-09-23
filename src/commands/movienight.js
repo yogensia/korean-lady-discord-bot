@@ -6,7 +6,7 @@ const run = (client, msg, args) => {
     embed: {
       color: 3447003,
       title: 'Movie Night Info',
-      url: 'https://github.com/yogensia/korean-lady-discord-bot/blob/master/MOVIENIGHT.md#movie-night',
+      url: 'https://github.com/yogensia/korean-lady-discord-bot/blob/master/MOVIENIGHT.md#readme',
       description: 'Follow this link for information, tips & troubleshooting regarding movie night!'
     }
   }).catch(err => common.sendErrorMsg(msg, err))

@@ -70,7 +70,7 @@ const run = (client, msg, args) => {
       embed: {
         color: 3447003,
         title: 'Full KoreanLady Command List',
-        url: 'https://github.com/yogensia/korean-lady-discord-bot/blob/master/COMMANDS.md#koreanlady-discord-bot',
+        url: 'https://github.com/yogensia/korean-lady-discord-bot/blob/master/COMMANDS.md#readme',
         description: `**Hello ${common.displayName(msg)}!** KoreanLady is a simple Discord bot with a few fun commands and no moderation or any other advanced functions.`,
         fields: [
           {
@@ -106,7 +106,7 @@ const run = (client, msg, args) => {
       embed: {
         color: 3447003,
         title: 'KoreanLady Commands',
-        url: 'https://github.com/yogensia/korean-lady-discord-bot/blob/master/COMMANDS.md#koreanlady-discord-bot',
+        url: 'https://github.com/yogensia/korean-lady-discord-bot/blob/master/COMMANDS.md#readme',
         description: 'Here you will find all commands available and their usage!',
         footer: {
           text: 'Tip: You can also DM me and type `help` for more info!'
