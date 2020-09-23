@@ -6,13 +6,14 @@ const math = require('../utils/math')
 const pg = require('../utils/pg')
 
 // Emotes.
-const emotes1 = [
+const emotesIntro = [
   '🎉',
   '🎂',
-  '🥳'
+  '🥳',
+  '🎊'
 ]
 
-const emotes2 = [
+const emotesOutro = [
   'Apoggies',
   'liduHyper',
   'pikaD',
@@ -37,7 +38,8 @@ const run = (client) => {
    * BIRTHDAY CRON JOB, runs everyday at 8 AM CET.
    *
    * Checks all birthday dates looking for matches with today's date.
-   * If there are any matches, for each one sends a message to the server.
+   * If there are any matches, for each one sends a message to the server
+   * and server owner.
    */
   const birthdayCronJob = new CronJob('59 7 * * *', () => {
     console.log('Running Daily Birthday check...')
@@ -50,18 +52,32 @@ const run = (client) => {
           const birthday = moment(user.birthday, 'DD/MM').format('MMMM Do')
 
           // Ramdom emotes.
-          const emote1 = math.getRandomStringFromArray(emotes1, false)
-          const emote2 = common.getCustomEmote(client, math.getRandomStringFromArray(emotes2, false))
+          const emoteIntro = math.getRandomStringFromArray(emotesIntro, false)
+          const emoteOutro = common.getCustomEmote(client, math.getRandomStringFromArray(emotesOutro, false))
 
           // If we find a birthday that matches the current date, send a message!
           if (birthday === today) {
-            console.log(`Found birthday match: ${user.userid} / ${user.birthday}`)
-            client.channels.cache.get(process.env.GENERAL_CHANEL_ID).send({
-              embed: {
-                color: 0x2f3136,
-                description: `${emote1} Today is <@${user.userid}>'s, birthday! ${emote2}`
-              }
-            }).catch(err => console.log(err))
+            console.log(`Found birthday match: ${user.discord_name} - ${user.birthday}`)
+
+            // Send general chat message.
+            client.channels.cache.get(process.env.GENERAL_CHANEL_ID)
+              .send({
+                embed: {
+                  color: 0x2f3136,
+                  description: `${emoteIntro} Today is <@${user.userid}>'s, birthday! ${emoteOutro}`
+                }
+              })
+              .catch(err => console.log(err))
+
+            // Send server owner message.
+            client.users.cache.get(process.env.GUILD_OWNER_ID)
+              .send({
+                embed: {
+                  color: 0x2f3136,
+                  description: `${emoteIntro} **${today}:** Today, is **${user.discord_name}'s**, birthday!`
+                }
+              })
+              .catch(err => console.log(err))
           }
         })
       }).catch((err) => new Error(err))
