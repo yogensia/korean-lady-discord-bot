@@ -2,6 +2,12 @@
 
 All notable changes for each version of this project are documented in this file.
 
+## 1.3.2 - 2020-09-23
+
+- Update birthday cron job to notify server owner.
+- Fix typos and formatting in several files.
+- Update documentation and readme files.
+
 ## 1.3.1 - 2020-09-20
 
 - Update auto responders emotes.
