@@ -2,6 +2,11 @@
 
 All notable changes for each version of this project are documented in this file.
 
+## 1.3.3 - 2020-09-27
+
+- Add upcoming birthday argument to the !birthday command.
+- Refactor !birthday command.
+
 ## 1.3.2 - 2020-09-23
 
 - Update birthday cron job to notify server owner.
