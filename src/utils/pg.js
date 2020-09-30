@@ -78,10 +78,97 @@ const birthdayUnset = async (userid) => {
   })
 }
 
+const trackShowGet = (showSlug) => {
+  return new Promise((resolve, reject) => {
+    pool.connect().then((pg) => {
+      const query = 'SELECT show_name, episode FROM tracked_shows WHERE show_slug = $1;'
+      const values = [showSlug]
+
+      pg.query(query, values)
+        .then(res => resolve(res.rows[0]))
+        .catch(err => reject(new Error(err)))
+
+      pg.release()
+    }).catch(err => reject(new Error(err)))
+  })
+}
+
+const trackShowGetAll = () => {
+  return new Promise((resolve, reject) => {
+    pool.connect().then((pg) => {
+      const query = 'SELECT show_name, show_slug, episode, userid FROM tracked_shows'
+
+      pg.query(query)
+        .then(res => resolve(res.rows))
+        .catch(err => reject(new Error(err)))
+
+      pg.release()
+    }).catch(err => reject(new Error(err)))
+  })
+}
+
+const trackShowAdd = (showName, showSlug, episode, userid) => {
+  return new Promise((resolve, reject) => {
+    pool.connect().then((pg) => {
+      const query = `
+        INSERT INTO tracked_shows (show_name, show_slug, episode, userid)
+        VALUES ($1, $2, $3, $4)
+        ON CONFLICT (show_name) DO NOTHING`
+      const values = [showName, showSlug, episode, userid]
+
+      pg.query(query, values)
+        .then(res => resolve(res))
+        .catch(err => reject(new Error(err)))
+
+      pg.release()
+    }).catch(err => reject(new Error(err)))
+  })
+}
+
+const trackShowSet = (showName, showSlug, episode, userid) => {
+  return new Promise((resolve, reject) => {
+    pool.connect().then((pg) => {
+      const query = `
+        INSERT INTO tracked_shows (show_name, show_slug, episode, userid)
+        VALUES ($1, $2, $3, $4)
+        ON CONFLICT (show_slug) DO UPDATE
+          SET episode = excluded.episode;`
+      const values = [showName, showSlug, episode, userid]
+
+      pg.query(query, values)
+        .then(res => resolve(res))
+        .catch(err => reject(new Error(err)))
+
+      pg.release()
+    }).catch(err => reject(new Error(err)))
+  })
+}
+
+const trackShowDelete = (showName) => {
+  return new Promise((resolve, reject) => {
+    pool.connect().then((pg) => {
+      const query = 'DELETE FROM tracked_shows WHERE show_slug = $1;'
+      const values = [showName]
+
+      pg.query(query, values)
+        .then((res) => resolve(res))
+        .catch((err) => new Error(err))
+
+      pg.release()
+    }).catch((err) => {
+      reject(new Error(err))
+    })
+  })
+}
+
 module.exports = {
-  // checkPg,
   birthdayGet,
   birthdayGetAll,
   birthdaySet,
-  birthdayUnset
+  birthdayUnset,
+  trackShowGet,
+  trackShowGetAll,
+  trackShowAdd,
+  trackShowSet,
+  trackShowDelete
 }
