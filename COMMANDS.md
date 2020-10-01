@@ -190,15 +190,15 @@ Aliases: `k!timezone` `k!tz`
 
 ### `k!track`
 
-Keeps track of how many episodes have been watched for a show. You can check usage and examples below for how to add new tracked shows, change, or check the amount of episodes watched, or delete them from the database.
+Keeps track of how many episodes have been watched for a show. You can check usage and examples below for how to add new tracked shows, rename, change, check the amount of episodes watched, or delete them from the database.
 
-When providing a show name, capitalization is ignored, so `HxH` and `hxh` will work just the same. Show names can't contain spaces and should be short an easy to remember, so acronyms and similar short names are recommened.
+When providing a show name, capitalization is ignored, so `HxH` and `hxh` will work just the same. Show names can't contain spaces and should be short an easy to remember, so acronyms and similar short names are recommended.
 
  To see a list of shows currently tracked type the command without any arguments.
 
-Usage: `k!track [(show)|add (show)|set (show) (eps)|del (show)]`
+Usage: `k!track [(show)|add (show)|rename (show) (newShowName)|set (show) (eps)|del (show)]`
 
-Examples: `k!track` `k!track HxH` `k!track add HxH` `k!track set HxH 120` `k!track del HxH`
+Examples: `k!track` `k!track HxH` `k!track add HxH` `k!track rename Hunter HxH` `k!track set HxH 120` `k!track del HxH`
 
 Aliases: `k!trackshow` `k!ts`
 
