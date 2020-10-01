@@ -2,6 +2,10 @@
 
 All notable changes for each version of this project are documented in this file.
 
+## 1.4.1 - 2020-10-01
+
+- Add ability to rename shows in !track command.
+
 ## 1.4.0 - 2020-09-30
 
 - Add !track command to allow tracking watched episodes.
