@@ -125,6 +125,25 @@ const trackShowAdd = (showName, showSlug, episode, userid) => {
   })
 }
 
+const trackShowRename = (showSlug, newName, newSlug) => {
+  return new Promise((resolve, reject) => {
+    pool.connect().then((pg) => {
+      const query = `
+        UPDATE tracked_shows
+        SET show_name = $2, show_slug = $3
+        WHERE show_slug = $1
+        RETURNING *;`
+      const values = [showSlug, newName, newSlug]
+
+      pg.query(query, values)
+        .then(res => resolve(res.rows[0]))
+        .catch(err => reject(new Error(err)))
+
+      pg.release()
+    }).catch(err => reject(new Error(err)))
+  })
+}
+
 const trackShowSet = (showName, showSlug, episode, userid) => {
   return new Promise((resolve, reject) => {
     pool.connect().then((pg) => {
@@ -169,6 +188,7 @@ module.exports = {
   trackShowGet,
   trackShowGetAll,
   trackShowAdd,
+  trackShowRename,
   trackShowSet,
   trackShowDelete
 }

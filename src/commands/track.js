@@ -99,7 +99,7 @@ const argumentList = (msg, args) => {
 }
 
 /**
- * Handles track command when the user want to add a tracked show.
+ * Handles track command when the user wants to add a tracked show.
  * It allows providing an optional episode count.
  *
  * @param {Object} msg Message object.
@@ -136,7 +136,31 @@ const argumentAdd = (msg, args) => {
 }
 
 /**
- * Handles track command when the users wants to update a tracked show with
+ * Handles track command when the user wants to renamee a tracked show.
+ *
+ * @param {Object} msg Message object.
+ * @param {Object} args Array of arguments (show name, episode count).
+ */
+const argumentRename = (msg, args) => {
+  // Parse args.
+  const showSlugOld = args[0].toLowerCase()
+  const showNameNew = args[1]
+  const showSlugNew = args[1].toLowerCase()
+
+  // Rename show in database.
+  pg.trackShowRename(showSlugOld, showNameNew, showSlugNew).then((res) => {
+    if (res) {
+      pg.trackShowGet(showSlugNew).then((show) => {
+        common.sendEmbed(msg, `**${showSlugOld}** has been renamed to **${showNameNew}**.`)
+      }).catch(err => common.sendErrorMsg(msg, err))
+    } else {
+      common.sendErrorMsg(msg, 'Something went wrong.\nAre you sure that show exists in the list?')
+    }
+  }).catch(err => common.sendErrorMsg(msg, err))
+}
+
+/**
+ * Handles track command when the user wants to update a tracked show with
  * a new watched episode count.
  *
  * @param {Object} msg Message object.
@@ -198,6 +222,8 @@ const run = (client, msg, args) => {
 
   if (action === 'add') {
     argumentAdd(msg, args)
+  } else if (action === 'rename' || action === 'ren') {
+    argumentRename(msg, args)
   } else if (action === 'set' || action === 'update') {
     argumentSet(msg, args)
   } else if (action === 'delete' || action === 'del') {
@@ -210,9 +236,9 @@ const run = (client, msg, args) => {
 
 module.exports = {
   name: 'track',
-  desc: 'Keeps track of how many episodes have been watched for a show. You can check usage and examples below for how to add new tracked shows, change, or check the amount of episodes watched, or delete them from the database.\n\nWhen providing a show name, capitalization is ignored, so `HxH` and `hxh` will work just the same. Show names can\'t contain spaces and should be short an easy to remember, so acronyms and similar short names are recommened.\n\n To see a list of shows currently tracked type the command without any arguments.',
+  desc: 'Keeps track of how many episodes have been watched for a show. You can check usage and examples below for how to add new tracked shows, rename, change, check the amount of episodes watched, or delete them from the database.\n\nWhen providing a show name, capitalization is ignored, so `HxH` and `hxh` will work just the same. Show names can\'t contain spaces and should be short an easy to remember, so acronyms and similar short names are recommended.\n\n To see a list of shows currently tracked type the command without any arguments.',
   aliases: ['trackshow', 'ts'],
-  usage: 'track [(show)|add (show)|set (show) (eps)|del (show)]',
-  examples: ['track', 'track HxH', 'track add HxH', 'track set HxH 120', 'track del HxH'],
+  usage: 'track [(show)|add (show)|rename (show) (newShowName)|set (show) (eps)|del (show)]',
+  examples: ['track', 'track HxH', 'track add HxH', 'track rename Hunter HxH', 'track set HxH 120', 'track del HxH'],
   run
 }
