@@ -5,6 +5,8 @@ All notable changes for each version of this project are documented in this file
 ## 1.4.1 - 2020-10-01
 
 - Add ability to rename shows in !track command.
+- Refactor several commands to use simplified sendEmbed() method.
+- Update formatting or message responses in !birthday command.
 
 ## 1.4.0 - 2020-09-30
 
