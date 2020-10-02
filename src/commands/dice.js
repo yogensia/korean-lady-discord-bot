@@ -23,12 +23,7 @@ const run = (client, msg, args) => {
   const result = math.getRandomInt(1, sides)
 
   // Reply with an embed message.
-  msg.channel.send({
-    embed: {
-      color: 0x2f3136,
-      description: `🎲 ${common.displayName(msg)} threw a ${sides} sided dice... The result was **${result}**!`
-    }
-  }).catch(err => common.sendErrorMsg(msg, err))
+  common.sendEmbed(msg, `🎲 ${common.displayName(msg)} threw a ${sides} sided dice... The result was **${result}**!`)
 }
 
 module.exports = {

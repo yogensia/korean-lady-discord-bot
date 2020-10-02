@@ -114,12 +114,7 @@ const run = (client, msg, args) => {
   const message = owoify(common.stripMentions(args.join(' '), msg))
 
   // Reply with an embed message.
-  msg.channel.send({
-    embed: {
-      color: 0x2f3136,
-      description: message
-    }
-  }).catch(err => common.sendErrorMsg(msg, err))
+  common.sendEmbed(msg, message)
 }
 
 module.exports = {

@@ -39,12 +39,7 @@ const run = (client, msg, args) => {
   }
 
   // Reply with an embed message.
-  msg.channel.send({
-    embed: {
-      color: 0x2f3136,
-      description: `**${common.displayName(msg)} asks: ${question}**\n\n🎱 ${answer} 🎱`
-    }
-  }).catch(err => common.sendErrorMsg(msg, err))
+  common.sendEmbed(msg, `**${common.displayName(msg)} asks: ${question}**\n🎱 ${answer} 🎱`)
 }
 
 module.exports = {

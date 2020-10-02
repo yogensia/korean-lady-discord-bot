@@ -7,18 +7,13 @@ const run = (client, msg, args) => {
 
   let message
   if (result === 1) {
-    message = `${common.displayName(msg)} threw a coin... The result was **Heads**!`
+    message = `🪙 ${common.displayName(msg)} threw a coin... The result was **Heads**!`
   } else {
-    message = `${common.displayName(msg)} threw a coin... The result was **Tails**!`
+    message = `🪙 ${common.displayName(msg)} threw a coin... The result was **Tails**!`
   }
 
   // Reply with an embed message.
-  msg.channel.send({
-    embed: {
-      color: 0x2f3136,
-      description: message
-    }
-  }).catch(err => common.sendErrorMsg(msg, err))
+  common.sendEmbed(msg, message)
 }
 
 module.exports = {

@@ -59,20 +59,10 @@ const run = (client, msg, args) => {
   if (common.koreanLadyMentioned(subject)) {
     const emoteAngry = common.getCustomEmote(client, 'Angry', '😡')
     // Reply with an embed message.
-    msg.channel.send({
-      embed: {
-        color: 0x2f3136,
-        description: `${emoteAngry} Trying to fine the Korean Lady is illegal!\n\n${emote} **${common.displayName(msg)}** has been fined instead, with **${money} ${currency}!**`
-      }
-    }).catch(err => common.sendErrorMsg(msg, err))
+    common.sendEmbed(msg, `${emoteAngry} Trying to fine the Korean Lady is illegal!\n\n${emote} **${common.displayName(msg)}** has been fined instead, with **${money} ${currency}!**`)
   } else {
     // Reply with an embed message.
-    msg.channel.send({
-      embed: {
-        color: 0x2f3136,
-        description: `${emote} ${common.displayName(msg)} has fined **${subject}** with **${money} ${currency}!**`
-      }
-    }).catch(err => common.sendErrorMsg(msg, err))
+    common.sendEmbed(msg, `${emote} ${common.displayName(msg)} has fined **${subject}** with **${money} ${currency}!**`)
   }
 }
 
