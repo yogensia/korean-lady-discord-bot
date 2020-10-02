@@ -55,9 +55,7 @@ const argumentSet = (msg, args) => {
       var daysleft = time.daysUntilBirthday(date)
 
       // Send confirmation message.
-      msg.channel
-        .send(`${common.displayName(msg)}, your birthday has been set to ${time.convertDate(date)}. That's in ${daysleft} days!`)
-        .catch(err => common.sendErrorMsg(msg, err))
+      common.sendEmbed(msg, `${common.displayName(msg)}, your birthday has been set to ${time.convertDate(date)}. That's in ${daysleft} days!`)
     }).catch(err => common.sendErrorMsg(msg, err))
   } else {
     invalidDate(msg)
@@ -73,9 +71,7 @@ const argumentUnset = (msg) => {
   // Unset birthday on db.
   pg.birthdayUnset(msg.author.id).then(() => {
     // Send confirmation message.
-    msg.channel
-      .send(`${common.displayName(msg)}, your birthday has been unset.`)
-      .catch(err => common.sendErrorMsg(msg, err))
+    common.sendEmbed(msg, `${common.displayName(msg)}, your birthday has been unset.`)
   }).catch(err => common.sendErrorMsg(msg, err))
 }
 
@@ -131,16 +127,14 @@ const argumentUpcoming = (msg, args) => {
     })
 
     // Build output.
-    let description = '```Upcoming Birthdays:\n-------------------\n'
+    let message = '**Upcoming Birthdays:**\n'
 
     upcomingBirthdays.forEach(user => {
-      description = description + `${user.discord_name} - ${moment(user.birthday, 'DD/MM').format('MMMM Do')}\n`
+      message = message + `- **${user.discord_name}** (${moment(user.birthday, 'DD/MM').format('MMMM Do')})\n`
     })
 
-    description = description + '```'
-
     // Show data on Discord.
-    msg.channel.send(description).catch(err => common.sendErrorMsg(msg, err))
+    common.sendEmbed(msg, message)
   }).catch(err => common.sendErrorMsg(msg, err))
 }
 
@@ -162,9 +156,7 @@ const argumentNone = (msg) => {
     var daysleft = time.daysUntilBirthday(birthday)
 
     // Send confirmation message.
-    msg.channel
-      .send(`${common.displayName(msg)}, your birthday is set to ${time.convertDate(birthday)}. That's in ${daysleft} days!`)
-      .catch(err => common.sendErrorMsg(msg, err))
+    common.sendEmbed(msg, `${common.displayName(msg)}, your birthday is set to ${time.convertDate(birthday)}. That's in ${daysleft} days!`)
   }).catch(err => common.sendErrorMsg(msg, err))
 }
 
