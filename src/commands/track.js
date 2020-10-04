@@ -2,37 +2,46 @@ const common = require('../utils/common')
 const pg = require('../utils/pg')
 
 /**
- * Sneds error message when a show already exists.
+ * Sends an error message when a show already exists.
  *
  * @param {Object} msg Message object.
  */
 const errorShowAlreadyExists = (msg) => {
-  common.sendEmbed(msg, `Error: A show with that name already exists in the database.
+  common.sendEmbed(msg, `**Error:** A show with that name already exists in the database.
     To update it, please uset \`${process.env.PREFIX}track set (episode number)\`.`)
 }
 
 /**
- * Sends error message when a show is not found.
+ * Sends an error message when a show is not found.
  *
  * @param {Object} msg Message object.
  */
 const errorShowNotFound = (msg) => {
-  common.sendEmbed(msg, `Sorry ${common.displayName(msg)}, I couldn't find any tracked shows by that name.
-    Try \`${process.env.PREFIX}track list\` to see shows currently being tracked.`)
+  common.sendEmbed(msg, `**Error:** I couldn't find any tracked shows by that name.
+    Try \`${process.env.PREFIX}track\` to see shows currently being tracked.`)
 }
 
 /**
- * Sneds and error message when invalid arguments are found.
+ * Sends an error message when a user attempts to use the command in a DM.
  *
  * @param {Object} msg Message object.
  */
-const argumentInvalid = (msg) => {
-  common.sendEmbed(msg, `Error: Missing or invalid arguments.
+const errorNoDms = (msg) => {
+  common.sendEmbed(msg, '**Error:** Sorry, for security reasons, this command is read-only in DMs.')
+}
+
+/**
+ * Sends an error message when invalid arguments are found.
+ *
+ * @param {Object} msg Message object.
+ */
+const errorInvalidArgument = (msg) => {
+  common.sendEmbed(msg, `**Error:** Missing or invalid arguments.
     Please, use correct syntax or type \`${process.env.PREFIX}help track\` for details.`)
 }
 
 /**
- * Check whether a show already exists in the database.
+ * Checks whether a show already exists in the database.
  *
  * @param {string} showArgument A show name string.
  * @returns {Promise} `true` if show is found, `false` otherwise.
@@ -174,7 +183,7 @@ const argumentSet = (msg, args) => {
   // Get number of eps.
   const episode = Number.parseInt(args[1])
   if (!Number.isInteger(episode)) {
-    return argumentInvalid(msg)
+    return errorInvalidArgument(msg)
   }
 
   // Add to database.
