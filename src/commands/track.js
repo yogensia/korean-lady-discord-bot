@@ -226,6 +226,12 @@ const run = (client, msg, args) => {
     return argumentList(msg)
   }
 
+  // Disallow editing in DMs, otherwise a malicious user could
+  // privately delete or change the data.
+  if (msg.channel.type === 'dm') {
+    return errorNoDms(msg)
+  }
+
   // Arguments found, check what the user wants to do.
   const action = args.shift()
 
