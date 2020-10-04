@@ -2,6 +2,12 @@
 
 All notable changes for each version of this project are documented in this file.
 
+## 1.4.2 - 2020-10-04
+
+- Fix error message and suggestions in !track when a show requested by user isn't found.
+- Fix !track set (show) adding new shows when they don't already exist.
+- Disallow use of !track command in DMs to reduce possibility of tampering.
+
 ## 1.4.1 - 2020-10-01
 
 - Add ability to rename shows in !track command.
