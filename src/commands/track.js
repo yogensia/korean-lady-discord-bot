@@ -186,16 +186,23 @@ const argumentSet = (msg, args) => {
     return errorInvalidArgument(msg)
   }
 
-  // Add to database.
-  pg.trackShowSet(show, showSlug, episode, msg.author.id).then((res) => {
-    if (res.rowCount > 0) {
-      pg.trackShowGet(showSlug).then((show) => {
-        common.sendEmbed(msg, `Updating **${show.show_name}**: **${show.episode}** episodes watched.`)
+  // Make sure that the provided show name exists.
+  showAlreadyExists(show).then(exists => {
+    if (exists) {
+      // Add to database.
+      pg.trackShowSet(show, showSlug, episode, msg.author.id).then((res) => {
+        if (res.rowCount > 0) {
+          pg.trackShowGet(showSlug).then((show) => {
+            common.sendEmbed(msg, `Updating **${show.show_name}**: **${show.episode}** episodes watched.`)
+          }).catch(err => common.sendErrorMsg(msg, err))
+        } else {
+          common.sendErrorMsg(msg, 'Something went wrong, please try again!')
+        }
       }).catch(err => common.sendErrorMsg(msg, err))
     } else {
-      common.sendErrorMsg(msg, 'Something went wrong, please try again!')
+      errorShowNotFound(msg)
     }
-  }).catch(err => common.sendErrorMsg(msg, err))
+  })
 }
 
 /**
