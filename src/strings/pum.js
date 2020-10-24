@@ -30,7 +30,7 @@ const run = (client, msg) => {
   // Ramdom emote.
   const emote = common.getCustomEmote(client, math.getRandomStringFromArray(emotes, false))
 
-  let sentence = 'pum strim when?'
+  let sentence = 'pum moderkort when?'
 
   // Random rare sentence (chance one out of five).
   if (math.getRandomInt(1, 5) === 5) {
