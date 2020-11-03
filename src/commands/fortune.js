@@ -1,13 +1,6 @@
 const common = require('../utils/common')
 const math = require('../utils/math')
 
-// Intros.
-const intros = [
-  'Here\'s your fortune',
-  'Here you go',
-  'Hope it\'s a good one'
-]
-
 // Fortunes.
 const fortunes = [
   // Random and fun (https://www.boredpanda.com/funny-fortune-cookie-messages/, adapted).
@@ -161,19 +154,12 @@ const fortunes = [
 
 const run = (client, msg, args) => {
   // Random fortune.
-  const fortune = math.getRandomStringFromArray(fortunes)
-
-  // Random intro.
-  const intro = math.getRandomStringFromArray(intros)
+  const fortune = math.getRandomStringFromArray(fortunes, false)
 
   // Send fortune in an embed.
   msg.channel.send({
     embed: {
       color: 0x2f3136,
-      author: {
-        name: `${intro}, ${common.displayName(msg)}!`,
-        icon_url: 'https://i.imgur.com/CBHZY0m.png'
-      },
       description: fortune
     }
   }).catch(err => common.sendErrorMsg(msg, err))
