@@ -19,18 +19,16 @@ const runQuery = (query, values = false) => {
       // Only send parametized values if needed.
       if (values) {
         pg.query(query, values)
-          .then((res) => resolve(res))
-          .catch((err) => new Error(err))
+          .then(res => resolve(res))
+          .catch(err => reject(new Error(err)))
       } else {
         pg.query(query)
-          .then((res) => resolve(res))
-          .catch((err) => new Error(err))
+          .then(res => resolve(res))
+          .catch(err => reject(new Error(err)))
       }
 
       pg.release()
-    }).catch((err) => {
-      reject(new Error(err))
-    })
+    }).catch(err => reject(new Error(err)))
   })
 }
 
@@ -92,7 +90,7 @@ const birthdayUnset = (userid) => {
 const trackShowGet = (showSlug) => {
   return new Promise((resolve, reject) => {
     const query = `
-      SELECT show_name, episode
+      SELECT show_name, show_slug, episode, modified, userid, complete
       FROM tracked_shows
       WHERE show_slug = $1;`
     const values = [showSlug]
@@ -106,7 +104,7 @@ const trackShowGet = (showSlug) => {
 const trackShowGetAll = () => {
   return new Promise((resolve, reject) => {
     const query = `
-      SELECT show_name, show_slug, episode, userid
+      SELECT show_name, show_slug, episode, modified, userid, complete
       FROM tracked_shows;`
 
     runQuery(query)
@@ -115,13 +113,13 @@ const trackShowGetAll = () => {
   })
 }
 
-const trackShowAdd = (showName, showSlug, episode, userid) => {
+const trackShowAdd = (showName, showSlug, episode, userid, modified) => {
   return new Promise((resolve, reject) => {
     const query = `
-      INSERT INTO tracked_shows (show_name, show_slug, episode, userid)
-      VALUES ($1, $2, $3, $4)
+      INSERT INTO tracked_shows (show_name, show_slug, episode, userid, modified)
+      VALUES ($1, $2, $3, $4, $5)
       ON CONFLICT (show_name) DO NOTHING;`
-    const values = [showName, showSlug, episode, userid]
+    const values = [showName, showSlug, episode, userid, modified]
 
     runQuery(query, values)
       .then(res => resolve(res))
@@ -144,14 +142,29 @@ const trackShowRename = (showSlug, newName, newSlug) => {
   })
 }
 
-const trackShowSet = (showName, showSlug, episode, userid) => {
+const trackShowSet = (showName, showSlug, episode, modified, userid) => {
   return new Promise((resolve, reject) => {
     const query = `
-      INSERT INTO tracked_shows (show_name, show_slug, episode, userid)
-      VALUES ($1, $2, $3, $4)
+      INSERT INTO tracked_shows (show_name, show_slug, episode, modified, userid)
+      VALUES ($1, $2, $3, $4, $5)
       ON CONFLICT (show_slug) DO UPDATE
         SET episode = excluded.episode;`
-    const values = [showName, showSlug, episode, userid]
+    const values = [showName, showSlug, episode, modified, userid]
+
+    runQuery(query, values)
+      .then(res => resolve(res))
+      .catch(err => reject(new Error(err)))
+  })
+}
+
+const trackShowSetComplete = (showName, showSlug, episode, modified, userid, complete) => {
+  return new Promise((resolve, reject) => {
+    const query = `
+      INSERT INTO tracked_shows (show_name, show_slug, episode, modified, userid, complete)
+      VALUES ($1, $2, $3, $4, $5, $6)
+      ON CONFLICT (show_slug) DO UPDATE
+        SET complete = excluded.complete;`
+    const values = [showName, showSlug, episode, modified, userid, complete]
 
     runQuery(query, values)
       .then(res => resolve(res))
@@ -182,5 +195,6 @@ module.exports = {
   trackShowAdd,
   trackShowRename,
   trackShowSet,
+  trackShowSetComplete,
   trackShowDelete
 }

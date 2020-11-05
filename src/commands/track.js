@@ -1,4 +1,5 @@
 const common = require('../utils/common')
+const moment = require('moment-timezone')
 const pg = require('../utils/pg')
 
 /**
@@ -8,7 +9,7 @@ const pg = require('../utils/pg')
  */
 const errorShowAlreadyExists = (msg) => {
   common.sendEmbed(msg, `**Error:** A show with that name already exists in the database.
-    To update it, please uset \`${process.env.PREFIX}track set (episode number)\`.`)
+    To update it, please use \`${process.env.PREFIX}track set (episode number)\`.`)
 }
 
 /**
@@ -93,10 +94,27 @@ const argumentUnknown = (msg, showSearch) => {
  * @param {Object} msg Message object.
  * @param {Object} args Array of arguments.
  */
-const argumentList = (msg, args) => {
+const argumentList = (msg, complete = false) => {
   pg.trackShowGetAll().then((showArray) => {
+    // Sort shows by modification date.
+    showArray = showArray.sort((a, b) => (a.modified > b.modified) ? 1 : -1)
+
+    // Filter completed shows accordingly.
+    if (complete) {
+      showArray = showArray.filter(show => show.complete === true)
+    } else {
+      showArray = showArray.filter(show => show.complete === false)
+    }
+
+    console.log(showArray)
+
     // Build output.
-    let message = '**Tracked Shows:**\n'
+    let message = ''
+    if (complete) {
+      message = '**Completed Shows:**\n'
+    } else {
+      message = '**Tracked Shows:**\n'
+    }
 
     showArray.forEach(show => {
       message = message + `- **${show.show_name}** (${show.episode} Eps watched)\n`
@@ -133,7 +151,7 @@ const argumentAdd = (msg, args) => {
       }
 
       // Add to database.
-      pg.trackShowAdd(showArgument, showArgumentSlug, episode, msg.author.id).then((res) => {
+      pg.trackShowAdd(showArgument, showArgumentSlug, episode, msg.author.id, moment().format('x')).then((res) => {
         if (res.rowCount > 0) {
           common.sendEmbed(msg, description)
         } else {
@@ -176,7 +194,7 @@ const argumentRename = (msg, args) => {
  * @param {Object} args Array of arguments (show name, episode count).
  */
 const argumentSet = (msg, args) => {
-  // Get show name.
+  // Get show name & slug.
   const show = args[0]
   const showSlug = show.toLowerCase()
 
@@ -190,7 +208,7 @@ const argumentSet = (msg, args) => {
   showAlreadyExists(show).then(exists => {
     if (exists) {
       // Add to database.
-      pg.trackShowSet(show, showSlug, episode, msg.author.id).then((res) => {
+      pg.trackShowSet(show, showSlug, episode, moment().format('x'), msg.author.id).then((res) => {
         if (res.rowCount > 0) {
           pg.trackShowGet(showSlug).then((show) => {
             common.sendEmbed(msg, `Updating **${show.show_name}**: **${show.episode}** episodes watched.`)
@@ -212,7 +230,7 @@ const argumentSet = (msg, args) => {
  * @param {string} msg Argument array with show name.
  */
 const argumentDelete = (msg, args) => {
-  // Get show name.
+  // Get show slug.
   const showArgument = args[0].toLowerCase()
 
   // Delete tracked show from db.
@@ -225,6 +243,49 @@ const argumentDelete = (msg, args) => {
       errorShowNotFound(msg)
     }
   }).catch(err => common.sendErrorMsg(msg, err))
+}
+
+/**
+ * Handles track command when the user wants to set a show as completed.
+ *
+ * @param {Object} msg Message object.
+ * @param {string} msg Argument array with show name.
+ */
+const argumentComplete = (msg, args) => {
+  if (args[0]) {
+    // Get show slug.
+    const showSlug = args[0].toLowerCase()
+
+    // If show is specified, toggle completed state.
+    pg.trackShowGet(showSlug).then((show) => {
+      if (show) {
+        const complete = !show.complete
+
+        console.log(show)
+        console.log(showSlug)
+        console.log(complete)
+        pg.trackShowSetComplete(show.show_name, showSlug, show.episode, show.modified, show.userid, complete).then((res) => {
+          if (res.rowCount > 0) {
+            if (complete) {
+              common.sendEmbed(msg, `Marking **${show.show_name}** as completed.`)
+            } else {
+              common.sendEmbed(msg, `Marking **${show.show_name}** as watching.`)
+            }
+            // pg.trackShowGet(showSlug).then((show) => {
+            //   common.sendEmbed(msg, `Marking **${show.show_name}** as completed.`)
+            // }).catch(err => common.sendErrorMsg(msg, err))
+          } else {
+            common.sendErrorMsg(msg, 'Something went wrong, please try again!')
+          }
+        }).catch(err => common.sendErrorMsg(msg, err))
+      } else {
+        errorShowNotFound(msg)
+      }
+    }).catch(err => common.sendErrorMsg(msg, err))
+  } else {
+    // If no show is specified, show a list of completed shows.
+    argumentList(msg, true)
+  }
 }
 
 const run = (client, msg, args) => {
@@ -250,6 +311,8 @@ const run = (client, msg, args) => {
     argumentSet(msg, args)
   } else if (action === 'delete' || action === 'del') {
     argumentDelete(msg, args)
+  } else if (action === 'complete' || action === 'completed' || action === 'done' || action === 'finish' || action === 'finished') {
+    argumentComplete(msg, args)
   } else {
     // User might be trying to check ep count for a show, check for that.
     argumentUnknown(msg, action)
@@ -258,9 +321,9 @@ const run = (client, msg, args) => {
 
 module.exports = {
   name: 'track',
-  desc: 'Keeps track of how many episodes have been watched for a show. You can check usage and examples below for how to add new tracked shows, rename, change, check the amount of episodes watched, or delete them from the database.\n\nWhen providing a show name, capitalization is ignored, so `HxH` and `hxh` will work just the same. Show names can\'t contain spaces and should be short an easy to remember, so acronyms and similar short names are recommended.\n\n To see a list of shows currently tracked type the command without any arguments.',
+  desc: 'Keeps track of how many episodes have been watched for a show. You can check usage and examples below for how to add new tracked shows, rename, change, check the amount of episodes watched, or delete them from the database.\n\nWhen providing a show name, capitalization is ignored, so `HxH` and `hxh` will work just the same. Show names can\'t contain spaces and should be short an easy to remember, so acronyms and similar short names are recommended.\n\nTo see a list of shows currently tracked type the command without any arguments.\n\nShows can also be marked as complete, which makes them appear in a separate list.',
   aliases: ['trackshow', 'ts'],
-  usage: 'track [(show)|add (show)|rename (show) (newShowName)|set (show) (eps)|del (show)]',
-  examples: ['track', 'track HxH', 'track add HxH', 'track rename Hunter HxH', 'track set HxH 120', 'track del HxH'],
+  usage: 'track [(show)|add (show)|rename (show) (newShowName)|set (show) (eps)|del (show)|complete (show)]',
+  examples: ['track', 'track HxH', 'track add HxH', 'track rename Hunter HxH', 'track set HxH 120', 'track del HxH', 'track complete HxH'],
   run
 }
