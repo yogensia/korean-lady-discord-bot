@@ -4,6 +4,8 @@ We host movie nights on Saturdays at 8PM CET (Central European Time) and everyon
 
 We currently watch through **Discord** so grab some popcorn and join us in #movie-livechat for memes and live reactions!
 
+> **Tip:** If you want to get a ping notification for movie nights, you can check the #roles channel and follow instructions there to get the @movies role.
+
 ## Voting
 
 Every week a poll is added and pinned in the #movie-night channel so that anyone can vote or suggest movies to watch.
@@ -45,6 +47,7 @@ It should look like the image below, and allow you to click on chat and type wit
 
 1. Make sure you have the correct audio device set in `User Settings` > `Voice & Video` > `Output Device`.
 2. Make sure the volume in the stream window isn't set too low (sometimes it resets itself to 50%).
+3. For some people, using the [web version of Discord](https://discord.com/) sometimes helps fix audio issues.
 
 ### No Video or Stream Laggy Only for You
 
