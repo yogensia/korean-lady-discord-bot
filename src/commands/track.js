@@ -106,8 +106,6 @@ const argumentList = (msg, complete = false) => {
       showArray = showArray.filter(show => show.complete === false)
     }
 
-    console.log(showArray)
-
     // Build output.
     let message = ''
     if (complete) {
@@ -261,9 +259,6 @@ const argumentComplete = (msg, args) => {
       if (show) {
         const complete = !show.complete
 
-        console.log(show)
-        console.log(showSlug)
-        console.log(complete)
         pg.trackShowSetComplete(show.show_name, showSlug, show.episode, show.modified, show.userid, complete).then((res) => {
           if (res.rowCount > 0) {
             if (complete) {
