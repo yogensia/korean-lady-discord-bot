@@ -194,11 +194,13 @@ Keeps track of how many episodes have been watched for a show. You can check usa
 
 When providing a show name, capitalization is ignored, so `HxH` and `hxh` will work just the same. Show names can't contain spaces and should be short an easy to remember, so acronyms and similar short names are recommended.
 
- To see a list of shows currently tracked type the command without any arguments.
+To see a list of shows currently tracked type the command without any arguments.
 
-Usage: `k!track [(show)|add (show)|rename (show) (newShowName)|set (show) (eps)|del (show)]`
+Shows can also be marked as complete, which makes them appear in a separate list.
 
-Examples: `k!track` `k!track HxH` `k!track add HxH` `k!track rename Hunter HxH` `k!track set HxH 120` `k!track del HxH`
+Usage: `k!track [(show)|add (show)|rename (show) (newShowName)|set (show) (eps)|del (show)|complete (show)]`
+
+Examples: `k!track` `k!track HxH` `k!track add HxH` `k!track rename Hunter HxH` `k!track set HxH 120` `k!track del HxH` `k!track complete HxH`
 
 Aliases: `k!trackshow` `k!ts`
 
