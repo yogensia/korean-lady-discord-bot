@@ -2,9 +2,13 @@
 
 All notable changes for each version of this project are documented in this file.
 
+## 1.4.4 - 2020-11-19
+
+- Update !fortune command to iterate through all fortunes before repeating them.
+
 ## 1.4.3 - 2020-11-05
 
-- Update !track command to allow marking shows as completed
+- Update !track command to allow marking shows as completed.
 
 ## 1.4.2 - 2020-10-04
 
