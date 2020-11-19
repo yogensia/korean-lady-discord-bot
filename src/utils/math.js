@@ -42,11 +42,19 @@ const getRandomFloat = (min, max) => {
  *
  * @param {string[]} array - Array of strings to choose from.
  * @param {Boolean} shift - If `true`, shift (remove) selected element from array. Defaults to `true`.
+ * @param {Object} tempArray - Optional array for storing previously selected items, only used if `shift=true`.
  * @return {string} Randomly selected string.
  */
-const getRandomStringFromArray = (array, shift = true) => {
+const getRandomStringFromArray = (array, shift = true, tempArray = false) => {
   if (shift) {
-    return array.sort(() => Math.random() - 0.5).shift()
+    const item = array.sort(() => Math.random() - 0.5).shift()
+
+    // If a temporary array is defined, store previous values there.
+    if (Array.isArray(tempArray)) {
+      tempArray.push(item)
+    }
+
+    return item
   } else {
     array.sort(() => Math.random() - 0.5)
     return array[0]
