@@ -2,7 +2,8 @@ const common = require('../utils/common')
 const math = require('../utils/math')
 
 // Fortunes.
-const fortunes = [
+let previousFortunes = []
+let fortunes = [
   // Random and fun (https://www.boredpanda.com/funny-fortune-cookie-messages/, adapted).
   'Run.',
   'The next fortune cookie will give you\nthe answer you seek. For real!',
@@ -153,8 +154,14 @@ const fortunes = [
 ]
 
 const run = (client, msg, args) => {
+  // Check if we've ran out of fortunes, when that happens restore them.
+  if (fortunes.length === 0) {
+    fortunes = previousFortunes
+    previousFortunes = []
+  }
+
   // Random fortune.
-  const fortune = math.getRandomStringFromArray(fortunes, false)
+  const fortune = math.getRandomStringFromArray(fortunes, false, previousFortunes)
 
   // Send fortune in an embed.
   msg.channel.send({
