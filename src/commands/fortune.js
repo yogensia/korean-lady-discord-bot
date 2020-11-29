@@ -1,9 +1,9 @@
+const CronJob = require('cron').CronJob
 const common = require('../utils/common')
-const math = require('../utils/math')
+const random = require('../utils/random')
 
 // Fortunes.
-let previousFortunes = []
-let fortunes = [
+const fortunes = [
   // Random and fun (https://www.boredpanda.com/funny-fortune-cookie-messages/, adapted).
   'Run.',
   'The next fortune cookie will give you\nthe answer you seek. For real!',
@@ -153,21 +153,31 @@ let fortunes = [
   'Don\'t count your chickens before they hatch.'
 ]
 
-const run = (client, msg, args) => {
-  // Check if we've ran out of fortunes, when that happens restore them.
-  if (fortunes.length === 0) {
-    fortunes = previousFortunes
-    previousFortunes = []
-  }
+// Shuffle fortunes.
+random.shuffleArray(fortunes)
 
-  // Random fortune.
-  const fortune = math.getRandomStringFromArray(fortunes, false, previousFortunes)
+/**
+ * SHUFFLE FORTUNES CRON JOB, runs monday.
+ *
+ * Re-shuffles the order of fortunes in the !fortune command every monday.
+ */
+const birthdayCronJob = new CronJob('0 0 * * MON', () => {
+  console.log('Running Weekly Fortune reshuffle...')
+  random.shuffleArray(fortunes)
+})
+
+birthdayCronJob.start()
+
+const run = (client, msg, args) => {
+  // Get next fortune in the array.
+  const fortune = fortunes.shift()
+  fortunes.push(fortune)
 
   // Send fortune in an embed.
   msg.channel.send({
     embed: {
       color: 0x2f3136,
-      description: fortune
+      description: `${fortune}`
     }
   }).catch(err => common.sendErrorMsg(msg, err))
 }
