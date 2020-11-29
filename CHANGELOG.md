@@ -2,6 +2,11 @@
 
 All notable changes for each version of this project are documented in this file.
 
+## 1.4.5 - 2020-11-29
+
+- Refactor !fortune command to better address repeated fortunes.
+- Revert pum auto reply back to normal.
+
 ## 1.4.4 - 2020-11-19
 
 - Update !fortune command to iterate through all fortunes before repeating them.
