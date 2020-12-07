@@ -2,6 +2,10 @@
 
 All notable changes for each version of this project are documented in this file.
 
+## 1.4.6 - 2020-12-07
+
+- Add new fortunes to !fortune command.
+
 ## 1.4.5 - 2020-11-29
 
 - Refactor !fortune command to better address repeated fortunes.
