@@ -2,6 +2,11 @@
 
 All notable changes for each version of this project are documented in this file.
 
+## 1.4.7 - 2020-12-26
+
+- Improve string detection by splitting question/exclamation marks before search.
+- Add "cats" string response.
+
 ## 1.4.6 - 2020-12-07
 
 - Add new fortunes to !fortune command.
