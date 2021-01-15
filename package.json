@@ -21,7 +21,7 @@
     "npm": "*"
   },
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "cron": "^1.8.2",
     "discord.js": "^12.1.1",
     "dotenv": "^8.2.0",
