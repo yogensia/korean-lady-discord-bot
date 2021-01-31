@@ -44,6 +44,10 @@ const fortunes = [
   'Men with guns are coming to get you right now...',
   'A perfectly splendid day awaits you.',
   'Unlucky.',
+  'Go beb.',
+  'A true act of good will always sparks another',
+  'You spark joy.',
+  'Vision without action is a daydream.\nAction without vision is a nightmare.\n-Japanese proverb',
 
   // Random and fun (google image search, no attribution).
   'To truly find yourself,\nyou should play hide an seek alone.',
@@ -141,8 +145,8 @@ const fortunes = [
   'You can see a lot just by looking.',
   'You love chinese food.',
 
-  // Animal Crossin Fortunes.
-  'You will be soon be visited\nby a mustachioed man.',
+  // Animal Crossing Fortunes.
+  'You will soon be visited\nby a mustachioed man.',
   'A red hat may improve your head, as well as your fashion sense.',
   'Today is not your day.\nTomorrow doesn\'t look any better.',
   'He who stubs his toe is he who\nremembers his feet are there.',
@@ -265,12 +269,12 @@ random.shuffleArray(fortunes)
  *
  * Re-shuffles the order of fortunes in the !fortune command every monday.
  */
-const birthdayCronJob = new CronJob('0 0 * * MON', () => {
+const fortuneCronJob = new CronJob('0 0 * * MON', () => {
   console.log('Running Weekly Fortune reshuffle...')
   random.shuffleArray(fortunes)
 })
 
-birthdayCronJob.start()
+fortuneCronJob.start()
 
 const run = (client, msg, args) => {
   // Get next fortune in the array.
