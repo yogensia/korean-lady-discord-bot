@@ -13,6 +13,8 @@ const common = require('../utils/common')
  */
 
 const request = async (msg, endpoint, query, year = false) => {
+  query = encodeURIComponent(query)
+
   // Make request.
   let url
   if (endpoint === 'movie') {
