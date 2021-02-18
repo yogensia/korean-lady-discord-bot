@@ -82,7 +82,7 @@ This application uses the TMDb API but is not endorsed or certified by [TMDb](ht
 
 ## License
 
-Copyright (c) 2019—2020, Yogensia
+Copyright (c) 2019—2021, Yogensia
 
 Permission to use, copy, modify, and/or distribute this software for any purpose
 with or without fee is hereby granted, provided that the above copyright notice
