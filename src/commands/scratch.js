@@ -6,9 +6,9 @@ const random = require('../utils/random')
 const emotes = [
   // ['kek', 'sadkek', 'gonBleh', 'minglee', 'LULW', 'concern'],
   ['pridePog', 'sadcat', 'tohrusmug', 'sweat_eo_medic', 'apololw', 'MingLee', 'LULW'],
-  ['coolcat', 'catWow', 'catBread', 'catStare', 'kitty', 'cat', 'michael', 'catcry'],
+  ['coolCat', 'catWow', 'catBread', 'catStare', 'kitty', 'cat', 'michael', 'catcry'],
   ['pugPls', 'catJAM', 'dogJAM', 'ratJAM', 'apolJAM', 'concernPls'],
-  ['tohrusmug', 'huh', 'Angry', 'MingLee', 'lidyHyper'],
+  ['tohrusmug', 'huh', 'Angry', 'MingLee', 'liduHyper'],
   ['pepeLaugh', 'monkaHmm', 'concernFroge', 'pepeHandsUp', 'POG', 'concern']
   // ['apolPants~1', 'peepoWalk'],
   // ['babyrage', 'Blobfish'],
