@@ -45,7 +45,7 @@ const fortunes = [
   'A perfectly splendid day awaits you.',
   'Unlucky.',
   'Go beb.',
-  'A true act of good will always sparks another',
+  'A true act of good will always spark another.',
   'You spark joy.',
   'Vision without action is a daydream.\nAction without vision is a nightmare.\n-Japanese proverb',
 
@@ -159,6 +159,7 @@ const fortunes = [
   'Sundaes are delicious every day of\nthe week, unless you hate ice cream.',
   'She who wears lava-proof pants is\ndressed for any occasion.',
   'I see much red in your future.\nMuch red indeed.',
+  'A good attitude will always\ntake you further than a bad habit.',
 
   // Wholesome.
   'Don\'t pursue happines.\nCreate it.',
