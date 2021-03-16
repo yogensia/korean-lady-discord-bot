@@ -41,7 +41,7 @@ ftp-config.json
 /public
 
 # Debug Commands
-/src/commands/debug_*
+/src/commands/_*
 
 # JSON Data
 /json/*
