@@ -2,11 +2,12 @@ const CronJob = require('cron').CronJob
 const common = require('../utils/common')
 const random = require('../utils/random')
 
+console.log('Hello nerds!')
+
 // Fortunes.
 const fortunes = [
   // Random and fun (https://www.boredpanda.com/funny-fortune-cookie-messages/, adapted).
   'Run.',
-  'The next fortune cookie will give you\nthe answer you seek. For real!',
   'Ignore the previous fortune cookie.',
   'Someone\'s looking up to you.\nDon\'t let them down.',
   'Virtual fortunes are just as good,\nas long as the cookie is real.',
@@ -31,7 +32,6 @@ const fortunes = [
   'Virtual fortiune cookies can\'t have printing errors,\nbut they still can have typos.',
   'The smart thing would be to prepare\nfor the unexpected.',
   'You will soon discover a hidden talent of yours.',
-  'Error 404 - Fortune not found.',
   'You broke a cookie that you can\'t eat for this fortune.\nWas it worth it? The answer is no.',
   'Your next fortune will become true. And by true I mean false.\nIt\'s all lies. But they are entertaining lies.\nAnd in the end isn\'t that the real truth?\nThe answer is: No.',
   'Disregard other fortune cookies, only pay attention to this fortune cookie:\nYou are awesome.',
@@ -51,7 +51,6 @@ const fortunes = [
 
   // Random and fun (google image search, no attribution).
   'To truly find yourself,\nyou should play hide an seek alone.',
-  'The fortune you seek is in another cookie.',
   'About time I got out of that cookie.',
   'The early bird gets the worm,\nand the second mouse gets the cheese.',
   'Cookie Notice: This fortune uses cookies to ensure you get the best possible experience.',
@@ -62,7 +61,6 @@ const fortunes = [
   'Don\'t even ask.',
   'You are not illiterate.',
   'You will be let down by a fortune cookie.',
-  'Fortune not found, please retry.',
   'Don\'t ask a cookie what you can answer by yourself.',
   'You think it\'s a secret, but they know.\nThey. Know.',
   'Shame on you for thinking this bot is psychic.',
