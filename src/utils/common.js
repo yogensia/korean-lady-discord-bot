@@ -105,6 +105,7 @@ const getCustomEmote = (client, name, fallback) => {
   if (emote !== null && emote !== undefined) {
     return `${emote}`
   } else {
+    console.log(`Custom emote '${name}' could not be found.`)
     // If emote not found check if a fallback was provided.
     if (fallback) {
       return `${fallback}`

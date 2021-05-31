@@ -1,6 +1,6 @@
 {
   "name": "korean-lady-discord-bot",
-  "version": "1.4.8",
+  "version": "1.4.9",
   "description": "KoreanLady is a simple and fun Discord bot coded in NodeJS.",
   "author": "Yogensia",
   "license": "ISC",
@@ -24,6 +24,7 @@
     "axios": "^0.21.1",
     "cron": "^1.8.2",
     "discord.js": "^12.1.1",
+    "discord.js-minesweeper": "^1.0.6",
     "dotenv": "^8.2.0",
     "enmap": "^5.2.3",
     "moment-timezone": "^0.5.27",
