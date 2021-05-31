@@ -2,6 +2,10 @@
 
 All notable changes for each version of this project are documented in this file.
 
+## 1.4.9 - 2021-05-31
+
+- Add !minesweeper command.
+
 ## 1.4.8 - 2021-03-16
 
 - Add new fortunes to !fortune command.

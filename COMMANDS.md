@@ -132,6 +132,16 @@ Usage: `k!love [subject]`
 
 Examples: `k!love` `k!love @Wumpus` `k!love everyone in chat`
 
+### `k!minesweeper`
+
+Starts a game of minesweeper. You can set the difficulty by appending "easy", "medium" or "hard" to the command. Default difficulty is medium.
+
+Usage: `k!minesweeper`
+
+Examples: `k!minesweeper` `k!minesweeper hard`
+
+Aliases: `k!mine`
+
 ### `k!movie`
 
 Returns info about a movie. The command will always try to find the best match, but providing a full title is still recommended for best results. You can refine your search by typing the year between parethesis.
