@@ -3,40 +3,17 @@ const common = require('../utils/common')
 const math = require('../utils/math')
 
 // Emotes.
-// const emotes = [
-//   ['💥', '💥'],
-//   ['ratJAM', '💥'],
-//   ['michael', '💥'],
-//   ['MingLee', '💥'],
-//   ['grubBONK', '💥'],
-//   ['gnomed', '💥'],
-//   ['french', '💥'],
-//   ['drakeban', '💥'],
-//   ['Blobfish', '💥'],
-//   ['obiHi1', '💥']
-// ]
 const emotes = [
   ['ratJAM', '💥'],
-  ['concern', '💥']
+  ['michael', '💥'],
+  ['MingLee', '💥'],
+  ['grubBONK', '💥'],
+  ['gnomed', '💥'],
+  ['french', '💥'],
+  ['drakeban', '💥'],
+  ['Blobfish', '💥'],
+  ['obiHi1', '💥']
 ]
-
-// const settings = {
-//   easy: {
-//     columns: 9,
-//     rows: 9,
-//     mines: 10
-//   },
-//   medium: {
-//     columns: 15,
-//     rows: 10,
-//     mines: 25
-//   },
-//   hard: {
-//     columns: 20,
-//     rows: 10,
-//     mines: 60
-//   }
-// }
 
 const run = async (client, msg, args) => {
   // OG Minesweeper Dificulty table.
@@ -87,6 +64,7 @@ const run = async (client, msg, args) => {
   const matrix = minesweeper.start()
     .replaceAll(':<', '<')
     .replaceAll('>:', '>')
+    .replaceAll(':💥:', '💥')
 
   const introMsg = await msg.channel.send(`A pack of expertly trained rodents is preparing the board, please wait... ${common.getCustomEmote(client, 'ratJAM')}`)
 
