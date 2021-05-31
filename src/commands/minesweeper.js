@@ -108,6 +108,7 @@ module.exports = {
   name: 'minesweeper',
   desc: 'Starts a game of minesweeper. You can set the difficulty by appending "easy", "medium" or "hard" to the command. Default difficulty is medium.',
   aliases: ['mine'],
-  usage: 'mine',
+  usage: 'minesweeper',
+  examples: ['minesweeper', 'minesweeper hard'],
   run
 }
