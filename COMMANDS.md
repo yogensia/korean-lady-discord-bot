@@ -134,13 +134,15 @@ Examples: `k!love` `k!love @Wumpus` `k!love everyone in chat`
 
 ### `k!minesweeper`
 
-Starts a game of minesweeper. You can set the difficulty by appending "easy", "medium" or "hard" to the command. Default difficulty is medium. You can also append the argument "reveal" if you want the first cell and it's sourroundings to be revealed at the start of the game. Reveal argumant must always tb last.
+Starts a game of minesweeper. You can choose the difficulty by adding `easy`, `medium` or `hard` to the command. Default difficulty is `medium`.
 
-Usage: `k!minesweeper [difficulty] [reveal]`
+By default a first random cell and it's sourroundings will be revealed at the start of the game. Use the `blank` argument at the end of the command if you don't want to reaveal any cells.
 
-Examples: `k!minesweeper` `k!minesweeper hard` `k!minesweeper blank` `k!minesweeper easy blank`
+Usage: `k!minesweeper [difficulty] [blank]`
 
-Aliases: `k!mine`
+Examples: `k!minesweeper` `k!minesweeper easy` `k!minesweeper blank` `k!minesweeper hard blank`
+
+Aliases: `k!mine` `k!ms`
 
 ### `k!movie`
 
