@@ -134,11 +134,11 @@ Examples: `k!love` `k!love @Wumpus` `k!love everyone in chat`
 
 ### `k!minesweeper`
 
-Starts a game of minesweeper. You can set the difficulty by appending "easy", "medium" or "hard" to the command. Default difficulty is medium.
+Starts a game of minesweeper. You can set the difficulty by appending "easy", "medium" or "hard" to the command. Default difficulty is medium. You can also append the argument "reveal" if you want the first cell and it's sourroundings to be revealed at the start of the game. Reveal argumant must always tb last.
 
-Usage: `k!minesweeper`
+Usage: `k!minesweeper [difficulty] [reveal]`
 
-Examples: `k!minesweeper` `k!minesweeper hard`
+Examples: `k!minesweeper` `k!minesweeper hard` `k!minesweeper reveal` `k!minesweeper easy reveal`
 
 Aliases: `k!mine`
 
@@ -210,7 +210,7 @@ Shows can also be marked as complete, which makes them appear in a separate list
 
 Usage: `k!track [(show)|add (show)|rename (show) (newShowName)|set (show) (eps)|del (show)|complete (show)]`
 
-Examples: `k!track` `k!track HxH` `k!track add HxH` `k!track rename Hunter HxH` `k!track set HxH 120` `k!track del HxH` `k!track complete HxH`
+Examples: `k!track` `k!track complete` `k!track HxH` `k!track add HxH` `k!track rename Hunter HxH` `k!track set HxH 120` `k!track del HxH` `k!track complete HxH`
 
 Aliases: `k!trackshow` `k!ts`
 
