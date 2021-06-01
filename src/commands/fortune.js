@@ -2,8 +2,6 @@ const CronJob = require('cron').CronJob
 const common = require('../utils/common')
 const random = require('../utils/random')
 
-console.log('Hello nerds!')
-
 // Fortunes.
 const fortunes = [
   // Random and fun (https://www.boredpanda.com/funny-fortune-cookie-messages/, adapted).
