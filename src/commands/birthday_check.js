@@ -80,5 +80,6 @@ const run = (client, msg) => {
 module.exports = {
   name: 'birthday_check',
   desc: 'Forces a manual check for birthdays. If it finds any birthday record that matches the current date, a message is sent to the server.',
+  skipDocs: true,
   run
 }

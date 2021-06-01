@@ -31,6 +31,9 @@ const pushCommand = file => {
  * @param {Object} cmd A command object.
  */
 const parseCommand = cmd => {
+  // Skip command if necesary.
+  if (cmd.skipDocs) return
+
   console.log('Processing command:', cmd.name)
   output += `### \`k!${cmd.name}\`\n\n`
   output += `${cmd.desc}\n\n`
@@ -79,7 +82,8 @@ const writeDocumentation = () => {
     fs.writeFile('./COMMANDS.md', output, err => {
       if (err) return console.log(err)
 
-      console.log('Documentation file written: ./COMMANDS.md!')
+      console.log('Documentation file written!')
+      process.exit(1)
     })
   })
 }
