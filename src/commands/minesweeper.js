@@ -43,14 +43,14 @@ const run = async (client, msg, args) => {
     settings.rows = 10
     settings.mines = 50
   } else {
-    settings.columns = 12
+    settings.columns = 11
     settings.rows = 10
     settings.mines = 24
   }
 
-  let revealFirstCell = false
-  if (args.includes('reveal')) {
-    revealFirstCell = true
+  let revealFirstCell = true
+  if (args.includes('blank')) {
+    revealFirstCell = false
   }
 
   // Random emote.
@@ -95,6 +95,6 @@ module.exports = {
   desc: 'Starts a game of minesweeper. You can set the difficulty by appending "easy", "medium" or "hard" to the command. Default difficulty is medium. You can also append the argument "reveal" if you want the first cell and it\'s sourroundings to be revealed at the start of the game. Reveal argumant must always tb last.',
   aliases: ['mine'],
   usage: 'minesweeper [difficulty] [reveal]',
-  examples: ['minesweeper', 'minesweeper hard', 'minesweeper reveal', 'minesweeper easy reveal'],
+  examples: ['minesweeper', 'minesweeper hard', 'minesweeper blank', 'minesweeper easy blank'],
   run
 }

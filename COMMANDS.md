@@ -138,7 +138,7 @@ Starts a game of minesweeper. You can set the difficulty by appending "easy", "m
 
 Usage: `k!minesweeper [difficulty] [reveal]`
 
-Examples: `k!minesweeper` `k!minesweeper hard` `k!minesweeper reveal` `k!minesweeper easy reveal`
+Examples: `k!minesweeper` `k!minesweeper hard` `k!minesweeper blank` `k!minesweeper easy blank`
 
 Aliases: `k!mine`
 
