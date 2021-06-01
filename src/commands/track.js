@@ -53,7 +53,7 @@ const showAlreadyExists = (showArgument) => {
 
     pg.trackShowGetAll().then(showArray => {
       showArray.forEach(show => {
-        if (show.show_name === showArgument) {
+        if (show.show_name.toLowerCase() === showArgument.toLowerCase()) {
           showFound = true
         }
       })
@@ -319,6 +319,6 @@ module.exports = {
   desc: 'Keeps track of how many episodes have been watched for a show. You can check usage and examples below for how to add new tracked shows, rename, change, check the amount of episodes watched, or delete them from the database.\n\nWhen providing a show name, capitalization is ignored, so `HxH` and `hxh` will work just the same. Show names can\'t contain spaces and should be short an easy to remember, so acronyms and similar short names are recommended.\n\nTo see a list of shows currently tracked type the command without any arguments.\n\nShows can also be marked as complete, which makes them appear in a separate list.',
   aliases: ['trackshow', 'ts'],
   usage: 'track [(show)|add (show)|rename (show) (newShowName)|set (show) (eps)|del (show)|complete (show)]',
-  examples: ['track', 'track HxH', 'track add HxH', 'track rename Hunter HxH', 'track set HxH 120', 'track del HxH', 'track complete HxH'],
+  examples: ['track', 'track complete', 'track HxH', 'track add HxH', 'track rename Hunter HxH', 'track set HxH 120', 'track del HxH', 'track complete HxH'],
   run
 }
