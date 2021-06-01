@@ -2,6 +2,11 @@
 
 All notable changes for each version of this project are documented in this file.
 
+## 1.4.10 - 2021-06-01
+
+- Improve formatting in !minesweeper command and add `reveal` setting.
+- Fix !track command requiring to match the exact capitalization of shows when updating/renaming them.
+
 ## 1.4.9 - 2021-05-31
 
 - Add !minesweeper command.
