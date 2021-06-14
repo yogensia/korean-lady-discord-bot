@@ -44,7 +44,7 @@ const reactHappy = (client, msg, amount = 1) => {
     ['apolPat', '🤗'],
     ['apolLove', '❤️'],
     ['apolHyper', '😋'],
-    ['POG', '😮'],
+    ['POGGERS', '😮'],
     ['ihaa', '🥰']
   ]
 

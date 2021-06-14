@@ -15,9 +15,9 @@ const emotesIntro = [
 
 const emotesOutro = [
   'Apoggies',
-  'liduHyper',
+  'liduWidush',
   'pikaD',
-  'POG',
+  'POGGERS',
   'blurryeyes',
   'Hypers',
   'ihaa'

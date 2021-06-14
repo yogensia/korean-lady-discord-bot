@@ -8,10 +8,10 @@ const emotes = [
   'Apoggies',
   'babyrage',
   'blurryeyes',
-  'liduHyper',
+  'liduWidush',
   'MingLee',
   'pikaD',
-  'POG',
+  'POGGERS',
   'tohrusmug'
 ]
 
