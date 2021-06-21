@@ -23,7 +23,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "cron": "^1.8.2",
-    "discord.js": "^12.1.1",
+    "discord.js": "^13.0.0-dev.1f8f3ab0f8dbd346154bbfa14a98726b8df25d57",
     "discord.js-minesweeper": "^1.0.6",
     "dotenv": "^8.2.0",
     "enmap": "^5.2.3",
