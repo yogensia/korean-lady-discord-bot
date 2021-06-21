@@ -37,11 +37,11 @@ const run = (client, msg, args) => {
 
   // Reply with an embed message.
   msg.channel.send({
-    embed: {
+    embeds: [{
       color: 0x2f3136,
       description: 'Here\'s a list of some cities/areas, their UTC offset and current time!',
       fields
-    }
+    }]
   }).catch(err => common.sendErrorMsg(msg, err))
 }
 

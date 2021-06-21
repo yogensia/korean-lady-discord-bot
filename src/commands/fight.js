@@ -203,11 +203,11 @@ const run = (client, msg, args) => {
 
   // Reply with an embed message.
   msg.channel.send({
-    embed: {
+    embeds: [{
       title,
       color: 0x2f3136,
       description: startFight(instigator, subject)
-    }
+    }]
   }).catch(err => common.sendErrorMsg(msg, err))
 }
 

@@ -16,7 +16,7 @@ const run = (client, msg, args) => {
 
   // Send command list in a nice and clean embed.
   msg.channel.send({
-    embed: {
+    embeds: [{
       color: 3447003,
       title: 'KoreanLady Commands',
       url: 'https://github.com/yogensia/korean-lady-discord-bot/blob/master/COMMANDS.md#koreanlady-discord-bot',
@@ -24,7 +24,7 @@ const run = (client, msg, args) => {
       footer: {
         text: 'Tip: You can also DM me and type `help` for more info!'
       }
-    }
+    }]
   }).catch(err => common.sendErrorMsg(msg, err))
 }
 

@@ -58,16 +58,16 @@ const run = (client, msg, args) => {
 
     // Send an embed message with help about the requested command.
     msg.channel.send({
-      embed: {
+      embeds: [{
         color: 3447003,
         title: name,
         fields
-      }
+      }]
     }).catch(err => common.sendErrorMsg(msg, err))
   } else if (msg.channel.type === 'dm') {
     // Send general documentation link in a nice and clean embed.
     msg.channel.send({
-      embed: {
+      embeds: [{
         color: 3447003,
         title: 'Full KoreanLady Command List',
         url: 'https://github.com/yogensia/korean-lady-discord-bot/blob/master/COMMANDS.md#readme',
@@ -98,12 +98,12 @@ const run = (client, msg, args) => {
             value: 'Thanks for reading, have a cookie! 🍪'
           }
         ]
-      }
+      }]
     }).catch(err => common.sendErrorMsg(msg, err))
   } else {
     // Send general documentation link in a nice and clean embed.
     msg.channel.send({
-      embed: {
+      embeds: [{
         color: 3447003,
         title: 'KoreanLady Commands',
         url: 'https://github.com/yogensia/korean-lady-discord-bot/blob/master/COMMANDS.md#readme',
@@ -111,7 +111,7 @@ const run = (client, msg, args) => {
         footer: {
           text: 'Tip: You can also DM me and type `help` for more info!'
         }
-      }
+      }]
     }).catch(err => common.sendErrorMsg(msg, err))
   }
 }

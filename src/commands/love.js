@@ -31,10 +31,10 @@ const run = (client, msg, args) => {
 
   // Reply with an embed message.
   msg.channel.send({
-    embed: {
+    embeds: [{
       color: 0x2f3136,
       description: message
-    }
+    }]
   }).then(ownMessage => {
     // IHAA... If subject is Korean Lady she will react with a random emote.
     if (common.koreanLadyMentioned(subject)) {

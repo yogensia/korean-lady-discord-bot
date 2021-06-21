@@ -219,7 +219,7 @@ const run = async (client, msg, args) => {
 
     // Reply with an embed message.
     msg.channel.send({
-      embed: {
+      embeds: [{
         color: 0x2f3136,
         title: displayTitle,
         url: show.siteUrl,
@@ -231,7 +231,7 @@ const run = async (client, msg, args) => {
         footer: {
           text: 'Data provided by AniList API – https://anilist.co/'
         }
-      }
+      }]
     }).catch(err => common.sendErrorMsg(msg, err))
   } else {
     common.sendErrorMsg(msg, 'Couldn\'t find any anime by that title.\nPlease check spelling and try again!')

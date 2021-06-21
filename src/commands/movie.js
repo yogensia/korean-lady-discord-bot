@@ -204,7 +204,7 @@ const run = async (client, msg, args) => {
 
     // Reply with an embed message.
     msg.channel.send({
-      embed: {
+      embeds: [{
         color: 0x2f3136,
         title,
         url: movieUrl,
@@ -216,7 +216,7 @@ const run = async (client, msg, args) => {
         footer: {
           text: 'Data provided by TMDb API – https://www.themoviedb.org/'
         }
-      }
+      }]
     }).catch(err => common.sendErrorMsg(msg, err))
   } else {
     common.sendErrorMsg(msg, `Sorry, couldn't find any movies by that title.

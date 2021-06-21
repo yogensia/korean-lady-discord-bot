@@ -326,10 +326,10 @@ const run = (client, msg, args) => {
 
   // Send fortune in an embed.
   msg.channel.send({
-    embed: {
+    embeds: [{
       color: 0x2f3136,
       description: `${fortune}`
-    }
+    }]
   }).catch(err => common.sendErrorMsg(msg, err))
 }
 

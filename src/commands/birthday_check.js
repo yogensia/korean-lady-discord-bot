@@ -56,20 +56,20 @@ const run = (client, msg) => {
           // Send general chat message.
           client.channels.cache.get(process.env.GENERAL_CHANEL_ID)
             .send({
-              embed: {
+              embeds: [{
                 color: 0x2f3136,
                 description: `${emoteIntro} Today is <@${user.userid}>'s, birthday! ${emoteOutro}`
-              }
+              }]
             })
             .catch(err => console.log(err))
 
           // Send server owner message.
           client.users.cache.get(process.env.GUILD_OWNER_ID)
             .send({
-              embed: {
+              embeds: [{
                 color: 0x2f3136,
                 description: `${emoteIntro} **${today}:** Today, is **${user.discord_name}'s**, birthday!`
-              }
+              }]
             })
             .catch(err => console.log(err))
         }
