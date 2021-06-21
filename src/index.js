@@ -4,7 +4,16 @@ const { Client } = require('discord.js')
 const Enmap = require('enmap')
 const fs = require('fs')
 
-const client = new Client()
+const client = new Client({
+  intents: [
+    'GUILD_MESSAGES',
+    'GUILD_MESSAGE_REACTIONS',
+    'GUILD_MESSAGE_TYPING',
+    'DIRECT_MESSAGES',
+    'DIRECT_MESSAGE_REACTIONS',
+    'DIRECT_MESSAGE_TYPING'
+  ]
+})
 client.commands = new Enmap()
 client.strings = new Enmap()
 
