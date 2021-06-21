@@ -163,11 +163,12 @@ const reactWithCustomEmote = async (client, msg, name, fallback) => {
  */
 const sendEmbed = (msg, value) => {
   // Send an embed message with the content.
+  console.log({ value })
   msg.channel.send({
-    embed: {
+    embeds: [{
       color: 0x2f3136,
       description: `${value}`
-    }
+    }]
   }).catch(err => console.log(new Error(err)))
 }
 
@@ -180,14 +181,14 @@ const sendEmbed = (msg, value) => {
 const sendErrorMsg = (msg, value) => {
   // Send an embed message with the error.
   msg.channel.send({
-    embed: {
+    embeds: [{
       color: 0x2f3136,
       author: {
         name: random.exclamationNegative(),
         icon_url: 'https://i.imgur.com/xvJNaak.png' // concernFroge
       },
       description: `${value}`
-    }
+    }]
   }).catch(err => console.log(new Error(err)))
 }
 
@@ -207,7 +208,7 @@ const sendMissingParameterMsg = (client, msg, reason) => {
 
   // Send error message in a nice and clean embed.
   msg.channel.send({
-    embed: {
+    embeds: [{
       color: 0x2f3136,
       author: {
         name: random.exclamationNegative(),
@@ -226,7 +227,7 @@ const sendMissingParameterMsg = (client, msg, reason) => {
       footer: {
         text: `Type \`${process.env.PREFIX}help ${client.cmd.name}\` for more info.`
       }
-    }
+    }]
   }).catch(err => sendErrorMsg(msg, err))
 }
 
@@ -242,13 +243,13 @@ const sendSpamMsg = (client, msg) => {
 
   // Send a reply with the warning.
   msg.channel.send({
-    embed: {
+    embeds: [{
       color: 0x2f3136,
       description: `Sorry ${displayName(msg)}, ${process.env.PREFIX}${client.cmd.name} is a bit too spammy for this channel, please use it in <#${client.spamChannel.id}> instead. Thank you! ${emoteThanks}`,
       footer: {
         text: 'This message will self-destruct in 30 seconds... 👀'
       }
-    }
+    }]
   }).then(msg => msg.delete({ timeout: 30000 }))
     .catch(err => console.log(new Error(err)))
 }
