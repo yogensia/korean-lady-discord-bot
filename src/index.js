@@ -4,6 +4,8 @@ const { Client } = require('discord.js')
 const Enmap = require('enmap')
 const fs = require('fs')
 
+const interactions = require('./utils/interactions')
+
 const client = new Client({
   intents: [
     'GUILD_MESSAGES',
@@ -60,8 +62,10 @@ fs.readdir('./src/events/', (err, files) => {
 /**
  * Load Commands.
  */
-fs.readdir('./src/commands/', (err, files) => {
+fs.readdir('./src/commands/', async (err, files) => {
   if (err) return console.error(err)
+  const slashCommands = []
+
   files.forEach(file => {
     if (!file.endsWith('.js')) return
 
@@ -74,7 +78,31 @@ fs.readdir('./src/commands/', (err, files) => {
 
     // Store in the command Enmap.
     client.commands.set(commandName, props)
+
+    // If this is a Slash command continue.
+    if (!props.slash_command) return
+
+    // Store the slash command data in array.
+    const data = {
+      name: props.name,
+      description: props.slash_command.description,
+      options: props.slash_command.options
+    }
+
+    // console.log(data)
+    slashCommands.push(data)
   })
+
+  // Refresh slash command data.
+  interactions
+    .deleteAll()
+    .then(() => {
+      // If there are slash commands to register...
+      if (slashCommands.length > 0) {
+        interactions.createAll(slashCommands)
+      }
+    })
+    .catch(console.error)
 })
 
 /**

@@ -29,6 +29,7 @@
     "enmap": "^5.2.3",
     "moment-timezone": "^0.5.27",
     "pg": "^8.3.3",
+    "slash-commands": "^1.4.0",
     "turndown": "^6.0.0"
   },
   "devDependencies": {
