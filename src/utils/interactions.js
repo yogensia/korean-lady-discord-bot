@@ -6,39 +6,32 @@ const interaction = new DiscordInteractions({
   publicKey: process.env.DISCORD_PUBKEY
 })
 
-// const getAll = () => {
-//   return new Promise((resolve, reject) => {
-//   interaction
-//     .getApplicationCommands(process.env.GUILD_ID)
-//     .then((commands) => {
-//       resolve(commands)
-//     })
-//     .catch((err) => {
-//       reject(err)
-//     })
-//   })
-// }
+// Slash command option type enum:
+// https://discord.com/developers/docs/interactions/slash-commands#application-command-object-application-command-option-type
+// --------------------
+// SUB_COMMAND        1
+// SUB_COMMAND_GROUP  2
+// STRING             3
+// INTEGER            4
+// BOOLEAN            5
+// USER               6
+// CHANNEL            7
+// ROLE               8
+// MENTIONABLE        9
 
 const createAll = (commands) => {
   return new Promise((resolve, reject) => {
-    interaction
-      .getApplicationCommands(process.env.GUILD_ID)
-      .then((commands) => {
-        for (let i = 0; i < commands.length; i++) {
-          const command = commands[i]
+    for (let i = 0; i < commands.length; i++) {
+      const command = commands[i]
 
-          interaction
-            .createApplicationCommand(command, process.env.GUILD_ID)
-            .then((command) => {
-              console.log('Registering slash command:', command.name)
-            })
-            .catch(console.error)
-        }
-        resolve(commands)
-      })
-      .catch((err) => {
-        reject(err)
-      })
+      interaction
+        .createApplicationCommand(command, process.env.GUILD_ID)
+        .then((command) => {
+          console.log('Registering slash command:', command.name)
+        })
+        .catch(console.error)
+    }
+    resolve(commands)
   })
 }
 
