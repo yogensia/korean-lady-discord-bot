@@ -159,16 +159,28 @@ const reactWithCustomEmote = async (client, msg, name, fallback) => {
  * Send an embed message.
  *
  * @param {Object} msg Message object.
- * @param {string} value Message content.
+ * @param {string} value Message content (embed description).
  */
 const sendEmbed = (msg, value) => {
   // Send an embed message with the content.
-  console.log({ value })
   msg.channel.send({
     embeds: [{
       color: 0x2f3136,
       description: `${value}`
     }]
+  }).catch(err => console.log(new Error(err)))
+}
+
+/**
+ * Send an embed message object.
+ *
+ * @param {Object} msg Message object.
+ * @param {Object} embed Message content (embed object).
+ */
+const sendEmbedObject = (msg, embed) => {
+  // Send an embed message with the content.
+  msg.channel.send({
+    embeds: [embed]
   }).catch(err => console.log(new Error(err)))
 }
 
@@ -329,6 +341,7 @@ module.exports = {
   koreanLadyMentioned,
   randomSubject,
   sendEmbed,
+  sendEmbedObject,
   sendErrorMsg,
   sendMissingParameterMsg,
   sendSpamMsg,
