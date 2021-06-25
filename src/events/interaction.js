@@ -1,6 +1,5 @@
 module.exports = async (client, interaction) => {
   if (!interaction.isCommand()) return
-  // console.log(interaction)
 
   // Create custom message object to provide some data needed by commands.
   const msg = {

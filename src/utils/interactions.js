@@ -29,7 +29,9 @@ const createAll = (commands) => {
         .then((command) => {
           console.log('Registering slash command:', command.name)
         })
-        .catch(console.error)
+        .catch((err) => {
+          reject(err)
+        })
     }
     resolve(commands)
   })
@@ -39,10 +41,10 @@ const deleteAll = () => {
   return new Promise((resolve, reject) => {
     interaction
       .getApplicationCommands(process.env.GUILD_ID)
-      .then((commands) => {
+      .then(async (commands) => {
         for (let i = 0; i < commands.length; i++) {
           const command = commands[i]
-          interaction
+          await interaction
             .deleteApplicationCommand(command, process.env.GUILD_ID)
             .then((res) => {
               console.log('Deleting slash command:', command.name)
@@ -52,6 +54,9 @@ const deleteAll = () => {
             })
         }
         resolve()
+      })
+      .catch((err) => {
+        reject(err)
       })
   })
 }
