@@ -30,7 +30,7 @@ client.on('ready', () => {
   // Set bot status and presence.
   client.user.setStatus('available')
   client.user.setPresence({
-    activity: {
+    activities: [{
       name: `${process.env.PREFIX}help`,
       type: 'PLAYING'
     }
