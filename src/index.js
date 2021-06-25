@@ -8,6 +8,8 @@ const interactions = require('./utils/interactions')
 
 const client = new Client({
   intents: [
+    'GUILDS',
+    'GUILD_EMOJIS',
     'GUILD_MESSAGES',
     'GUILD_MESSAGE_REACTIONS',
     'GUILD_MESSAGE_TYPING',
