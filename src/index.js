@@ -33,7 +33,7 @@ client.on('ready', () => {
     activities: [{
       name: `${process.env.PREFIX}help`,
       type: 'PLAYING'
-    }
+    }]
   })
 
   // Get spam channel object.
