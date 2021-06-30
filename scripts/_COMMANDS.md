@@ -4,6 +4,8 @@ KoreanLady is a simple Discord bot with a few fun commands.
 
 Please remember to not use it to spam the server, if you're going to use it a lot make sure to do so in the spam channel, thanks!
 
+Note that this documentation is for legacy commands (typed as a text message). For the new slash commands, start typing `/` and follow on screen instructions provided by Discord.
+
 ## Command List
 
 Below you can see the full list of available commands.
