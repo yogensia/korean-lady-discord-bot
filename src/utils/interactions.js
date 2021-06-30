@@ -19,6 +19,12 @@ const interaction = new DiscordInteractions({
 // ROLE               8
 // MENTIONABLE        9
 
+const getAll = (command) => {
+  return interaction
+    .getApplicationCommands(process.env.GUILD_ID)
+    .catch(console.error)
+}
+
 const createAll = (commands) => {
   return new Promise((resolve, reject) => {
     for (let i = 0; i < commands.length; i++) {
@@ -61,7 +67,39 @@ const deleteAll = () => {
   })
 }
 
+const createCommand = (command) => {
+  return new Promise((resolve, reject) => {
+    interaction
+      .createApplicationCommand(command, process.env.GUILD_ID)
+      .then((command) => {
+        console.log('Registering slash command:', command.name)
+        resolve(command)
+      })
+      .catch((err) => {
+        reject(err)
+      })
+  })
+}
+
+const deleteCommand = (command) => {
+  return new Promise((resolve, reject) => {
+    interaction
+      .deleteApplicationCommand(command, process.env.GUILD_ID)
+      .then((res) => {
+        console.log('Deleting slash command:', command.name)
+        console.log(res)
+        resolve(command)
+      })
+      .catch((err) => {
+        reject(err)
+      })
+  })
+}
+
 module.exports = {
+  getAll,
   createAll,
-  deleteAll
+  deleteAll,
+  createCommand,
+  deleteCommand
 }
