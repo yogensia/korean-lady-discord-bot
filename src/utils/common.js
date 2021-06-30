@@ -262,7 +262,7 @@ const sendSpamMsg = (client, msg) => {
         text: 'This message will self-destruct in 30 seconds... 👀'
       }
     }]
-  }).then(msg => msg.delete({ timeout: 30000 }))
+  }).then(msg => setTimeout(() => { msg.delete() }, 30000))
     .catch(err => console.log(new Error(err)))
 }
 
