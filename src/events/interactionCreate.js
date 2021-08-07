@@ -6,12 +6,13 @@ module.exports = async (client, interaction) => {
   // Create custom message object to provide some data needed by commands.
   const msg = {
     author: {
+      id: interaction.user.id,
       username: interaction.user.username
     },
     member: {
       displayName: interaction.member.nickname
     },
-    channel: await client.channels.cache.get(interaction.channelID)
+    channel: await client.channels.cache.get(interaction.channelId)
   }
 
   // Get command.
@@ -32,7 +33,7 @@ module.exports = async (client, interaction) => {
 
   // Get argument array.
   const args = []
-  interaction.options.forEach(option => {
+  interaction.options.data.forEach(option => {
     args.push(option.value)
   })
 
