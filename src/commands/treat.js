@@ -152,7 +152,7 @@ const treats = [
   ['🍉', 'Watermelon']
 ]
 
-const run = (client, msg, args) => {
+const construct = (client, msg, args) => {
   // Get subject from args.
   const subject = common.stripMentions(args.join(' '), msg)
 
@@ -164,27 +164,32 @@ const run = (client, msg, args) => {
   const flavour = math.getRandomStringFromArray(flavours, false)
   const treat = math.getRandomStringFromArray(treats, false)
 
-  let description
+  let message
   if (subject) {
-    description = `${intro} ${common.displayName(msg)} is treating **${subject}** to...\n${treat[0]} **${adjective} ${flavour} ${treat[1]}!**`
+    message = `${intro} ${common.displayName(msg)} is treating **${subject}** to...\n${treat[0]} **${adjective} ${flavour} ${treat[1]}!**`
   } else {
     const randomSubject = common.randomSubject()
 
-    description = `${intro} ${common.displayName(msg)} is treating **${randomSubject}** to...\n${treat[0]} **${adjective} ${flavour} ${treat[1]}!**`
+    message = `${intro} ${common.displayName(msg)} is treating **${randomSubject}** to...\n${treat[0]} **${adjective} ${flavour} ${treat[1]}!**`
   }
 
+  // Return message.
+  return message
+}
+
+const slash = async (client, msg, interaction, args) => {
   // Reply with an embed message.
-  msg.channel.send({
+  await interaction.reply({
     embeds: [{
       color: 0x2f3136,
-      description
+      description: construct(client, msg, args)
     }]
-  }).then(ownMessage => {
-    // IHAA... If subject is Korean Lady she will react with a random emote.
-    if (common.koreanLadyMentioned(subject)) {
-      reactions.reactHappy(client, ownMessage, 3)
-    }
-  }).catch(err => common.sendErrorMsg(msg, err))
+  })
+}
+
+const run = (client, msg, args) => {
+  // Reply with an embed message.
+  common.sendEmbed(msg, construct(client, msg, args))
 }
 
 module.exports = {
@@ -193,5 +198,18 @@ module.exports = {
   aliases: ['dessert'],
   usage: 'treat [subject]',
   examples: ['treat', 'treat @KoreanLady', 'treat the queen of England'],
+  slash_command: {
+    description: 'Gives someone a delicious treat',
+    options: [
+      {
+        name: 'target',
+        value: 'target',
+        description: 'Who are you going to give a treat to?',
+        type: 3,
+        required: false
+      }
+    ]
+  },
+  slash,
   run
 }

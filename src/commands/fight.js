@@ -171,7 +171,7 @@ const startFight = (instigator, subject) => {
   return messages.join('\n')
 }
 
-const run = (client, msg, args) => {
+const construct = (client, msg, args) => {
   // Empty messages array.
   messages = []
 
@@ -201,22 +201,45 @@ const run = (client, msg, args) => {
     subject.name = instigator.name
   }
 
+  // Return data.
+  return {
+    title,
+    color: 0x2f3136,
+    description: startFight(instigator, subject)
+  }
+}
+
+const slash = async (client, msg, interaction, args) => {
   // Reply with an embed message.
-  msg.channel.send({
-    embeds: [{
-      title,
-      color: 0x2f3136,
-      description: startFight(instigator, subject)
-    }]
-  }).catch(err => common.sendErrorMsg(msg, err))
+  await interaction.reply({
+    embeds: [construct(client, msg, args)]
+  })
+}
+
+const run = (client, msg, args) => {
+  // Reply with an embed message.
+  common.sendEmbedObject(msg, construct(client, msg, args))
 }
 
 module.exports = {
   name: 'fight',
-  desc: 'Start a fight with someone.\n\nCharacters start with 150HP and take turns to attack. Attacks are selected randomly, and their damage multiplier is also rolled randomly each turn. Each attack has a different accuracy and critical hit chance. The first fighter that runs out of HP loses.',
+  desc: 'Starts a fight with someone.\n\nCharacters start with 150HP and take turns to attack. Attacks are selected randomly, and their damage multiplier is also rolled randomly each turn. Each attack has a different accuracy and critical hit chance. The first fighter that runs out of HP loses.',
   aliases: ['battle'],
   usage: 'fight [subject]',
   examples: ['fight', 'fight Loch Ness Monster', 'fight @Batman'],
   spam: true,
+  slash_command: {
+    description: 'Starts a fight with someone',
+    options: [
+      {
+        name: 'target',
+        value: 'target',
+        description: 'Who do you want to fight?',
+        type: 3,
+        required: false
+      }
+    ]
+  },
+  slash,
   run
 }

@@ -12,7 +12,7 @@ const emotes = [
   '🚪'
 ]
 
-const run = (client, msg, args) => {
+const construct = (client, msg, args) => {
   // Get subject from args.
   let subject = common.stripMentions(args.join(' '), msg)
 
@@ -36,15 +36,37 @@ const run = (client, msg, args) => {
     message += ` See you in **${futureFormatted}!** 👋`
   }
 
+  // Return data.
+  return {
+    message,
+    subject
+  }
+}
+
+const slash = async (client, msg, interaction, args) => {
+  const data = await construct(client, msg, args)
+
+  // Reply with an embed message.
+  await interaction.reply({
+    embeds: [{
+      color: 0x2f3136,
+      description: data.message
+    }]
+  })
+}
+
+const run = async (client, msg, args) => {
+  const data = await construct(client, msg, args)
+
   // Reply with an embed message.
   msg.channel.send({
     embeds: [{
       color: 0x2f3136,
-      description: message
+      description: data.message
     }]
   }).then(ownMessage => {
     // REEE... If subject is Korean Lady she will react with a random emote.
-    if (common.koreanLadyMentioned(subject)) {
+    if (common.koreanLadyMentioned(data.subject)) {
       reactions.reactSad(client, ownMessage, 2)
     }
   }).catch(err => common.sendErrorMsg(msg, err))
@@ -55,5 +77,18 @@ module.exports = {
   desc: 'Bans a user or object for a random amount of time, from a few seconds to several years. If the ban is longer than a year the expiry date will also be shown.',
   usage: 'ban [subject]',
   examples: ['ban', 'ban Mosquitoes', 'ban @Batman'],
+  slash_command: {
+    description: 'Bans a user or object for a random amount of time',
+    options: [
+      {
+        name: 'target',
+        value: 'target',
+        description: 'Who or what are you banning?',
+        type: 3,
+        required: false
+      }
+    ]
+  },
+  slash,
   run
 }

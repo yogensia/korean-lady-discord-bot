@@ -13,7 +13,7 @@ const emotes = [
   ['noCustomEmote', '👀']
 ]
 
-const run = (client, msg, args) => {
+const construct = (client, msg, args) => {
   // Get subject from args.
   let subject = common.stripMentions(args.join(' '), msg)
 
@@ -39,18 +39,23 @@ const run = (client, msg, args) => {
     message = `${emote} ${common.displayName(msg)} slapped **${subject}**! It's not very efective... That drained a total of **${result}HP**!`
   }
 
+  // Return message.
+  return message
+}
+
+const slash = async (client, msg, interaction, args) => {
   // Reply with an embed message.
-  msg.channel.send({
+  await interaction.reply({
     embeds: [{
       color: 0x2f3136,
-      description: message
+      description: construct(client, msg, args)
     }]
-  }).then(ownMessage => {
-    // REEE... If subject is Korean Lady she will react with a random emote.
-    if (common.koreanLadyMentioned(subject)) {
-      reactions.reactSad(client, ownMessage, 2)
-    }
-  }).catch(err => common.sendErrorMsg(msg, err))
+  })
+}
+
+const run = (client, msg, args) => {
+  // Reply with an embed message.
+  common.sendEmbed(msg, construct(client, msg, args))
 }
 
 module.exports = {
@@ -58,5 +63,18 @@ module.exports = {
   desc: 'Lets you slap your nemeses, and shows how much damage you\'ve inflicted.',
   usage: 'slap [subject]',
   examples: ['slap', 'slap @Cthulhu', 'slap everyone in chat'],
+  slash_command: {
+    description: 'Lets you slap your someone or something',
+    options: [
+      {
+        name: 'target',
+        value: 'target',
+        description: 'Who are you going to slap?',
+        type: 3,
+        required: false
+      }
+    ]
+  },
+  slash,
   run
 }

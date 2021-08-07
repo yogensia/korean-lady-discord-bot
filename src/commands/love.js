@@ -1,9 +1,8 @@
 const common = require('../utils/common')
 const math = require('../utils/math')
 const random = require('../utils/random')
-const reactions = require('../utils/reactions')
 
-const run = (client, msg, args) => {
+const construct = (client, msg, args) => {
   // Get subject from args.
   let subject = common.stripMentions(args.join(' '), msg)
 
@@ -29,22 +28,23 @@ const run = (client, msg, args) => {
     message = `😐 ${random.exclamationNegative()} ${common.displayName(msg)}'s love for **${subject}** is ${result}%.`
   }
 
+  // Return message.
+  return message
+}
+
+const slash = async (client, msg, interaction, args) => {
   // Reply with an embed message.
-  msg.channel.send({
+  await interaction.reply({
     embeds: [{
       color: 0x2f3136,
-      description: message
+      description: construct(client, msg, args)
     }]
-  }).then(ownMessage => {
-    // IHAA... If subject is Korean Lady she will react with a random emote.
-    if (common.koreanLadyMentioned(subject)) {
-      if (result > 69) {
-        reactions.reactHappy(client, ownMessage, 3)
-      } else if (result < 30) {
-        reactions.reactSad(client, ownMessage, 1)
-      }
-    }
-  }).catch(err => common.sendErrorMsg(msg, err))
+  })
+}
+
+const run = (client, msg, args) => {
+  // Reply with an embed message.
+  common.sendEmbed(msg, construct(client, msg, args))
 }
 
 module.exports = {
@@ -52,5 +52,18 @@ module.exports = {
   desc: 'Shows how much you love someone or something, with a random percentage.',
   usage: 'love [subject]',
   examples: ['love', 'love @Wumpus', 'love everyone in chat'],
+  slash_command: {
+    description: 'Shows how much you love someone or something',
+    options: [
+      {
+        name: 'target',
+        value: 'target',
+        description: 'Who are you going to show your love to?',
+        type: 3,
+        required: false
+      }
+    ]
+  },
+  slash,
   run
 }

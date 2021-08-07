@@ -1,6 +1,7 @@
 const querystring = require('querystring')
 const common = require('../utils/common')
 const tmdb = require('../utils/tmdb')
+let error = false
 
 /**
  * Takes search terms, strip year and send a search request to the TMDb API.
@@ -165,7 +166,12 @@ const getCast = (credits) => {
   }
 }
 
-const run = async (client, msg, args) => {
+const construct = async (client, msg, args) => {
+  // Add parenthesis to year if necessary so that searchMovie() can handle it.
+  if (args[1] && !args[1].toString().includes('(')) {
+    args[1] = `(${args[1]})`
+  }
+
   // Get subject from args.
   const subject = args.join(' ')
 
@@ -248,25 +254,48 @@ const run = async (client, msg, args) => {
       description = show.overview
     }
 
-    // Reply with an embed message.
-    msg.channel.send({
-      embeds: [{
-        color: 0x2f3136,
-        title,
-        url: `https://www.imdb.com/find?${searchQuery}`,
-        thumbnail: {
-          url: `https://image.tmdb.org/t/p/original${show.poster_path}`
-        },
-        description,
-        fields,
-        footer: {
-          text: 'Data provided by TMDb API – https://www.themoviedb.org/'
-        }
-      }]
-    }).catch(err => common.sendErrorMsg(msg, err))
+    // Return message.
+    return {
+      color: 0x2f3136,
+      title,
+      url: `https://www.imdb.com/find?${searchQuery}`,
+      thumbnail: {
+        url: `https://image.tmdb.org/t/p/original${show.poster_path}`
+      },
+      description,
+      fields,
+      footer: {
+        text: 'Data provided by TMDb API – https://www.themoviedb.org/'
+      }
+    }
   } else {
-    common.sendErrorMsg(msg, 'Couldn\'t find any shows by that title.\nPlease check spelling and try again!')
+    error = true
+
+    // Return error message.
+    return {
+      color: 0x2f3136,
+      description: `Sorry, couldn't find any shows by that title.
+        Please check spelling and try again!`
+    }
   }
+}
+
+const slash = async (client, msg, interaction, args) => {
+  // Reply with an embed message.
+  const embed = await construct(client, msg, args)
+
+  await interaction.reply({
+    embeds: [embed],
+    ephemeral: error
+  })
+
+  // Reset error in needed.
+  if (error) error = false
+}
+
+const run = async (client, msg, args) => {
+  // Reply with an embed message.
+  common.sendEmbedObject(msg, await construct(client, msg, args))
 }
 
 module.exports = {
@@ -276,5 +305,25 @@ module.exports = {
   examples: ['show The Witcher', 'show Doctor Who (1963)'],
   args: true,
   args_error: 'You must specify a show title!',
+  slash_command: {
+    description: 'Displays info about a show',
+    options: [
+      {
+        name: 'title',
+        value: 'title',
+        description: 'Show title (eg: The Office)',
+        type: 3,
+        required: true
+      },
+      {
+        name: 'year',
+        value: 'year',
+        description: 'Narrow down search by year (eg: 1995)',
+        type: 4,
+        required: false
+      }
+    ]
+  },
+  slash,
   run
 }

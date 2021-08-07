@@ -1,7 +1,7 @@
 const common = require('../utils/common')
 const time = require('../utils/time')
 
-const run = (client, msg, args) => {
+const construct = (client, msg, args) => {
   // Timezone list (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
   const timezones = [
     time.getTimezone('Los Angeles (PT)', 'America/Los_Angeles'),
@@ -35,20 +35,34 @@ const run = (client, msg, args) => {
     })
   })
 
+  // Return data.
+  return {
+    color: 0x2f3136,
+    description: 'Here\'s a list of some cities/areas, their UTC offset and current time!',
+    fields
+  }
+}
+
+const slash = async (client, msg, interaction, args) => {
   // Reply with an embed message.
-  msg.channel.send({
-    embeds: [{
-      color: 0x2f3136,
-      description: 'Here\'s a list of some cities/areas, their UTC offset and current time!',
-      fields
-    }]
-  }).catch(err => common.sendErrorMsg(msg, err))
+  await interaction.reply({
+    embeds: [construct(client, msg, args)]
+  })
+}
+
+const run = (client, msg, args) => {
+  // Reply with an embed message.
+  common.sendEmbedObject(msg, construct(client, msg, args))
 }
 
 module.exports = {
   name: 'timezones',
-  desc: 'Show the current time in several cities of different timezones.',
+  desc: 'Shows the current time in several cities of different timezones.',
   aliases: ['timezone', 'tz'],
   usage: 'timezones',
+  slash_command: {
+    description: 'Shows the current time in several cities'
+  },
+  slash,
   run
 }

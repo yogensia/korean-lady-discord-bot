@@ -3,42 +3,38 @@ const moment = require('moment-timezone')
 const pg = require('../utils/pg')
 
 /**
- * Sends an error message when a show already exists.
- *
- * @param {Object} msg Message object.
+ * Returns an error message when a show already exists.
+ * @returns {string} Error string.
  */
-const errorShowAlreadyExists = (msg) => {
-  common.sendEmbed(msg, `**Error:** A show with that name already exists in the database.
-    To update it, please use \`${process.env.PREFIX}track set (episode number)\`.`)
+const errorShowAlreadyExists = () => {
+  return `**Error:** A show with that name already exists in the database.
+    To update it, please use the \`/track edit\` command.`
 }
 
 /**
- * Sends an error message when a show is not found.
- *
- * @param {Object} msg Message object.
+ * Returns an error message when a show is not found.
+ * @returns {string} Error string.
  */
-const errorShowNotFound = (msg) => {
-  common.sendEmbed(msg, `**Error:** I couldn't find any tracked shows by that name.
-    Try \`${process.env.PREFIX}track\` to see shows currently being tracked.`)
+const errorShowNotFound = () => {
+  return `**Error:** I couldn't find any tracked shows by that name.
+    Try the \`/track check\` command to see shows currently being tracked.`
 }
 
 /**
- * Sends an error message when a user attempts to use the command in a DM.
- *
- * @param {Object} msg Message object.
+ * Returns an error message when a user attempts to use the command in a DM.
+ * @returns {string} Error string.
  */
-const errorNoDms = (msg) => {
-  common.sendEmbed(msg, '**Error:** Sorry, for security reasons, this command is read-only in DMs.')
+const errorNoDms = () => {
+  return '**Error:** Sorry, for security reasons, this command is read-only in DMs.'
 }
 
 /**
- * Sends an error message when invalid arguments are found.
- *
- * @param {Object} msg Message object.
+ * Returns an error message when invalid arguments are found.
+ * @returns {string} Error string.
  */
-const errorInvalidArgument = (msg) => {
-  common.sendEmbed(msg, `**Error:** Missing or invalid arguments.
-    Please, use correct syntax or type \`${process.env.PREFIX}help track\` for details.`)
+const errorInvalidArgument = () => {
+  return `**Error:** Missing or invalid arguments.
+    Please, use correct syntax or type \`${process.env.PREFIX}help track\` for details.`
 }
 
 /**
@@ -64,159 +60,155 @@ const showAlreadyExists = (showArgument) => {
 }
 
 /**
- * Handles track command when user tries to get info for a specific show.
- *
- * @param {Object} msg Message object.
- * @param {string} msg Show string that is being checked.
- */
-const argumentUnknown = (msg, showSearch) => {
-  let showFound = ''
-  // If unknown arg, check if it matches a show name and if so return that, if not show error.
-  pg.trackShowGetAll().then((showArray) => {
-    showArray.forEach(show => {
-      if (show.show_slug === showSearch.toLowerCase()) {
-        showFound = show
-      }
-    })
-
-    if (showFound) {
-      // Show data on Discord.
-      common.sendEmbed(msg, `**${showFound.show_name}:** ${showFound.episode} Eps watched.`)
-    } else {
-      errorShowNotFound(msg)
-    }
-  }).catch(err => common.sendErrorMsg(msg, err))
-}
-
-/**
  * Handles track command when the user wants to list all tracked shows.
  *
- * @param {Object} msg Message object.
+ * @param {Object} interaction Interaction object.
  * @param {Object} args Array of arguments.
  */
-const argumentList = (msg, complete = false) => {
-  pg.trackShowGetAll().then((showArray) => {
-    // Sort shows by modification date.
-    showArray = showArray.sort((a, b) => (a.modified > b.modified) ? 1 : -1)
+const argumentList = (interaction, args, complete = false) => {
+  // If we are requesting a specific show, show that alone, otherwise dump tracked shows list.
+  if (args && args[0].name === 'name') {
+    const showSearch = args[0].value
+    let showFound = ''
 
-    // Filter completed shows accordingly.
-    if (complete) {
-      showArray = showArray.filter(show => show.complete === true)
-    } else {
-      showArray = showArray.filter(show => show.complete === false)
-    }
+    return pg.trackShowGetAll().then((showArray) => {
+      showArray.forEach(show => {
+        if (show.show_slug === showSearch.toLowerCase()) {
+          showFound = show
+        }
+      })
 
-    // Build output.
-    let message = ''
-    if (complete) {
-      message = '**Completed Shows:**\n'
-    } else {
-      message = '**Tracked Shows:**\n'
-    }
+      if (showFound) {
+        // Show data on Discord.
+        common.interactionReply(interaction, `**${showFound.show_name}** (${showFound.episode} Eps watched)`)
+      } else {
+        common.interactionReply(interaction, errorShowNotFound(), true)
+      }
+    }).catch(err => console.log(err))
+  } else {
+    return pg.trackShowGetAll().then((showArray) => {
+      // Sort shows by modification date.
+      showArray = showArray.sort((a, b) => (a.modified > b.modified) ? 1 : -1)
 
-    showArray.forEach(show => {
-      message = message + `- **${show.show_name}** (${show.episode} Eps watched)\n`
-    })
+      // Filter completed shows accordingly.
+      if (complete) {
+        showArray = showArray.filter(show => show.complete === true)
+      } else {
+        showArray = showArray.filter(show => show.complete === false)
+      }
 
-    // Show data on Discord.
-    common.sendEmbed(msg, message)
-  }).catch(err => common.sendErrorMsg(msg, err))
+      // Build output.
+      let message = ''
+      if (complete) {
+        message = '**Completed Shows:**\n'
+      } else {
+        message = '**Tracked Shows:**\n'
+      }
+
+      showArray.forEach(show => {
+        message = message + `- **${show.show_name}** (${show.episode} Eps watched)\n`
+      })
+
+      // Show data on Discord.
+      common.interactionReply(interaction, message)
+    }).catch(err => console.log(err))
+  }
 }
 
 /**
  * Handles track command when the user wants to add a tracked show.
  * It allows providing an optional episode count.
  *
- * @param {Object} msg Message object.
- * @param {Object} msg Arguments array (show name, optional episode count).
+ * @param {Object} interaction Interaction object.
+ * @param {Object} interaction Arguments array (show name, optional episode count).
  */
-const argumentAdd = (msg, args) => {
-  const showArgument = args[0]
+const argumentAdd = (interaction, args) => {
+  const showArgument = args[0].value
   const showArgumentSlug = showArgument.toLowerCase()
   let episode = 0
 
   // Make sure that the provided show name isn't in the database already.
-  showAlreadyExists(showArgument).then(exists => {
+  return showAlreadyExists(showArgument).then(exists => {
     if (exists) {
-      errorShowAlreadyExists(msg)
+      common.interactionReply(interaction, errorShowAlreadyExists(), true)
     } else {
       let description = `**${showArgument}** has been added to the tracked shows list!`
 
       // Check if a number of eps is provided and is a valid integer.
-      if (args[1] && Number.isInteger(Number.parseInt(args[1]))) {
-        episode = Number.parseInt(args[1])
+      if (args[1] && Number.isInteger(Number.parseInt(args[1].value))) {
+        episode = Number.parseInt(args[1].value)
         description = `**${showArgument}** has been added to the tracked shows list with **${episode}** episodes watched!`
       }
 
       // Add to database.
-      pg.trackShowAdd(showArgument, showArgumentSlug, episode, msg.author.id, moment().format('x')).then((res) => {
+      pg.trackShowAdd(showArgument, showArgumentSlug, episode, interaction.user.id, moment().format('x')).then((res) => {
         if (res.rowCount > 0) {
-          common.sendEmbed(msg, description)
+          common.interactionReply(interaction, description)
         } else {
-          common.sendErrorMsg(msg, 'Something went wrong, please try again!')
+          common.interactionReply(interaction, 'Something went wrong, please try again!', true)
         }
-      }).catch(err => common.sendErrorMsg(msg, err))
+      }).catch(err => console.log(err))
     }
-  }).catch(err => common.sendErrorMsg(msg, err))
+  }).catch(err => console.log(err))
 }
 
 /**
  * Handles track command when the user wants to renamee a tracked show.
  *
- * @param {Object} msg Message object.
+ * @param {Object} interaction Interaction object.
  * @param {Object} args Array of arguments (show name, episode count).
  */
-const argumentRename = (msg, args) => {
+const argumentRename = (interaction, args) => {
   // Parse args.
-  const showSlugOld = args[0].toLowerCase()
-  const showNameNew = args[1]
-  const showSlugNew = args[1].toLowerCase()
+  const showSlugOld = args[0].value.toLowerCase()
+  const showNameNew = args[1].value
+  const showSlugNew = args[1].value.toLowerCase()
 
   // Rename show in database.
   pg.trackShowRename(showSlugOld, showNameNew, showSlugNew).then((res) => {
     if (res) {
       pg.trackShowGet(showSlugNew).then((show) => {
-        common.sendEmbed(msg, `**${showSlugOld}** has been renamed to **${showNameNew}**.`)
-      }).catch(err => common.sendErrorMsg(msg, err))
+        common.interactionReply(interaction, `**${showSlugOld}** has been renamed to **${showNameNew}**.`)
+      }).catch(err => console.log(err))
     } else {
-      common.sendErrorMsg(msg, 'Something went wrong.\nAre you sure that show exists in the list?')
+      common.interactionReply(interaction, 'Something went wrong.\nAre you sure that show exists in the list?', true)
     }
-  }).catch(err => common.sendErrorMsg(msg, err))
+  }).catch(err => console.log(err))
 }
 
 /**
  * Handles track command when the user wants to update a tracked show with
  * a new watched episode count.
  *
- * @param {Object} msg Message object.
+ * @param {Object} interaction Interaction object.
  * @param {Object} args Array of arguments (show name, episode count).
  */
-const argumentSet = (msg, args) => {
+const argumentSet = (interaction, args) => {
   // Get show name & slug.
-  const show = args[0]
+  const show = args[0].value
   const showSlug = show.toLowerCase()
 
   // Get number of eps.
-  const episode = Number.parseInt(args[1])
+  const episode = Number.parseInt(args[1].value)
   if (!Number.isInteger(episode)) {
-    return errorInvalidArgument(msg)
+    common.interactionReply(interaction, errorInvalidArgument(), true)
   }
 
   // Make sure that the provided show name exists.
   showAlreadyExists(show).then(exists => {
     if (exists) {
       // Add to database.
-      pg.trackShowSet(show, showSlug, episode, moment().format('x'), msg.author.id).then((res) => {
+      pg.trackShowSet(show, showSlug, episode, moment().format('x'), interaction.user.id).then((res) => {
         if (res.rowCount > 0) {
           pg.trackShowGet(showSlug).then((show) => {
-            common.sendEmbed(msg, `Updating **${show.show_name}**: **${show.episode}** episodes watched.`)
-          }).catch(err => common.sendErrorMsg(msg, err))
+            common.interactionReply(interaction, `Updating **${show.show_name}**: **${show.episode}** episodes watched.`)
+          }).catch(err => console.log(err))
         } else {
-          common.sendErrorMsg(msg, 'Something went wrong, please try again!')
+          common.interactionReply(interaction, 'Something went wrong, please try again!', true)
         }
-      }).catch(err => common.sendErrorMsg(msg, err))
+      }).catch(err => console.log(err))
     } else {
-      errorShowNotFound(msg)
+      common.interactionReply(interaction, errorShowNotFound(), true)
     }
   })
 }
@@ -224,35 +216,35 @@ const argumentSet = (msg, args) => {
 /**
  * Handles track command when the user wants to delete a show from  the database.
  *
- * @param {Object} msg Message object.
+ * @param {Object} interaction Interaction object.
  * @param {string} msg Argument array with show name.
  */
-const argumentDelete = (msg, args) => {
+const argumentDelete = (interaction, args) => {
   // Get show slug.
-  const showArgument = args[0].toLowerCase()
+  const showArgument = args[0].value.toLowerCase()
 
   // Delete tracked show from db.
   pg.trackShowGet(showArgument).then((show) => {
     if (show) {
       pg.trackShowDelete(showArgument).then((res) => {
-        common.sendEmbed(msg, `${common.displayName(msg)}, **${show.show_name}** (${show.episode} eps watched) has been removed from the tracked shows list.`)
-      }).catch(err => common.sendErrorMsg(msg, err))
+        common.interactionReply(interaction, `${common.displayName(interaction)}, **${show.show_name}** (${show.episode} eps watched) has been removed from the tracked shows list.`)
+      }).catch(err => console.log(err))
     } else {
-      errorShowNotFound(msg)
+      common.interactionReply(interaction, errorShowNotFound(), true)
     }
-  }).catch(err => common.sendErrorMsg(msg, err))
+  }).catch(err => console.log(err))
 }
 
 /**
  * Handles track command when the user wants to set a show as completed.
  *
- * @param {Object} msg Message object.
+ * @param {Object} interaction Interaction object.
  * @param {string} msg Argument array with show name.
  */
-const argumentComplete = (msg, args) => {
+const argumentComplete = (interaction, args) => {
   if (args[0]) {
     // Get show slug.
-    const showSlug = args[0].toLowerCase()
+    const showSlug = args[0].value.toLowerCase()
 
     // If show is specified, toggle completed state.
     pg.trackShowGet(showSlug).then((show) => {
@@ -262,55 +254,58 @@ const argumentComplete = (msg, args) => {
         pg.trackShowSetComplete(show.show_name, showSlug, show.episode, show.modified, show.userid, complete).then((res) => {
           if (res.rowCount > 0) {
             if (complete) {
-              common.sendEmbed(msg, `Marking **${show.show_name}** as completed.`)
+              common.interactionReply(interaction, `Marking **${show.show_name}** as completed.`)
             } else {
-              common.sendEmbed(msg, `Marking **${show.show_name}** as watching.`)
+              common.interactionReply(interaction, `Marking **${show.show_name}** as watching.`)
             }
-            // pg.trackShowGet(showSlug).then((show) => {
-            //   common.sendEmbed(msg, `Marking **${show.show_name}** as completed.`)
-            // }).catch(err => common.sendErrorMsg(msg, err))
           } else {
-            common.sendErrorMsg(msg, 'Something went wrong, please try again!')
+            common.interactionReply(interaction, 'Something went wrong, please try again!', true)
           }
-        }).catch(err => common.sendErrorMsg(msg, err))
+        }).catch(err => console.log(err))
       } else {
-        errorShowNotFound(msg)
+        common.interactionReply(interaction, errorShowNotFound(), true)
       }
-    }).catch(err => common.sendErrorMsg(msg, err))
+    }).catch(err => console.log(err))
   } else {
     // If no show is specified, show a list of completed shows.
-    argumentList(msg, true)
+    argumentList(interaction, true)
   }
 }
 
-const run = (client, msg, args) => {
-  // No arguments found, so just show list of tracked shows.
-  if (Array.isArray(args) && !args.length) {
-    return argumentList(msg)
-  }
-
+const slash = async (client, msg, interaction) => {
   // Disallow editing in DMs, otherwise a malicious user could
   // privately delete or change the data.
+  // TODO: Check DM behaviour.
   if (msg.channel.type === 'dm') {
-    return errorNoDms(msg)
+    common.interactionReply(interaction, errorNoDms(), true)
   }
 
-  // Arguments found, check what the user wants to do.
-  const action = args.shift()
+  // Get array of actions.
+  const actions = []
+  interaction.options.data.forEach(option => {
+    actions.push(option.name)
+  })
 
-  if (action === 'add') {
-    argumentAdd(msg, args)
-  } else if (action === 'rename' || action === 'ren') {
-    argumentRename(msg, args)
-  } else if (action === 'set' || action === 'update') {
-    argumentSet(msg, args)
-  } else if (action === 'delete' || action === 'del') {
-    argumentDelete(msg, args)
-  } else if (action === 'complete' || action === 'completed' || action === 'done' || action === 'finish' || action === 'finished') {
-    argumentComplete(msg, args)
-  } else {
-    // User might be trying to check ep count for a show, check for that.
-    argumentUnknown(msg, action)
+  // Check for main action to perform.
+  const action = actions.shift()
+
+  // Get arguments.
+  const args = interaction.options.data[0].options
+
+  if (action === 'list') {
+    argumentList(interaction, args)
+  } else if (action === 'archived') {
+    argumentList(interaction, args, true)
+  } else if (action === 'add') {
+    argumentAdd(interaction, args)
+  } else if (action === 'edit') {
+    argumentSet(interaction, args)
+  } else if (action === 'rename') {
+    argumentRename(interaction, args)
+  } else if (action === 'complete') {
+    argumentComplete(interaction, args)
+  } else if (action === 'delete') {
+    argumentDelete(interaction, args)
   }
 }
 
@@ -320,5 +315,119 @@ module.exports = {
   aliases: ['trackshow', 'ts'],
   usage: 'track [(show)|add (show)|rename (show) (newShowName)|set (show) (eps)|del (show)|complete (show)]',
   examples: ['track', 'track complete', 'track HxH', 'track add HxH', 'track rename Hunter HxH', 'track set HxH 120', 'track del HxH', 'track complete HxH'],
-  run
+  slash_command: {
+    description: 'Keeps track of episodes watched for shows',
+    options: [
+      {
+        name: 'list',
+        description: 'List tracked shows and their watched eps',
+        type: 1,
+        options: [
+          {
+            name: 'name',
+            description: 'Show name (ignores letter casing)',
+            type: 3,
+            required: false
+          }
+        ]
+      },
+      {
+        name: 'archived',
+        description: 'List shows that have been completed/archived',
+        type: 1,
+        options: [
+          {
+            name: 'name',
+            description: 'Show\'s name (ignores letter casing)',
+            type: 3,
+            required: false
+          }
+        ]
+      },
+      {
+        name: 'add',
+        description: 'Adds a new show to be tracked',
+        type: 1,
+        options: [
+          {
+            name: 'name',
+            description: 'Show name',
+            type: 3,
+            required: true
+          },
+          {
+            name: 'eps',
+            description: 'Episodes watched',
+            type: 4,
+            required: false
+          }
+        ]
+      },
+      {
+        name: 'edit',
+        description: 'Changes number of episodes watched for a tracked show',
+        type: 1,
+        options: [
+          {
+            name: 'name',
+            description: 'Show name (ignores letter casing)',
+            type: 3,
+            required: true
+          },
+          {
+            name: 'eps',
+            description: 'Episodes watched',
+            type: 4,
+            required: true
+          }
+        ]
+      },
+      {
+        name: 'rename',
+        description: 'Renames a tracked show',
+        type: 1,
+        options: [
+          {
+            name: 'name',
+            description: 'Show\'s current name',
+            type: 3,
+            required: true
+          },
+          {
+            name: 'new_name',
+            description: 'Show\'s new name',
+            type: 3,
+            required: true
+          }
+        ]
+      },
+      {
+        name: 'complete',
+        description: 'Toggles a tracked show between complete/active',
+        type: 1,
+        options: [
+          {
+            name: 'name',
+            description: 'Show\'s name (ignores letter casing)',
+            type: 3,
+            required: true
+          }
+        ]
+      },
+      {
+        name: 'delete',
+        description: 'Deletes a tracked show (this cannot be undone!)',
+        type: 1,
+        options: [
+          {
+            name: 'name',
+            description: 'Show\'s name (ignores letter casing)',
+            type: 3,
+            required: true
+          }
+        ]
+      }
+    ]
+  },
+  slash
 }

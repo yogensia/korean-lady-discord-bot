@@ -109,12 +109,23 @@ const owoify = text => {
   return text
 }
 
-const run = (client, msg, args) => {
-  // Get subject from args.
-  const message = owoify(common.stripMentions(args.join(' '), msg))
+const construct = (client, msg, args) => {
+  return owoify(common.stripMentions(args.join(' '), msg))
+}
 
+const slash = async (client, msg, interaction, args) => {
   // Reply with an embed message.
-  common.sendEmbed(msg, message)
+  await interaction.reply({
+    embeds: [{
+      color: 0x2f3136,
+      description: construct(client, msg, args)
+    }]
+  })
+}
+
+const run = (client, msg, args) => {
+  // Reply with an embed message.
+  common.sendEmbed(msg, construct(client, msg, args))
 }
 
 module.exports = {
@@ -125,5 +136,18 @@ module.exports = {
   examples: ['owo A loyal warrior will rarely worry why we rule.'],
   args: true,
   args_error: 'You must provide a sentence to owoify!',
+  slash_command: {
+    description: 'Twanswates y-youw text t-to OwO speak!',
+    options: [
+      {
+        name: 'sentence',
+        value: 'sentence',
+        description: 'Y-youw sentence... Pwease use wesponsibwy, hehe.',
+        type: 3,
+        required: true
+      }
+    ]
+  },
+  slash,
   run
 }

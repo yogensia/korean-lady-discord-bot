@@ -319,18 +319,28 @@ const fortuneCronJob = new CronJob('0 0 * * MON', () => {
 
 fortuneCronJob.start()
 
-const run = (client, msg, args) => {
+const construct = (client, msg, args) => {
   // Get next fortune in the array.
   const fortune = fortunes.shift()
   fortunes.push(fortune)
 
-  // Send fortune in an embed.
-  msg.channel.send({
+  // Return message.
+  return fortune
+}
+
+const slash = async (client, msg, interaction, args) => {
+  // Reply with an embed message.
+  await interaction.reply({
     embeds: [{
       color: 0x2f3136,
-      description: `${fortune}`
+      description: construct(client, msg, args)
     }]
-  }).catch(err => common.sendErrorMsg(msg, err))
+  })
+}
+
+const run = (client, msg, args) => {
+  // Reply with an embed message.
+  common.sendEmbed(msg, construct(client, msg, args))
 }
 
 module.exports = {
@@ -339,5 +349,9 @@ module.exports = {
   aliases: ['fortunecookie'],
   usage: 'fortune',
   examples: ['fortune'],
+  slash_command: {
+    description: 'Shows you your fortune for today'
+  },
+  slash,
   run
 }

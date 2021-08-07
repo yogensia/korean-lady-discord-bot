@@ -27,7 +27,7 @@ const answers = [
   '🥔'
 ]
 
-const run = (client, msg, args) => {
+const construct = (client, msg, args) => {
   // Get subject from args.
   const question = common.stripMentions(args.join(' '), msg, false)
 
@@ -38,8 +38,23 @@ const run = (client, msg, args) => {
     answer = math.getRandomStringFromArray(answers)
   }
 
+  // Return message.
+  return `**${common.displayName(msg)} asks: ${question}**\n🎱 ${answer} 🎱`
+}
+
+const slash = async (client, msg, interaction, args) => {
   // Reply with an embed message.
-  common.sendEmbed(msg, `**${common.displayName(msg)} asks: ${question}**\n🎱 ${answer} 🎱`)
+  await interaction.reply({
+    embeds: [{
+      color: 0x2f3136,
+      description: construct(client, msg, args)
+    }]
+  })
+}
+
+const run = (client, msg, args) => {
+  // Reply with an embed message.
+  common.sendEmbed(msg, construct(client, msg, args))
 }
 
 module.exports = {
@@ -49,5 +64,18 @@ module.exports = {
   examples: ['8ball Will I pass my exam?'],
   args: true,
   args_error: 'You must ask a question!',
+  slash_command: {
+    description: 'Uses an 8 ball to answer a question',
+    options: [
+      {
+        name: 'question',
+        value: 'question',
+        description: 'Your question',
+        type: 3,
+        required: true
+      }
+    ]
+  },
+  slash,
   run
 }
