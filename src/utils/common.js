@@ -244,6 +244,39 @@ const sendMissingParameterMsg = (client, msg, reason) => {
 }
 
 /**
+ * Send a "missing parameter" message with an explanation and expected syntax.
+ *
+ * @param {Object} interaction Interaction object.
+ * @param {string} description Message to reply with.
+ * @param {Boolean} ephemeral Whether this message shoul only be shown to the user that invoked the command (default: false).
+ */
+const interactionReply = (interaction, description, ephemeral = false) => {
+  // Reply with an embed message.
+  interaction.reply({
+    embeds: [{
+      color: 0x2f3136,
+      description
+    }],
+    ephemeral
+  }).catch(err => console.log(err))
+}
+
+/**
+ * Send a "missing parameter" message with an explanation and expected syntax.
+ *
+ * @param {Object} interaction Interaction object.
+ * @param {array} embeds Array of embed objects to reply with.
+ * @param {Boolean} ephemeral Whether this message shoul only be shown to the user that invoked the command (default: false).
+ */
+const interactionObjectReply = (interaction, embeds, ephemeral = false) => {
+  // Reply with an embed message.
+  interaction.reply({
+    embeds,
+    ephemeral
+  }).catch(err => console.log(err))
+}
+
+/**
  * Send a spam warning message.
  *
  * @param {Object} client Client object.
@@ -345,6 +378,8 @@ module.exports = {
   sendErrorMsg,
   sendMissingParameterMsg,
   sendSpamMsg,
+  interactionReply,
+  interactionObjectReply,
   stripMentions,
   trimParagraph
 }
