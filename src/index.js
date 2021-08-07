@@ -7,7 +7,7 @@ const fs = require('fs')
 const client = new Client({
   intents: [
     'GUILDS',
-    'GUILD_EMOJIS',
+    'GUILD_EMOJIS_AND_STICKERS',
     'GUILD_MESSAGES',
     'GUILD_MESSAGE_REACTIONS',
     'GUILD_MESSAGE_TYPING',
@@ -22,7 +22,7 @@ client.strings = new Enmap()
 /**
  * Ready event.
  */
-client.on('ready', () => {
+client.once('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`)
 
   // Set bot status and presence.
@@ -53,6 +53,7 @@ fs.readdir('./src/events/', (err, files) => {
 
     // Get just the event name from the file name.
     const eventName = file.split('.')[0]
+    console.log(`Loading event handler '${eventName}'`)
 
     // Call events with all their proper arguments *after* the `client` var.
     client.on(eventName, event.bind(null, client))
