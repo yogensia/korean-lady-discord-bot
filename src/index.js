@@ -9,11 +9,11 @@ const client = new Client({
     'GUILDS',
     'GUILD_EMOJIS_AND_STICKERS',
     'GUILD_MESSAGES',
-    'GUILD_MESSAGE_REACTIONS',
-    'GUILD_MESSAGE_TYPING',
-    'DIRECT_MESSAGES',
-    'DIRECT_MESSAGE_REACTIONS',
-    'DIRECT_MESSAGE_TYPING'
+    'DIRECT_MESSAGES'
+  ],
+  partials: [
+    'MESSAGE',
+    'CHANNEL'
   ]
 })
 client.commands = new Enmap()
