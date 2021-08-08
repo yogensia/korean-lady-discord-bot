@@ -59,22 +59,24 @@ const run = (client) => {
           console.log(`Found birthday match: ${user.discord_name} - ${user.birthday}`)
 
           // Send general chat message.
-          client.channels.cache.get(process.env.GENERAL_CHANEL_ID)
-            .send({
+          client.channels.fetch(process.env.GENERAL_CHANNEL_ID).then((channel) => {
+            channel.send({
               embeds: [{
                 color: 0x2f3136,
                 description: `${emoteIntro} Today is <@${user.userid}>'s, birthday! ${emoteOutro}`
               }]
             }).catch(err => console.log(err))
+          }).catch(err => console.log(err))
 
           // Send server owner message.
-          client.users.cache.get(process.env.GUILD_OWNER_ID)
-            .send({
+          client.users.fetch(process.env.GUILD_OWNER_ID).then((guildOwner) => {
+            guildOwner.send({
               embeds: [{
                 color: 0x2f3136,
                 description: `${emoteIntro} **${today}:** Today, is **${user.discord_name}'s**, birthday!`
               }]
             }).catch(err => console.log(err))
+          }).catch(err => console.log(err))
         }
       })
     }).catch((err) => new Error(err))

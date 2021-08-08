@@ -22,57 +22,48 @@ const emotesOutro = [
   'ihaa'
 ]
 
-// If connection to database fails for any reason retry after a few minutes.
-const repeat = () => new Promise((resolve, reject) => {
-  const interval = setInterval(() => {
-    pg.birthdayGetAll().then((birthdayArray) => {
-      clearInterval(interval)
-      resolve(birthdayArray)
-    }).catch(() => console.log('Could not connect to database, retrying in a few min...'))
-  }, 60000)
-})
-
 const run = (client, msg) => {
   // Prevent missuse of this command.
   if (msg.author.id !== '174509303615586304') return
 
   console.log('Running Daily Birthday check...')
 
-  repeat()
-    .then((birthdayArray) => {
-      const today = moment().format('MMMM Do')
+  pg.birthdayGetAll().then((birthdayArray) => {
+    const today = moment().format('MMMM Do')
 
-      // Ramdom emotes.
-      const emoteIntro = math.getRandomStringFromArray(emotesIntro, false)
-      const emoteOutro = common.getCustomEmote(client, math.getRandomStringFromArray(emotesOutro, false))
+    // Ramdom emotes.
+    const emoteIntro = math.getRandomStringFromArray(emotesIntro, false)
+    const emoteOutro = common.getCustomEmote(client, math.getRandomStringFromArray(emotesOutro, false))
 
-      birthdayArray.forEach(user => {
-        const birthday = moment(user.birthday, 'DD/MM').format('MMMM Do')
+    birthdayArray.forEach(user => {
+      const birthday = moment(user.birthday, 'DD/MM').format('MMMM Do')
 
-        // If we find a birthday that matches the current date, send a message!
-        if (birthday === today) {
-          console.log(`Found birthday match: ${user.discord_name} - ${user.birthday}`)
+      // If we find a birthday that matches the current date, send a message!
+      if (birthday === today) {
+        console.log(`Found birthday match: ${user.discord_name} - ${user.birthday}`)
 
-          // Send general chat message.
-          client.channels.cache.get(process.env.GENERAL_CHANEL_ID)
-            .send({
-              embeds: [{
-                color: 0x2f3136,
-                description: `${emoteIntro} Today is <@${user.userid}>'s, birthday! ${emoteOutro}`
-              }]
-            }).catch(err => console.log(err))
+        // Send general chat message.
+        client.channels.fetch(process.env.GENERAL_CHANNEL_ID).then((channel) => {
+          channel.send({
+            embeds: [{
+              color: 0x2f3136,
+              description: `${emoteIntro} Today is <@${user.userid}>'s, birthday! ${emoteOutro}`
+            }]
+          }).catch(err => console.log(err))
+        }).catch(err => console.log(err))
 
-          // Send server owner message.
-          client.users.cache.get(process.env.GUILD_OWNER_ID)
-            .send({
-              embeds: [{
-                color: 0x2f3136,
-                description: `${emoteIntro} **${today}:** Today, is **${user.discord_name}'s**, birthday!`
-              }]
-            }).catch(err => console.log(err))
-        }
-      })
-    }).catch((err) => new Error(err))
+        // Send server owner message.
+        client.users.fetch(process.env.GUILD_OWNER_ID).then((guildOwner) => {
+          guildOwner.send({
+            embeds: [{
+              color: 0x2f3136,
+              description: `${emoteIntro} **${today}:** Today, is **${user.discord_name}'s**, birthday!`
+            }]
+          }).catch(err => console.log(err))
+        }).catch(err => console.log(err))
+      }
+    })
+  }).catch((err) => new Error(err))
 }
 
 module.exports = {
