@@ -128,10 +128,11 @@ const argumentSet = (interaction, args) => {
   if (time.validateDate(date) && time.validateDateFormat(date)) {
     // Set birthday on db.
     pg.birthdaySet(interaction.user.id, date, interaction.user.username).then(() => {
-      var daysleft = time.daysUntilBirthday(date)
+      const daysLeft = time.daysUntilBirthday(date)
+      const daysString = daysLeft === 365 ? 'That\'s today!' : `That's in ${daysLeft} days`
 
       // Send confirmation message.
-      common.interactionReply(interaction, `${common.displayName(interaction)}, your birthday has been set to ${time.convertDate(date)}. That's in ${daysleft} days!`)
+      common.interactionReply(interaction, `${common.displayName(interaction)}, your birthday has been set to ${time.convertDate(date)}. ${daysString}!`)
     }).catch(err => console.log(err))
   } else {
     common.interactionReply(interaction, invalidDate(), true)
