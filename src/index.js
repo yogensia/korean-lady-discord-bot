@@ -4,23 +4,34 @@ const { Client } = require('discord.js')
 const Enmap = require('enmap')
 const fs = require('fs')
 
-const client = new Client()
+const client = new Client({
+  intents: [
+    'GUILDS',
+    'GUILD_EMOJIS_AND_STICKERS',
+    'GUILD_MESSAGES',
+    'DIRECT_MESSAGES'
+  ],
+  partials: [
+    'MESSAGE',
+    'CHANNEL'
+  ]
+})
 client.commands = new Enmap()
 client.strings = new Enmap()
 
 /**
  * Ready event.
  */
-client.on('ready', () => {
+client.once('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`)
 
   // Set bot status and presence.
   client.user.setStatus('available')
   client.user.setPresence({
-    activity: {
+    activities: [{
       name: `${process.env.PREFIX}help`,
       type: 'PLAYING'
-    }
+    }]
   })
 
   // Get spam channel object.
@@ -42,6 +53,7 @@ fs.readdir('./src/events/', (err, files) => {
 
     // Get just the event name from the file name.
     const eventName = file.split('.')[0]
+    console.log(`Loading event handler '${eventName}'`)
 
     // Call events with all their proper arguments *after* the `client` var.
     client.on(eventName, event.bind(null, client))
@@ -51,8 +63,9 @@ fs.readdir('./src/events/', (err, files) => {
 /**
  * Load Commands.
  */
-fs.readdir('./src/commands/', (err, files) => {
+fs.readdir('./src/commands/', async (err, files) => {
   if (err) return console.error(err)
+
   files.forEach(file => {
     if (!file.endsWith('.js')) return
 

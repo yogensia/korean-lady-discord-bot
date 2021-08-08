@@ -16,7 +16,7 @@ const emotes = [
   ['pleaseNo', '💥']
 ]
 
-const run = async (client, msg, args) => {
+const construct = async (client, msg, args) => {
   // OG Minesweeper Dificulty table.
   // -----------------------------------
   // Level          Width  Height  Mines
@@ -32,7 +32,7 @@ const run = async (client, msg, args) => {
   // Expert            11       8     25 : 88*0.2475 = 21.78
 
   // Convert all args to lowercase to avoid false negatives.
-  args = args.map(arg => arg.toLowerCase())
+  args = args.map(arg => arg.toString().toLowerCase())
 
   const settings = {}
   if (args[0] && args[0] === 'easy') {
@@ -50,7 +50,7 @@ const run = async (client, msg, args) => {
   }
 
   let revealFirstCell = true
-  if (args.includes('blank')) {
+  if (args.includes('blank') || args.includes('true')) {
     revealFirstCell = false
   }
 
@@ -70,19 +70,66 @@ const run = async (client, msg, args) => {
   })
 
   // Remove semicolons to make custom guild emotes work.
-  const matrix = minesweeper.start()
+  return minesweeper.start()
     .replaceAll(':<', '<')
     .replaceAll('>:', '>')
     .replaceAll(':💥:', '💥')
+}
 
-  await msg.channel.send(matrix)
+const slash = async (client, msg, interaction, args) => {
+  // Reply with an embed message.
+  await interaction.reply({
+    embeds: [{
+      color: 0x2f3136,
+      description: await construct(client, msg, args)
+    }]
+  })
+}
+
+const run = async (client, msg, args) => {
+  // Reply with an embed message.
+  common.sendEmbed(msg, await construct(client, msg, args))
 }
 
 module.exports = {
   name: 'minesweeper',
-  desc: 'Starts a game of minesweeper. You can choose the difficulty by adding `easy`, `medium` or `hard` to the command. Default difficulty is `medium`.\n\nBy default a first random cell and it\'s sourroundings will be revealed at the start of the game. Use the `blank` argument at the end of the command if you don\'t want to reaveal any cells.',
+  desc: 'Creates a game of minesweeper. You can choose the difficulty by adding `easy`, `medium` or `hard` to the command. Default difficulty is `medium`.\n\nBy default a first random cell and it\'s sourroundings will be revealed at the start of the game. Use the `blank` argument at the end of the command if you don\'t want to reaveal any cells.',
   aliases: ['mine', 'ms'],
   usage: 'minesweeper [difficulty] [blank]',
   examples: ['minesweeper', 'minesweeper easy', 'minesweeper blank', 'minesweeper hard blank'],
+  slash_command: {
+    description: 'Creates a game of minesweeper',
+    options: [
+      {
+        name: 'difficulty',
+        value: 'difficulty',
+        description: 'Choose game difficulty',
+        type: 3,
+        required: true,
+        choices: [
+          {
+            name: 'Easy',
+            value: 'easy'
+          },
+          {
+            name: 'Medium',
+            value: 'medium'
+          },
+          {
+            name: 'Hard',
+            value: 'hard'
+          }
+        ]
+      },
+      {
+        name: 'blank',
+        value: 'blank',
+        description: 'Do you want the board to be blank at the start?',
+        type: 5,
+        required: false
+      }
+    ]
+  },
+  slash,
   run
 }

@@ -25,7 +25,7 @@ const currencies = [
   'Zeni'
 ]
 
-const run = (client, msg, args) => {
+const construct = (client, msg, args) => {
   // Get subject from args.
   let subject = common.stripMentions(args.join(' '), msg)
 
@@ -56,14 +56,32 @@ const run = (client, msg, args) => {
   }
 
   // Don't let the Korean lady get finned!
+  let data = ''
   if (common.koreanLadyMentioned(subject)) {
     const emoteAngry = common.getCustomEmote(client, 'Angry', '😡')
     // Reply with an embed message.
-    common.sendEmbed(msg, `${emoteAngry} Trying to fine the Korean Lady is illegal!\n\n${emote} **${common.displayName(msg)}** has been fined instead, with **${money} ${currency}!**`)
+    data = `${emoteAngry} Trying to fine the Korean Lady is illegal!\n\n${emote} **${common.displayName(msg)}** has been fined instead, with **${money} ${currency}!**`
   } else {
     // Reply with an embed message.
-    common.sendEmbed(msg, `${emote} ${common.displayName(msg)} has fined **${subject}** with **${money} ${currency}!**`)
+    data = `${emote} ${common.displayName(msg)} has fined **${subject}** with **${money} ${currency}!**`
   }
+
+  return data
+}
+
+const slash = async (client, msg, interaction, args) => {
+  // Reply with an embed message.
+  await interaction.reply({
+    embeds: [{
+      color: 0x2f3136,
+      description: construct(client, msg, args)
+    }]
+  })
+}
+
+const run = (client, msg, args) => {
+  // Reply with an embed message.
+  common.sendEmbed(msg, construct(client, msg, args))
 }
 
 module.exports = {
@@ -71,5 +89,18 @@ module.exports = {
   desc: 'Fines someone with a random amount of money, in a random currency.',
   usage: 'fine [subject]',
   examples: ['fine', 'fine @Superman', 'fine The whole planet'],
+  slash_command: {
+    description: 'Fines someone with a random amount of money',
+    options: [
+      {
+        name: 'target',
+        value: 'target',
+        description: 'Who are you giving a fine to?',
+        type: 3,
+        required: false
+      }
+    ]
+  },
+  slash,
   run
 }

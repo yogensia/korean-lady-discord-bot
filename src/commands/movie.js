@@ -1,5 +1,6 @@
 const common = require('../utils/common')
 const tmdb = require('../utils/tmdb')
+let error = false
 
 /**
  * Takes search terms, checks for year and send a search request to the TMDb API.
@@ -135,7 +136,12 @@ const getCast = (credits) => {
   }
 }
 
-const run = async (client, msg, args) => {
+const construct = async (client, msg, args) => {
+  // Add parenthesis to year if necessary so that searchMovie() can handle it.
+  if (args[1] && !args[1].toString().includes('(')) {
+    args[1] = `(${args[1]})`
+  }
+
   // Get subject from args.
   const subject = args.join(' ')
 
@@ -202,29 +208,48 @@ const run = async (client, msg, args) => {
     const movieUrl = `https://www.imdb.com/title/${movie.imdb_id}`
     const description = common.trimParagraph(movie.overview, movieUrl, true)
 
-    // Reply with an embed message.
-    msg.channel.send({
-      embed: {
-        color: 0x2f3136,
-        title,
-        url: movieUrl,
-        thumbnail: {
-          url: `https://image.tmdb.org/t/p/original${movie.poster_path}`
-        },
-        description,
-        fields,
-        footer: {
-          text: 'Data provided by TMDb API – https://www.themoviedb.org/'
-        }
+    // Return message.
+    return {
+      color: 0x2f3136,
+      title,
+      url: movieUrl,
+      thumbnail: {
+        url: `https://image.tmdb.org/t/p/original${movie.poster_path}`
+      },
+      description,
+      fields,
+      footer: {
+        text: 'Data provided by TMDb API – https://www.themoviedb.org/'
       }
-    }).catch(err => common.sendErrorMsg(msg, err))
+    }
   } else {
-    common.sendErrorMsg(msg, `Sorry, couldn't find any movies by that title.
-      Please check spelling and try again!
+    error = true
 
-      **Tip:** You can refine your search by typing the year between parethesis.
-      Ex: \`${process.env.PREFIX}movie Total Recall (1990)\``)
+    // Return error message.
+    return {
+      color: 0x2f3136,
+      description: `Sorry, couldn't find any movies by that title.
+      Please check spelling and try again!`
+    }
   }
+}
+
+const slash = async (client, msg, interaction, args) => {
+  // Reply with an embed message.
+  const embed = await construct(client, msg, args)
+
+  await interaction.reply({
+    embeds: [embed],
+    ephemeral: error
+  })
+
+  // Reset error in needed.
+  if (error) error = false
+}
+
+const run = async (client, msg, args) => {
+  // Reply with an embed message.
+  common.sendEmbedObject(msg, await construct(client, msg, args))
 }
 
 module.exports = {
@@ -234,5 +259,25 @@ module.exports = {
   examples: ['movie Alien', 'movie Total Recall (1990)'],
   args: true,
   args_error: 'You must specify a movie title!',
+  slash_command: {
+    description: 'Displays info about a movie',
+    options: [
+      {
+        name: 'title',
+        value: 'title',
+        description: 'Movie title (eg: Alien)',
+        type: 3,
+        required: true
+      },
+      {
+        name: 'year',
+        value: 'year',
+        description: 'Narrow down search by year (eg: 1995)',
+        type: 4,
+        required: false
+      }
+    ]
+  },
+  slash,
   run
 }

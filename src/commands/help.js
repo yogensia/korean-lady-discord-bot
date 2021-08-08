@@ -20,7 +20,8 @@ const addFields = (array, name, fields) => {
   }
 }
 
-const run = (client, msg, args) => {
+const construct = (client, msg, args) => {
+  let data = {}
   // If and argument is provided, check if it matches a command and show specific help.
   if (args.length > 0) {
     // Grab the command data from the client.commands Enmap.
@@ -57,63 +58,72 @@ const run = (client, msg, args) => {
     addFields(cmd.aliases, 'Aliases', fields)
 
     // Send an embed message with help about the requested command.
-    msg.channel.send({
-      embed: {
-        color: 3447003,
-        title: name,
-        fields
-      }
-    }).catch(err => common.sendErrorMsg(msg, err))
+    data = {
+      color: 3447003,
+      title: name,
+      fields
+    }
   } else if (msg.channel.type === 'dm') {
     // Send general documentation link in a nice and clean embed.
-    msg.channel.send({
-      embed: {
-        color: 3447003,
-        title: 'Full KoreanLady Command List',
-        url: 'https://github.com/yogensia/korean-lady-discord-bot/blob/master/COMMANDS.md#readme',
-        description: `**Hello ${common.displayName(msg)}!** KoreanLady is a simple Discord bot with a few fun commands and no moderation or any other advanced functions.`,
-        fields: [
-          {
-            name: 'Prefix',
-            value: `The prefix for KoreanLady's commands is: \`${process.env.PREFIX}\`\n(The prefix can be omitted in this DM conversation)`
-          },
-          {
-            name: 'Command list',
-            value: `To see all available commands, please check the link above, or type \`${process.env.PREFIX}list\``
-          },
-          {
-            name: 'Testing commands',
-            value: 'You can use this DM conversation to test commands privately all you want.'
-          },
-          {
-            name: 'The \'help\' command',
-            value: `You can type \`${process.env.PREFIX}help\` followed by another command's name to get more info and usage examples on that command.`
-          },
-          {
-            name: 'Missing parameters',
-            value: 'Some commands require a parameter, like a question, name, object... If you don\'t include it, an error message will show up letting you know and providing examples.'
-          },
-          {
-            name: 'Cookie',
-            value: 'Thanks for reading, have a cookie! 🍪'
-          }
-        ]
-      }
-    }).catch(err => common.sendErrorMsg(msg, err))
+    data = {
+      color: 3447003,
+      title: 'Full KoreanLady Command List',
+      url: 'https://github.com/yogensia/korean-lady-discord-bot/blob/master/COMMANDS.md#readme',
+      description: `**Hello ${common.displayName(msg)}!** KoreanLady is a simple Discord bot with a few fun commands and no moderation or any other advanced functions.`,
+      fields: [
+        {
+          name: 'Prefix',
+          value: `The prefix for KoreanLady's commands is: \`${process.env.PREFIX}\`\n(The prefix can be omitted in this DM conversation)`
+        },
+        {
+          name: 'Command list',
+          value: `To see all available commands, please check the link above, or type \`${process.env.PREFIX}list\``
+        },
+        {
+          name: 'Testing commands',
+          value: 'You can use this DM conversation to test commands privately all you want.'
+        },
+        {
+          name: 'The \'help\' command',
+          value: `You can type \`${process.env.PREFIX}help\` followed by another command's name to get more info and usage examples on that command.`
+        },
+        {
+          name: 'Missing parameters',
+          value: 'Some commands require a parameter, like a question, name, object... If you don\'t include it, an error message will show up letting you know and providing examples.'
+        },
+        {
+          name: 'Cookie',
+          value: 'Thanks for reading, have a cookie! 🍪'
+        }
+      ]
+    }
   } else {
     // Send general documentation link in a nice and clean embed.
-    msg.channel.send({
-      embed: {
-        color: 3447003,
-        title: 'KoreanLady Commands',
-        url: 'https://github.com/yogensia/korean-lady-discord-bot/blob/master/COMMANDS.md#readme',
-        description: 'Here you will find all commands available and their usage!',
-        footer: {
-          text: 'Tip: You can also DM me and type `help` for more info!'
-        }
+    data = {
+      color: 3447003,
+      title: 'KoreanLady Commands',
+      url: 'https://github.com/yogensia/korean-lady-discord-bot/blob/master/COMMANDS.md#readme',
+      description: 'Here you will find all commands available and their usage!',
+      footer: {
+        text: 'Tip: You can also DM me and type `help` for more info!'
       }
-    }).catch(err => common.sendErrorMsg(msg, err))
+    }
   }
+
+  return data
+}
+
+const slash = async (client, msg, interaction, args) => {
+  // Reply with an embed message.
+  await interaction.reply({
+    embeds: [await construct(client, msg, args)],
+    ephemeral: true
+  })
+}
+
+const run = async (client, msg, args) => {
+  // Reply with an embed message.
+  common.sendEmbedObject(msg, await construct(client, msg, args))
 }
 
 module.exports = {
@@ -122,5 +132,18 @@ module.exports = {
   aliases: ['h', '?', 'info'],
   usage: 'help [command]',
   examples: ['help', 'help ban'],
+  slash_command: {
+    description: 'Provides help about how to use this bot',
+    options: [
+      {
+        name: 'command',
+        value: 'command',
+        description: 'Command that you want to learn about',
+        type: 3,
+        required: false
+      }
+    ]
+  },
+  slash,
   run
 }

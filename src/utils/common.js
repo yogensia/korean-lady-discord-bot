@@ -159,15 +159,28 @@ const reactWithCustomEmote = async (client, msg, name, fallback) => {
  * Send an embed message.
  *
  * @param {Object} msg Message object.
- * @param {string} value Message content.
+ * @param {string} value Message content (embed description).
  */
 const sendEmbed = (msg, value) => {
   // Send an embed message with the content.
   msg.channel.send({
-    embed: {
+    embeds: [{
       color: 0x2f3136,
       description: `${value}`
-    }
+    }]
+  }).catch(err => console.log(new Error(err)))
+}
+
+/**
+ * Send an embed message object.
+ *
+ * @param {Object} msg Message object.
+ * @param {Object} embed Message content (embed object).
+ */
+const sendEmbedObject = (msg, embed) => {
+  // Send an embed message with the content.
+  msg.channel.send({
+    embeds: [embed]
   }).catch(err => console.log(new Error(err)))
 }
 
@@ -180,14 +193,14 @@ const sendEmbed = (msg, value) => {
 const sendErrorMsg = (msg, value) => {
   // Send an embed message with the error.
   msg.channel.send({
-    embed: {
+    embeds: [{
       color: 0x2f3136,
       author: {
         name: random.exclamationNegative(),
         icon_url: 'https://i.imgur.com/xvJNaak.png' // concernFroge
       },
       description: `${value}`
-    }
+    }]
   }).catch(err => console.log(new Error(err)))
 }
 
@@ -207,7 +220,7 @@ const sendMissingParameterMsg = (client, msg, reason) => {
 
   // Send error message in a nice and clean embed.
   msg.channel.send({
-    embed: {
+    embeds: [{
       color: 0x2f3136,
       author: {
         name: random.exclamationNegative(),
@@ -226,8 +239,41 @@ const sendMissingParameterMsg = (client, msg, reason) => {
       footer: {
         text: `Type \`${process.env.PREFIX}help ${client.cmd.name}\` for more info.`
       }
-    }
+    }]
   }).catch(err => sendErrorMsg(msg, err))
+}
+
+/**
+ * Send a "missing parameter" message with an explanation and expected syntax.
+ *
+ * @param {Object} interaction Interaction object.
+ * @param {string} description Message to reply with.
+ * @param {Boolean} ephemeral Whether this message shoul only be shown to the user that invoked the command (default: false).
+ */
+const interactionReply = (interaction, description, ephemeral = false) => {
+  // Reply with an embed message.
+  interaction.reply({
+    embeds: [{
+      color: 0x2f3136,
+      description
+    }],
+    ephemeral
+  }).catch(err => console.log(err))
+}
+
+/**
+ * Send a "missing parameter" message with an explanation and expected syntax.
+ *
+ * @param {Object} interaction Interaction object.
+ * @param {array} embeds Array of embed objects to reply with.
+ * @param {Boolean} ephemeral Whether this message shoul only be shown to the user that invoked the command (default: false).
+ */
+const interactionObjectReply = (interaction, embeds, ephemeral = false) => {
+  // Reply with an embed message.
+  interaction.reply({
+    embeds,
+    ephemeral
+  }).catch(err => console.log(err))
 }
 
 /**
@@ -242,14 +288,14 @@ const sendSpamMsg = (client, msg) => {
 
   // Send a reply with the warning.
   msg.channel.send({
-    embed: {
+    embeds: [{
       color: 0x2f3136,
       description: `Sorry ${displayName(msg)}, ${process.env.PREFIX}${client.cmd.name} is a bit too spammy for this channel, please use it in <#${client.spamChannel.id}> instead. Thank you! ${emoteThanks}`,
       footer: {
         text: 'This message will self-destruct in 30 seconds... 👀'
       }
-    }
-  }).then(msg => msg.delete({ timeout: 30000 }))
+    }]
+  }).then(msg => setTimeout(() => { msg.delete() }, 30000))
     .catch(err => console.log(new Error(err)))
 }
 
@@ -328,9 +374,12 @@ module.exports = {
   koreanLadyMentioned,
   randomSubject,
   sendEmbed,
+  sendEmbedObject,
   sendErrorMsg,
   sendMissingParameterMsg,
   sendSpamMsg,
+  interactionReply,
+  interactionObjectReply,
   stripMentions,
   trimParagraph
 }

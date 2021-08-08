@@ -4,6 +4,8 @@ KoreanLady is a simple Discord bot with a few fun commands.
 
 Please remember to not use it to spam the server, if you're going to use it a lot make sure to do so in the spam channel, thanks!
 
+Note that this documentation is for legacy commands (typed as a text message). For the new slash commands, start typing `/` and follow on screen instructions provided by Discord.
+
 ## Command List
 
 Below you can see the full list of available commands.
@@ -110,7 +112,7 @@ Aliases: `k!h` `k!?` `k!info`
 
 ### `k!hug`
 
-Hugs someone/something for a random amount of mississippis.
+Hugs someonefor a random amount of mississippis.
 
 Usage: `k!hug [subject]`
 
@@ -134,7 +136,7 @@ Examples: `k!love` `k!love @Wumpus` `k!love everyone in chat`
 
 ### `k!minesweeper`
 
-Starts a game of minesweeper. You can choose the difficulty by adding `easy`, `medium` or `hard` to the command. Default difficulty is `medium`.
+Creates a game of minesweeper. You can choose the difficulty by adding `easy`, `medium` or `hard` to the command. Default difficulty is `medium`.
 
 By default a first random cell and it's sourroundings will be revealed at the start of the game. Use the `blank` argument at the end of the command if you don't want to reaveal any cells.
 
@@ -194,7 +196,7 @@ Examples: `k!slap` `k!slap @Cthulhu` `k!slap everyone in chat`
 
 ### `k!timezones`
 
-Show the current time in several cities of different timezones.
+Shows the current time in several cities of different timezones.
 
 Usage: `k!timezones`
 

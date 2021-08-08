@@ -1,5 +1,6 @@
 const common = require('../utils/common')
 const anilist = require('../utils/anilist')
+let error = false
 
 /**
  * Takes search terms, strip year and send a search request to the TMDb API.
@@ -139,7 +140,7 @@ const getStreams = (streams) => {
   }
 }
 
-const run = async (client, msg, args) => {
+const construct = async (client, msg, args) => {
   // Get subject from args.
   const subject = args.join(' ')
 
@@ -151,7 +152,12 @@ const run = async (client, msg, args) => {
     const isAdult = getMeta(show.isAdult)
 
     if (isAdult) {
-      return common.sendErrorMsg(msg, 'Sorry sempai, that movie or show appears to be NSFW and can\'t be displayed on chat!')
+      error = true
+
+      return {
+        color: 0x2f3136,
+        description: 'Sorry sempai, that movie or show appears to be NSFW and can\'t be displayed on chat!'
+      }
     }
 
     // Format title.
@@ -160,7 +166,6 @@ const run = async (client, msg, args) => {
     const episodeCount = getEpisodes(show)
     const runtime = getRuntime(show)
     const date = getDate(show)
-    // const episodeRuntime = getMeta(show.duration)
 
     let displayTitle = titleRomanji
 
@@ -217,25 +222,48 @@ const run = async (client, msg, args) => {
       })
     }
 
-    // Reply with an embed message.
-    msg.channel.send({
-      embed: {
-        color: 0x2f3136,
-        title: displayTitle,
-        url: show.siteUrl,
-        thumbnail: {
-          url: `${show.coverImage.large}`
-        },
-        description,
-        fields,
-        footer: {
-          text: 'Data provided by AniList API – https://anilist.co/'
-        }
+    // Return message.
+    return {
+      color: 0x2f3136,
+      title: displayTitle,
+      url: show.siteUrl,
+      thumbnail: {
+        url: `${show.coverImage.large}`
+      },
+      description,
+      fields,
+      footer: {
+        text: 'Data provided by AniList API – https://anilist.co/'
       }
-    }).catch(err => common.sendErrorMsg(msg, err))
+    }
   } else {
-    common.sendErrorMsg(msg, 'Couldn\'t find any anime by that title.\nPlease check spelling and try again!')
+    error = true
+
+    // Return error message.
+    return {
+      color: 0x2f3136,
+      description: `Couldn't find any anime by that title.
+        Please check spelling and try again!`
+    }
   }
+}
+
+const slash = async (client, msg, interaction, args) => {
+  // Reply with an embed message.
+  const embed = await construct(client, msg, args)
+
+  await interaction.reply({
+    embeds: [embed],
+    ephemeral: error
+  })
+
+  // Reset error if needed.
+  if (error) error = false
+}
+
+const run = async (client, msg, args) => {
+  // Reply with an embed message.
+  common.sendEmbedObject(msg, await construct(client, msg, args))
 }
 
 module.exports = {
@@ -245,5 +273,18 @@ module.exports = {
   examples: ['anime Hinamatsuri'],
   args: true,
   args_error: 'You must specify an anime title!',
+  slash_command: {
+    description: 'Displays info about an anime',
+    options: [
+      {
+        name: 'title',
+        value: 'title',
+        description: 'Anime title (eg: My neighbour Totoro)',
+        type: 3,
+        required: true
+      }
+    ]
+  },
+  slash,
   run
 }

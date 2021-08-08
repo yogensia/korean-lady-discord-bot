@@ -42,12 +42,12 @@ const run = (client, msg) => {
     .then((birthdayArray) => {
       const today = moment().format('MMMM Do')
 
+      // Ramdom emotes.
+      const emoteIntro = math.getRandomStringFromArray(emotesIntro, false)
+      const emoteOutro = common.getCustomEmote(client, math.getRandomStringFromArray(emotesOutro, false))
+
       birthdayArray.forEach(user => {
         const birthday = moment(user.birthday, 'DD/MM').format('MMMM Do')
-
-        // Ramdom emotes.
-        const emoteIntro = math.getRandomStringFromArray(emotesIntro, false)
-        const emoteOutro = common.getCustomEmote(client, math.getRandomStringFromArray(emotesOutro, false))
 
         // If we find a birthday that matches the current date, send a message!
         if (birthday === today) {
@@ -56,22 +56,20 @@ const run = (client, msg) => {
           // Send general chat message.
           client.channels.cache.get(process.env.GENERAL_CHANEL_ID)
             .send({
-              embed: {
+              embeds: [{
                 color: 0x2f3136,
                 description: `${emoteIntro} Today is <@${user.userid}>'s, birthday! ${emoteOutro}`
-              }
-            })
-            .catch(err => console.log(err))
+              }]
+            }).catch(err => console.log(err))
 
           // Send server owner message.
           client.users.cache.get(process.env.GUILD_OWNER_ID)
             .send({
-              embed: {
+              embeds: [{
                 color: 0x2f3136,
                 description: `${emoteIntro} **${today}:** Today, is **${user.discord_name}'s**, birthday!`
-              }
-            })
-            .catch(err => console.log(err))
+              }]
+            }).catch(err => console.log(err))
         }
       })
     }).catch((err) => new Error(err))
