@@ -5,8 +5,10 @@ const run = async (client, msg, args) => {
   // Prevent missuse of this command.
   if (msg.author.id !== '174509303615586304') return
 
-  // Get input from args.
-  const input = args.join(' ')
+  // Get args.
+  const input = args.shift()
+  const commandScope = args.shift()
+  const guild = commandScope ? process.env.GUILD_ID : null
 
   if (!input) {
     console.log('No command given.')
@@ -21,8 +23,8 @@ const run = async (client, msg, args) => {
       options: command.slash_command.options
     }
 
-    // Add command.
-    interactions.createCommand(data)
+    // Register slash command.
+    interactions.createCommand(data, guild)
       .then(console.log)
       .catch(console.error)
   }

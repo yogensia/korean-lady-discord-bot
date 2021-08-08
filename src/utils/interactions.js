@@ -19,19 +19,33 @@ const interaction = new DiscordInteractions({
 // ROLE               8
 // MENTIONABLE        9
 
-const getAll = (command) => {
+/**
+ * Registers a slash command.
+ *
+ * @param {Object} command Data for the command to register.
+ * @param {string} guildId Optional guild Id to register the command for, otherwise command will be registered globally.
+ * @returns {Object} Command registration response object.
+ */
+const getAll = (command, guildId = null) => {
   return interaction
-    .getApplicationCommands(process.env.GUILD_ID)
+    .getApplicationCommands(guildId)
     .catch(console.error)
 }
 
-const createAll = (commands) => {
+/**
+ * Registers array of slash commands.
+ *
+ * @param {array} commands Array with data for the commands to register.
+ * @param {string} guildId Optional guild Id to register the commands for, otherwise commands will be registered globally.
+ * @returns {Promise} Command registration response object or error.
+ */
+const createAll = (commands, guildId = null) => {
   return new Promise((resolve, reject) => {
     for (let i = 0; i < commands.length; i++) {
       const command = commands[i]
 
       interaction
-        .createApplicationCommand(command, process.env.GUILD_ID)
+        .createApplicationCommand(command, guildId)
         .then((command) => {
           console.log('Registering slash command:', command.name)
         })
@@ -43,15 +57,21 @@ const createAll = (commands) => {
   })
 }
 
-const deleteAll = () => {
+/**
+ * Deletes all slash commands.
+ *
+ * @param {string} guildId Optional guild Id to delete the command from, otherwise command will be deleted globally.
+ * @returns {Promise} Command deletion confirmation or error.
+ */
+const deleteAll = (guildId = null) => {
   return new Promise((resolve, reject) => {
     interaction
-      .getApplicationCommands(process.env.GUILD_ID)
+      .getApplicationCommands(guildId)
       .then(async (commands) => {
         for (let i = 0; i < commands.length; i++) {
           const command = commands[i]
           await interaction
-            .deleteApplicationCommand(command, process.env.GUILD_ID)
+            .deleteApplicationCommand(command, guildId)
             .then((res) => {
               console.log('Deleting slash command:', command.name)
             })
@@ -67,10 +87,17 @@ const deleteAll = () => {
   })
 }
 
-const createCommand = (command) => {
+/**
+ * Registers a slash command.
+ *
+ * @param {Object} command Data for the command to register.
+ * @param {string} guildId Optional guild Id to register the command for, otherwise command will be registered globally.
+ * @returns {Promise} Command registration response object or error.
+ */
+const createCommand = (command, guildId = null) => {
   return new Promise((resolve, reject) => {
     interaction
-      .createApplicationCommand(command, process.env.GUILD_ID)
+      .createApplicationCommand(command, guildId)
       .then((command) => {
         console.log('Registering slash command:', command.name)
         resolve(command)
@@ -81,10 +108,17 @@ const createCommand = (command) => {
   })
 }
 
-const deleteCommand = (command) => {
+/**
+ * Deletes a slash command.
+ *
+ * @param {Object} command Data for the command to delete.
+ * @param {string} guildId Optional guild Id to delete the command from, otherwise command will be deleted globally.
+ * @returns {Promise} Command deletion response object or error.
+ */
+const deleteCommand = (command, guildId = null) => {
   return new Promise((resolve, reject) => {
     interaction
-      .deleteApplicationCommand(command, process.env.GUILD_ID)
+      .deleteApplicationCommand(command, guildId)
       .then((res) => {
         console.log('Deleting slash command:', command.name)
         console.log(res)
