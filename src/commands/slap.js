@@ -1,6 +1,5 @@
 const common = require('../utils/common')
 const math = require('../utils/math')
-const reactions = require('../utils/reactions')
 
 // Emotes.
 const emotes = [

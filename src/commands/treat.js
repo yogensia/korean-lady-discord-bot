@@ -1,7 +1,6 @@
 const common = require('../utils/common')
 const math = require('../utils/math')
 const random = require('../utils/random')
-const reactions = require('../utils/reactions')
 
 // Treat adjectives.
 const adjectives = [
