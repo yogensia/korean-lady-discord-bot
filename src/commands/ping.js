@@ -21,7 +21,7 @@ module.exports = {
   desc: 'Simple ping command to test bot is online.',
   usage: 'ping',
   slash_command: {
-    description: 'Displays info about an anime'
+    description: 'Confirms bot is online by answering ping'
   },
   slash,
   run
