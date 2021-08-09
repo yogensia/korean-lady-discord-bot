@@ -1,5 +1,4 @@
 const common = require('../utils/common')
-const interactions = require('../utils/interactions')
 
 const run = async (client, msg, args) => {
   // Prevent missuse of this command.
