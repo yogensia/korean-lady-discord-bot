@@ -1,4 +1,4 @@
-// const common = require('../utils/common')
+const common = require('../utils/common')
 const interactions = require('../utils/interactions')
 
 const run = async (client, msg, args) => {
@@ -14,7 +14,12 @@ const run = async (client, msg, args) => {
     console.log('No command given.')
   } else {
     // Get command and slash command data.
-    const command = await client.commands.get(input)
+    let command
+    if (client.commands.has(input)) {
+      command = await client.commands.get(input)
+    } else {
+      return common.sendEmbed(msg, 'Command not found in enmap!')
+    }
 
     // Store the slash command data in array.
     const data = {
@@ -23,10 +28,19 @@ const run = async (client, msg, args) => {
       options: command.slash_command.options
     }
 
+    console.log({ command })
+    console.log({ data })
+
     // Register slash command.
     interactions.createCommand(data, guild)
-      .then(console.log)
-      .catch(console.error)
+      .then((res) => {
+        console.log(res)
+        common.sendEmbed(msg, 'Command added.')
+      })
+      .catch((err) => {
+        console.log(err)
+        common.sendEmbed(msg, err)
+      })
   }
 }
 
