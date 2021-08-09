@@ -2,6 +2,15 @@
 
 All notable changes for each version of this project are documented in this file.
 
+## 1.5.0 - 2021-08-13
+
+- Updated discord.js to v13.
+- Added support for slash commands.
+- Added slash command for support for all commands. Slash commands are auto completed by Discord and they are listed by Discord after typing `/`.
+- Remove support for old style commands `k!birthday` & `k!track`. Because of their complexity, these are now only supported as slash commands (`/birthday` & `/track`).
+- Reduced clutter and spam, error messages are only shown to the user that used a command now.
+- Several minor improvements to various commands.
+
 ## 1.4.10 - 2021-06-01
 
 - Improve formatting in !minesweeper command and add `reveal` setting.
