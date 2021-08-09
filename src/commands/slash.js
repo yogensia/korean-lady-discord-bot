@@ -28,26 +28,22 @@ const run = async (client, msg, args) => {
       options: command.slash_command.options
     }
 
-    console.log({ command })
-    console.log({ data })
-
     // Register slash command.
-    interactions.createCommand(data, guild)
-      .then((res) => {
-        console.log(res)
-        common.sendEmbed(msg, 'Command added.')
-      })
-      .catch((err) => {
-        console.log(err)
-        common.sendEmbed(msg, err)
-      })
+    let slash
+    if (guild) {
+      slash = await client.guilds.cache.get(guild)?.commands.create(data)
+    } else {
+      slash = await client.application?.commands.create(data)
+    }
+    console.log(slash)
+    common.sendEmbed(msg, 'Command should be added, check logs for details!')
   }
 }
 
 module.exports = {
-  name: 'deploy',
-  desc: 'Deploys interactions for a given command.',
-  usage: 'deploy',
+  name: 'slash',
+  desc: 'Registers a slash command.',
+  usage: 'slash',
   skipDocs: true,
   run
 }
