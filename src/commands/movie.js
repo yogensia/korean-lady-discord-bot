@@ -238,10 +238,7 @@ const slash = async (client, msg, interaction, args) => {
   // Reply with an embed message.
   const embed = await construct(client, msg, args)
 
-  await interaction.reply({
-    embeds: [embed],
-    ephemeral: error
-  })
+  common.interactionObjectReply(interaction, [embed], error)
 
   // Reset error in needed.
   if (error) error = false

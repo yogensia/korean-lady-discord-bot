@@ -275,7 +275,6 @@ const argumentComplete = (interaction, args) => {
 const slash = async (client, msg, interaction) => {
   // Disallow editing in DMs, otherwise a malicious user could
   // privately delete or change the data.
-  // TODO: Check DM behaviour.
   if (msg.channel.type === 'dm') {
     common.interactionReply(interaction, errorNoDms(), true)
   }

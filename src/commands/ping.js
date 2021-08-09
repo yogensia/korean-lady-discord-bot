@@ -2,13 +2,7 @@ const common = require('../utils/common')
 
 const slash = async (client, msg, interaction, args) => {
   // Reply with an embed message.
-  await interaction.reply({
-    embeds: [{
-      color: 0x2f3136,
-      description: 'Pong!'
-    }],
-    ephemeral: true
-  })
+  common.interactionReply(interaction, 'Pong!', true)
 }
 
 const run = (client, msg, args) => {

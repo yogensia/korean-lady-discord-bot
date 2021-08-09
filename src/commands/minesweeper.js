@@ -78,12 +78,7 @@ const construct = async (client, msg, args) => {
 
 const slash = async (client, msg, interaction, args) => {
   // Reply with an embed message.
-  await interaction.reply({
-    embeds: [{
-      color: 0x2f3136,
-      description: await construct(client, msg, args)
-    }]
-  })
+  common.interactionReply(interaction, await construct(client, msg, args))
 }
 
 const run = async (client, msg, args) => {

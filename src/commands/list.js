@@ -26,12 +26,9 @@ const construct = (client, msg, args) => {
   }
 }
 
-const slash = async (client, msg, interaction, args) => {
+const slash = (client, msg, interaction, args) => {
   // Reply with an embed message.
-  await interaction.reply({
-    embeds: [construct(client, msg, args)],
-    ephemeral: true
-  })
+  common.interactionObjectReply(interaction, [construct(client, msg, args)], true)
 }
 
 const run = (client, msg, args) => {

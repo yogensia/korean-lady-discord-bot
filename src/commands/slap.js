@@ -31,25 +31,20 @@ const construct = (client, msg, args) => {
   // Depending on percentage send a different message.
   let message
   if (result > 75) {
-    message = `${emote} ${common.displayName(msg)} slapped **${subject}**! It's super efective! That drained a total of **${result}HP**!`
+    message = `${emote} ${common.displayName(msg)} slapped **${subject}**! It's super efective! That drained a total of **${result} HP**!`
   } else if (result > 25) {
-    message = `${emote} ${common.displayName(msg)} slapped **${subject}**! That drained a total of ${result}HP!`
+    message = `${emote} ${common.displayName(msg)} slapped **${subject}**! That drained a total of **${result} HP**!`
   } else {
-    message = `${emote} ${common.displayName(msg)} slapped **${subject}**! It's not very efective... That drained a total of **${result}HP**!`
+    message = `${emote} ${common.displayName(msg)} slapped **${subject}**! It's not very efective... That drained a total of **${result} HP**!`
   }
 
   // Return message.
   return message
 }
 
-const slash = async (client, msg, interaction, args) => {
+const slash = (client, msg, interaction, args) => {
   // Reply with an embed message.
-  await interaction.reply({
-    embeds: [{
-      color: 0x2f3136,
-      description: construct(client, msg, args)
-    }]
-  })
+  common.interactionReply(interaction, construct(client, msg, args))
 }
 
 const run = (client, msg, args) => {
