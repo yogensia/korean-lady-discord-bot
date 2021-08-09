@@ -29,11 +29,11 @@ const run = async (client, msg, args) => {
 
     // Register slash command.
     if (guild) {
-      slash = await client.guilds.cache.get(guild)?.commands.create(data)
+      const slash = await client.guilds.cache.get(guild)?.commands.create(data)
       console.log(slash)
       common.sendEmbed(msg, 'Command should be added now to this guild, check logs for details!')
     } else {
-      slash = await client.application?.commands.create(data)
+      const slash = await client.application?.commands.create(data)
       console.log(slash)
       common.sendEmbed(msg, 'Command should be added globally in a while, check logs for details!')
     }
