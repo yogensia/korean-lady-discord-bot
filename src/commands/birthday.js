@@ -177,6 +177,11 @@ const slash = async (client, msg, interaction) => {
   }
 }
 
+const run = (client, msg, args) => {
+  // Send deprecated command message.
+  common.sendDeprecatedCommandMsg(client, msg)
+}
+
 module.exports = {
   name: 'birthday',
   desc: 'Allows a user to set or unset their birthday date, or see a list of upcoming birthdays. If no argument is provided, the bot will show the user\'s current birthday date, if it is present in the database.\n\nThe bot will send a notification on chat at 8 AM CET whenever it\'s someone\'s birthday.\n\nWhen adding your birthday date, please use the format DD/MM.',
@@ -224,5 +229,6 @@ module.exports = {
       }
     ]
   },
-  slash
+  slash,
+  run
 }

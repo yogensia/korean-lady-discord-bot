@@ -277,7 +277,7 @@ const interactionObjectReply = (interaction, embeds, ephemeral = false) => {
 }
 
 /**
- * Send a spam warning message.
+ * Sends a spam warning message.
  *
  * @param {Object} client Client object.
  * @param {Object} msg Message object.
@@ -290,7 +290,31 @@ const sendSpamMsg = (client, msg) => {
   msg.channel.send({
     embeds: [{
       color: 0x2f3136,
-      description: `Sorry ${displayName(msg)}, ${process.env.PREFIX}${client.cmd.name} is a bit too spammy for this channel, please use it in <#${client.spamChannel.id}> instead. Thank you! ${emoteThanks}`,
+      description: `Sorry ${displayName(msg)}, \`${process.env.PREFIX}${client.cmd.name}\` is a bit too spammy for this channel, please use it in <#${client.spamChannel.id}> instead. Thank you! ${emoteThanks}`,
+      footer: {
+        text: 'This message will self-destruct in 30 seconds... 👀'
+      }
+    }]
+  }).then(msg => setTimeout(() => { msg.delete() }, 30000))
+    .catch(err => console.log(new Error(err)))
+}
+
+/**
+ * Sends a message explaining that the command is only available as a
+ * slash command.
+ *
+ * @param {Object} client Client object.
+ * @param {Object} msg Message object.
+ */
+const sendDeprecatedCommandMsg = (client, msg) => {
+  // Emotes.
+  const emoteThanks = getCustomEmote(client, 'ihaa', '❤')
+
+  // Send a reply with the warning.
+  msg.channel.send({
+    embeds: [{
+      color: 0x2f3136,
+      description: `Sorry ${displayName(msg)}, \`${process.env.PREFIX}${client.cmd.name}\` is no longer supported in the old command format. Try using the \`/${client.cmd.name}\` slash command instead. Thank you! ${emoteThanks}`,
       footer: {
         text: 'This message will self-destruct in 30 seconds... 👀'
       }
@@ -378,6 +402,7 @@ module.exports = {
   sendErrorMsg,
   sendMissingParameterMsg,
   sendSpamMsg,
+  sendDeprecatedCommandMsg,
   interactionReply,
   interactionObjectReply,
   stripMentions,
