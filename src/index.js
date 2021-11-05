@@ -1,6 +1,6 @@
 require('dotenv').config()
 
-const { Client, Permissions } = require('discord.js')
+const { Client } = require('discord.js')
 const Enmap = require('enmap')
 const fs = require('fs')
 
