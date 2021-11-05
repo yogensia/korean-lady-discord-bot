@@ -2,6 +2,10 @@
 
 All notable changes for each version of this project are documented in this file.
 
+## 1.5.1 - 2021-11-05
+
+- Added automatic handling of roles for new server members.
+
 ## 1.5.0 - 2021-08-13
 
 - Updated discord.js to v13.
