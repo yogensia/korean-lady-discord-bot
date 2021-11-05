@@ -1,6 +1,6 @@
 require('dotenv').config()
 
-const { Client } = require('discord.js')
+const { Client, Permissions } = require('discord.js')
 const Enmap = require('enmap')
 const fs = require('fs')
 
@@ -8,6 +8,7 @@ const client = new Client({
   intents: [
     'GUILDS',
     'GUILD_EMOJIS_AND_STICKERS',
+    'GUILD_MEMBERS',
     'GUILD_MESSAGES',
     'DIRECT_MESSAGES'
   ],
