@@ -63,7 +63,7 @@ const run = (client) => {
             channel.send({
               embeds: [{
                 color: 0x2f3136,
-                description: `${emoteIntro} Today is <@${user.userid}>'s, birthday! ${emoteOutro}`
+                description: `${emoteIntro} Today is <@${user.userid}>'s birthday! ${emoteOutro}`
               }]
             }).catch(err => console.log(err))
           }).catch(err => console.log(err))
@@ -73,7 +73,7 @@ const run = (client) => {
             guildOwner.send({
               embeds: [{
                 color: 0x2f3136,
-                description: `${emoteIntro} **${today}:** Today, is **${user.discord_name}'s**, birthday!`
+                description: `${emoteIntro} **${today}:** Today is **${user.discord_name}'s** birthday!`
               }]
             }).catch(err => console.log(err))
           }).catch(err => console.log(err))
