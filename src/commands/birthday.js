@@ -34,7 +34,7 @@ const argumentList = (interaction, args) => {
   let size = 10
 
   // Check for size argument.
-  if (args && args[0].name === 'number') {
+  if (args[0] && args[0].name === 'number') {
     size = args[0].value
   }
 
