@@ -2,6 +2,10 @@
 
 All notable changes for each version of this project are documented in this file.
 
+## 1.5.3 - 2022-03-10
+
+- Fixed bug parsing parameters in birthday command.
+
 ## 1.5.2 - 2021-11-08
 
 - Added InspiroBot quote command.
