@@ -27,7 +27,7 @@
     "discord.js-minesweeper": "^1.0.6",
     "dotenv": "^8.2.0",
     "enmap": "^5.2.3",
-    "moment-timezone": "^0.5.27",
+    "moment-timezone": "^0.5.35",
     "pg": "^8.3.3",
     "turndown": "^6.0.0"
   },
