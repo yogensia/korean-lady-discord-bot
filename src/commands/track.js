@@ -67,7 +67,7 @@ const showAlreadyExists = (showArgument) => {
  */
 const argumentList = (interaction, args, complete = false) => {
   // If we are requesting a specific show, show that alone, otherwise dump tracked shows list.
-  if (args && args[0].name === 'name') {
+  if (args && args[0] && args[0].name === 'name') {
     const showSearch = args[0].value
     let showFound = ''
 
@@ -198,10 +198,10 @@ const argumentSet = (interaction, args) => {
   showAlreadyExists(show).then(exists => {
     if (exists) {
       // Add to database.
-      pg.trackShowSet(show, showSlug, episode, moment().format('x'), interaction.user.id).then((res) => {
+      pg.trackShowSet(show, showSlug, episode, moment().format('x'), interaction.user.id, false).then((res) => {
         if (res.rowCount > 0) {
           pg.trackShowGet(showSlug).then((show) => {
-            common.interactionReply(interaction, `Updating **${show.show_name}**: **${show.episode}** episodes watched.`)
+            common.interactionReply(interaction, `Updating **${show.show_name}** to **${show.episode}** episodes watched.`)
           }).catch(err => console.log(err))
         } else {
           common.interactionReply(interaction, 'Something went wrong, please try again!', true)

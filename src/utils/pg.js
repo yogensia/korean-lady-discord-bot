@@ -1,10 +1,7 @@
 const { Pool } = require('pg')
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false
-  }
+  connectionString: process.env.DATABASE_URL
 })
 
 /**
@@ -142,14 +139,14 @@ const trackShowRename = (showSlug, newName, newSlug) => {
   })
 }
 
-const trackShowSet = (showName, showSlug, episode, modified, userid) => {
+const trackShowSet = (showName, showSlug, episode, modified, userid, complete) => {
   return new Promise((resolve, reject) => {
     const query = `
-      INSERT INTO tracked_shows (show_name, show_slug, episode, modified, userid)
-      VALUES ($1, $2, $3, $4, $5)
+      INSERT INTO tracked_shows (show_name, show_slug, episode, modified, userid, complete)
+      VALUES ($1, $2, $3, $4, $5, $6)
       ON CONFLICT (show_slug) DO UPDATE
         SET episode = excluded.episode;`
-    const values = [showName, showSlug, episode, modified, userid]
+    const values = [showName, showSlug, episode, modified, userid, complete]
 
     runQuery(query, values)
       .then(res => resolve(res))
