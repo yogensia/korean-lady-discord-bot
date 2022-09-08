@@ -14,7 +14,9 @@
     "check": "standard",
     "fix": "standard --fix",
     "docs": "node ./scripts/build.js",
-    "deploy": "git push heroku master"
+    "deploy": "fly deploy",
+    "dbc": "fly postgres connect -a korean-lady-dbb",
+    "dbp": "fly proxy 5432 -a korean-lady-db"
   },
   "engines": {
     "node": "16.13.0",
